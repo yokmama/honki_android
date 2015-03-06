@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="chapter04.android.learn10.yokmama.com.chapter04.fragment.WebViewFragment">
+    tools:context="chapter04.android.learn10.yokmama.com.chapter04.com.yokmama.learn10.chapter04.android.fragment.WebViewFragment">
 
 
     <LinearLayout

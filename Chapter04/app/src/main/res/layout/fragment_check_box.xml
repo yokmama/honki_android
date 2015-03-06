@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="@dimen/layout_space"
     android:gravity="center"
-    tools:context="chapter04.android.learn10.yokmama.com.chapter04.fragment.CheckBoxFragment">
+    tools:context="com.yokmama.learn10.chapter04.android.fragment.CheckBoxFragment">
 
 
     <CheckBox

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "chapter04.android.learn10.yokmama.com.chapter04"
+        applicationId "com.yokmama.learn10.chapter04.android"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1

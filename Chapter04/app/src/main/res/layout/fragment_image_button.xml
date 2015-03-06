@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="chapter04.android.learn10.yokmama.com.chapter04.fragment.ImageButtonFragment">
+    tools:context="com.yokmama.learn10.chapter04.android.fragment.ImageButtonFragment">
 
     <ImageButton
         android:id="@+id/imageButton1"

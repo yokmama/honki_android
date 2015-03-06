@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="chapter04.android.learn10.yokmama.com.chapter04.fragment.SpinnerFragment">
+    tools:context="com.yokmama.learn10.chapter04.android.fragment.SpinnerFragment">
 
 
     <Spinner
