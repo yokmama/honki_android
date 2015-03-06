@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_space">16dp</dimen>
+    <dimen name="item_space">4dp</dimen>
+    <dimen name="image_button_size">72dip</dimen>
+
+</resources>
