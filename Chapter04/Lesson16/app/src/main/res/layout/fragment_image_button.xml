@@ -1,0 +1,53 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.ImageButtonFragment">
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:src="@drawable/cat"
+        android:scaleType="center"
+        android:layout_width="@dimen/image_button_size"
+        android:layout_height="@dimen/image_button_size"/>
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:src="@drawable/cat"
+        android:scaleType="centerInside"
+        android:layout_width="@dimen/image_button_size"
+        android:layout_height="@dimen/image_button_size"/>
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:src="@drawable/cat"
+        android:scaleType="centerCrop"
+        android:layout_width="@dimen/image_button_size"
+        android:layout_height="@dimen/image_button_size"/>
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:src="@drawable/cat"
+        android:scaleType="fitCenter"
+        android:layout_width="@dimen/image_button_size"
+        android:layout_height="@dimen/image_button_size"/>
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:src="@drawable/cat"
+        android:scaleType="fitXY"
+        android:layout_width="@dimen/image_button_size"
+        android:layout_height="@dimen/image_button_size"/>
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:src="@drawable/cat"
+        android:scaleType="fitStart"
+        android:layout_width="@dimen/image_button_size"
+        android:layout_height="@dimen/image_button_size"/>
+    <ImageButton
+        android:id="@+id/imageButton7"
+        android:src="@drawable/cat"
+        android:scaleType="fitEnd"
+        android:layout_width="@dimen/image_button_size"
+        android:layout_height="@dimen/image_button_size"/>
+</LinearLayout>

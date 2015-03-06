@@ -1,0 +1,75 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.FrameLayoutFragment">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/cat"
+        android:layout_gravity="right|bottom"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left|center_vertical"
+        android:textSize="9sp"
+        android:layout_gravity="left|center_vertical"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left|top"
+        android:textSize="9sp"
+        android:layout_gravity="left|top"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="center_horizontal|top"
+        android:textSize="9sp"
+        android:layout_gravity="center_horizontal|top"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="right|top"
+        android:textSize="9sp"
+        android:layout_gravity="right|top"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="right|center_vertical"
+        android:textSize="9sp"
+        android:layout_gravity="right|center_vertical"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left|bottom"
+        android:textSize="9sp"
+        android:layout_gravity="left|bottom"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="center_horizontal|bottom"
+        android:textSize="9sp"
+        android:layout_gravity="center_horizontal|bottom"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="right|bottom"
+        android:textSize="9sp"
+        android:layout_gravity="right|bottom"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="center"
+        android:textSize="9sp"
+        android:layout_gravity="center"/>
+
+</FrameLayout>

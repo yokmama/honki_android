@@ -1,0 +1,55 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/layout_space"
+    android:gravity="center"
+    tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.EditTextFragment">
+
+
+    <!-- シンプルな使い方-->
+    <EditText
+        android:id="@+id/editNormal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="シンプル"
+        android:layout_margin="@dimen/item_space"/>
+
+    <!-- パスワード入力-->
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="パスワード入力"
+        android:inputType="textPassword"
+        android:layout_margin="@dimen/item_space"/>
+
+    <!-- 数値入力-->
+    <EditText
+        android:id="@+id/editNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="数値入力"
+        android:inputType="number"
+        android:layout_margin="@dimen/item_space"/>
+
+    <!-- 入力制限（プログラムで設定）-->
+    <EditText
+        android:id="@+id/editValidate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="入力制限"
+        android:layout_margin="@dimen/item_space"/>
+
+    <!-- 入力処理（プログラムで設定）-->
+    <EditText
+        android:id="@+id/editChange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="入力処理"
+        android:layout_margin="@dimen/item_space"/>
+</LinearLayout>
