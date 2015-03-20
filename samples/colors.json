@@ -1,0 +1,1020 @@
+{
+    "colorsArray": [
+        {
+            "colorName": "red_50", 
+            "hexValue": "#fde0dc"
+        }, 
+        {
+            "colorName": "red_100", 
+            "hexValue": "#f9bdbb"
+        }, 
+        {
+            "colorName": "red_200", 
+            "hexValue": "#f69988"
+        }, 
+        {
+            "colorName": "red_300", 
+            "hexValue": "#f36c60"
+        }, 
+        {
+            "colorName": "red_400", 
+            "hexValue": "#e84e40"
+        }, 
+        {
+            "colorName": "red_500", 
+            "hexValue": "#e51c23"
+        }, 
+        {
+            "colorName": "red_600", 
+            "hexValue": "#dd191d"
+        }, 
+        {
+            "colorName": "red_700", 
+            "hexValue": "#d01716"
+        }, 
+        {
+            "colorName": "red_800", 
+            "hexValue": "#c41411"
+        }, 
+        {
+            "colorName": "red_900", 
+            "hexValue": "#b0120a"
+        }, 
+        {
+            "colorName": "red_a100", 
+            "hexValue": "#ff7997"
+        }, 
+        {
+            "colorName": "red_a200", 
+            "hexValue": "#ff5177"
+        }, 
+        {
+            "colorName": "red_a400", 
+            "hexValue": "#ff2d6f"
+        }, 
+        {
+            "colorName": "red_a700", 
+            "hexValue": "#e00032"
+        }, 
+        {
+            "colorName": "pink_50", 
+            "hexValue": "#fce4ec"
+        }, 
+        {
+            "colorName": "pink_100", 
+            "hexValue": "#f8bbd0"
+        }, 
+        {
+            "colorName": "pink_200", 
+            "hexValue": "#f48fb1"
+        }, 
+        {
+            "colorName": "pink_300", 
+            "hexValue": "#f06292"
+        }, 
+        {
+            "colorName": "pink_400", 
+            "hexValue": "#ec407a"
+        }, 
+        {
+            "colorName": "pink_500", 
+            "hexValue": "#e91e63"
+        }, 
+        {
+            "colorName": "pink_600", 
+            "hexValue": "#d81b60"
+        }, 
+        {
+            "colorName": "pink_700", 
+            "hexValue": "#c2185b"
+        }, 
+        {
+            "colorName": "pink_800", 
+            "hexValue": "#ad1457"
+        }, 
+        {
+            "colorName": "pink_900", 
+            "hexValue": "#880e4f"
+        }, 
+        {
+            "colorName": "pink_a100", 
+            "hexValue": "#ff80ab"
+        }, 
+        {
+            "colorName": "pink_a200", 
+            "hexValue": "#ff4081"
+        }, 
+        {
+            "colorName": "pink_a400", 
+            "hexValue": "#f50057"
+        }, 
+        {
+            "colorName": "pink_a700", 
+            "hexValue": "#c51162"
+        }, 
+        {
+            "colorName": "purple_50", 
+            "hexValue": "#f3e5f5"
+        }, 
+        {
+            "colorName": "purple_100", 
+            "hexValue": "#e1bee7"
+        }, 
+        {
+            "colorName": "purple_200", 
+            "hexValue": "#ce93d8"
+        }, 
+        {
+            "colorName": "purple_300", 
+            "hexValue": "#ba68c8"
+        }, 
+        {
+            "colorName": "purple_400", 
+            "hexValue": "#ab47bc"
+        }, 
+        {
+            "colorName": "purple_500", 
+            "hexValue": "#9c27b0"
+        }, 
+        {
+            "colorName": "purple_600", 
+            "hexValue": "#8e24aa"
+        }, 
+        {
+            "colorName": "purple_700", 
+            "hexValue": "#7b1fa2"
+        }, 
+        {
+            "colorName": "purple_800", 
+            "hexValue": "#6a1b9a"
+        }, 
+        {
+            "colorName": "purple_900", 
+            "hexValue": "#4a148c"
+        }, 
+        {
+            "colorName": "purple_a100", 
+            "hexValue": "#ea80fc"
+        }, 
+        {
+            "colorName": "purple_a200", 
+            "hexValue": "#e040fb"
+        }, 
+        {
+            "colorName": "purple_a400", 
+            "hexValue": "#d500f9"
+        }, 
+        {
+            "colorName": "purple_a700", 
+            "hexValue": "#aa00ff"
+        }, 
+        {
+            "colorName": "deep_purple_50", 
+            "hexValue": "#ede7f6"
+        }, 
+        {
+            "colorName": "deep_purple_100", 
+            "hexValue": "#d1c4e9"
+        }, 
+        {
+            "colorName": "deep_purple_200", 
+            "hexValue": "#b39ddb"
+        }, 
+        {
+            "colorName": "deep_purple_300", 
+            "hexValue": "#9575cd"
+        }, 
+        {
+            "colorName": "deep_purple_400", 
+            "hexValue": "#7e57c2"
+        }, 
+        {
+            "colorName": "deep_purple_500", 
+            "hexValue": "#673ab7"
+        }, 
+        {
+            "colorName": "deep_purple_600", 
+            "hexValue": "#5e35b1"
+        }, 
+        {
+            "colorName": "deep_purple_700", 
+            "hexValue": "#512da8"
+        }, 
+        {
+            "colorName": "deep_purple_800", 
+            "hexValue": "#4527a0"
+        }, 
+        {
+            "colorName": "deep_purple_900", 
+            "hexValue": "#311b92"
+        }, 
+        {
+            "colorName": "deep_purple_a100", 
+            "hexValue": "#b388ff"
+        }, 
+        {
+            "colorName": "deep_purple_a200", 
+            "hexValue": "#7c4dff"
+        }, 
+        {
+            "colorName": "deep_purple_a400", 
+            "hexValue": "#651fff"
+        }, 
+        {
+            "colorName": "deep_purple_a700", 
+            "hexValue": "#6200ea"
+        }, 
+        {
+            "colorName": "indigo_50", 
+            "hexValue": "#e8eaf6"
+        }, 
+        {
+            "colorName": "indigo_100", 
+            "hexValue": "#c5cae9"
+        }, 
+        {
+            "colorName": "indigo_200", 
+            "hexValue": "#9fa8da"
+        }, 
+        {
+            "colorName": "indigo_300", 
+            "hexValue": "#7986cb"
+        }, 
+        {
+            "colorName": "indigo_400", 
+            "hexValue": "#5c6bc0"
+        }, 
+        {
+            "colorName": "indigo_500", 
+            "hexValue": "#3f51b5"
+        }, 
+        {
+            "colorName": "indigo_600", 
+            "hexValue": "#3949ab"
+        }, 
+        {
+            "colorName": "indigo_700", 
+            "hexValue": "#303f9f"
+        }, 
+        {
+            "colorName": "indigo_800", 
+            "hexValue": "#283593"
+        }, 
+        {
+            "colorName": "indigo_900", 
+            "hexValue": "#1a237e"
+        }, 
+        {
+            "colorName": "indigo_a100", 
+            "hexValue": "#8c9eff"
+        }, 
+        {
+            "colorName": "indigo_a200", 
+            "hexValue": "#536dfe"
+        }, 
+        {
+            "colorName": "indigo_a400", 
+            "hexValue": "#3d5afe"
+        }, 
+        {
+            "colorName": "indigo_a700", 
+            "hexValue": "#304ffe"
+        }, 
+        {
+            "colorName": "blue_50", 
+            "hexValue": "#e7e9fd"
+        }, 
+        {
+            "colorName": "blue_100", 
+            "hexValue": "#d0d9ff"
+        }, 
+        {
+            "colorName": "blue_200", 
+            "hexValue": "#afbfff"
+        }, 
+        {
+            "colorName": "blue_300", 
+            "hexValue": "#91a7ff"
+        }, 
+        {
+            "colorName": "blue_400", 
+            "hexValue": "#738ffe"
+        }, 
+        {
+            "colorName": "blue_500", 
+            "hexValue": "#5677fc"
+        }, 
+        {
+            "colorName": "blue_600", 
+            "hexValue": "#4e6cef"
+        }, 
+        {
+            "colorName": "blue_700", 
+            "hexValue": "#455ede"
+        }, 
+        {
+            "colorName": "blue_800", 
+            "hexValue": "#3b50ce"
+        }, 
+        {
+            "colorName": "blue_900", 
+            "hexValue": "#2a36b1"
+        }, 
+        {
+            "colorName": "blue_a100", 
+            "hexValue": "#a6baff"
+        }, 
+        {
+            "colorName": "blue_a200", 
+            "hexValue": "#6889ff"
+        }, 
+        {
+            "colorName": "blue_a400", 
+            "hexValue": "#4d73ff"
+        }, 
+        {
+            "colorName": "blue_a700", 
+            "hexValue": "#4d69ff"
+        }, 
+        {
+            "colorName": "light_blue_50", 
+            "hexValue": "#e1f5fe"
+        }, 
+        {
+            "colorName": "light_blue_100", 
+            "hexValue": "#b3e5fc"
+        }, 
+        {
+            "colorName": "light_blue_200", 
+            "hexValue": "#81d4fa"
+        }, 
+        {
+            "colorName": "light_blue_300", 
+            "hexValue": "#4fc3f7"
+        }, 
+        {
+            "colorName": "light_blue_400", 
+            "hexValue": "#29b6f6"
+        }, 
+        {
+            "colorName": "light_blue_500", 
+            "hexValue": "#03a9f4"
+        }, 
+        {
+            "colorName": "light_blue_600", 
+            "hexValue": "#039be5"
+        }, 
+        {
+            "colorName": "light_blue_700", 
+            "hexValue": "#0288d1"
+        }, 
+        {
+            "colorName": "light_blue_800", 
+            "hexValue": "#0277bd"
+        }, 
+        {
+            "colorName": "light_blue_900", 
+            "hexValue": "#01579b"
+        }, 
+        {
+            "colorName": "light_blue_a100", 
+            "hexValue": "#80d8ff"
+        }, 
+        {
+            "colorName": "light_blue_a200", 
+            "hexValue": "#40c4ff"
+        }, 
+        {
+            "colorName": "light_blue_a400", 
+            "hexValue": "#00b0ff"
+        }, 
+        {
+            "colorName": "light_blue_a700", 
+            "hexValue": "#0091ea"
+        }, 
+        {
+            "colorName": "cyan_50", 
+            "hexValue": "#e0f7fa"
+        }, 
+        {
+            "colorName": "cyan_100", 
+            "hexValue": "#b2ebf2"
+        }, 
+        {
+            "colorName": "cyan_200", 
+            "hexValue": "#80deea"
+        }, 
+        {
+            "colorName": "cyan_300", 
+            "hexValue": "#4dd0e1"
+        }, 
+        {
+            "colorName": "cyan_400", 
+            "hexValue": "#26c6da"
+        }, 
+        {
+            "colorName": "cyan_500", 
+            "hexValue": "#00bcd4"
+        }, 
+        {
+            "colorName": "cyan_600", 
+            "hexValue": "#00acc1"
+        }, 
+        {
+            "colorName": "cyan_700", 
+            "hexValue": "#0097a7"
+        }, 
+        {
+            "colorName": "cyan_800", 
+            "hexValue": "#00838f"
+        }, 
+        {
+            "colorName": "cyan_900", 
+            "hexValue": "#006064"
+        }, 
+        {
+            "colorName": "cyan_a100", 
+            "hexValue": "#84ffff"
+        }, 
+        {
+            "colorName": "cyan_a200", 
+            "hexValue": "#18ffff"
+        }, 
+        {
+            "colorName": "cyan_a400", 
+            "hexValue": "#00e5ff"
+        }, 
+        {
+            "colorName": "cyan_a700", 
+            "hexValue": "#00b8d4"
+        }, 
+        {
+            "colorName": "teal_50", 
+            "hexValue": "#e0f2f1"
+        }, 
+        {
+            "colorName": "teal_100", 
+            "hexValue": "#b2dfdb"
+        }, 
+        {
+            "colorName": "teal_200", 
+            "hexValue": "#80cbc4"
+        }, 
+        {
+            "colorName": "teal_300", 
+            "hexValue": "#4db6ac"
+        }, 
+        {
+            "colorName": "teal_400", 
+            "hexValue": "#26a69a"
+        }, 
+        {
+            "colorName": "teal_500", 
+            "hexValue": "#009688"
+        }, 
+        {
+            "colorName": "teal_600", 
+            "hexValue": "#00897b"
+        }, 
+        {
+            "colorName": "teal_700", 
+            "hexValue": "#00796b"
+        }, 
+        {
+            "colorName": "teal_800", 
+            "hexValue": "#00695c"
+        }, 
+        {
+            "colorName": "teal_900", 
+            "hexValue": "#004d40"
+        }, 
+        {
+            "colorName": "teal_a100", 
+            "hexValue": "#a7ffeb"
+        }, 
+        {
+            "colorName": "teal_a200", 
+            "hexValue": "#64ffda"
+        }, 
+        {
+            "colorName": "teal_a400", 
+            "hexValue": "#1de9b6"
+        }, 
+        {
+            "colorName": "teal_a700", 
+            "hexValue": "#00bfa5"
+        }, 
+        {
+            "colorName": "green_50", 
+            "hexValue": "#d0f8ce"
+        }, 
+        {
+            "colorName": "green_100", 
+            "hexValue": "#a3e9a4"
+        }, 
+        {
+            "colorName": "green_200", 
+            "hexValue": "#72d572"
+        }, 
+        {
+            "colorName": "green_300", 
+            "hexValue": "#42bd41"
+        }, 
+        {
+            "colorName": "green_400", 
+            "hexValue": "#2baf2b"
+        }, 
+        {
+            "colorName": "green_500", 
+            "hexValue": "#259b24"
+        }, 
+        {
+            "colorName": "green_600", 
+            "hexValue": "#0a8f08"
+        }, 
+        {
+            "colorName": "green_700", 
+            "hexValue": "#0a7e07"
+        }, 
+        {
+            "colorName": "green_800", 
+            "hexValue": "#056f00"
+        }, 
+        {
+            "colorName": "green_900", 
+            "hexValue": "#0d5302"
+        }, 
+        {
+            "colorName": "green_a100", 
+            "hexValue": "#a2f78d"
+        }, 
+        {
+            "colorName": "green_a200", 
+            "hexValue": "#5af158"
+        }, 
+        {
+            "colorName": "green_a400", 
+            "hexValue": "#14e715"
+        }, 
+        {
+            "colorName": "green_a700", 
+            "hexValue": "#12c700"
+        }, 
+        {
+            "colorName": "light_green_50", 
+            "hexValue": "#f1f8e9"
+        }, 
+        {
+            "colorName": "light_green_100", 
+            "hexValue": "#dcedc8"
+        }, 
+        {
+            "colorName": "light_green_200", 
+            "hexValue": "#c5e1a5"
+        }, 
+        {
+            "colorName": "light_green_300", 
+            "hexValue": "#aed581"
+        }, 
+        {
+            "colorName": "light_green_400", 
+            "hexValue": "#9ccc65"
+        }, 
+        {
+            "colorName": "light_green_500", 
+            "hexValue": "#8bc34a"
+        }, 
+        {
+            "colorName": "light_green_600", 
+            "hexValue": "#7cb342"
+        }, 
+        {
+            "colorName": "light_green_700", 
+            "hexValue": "#689f38"
+        }, 
+        {
+            "colorName": "light_green_800", 
+            "hexValue": "#558b2f"
+        }, 
+        {
+            "colorName": "light_green_900", 
+            "hexValue": "#33691e"
+        }, 
+        {
+            "colorName": "light_green_a100", 
+            "hexValue": "#ccff90"
+        }, 
+        {
+            "colorName": "light_green_a200", 
+            "hexValue": "#b2ff59"
+        }, 
+        {
+            "colorName": "light_green_a400", 
+            "hexValue": "#76ff03"
+        }, 
+        {
+            "colorName": "light_green_a700", 
+            "hexValue": "#64dd17"
+        }, 
+        {
+            "colorName": "lime_50", 
+            "hexValue": "#f9fbe7"
+        }, 
+        {
+            "colorName": "lime_100", 
+            "hexValue": "#f0f4c3"
+        }, 
+        {
+            "colorName": "lime_200", 
+            "hexValue": "#e6ee9c"
+        }, 
+        {
+            "colorName": "lime_300", 
+            "hexValue": "#dce775"
+        }, 
+        {
+            "colorName": "lime_400", 
+            "hexValue": "#d4e157"
+        }, 
+        {
+            "colorName": "lime_500", 
+            "hexValue": "#cddc39"
+        }, 
+        {
+            "colorName": "lime_600", 
+            "hexValue": "#c0ca33"
+        }, 
+        {
+            "colorName": "lime_700", 
+            "hexValue": "#afb42b"
+        }, 
+        {
+            "colorName": "lime_800", 
+            "hexValue": "#9e9d24"
+        }, 
+        {
+            "colorName": "lime_900", 
+            "hexValue": "#827717"
+        }, 
+        {
+            "colorName": "lime_a100", 
+            "hexValue": "#f4ff81"
+        }, 
+        {
+            "colorName": "lime_a200", 
+            "hexValue": "#eeff41"
+        }, 
+        {
+            "colorName": "lime_a400", 
+            "hexValue": "#c6ff00"
+        }, 
+        {
+            "colorName": "lime_a700", 
+            "hexValue": "#aeea00"
+        }, 
+        {
+            "colorName": "yellow_50", 
+            "hexValue": "#fffde7"
+        }, 
+        {
+            "colorName": "yellow_100", 
+            "hexValue": "#fff9c4"
+        }, 
+        {
+            "colorName": "yellow_200", 
+            "hexValue": "#fff59d"
+        }, 
+        {
+            "colorName": "yellow_300", 
+            "hexValue": "#fff176"
+        }, 
+        {
+            "colorName": "yellow_400", 
+            "hexValue": "#ffee58"
+        }, 
+        {
+            "colorName": "yellow_500", 
+            "hexValue": "#ffeb3b"
+        }, 
+        {
+            "colorName": "yellow_600", 
+            "hexValue": "#fdd835"
+        }, 
+        {
+            "colorName": "yellow_700", 
+            "hexValue": "#fbc02d"
+        }, 
+        {
+            "colorName": "yellow_800", 
+            "hexValue": "#f9a825"
+        }, 
+        {
+            "colorName": "yellow_900", 
+            "hexValue": "#f57f17"
+        }, 
+        {
+            "colorName": "yellow_a100", 
+            "hexValue": "#ffff8d"
+        }, 
+        {
+            "colorName": "yellow_a200", 
+            "hexValue": "#ffff00"
+        }, 
+        {
+            "colorName": "yellow_a400", 
+            "hexValue": "#ffea00"
+        }, 
+        {
+            "colorName": "yellow_a700", 
+            "hexValue": "#ffd600"
+        }, 
+        {
+            "colorName": "amber_50", 
+            "hexValue": "#fff8e1"
+        }, 
+        {
+            "colorName": "amber_100", 
+            "hexValue": "#ffecb3"
+        }, 
+        {
+            "colorName": "amber_200", 
+            "hexValue": "#ffe082"
+        }, 
+        {
+            "colorName": "amber_300", 
+            "hexValue": "#ffd54f"
+        }, 
+        {
+            "colorName": "amber_400", 
+            "hexValue": "#ffca28"
+        }, 
+        {
+            "colorName": "amber_500", 
+            "hexValue": "#ffc107"
+        }, 
+        {
+            "colorName": "amber_600", 
+            "hexValue": "#ffb300"
+        }, 
+        {
+            "colorName": "amber_700", 
+            "hexValue": "#ffa000"
+        }, 
+        {
+            "colorName": "amber_800", 
+            "hexValue": "#ff8f00"
+        }, 
+        {
+            "colorName": "amber_900", 
+            "hexValue": "#ff6f00"
+        }, 
+        {
+            "colorName": "amber_a100", 
+            "hexValue": "#ffe57f"
+        }, 
+        {
+            "colorName": "amber_a200", 
+            "hexValue": "#ffd740"
+        }, 
+        {
+            "colorName": "amber_a400", 
+            "hexValue": "#ffc400"
+        }, 
+        {
+            "colorName": "amber_a700", 
+            "hexValue": "#ffab00"
+        }, 
+        {
+            "colorName": "orange_50", 
+            "hexValue": "#fff3e0"
+        }, 
+        {
+            "colorName": "orange_100", 
+            "hexValue": "#ffe0b2"
+        }, 
+        {
+            "colorName": "orange_200", 
+            "hexValue": "#ffcc80"
+        }, 
+        {
+            "colorName": "orange_300", 
+            "hexValue": "#ffb74d"
+        }, 
+        {
+            "colorName": "orange_400", 
+            "hexValue": "#ffa726"
+        }, 
+        {
+            "colorName": "orange_500", 
+            "hexValue": "#ff9800"
+        }, 
+        {
+            "colorName": "orange_600", 
+            "hexValue": "#fb8c00"
+        }, 
+        {
+            "colorName": "orange_700", 
+            "hexValue": "#f57c00"
+        }, 
+        {
+            "colorName": "orange_800", 
+            "hexValue": "#ef6c00"
+        }, 
+        {
+            "colorName": "orange_900", 
+            "hexValue": "#e65100"
+        }, 
+        {
+            "colorName": "orange_a100", 
+            "hexValue": "#ffd180"
+        }, 
+        {
+            "colorName": "orange_a200", 
+            "hexValue": "#ffab40"
+        }, 
+        {
+            "colorName": "orange_a400", 
+            "hexValue": "#ff9100"
+        }, 
+        {
+            "colorName": "orange_a700", 
+            "hexValue": "#ff6d00"
+        }, 
+        {
+            "colorName": "deep_orange_50", 
+            "hexValue": "#fbe9e7"
+        }, 
+        {
+            "colorName": "deep_orange_100", 
+            "hexValue": "#ffccbc"
+        }, 
+        {
+            "colorName": "deep_orange_200", 
+            "hexValue": "#ffab91"
+        }, 
+        {
+            "colorName": "deep_orange_300", 
+            "hexValue": "#ff8a65"
+        }, 
+        {
+            "colorName": "deep_orange_400", 
+            "hexValue": "#ff7043"
+        }, 
+        {
+            "colorName": "deep_orange_500", 
+            "hexValue": "#ff5722"
+        }, 
+        {
+            "colorName": "deep_orange_600", 
+            "hexValue": "#f4511e"
+        }, 
+        {
+            "colorName": "deep_orange_700", 
+            "hexValue": "#e64a19"
+        }, 
+        {
+            "colorName": "deep_orange_800", 
+            "hexValue": "#d84315"
+        }, 
+        {
+            "colorName": "deep_orange_900", 
+            "hexValue": "#bf360c"
+        }, 
+        {
+            "colorName": "deep_orange_a100", 
+            "hexValue": "#ff9e80"
+        }, 
+        {
+            "colorName": "deep_orange_a200", 
+            "hexValue": "#ff6e40"
+        }, 
+        {
+            "colorName": "deep_orange_a400", 
+            "hexValue": "#ff3d00"
+        }, 
+        {
+            "colorName": "deep_orange_a700", 
+            "hexValue": "#dd2c00"
+        }, 
+        {
+            "colorName": "brown_50", 
+            "hexValue": "#efebe9"
+        }, 
+        {
+            "colorName": "brown_100", 
+            "hexValue": "#d7ccc8"
+        }, 
+        {
+            "colorName": "brown_200", 
+            "hexValue": "#bcaaa4"
+        }, 
+        {
+            "colorName": "brown_300", 
+            "hexValue": "#a1887f"
+        }, 
+        {
+            "colorName": "brown_400", 
+            "hexValue": "#8d6e63"
+        }, 
+        {
+            "colorName": "brown_500", 
+            "hexValue": "#795548"
+        }, 
+        {
+            "colorName": "brown_600", 
+            "hexValue": "#6d4c41"
+        }, 
+        {
+            "colorName": "brown_700", 
+            "hexValue": "#5d4037"
+        }, 
+        {
+            "colorName": "brown_800", 
+            "hexValue": "#4e342e"
+        }, 
+        {
+            "colorName": "brown_900", 
+            "hexValue": "#3e2723"
+        }, 
+        {
+            "colorName": "grey_50", 
+            "hexValue": "#fafafa"
+        }, 
+        {
+            "colorName": "grey_100", 
+            "hexValue": "#f5f5f5"
+        }, 
+        {
+            "colorName": "grey_200", 
+            "hexValue": "#eeeeee"
+        }, 
+        {
+            "colorName": "grey_300", 
+            "hexValue": "#e0e0e0"
+        }, 
+        {
+            "colorName": "grey_400", 
+            "hexValue": "#bdbdbd"
+        }, 
+        {
+            "colorName": "grey_500", 
+            "hexValue": "#9e9e9e"
+        }, 
+        {
+            "colorName": "grey_600", 
+            "hexValue": "#757575"
+        }, 
+        {
+            "colorName": "grey_700", 
+            "hexValue": "#616161"
+        }, 
+        {
+            "colorName": "grey_800", 
+            "hexValue": "#424242"
+        }, 
+        {
+            "colorName": "grey_900", 
+            "hexValue": "#212121"
+        }, 
+        {
+            "colorName": "blue_grey_50", 
+            "hexValue": "#eceff1"
+        }, 
+        {
+            "colorName": "blue_grey_100", 
+            "hexValue": "#cfd8dc"
+        }, 
+        {
+            "colorName": "blue_grey_200", 
+            "hexValue": "#b0bec5"
+        }, 
+        {
+            "colorName": "blue_grey_300", 
+            "hexValue": "#90a4ae"
+        }, 
+        {
+            "colorName": "blue_grey_400", 
+            "hexValue": "#78909c"
+        }, 
+        {
+            "colorName": "blue_grey_500", 
+            "hexValue": "#607d8b"
+        }, 
+        {
+            "colorName": "blue_grey_600", 
+            "hexValue": "#546e7a"
+        }, 
+        {
+            "colorName": "blue_grey_700", 
+            "hexValue": "#455a64"
+        }, 
+        {
+            "colorName": "blue_grey_800", 
+            "hexValue": "#37474f"
+        }, 
+        {
+            "colorName": "blue_grey_900", 
+            "hexValue": "#263238"
+        }
+    ]
+}
