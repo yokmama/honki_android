@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
+<<<<<<< HEAD
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Lesson25.iml" filepath="$PROJECT_DIR$/Lesson25.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+    </modules>
+=======
     <modules />
+>>>>>>> e4fd72a43cc7b855ec9230750fefc3f8b9606d1b
   </component>
 </project>
 

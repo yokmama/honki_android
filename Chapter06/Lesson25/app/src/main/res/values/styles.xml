@@ -1,8 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
+<<<<<<< HEAD
+    <style name="AppTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Customize your theme here. -->
+        <!-- ダイアログのタイトルを非表示にする -->
+        <item name="windowActionBar">false</item>
+=======
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+>>>>>>> e4fd72a43cc7b855ec9230750fefc3f8b9606d1b
     </style>
 
 </resources>

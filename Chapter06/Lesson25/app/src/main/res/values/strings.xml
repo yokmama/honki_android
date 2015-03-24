@@ -3,4 +3,23 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+<<<<<<< HEAD
+    <string name="hint_input_keyword">キーワードを入力</string>
+
+    <string name="list_search_item_google">Google検索</string>
+    <string name="list_search_item_youtube">Youtube検索</string>
+    <string name="list_search_item_play_store">Playストア検索</string>
+    <string name="list_search_item_alarm">アラーム設定</string>
+    <string name="list_search_item_misc">その他のアプリで開く</string>
+    <string name="lb_please_input_keyword">キーワードを入力してください。</string>
+    <string-array name="list_search">
+        <item>@string/list_search_item_google</item>
+        <item>@string/list_search_item_youtube</item>
+        <item>@string/list_search_item_play_store</item>
+        <item>@string/list_search_item_alarm</item>
+        <item>@string/list_search_item_misc</item>
+    </string-array>
+
+=======
+>>>>>>> e4fd72a43cc7b855ec9230750fefc3f8b9606d1b
 </resources>
