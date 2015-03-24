@@ -8,17 +8,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     private EditText mEditText;
-    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,26 +22,37 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         mEditText = (EditText) findViewById(R.id.edit);
-        mListView = (ListView) findViewById(android.R.id.list);
+        findViewById(R.id.button1).setOnClickListener(this);
+        findViewById(R.id.button2).setOnClickListener(this);
 
         // キーボードを表示させる
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+    }
 
-        // 機能一覧を作成する
-        String[] list = getResources().getStringArray(R.array.list_search);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                list);
-        mListView.setAdapter(adapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ArrayAdapter adapter = (ArrayAdapter) parent.getAdapter();
-                String item = (String) adapter.getItem(position);
-                selectItem(item);
-            }
-        });
+    @Override
+    public void onClick(View v) {
+        String keyword = mEditText.getText().toString();
+
+        int id = v.getId();
+        if (id == R.id.button1) {
+            // Google検索
+            // https://www.google.co.jp/search?q=android&hl=ja のようなURLを構築する
+            Uri uri = Uri.parse("https://www.google.co.jp/search?hl=ja")
+                    .buildUpon().appendQueryParameter("q", keyword).build();
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+
+        } else if (id == R.id.button2) {
+            // Youtube検索
+            Intent intent = new Intent(Intent.ACTION_SEARCH);
+            intent.setPackage("com.google.android.youtube");
+            intent.putExtra("query", keyword);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+        } else {
+            throw new RuntimeException("no match btnId");
+        }
     }
 
     /**
@@ -61,21 +68,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         // 各種機能で開く
-        if (TextUtils.equals(title, getString(R.string.list_search_item_google))) {
-            // https://www.google.co.jp/search?q=android&hl=ja のようなURLを構築する
-            Uri uri = Uri.parse("https://www.google.co.jp/search?hl=ja")
-                    .buildUpon().appendQueryParameter("q", keyword).build();
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-
-        } else if (TextUtils.equals(title, getString(R.string.list_search_item_youtube))) {
-            Intent intent = new Intent(Intent.ACTION_SEARCH);
-            intent.setPackage("com.google.android.youtube");
-            intent.putExtra("query", keyword);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-
-        } else if (TextUtils.equals(title, getString(R.string.list_search_item_play_store))) {
+        if (TextUtils.equals(title, getString(R.string.list_search_item_play_store))) {
             Uri uri = Uri.parse("https://play.google.com/store/search")
                     .buildUpon().appendQueryParameter("q", keyword).build();
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
