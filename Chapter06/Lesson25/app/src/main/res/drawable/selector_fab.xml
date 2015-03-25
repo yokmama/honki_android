@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="false">
+    <item android:color="@android:color/black" android:state_pressed="false">
         <shape android:shape="rectangle">
-            <solid android:color="@color/md_blue_700" />
+            <solid android:color="@android:color/transparent" />
         </shape>
     </item>
-    <item android:state_pressed="true">
+    <item android:color="@android:color/white" android:state_pressed="true">
         <shape android:shape="rectangle">
             <solid android:color="@color/md_blue_A700" />
         </shape>

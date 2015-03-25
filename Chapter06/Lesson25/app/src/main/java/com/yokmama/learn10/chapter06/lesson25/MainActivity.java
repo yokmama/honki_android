@@ -31,10 +31,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         findViewById(R.id.button4).setOnClickListener(this);
         findViewById(R.id.button5).setOnClickListener(this);
 
-        // Toolbarの設定
         setSupportActionBar(mToolbar);
-
-        mToolbar.setTitle(getTitle());
 
         // キーボードを表示させる
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
@@ -49,7 +46,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             // Google検索
             if (checkEmpty(keyword)) return;
 
-            // https://www.google.co.jp/search?q=android&hl=ja のようなURLを構築する
+            // https://www.google.co.jp/search?hl=ja&q=keyword のようなURLを構築する
             Uri uri = Uri.parse("https://www.google.co.jp/search?hl=ja")
                     .buildUpon().appendQueryParameter("q", keyword).build();
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -70,7 +67,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             if (checkEmpty(keyword)) return;
 
             Uri uri = Uri.parse("https://play.google.com/store/search")
-            .buildUpon().appendQueryParameter("q", keyword).build();
+                    .buildUpon().appendQueryParameter("q", keyword).build();
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
 
@@ -101,10 +98,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     /**
-     * 検索可能かどうか調べる
+     * キーワードが空(null、または空文字列)かどうかを調べる
      *
      * @param keyword キーワード
-     * @return 検索可能状態なら true
+     * @return キーワードが空なら true
      */
     private boolean checkEmpty(String keyword) {
         if (TextUtils.isEmpty(keyword)) {
