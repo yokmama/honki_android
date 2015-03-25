@@ -12,102 +12,36 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    </android.support.v7.widget.Toolbar>
-
-    <EditText
-        android:id="@+id/edit"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="@string/hint_input_keyword"
-        android:inputType="text">
-
-        <requestFocus />
-    </EditText>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:alpha="@string/alpha_12"
-        android:background="@android:color/black" />
+        android:layout_height="48dp"
+        android:gravity="start|center_vertical"
+        android:paddingLeft="16dp"
+        android:text="メモを入力"
+        android:textSize="13sp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:gravity="start|top"
+            android:hint="@string/hint_input_memo"
+            android:inputType="textMultiLine">
 
-            <!-- Google -->
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="start|center_vertical"
-                android:paddingLeft="16dp"
-                android:text="Google"
-                android:textSize="13sp" />
-
-            <Button
-                android:id="@+id/button1"
-                style="@style/BehaviorButton"
-                android:layout_width="match_parent"
-                android:drawableLeft="@drawable/ic_search_grey600_24dp"
-                android:text="@string/list_search_item_google" />
-
-            <Button
-                android:id="@+id/button2"
-                style="@style/BehaviorButton"
-                android:layout_width="match_parent"
-                android:drawableLeft="@drawable/ic_local_movies_grey600_24dp"
-                android:text="@string/list_search_item_youtube" />
-
-            <Button
-                android:id="@+id/button3"
-                style="@style/BehaviorButton"
-                android:layout_width="match_parent"
-                android:drawableLeft="@drawable/ic_play_shopping_bag_grey600_24dp"
-                android:text="@string/list_search_item_play_store" />
-
-            <!-- その他 -->
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="@string/alpha_12"
-                android:background="@android:color/black" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="start|center_vertical"
-                android:paddingLeft="16dp"
-                android:text="その他"
-                android:textSize="13sp" />
-
-            <Button
-                android:id="@+id/button4"
-                style="@style/BehaviorButton"
-                android:layout_width="match_parent"
-                android:drawableLeft="@drawable/ic_alarm_add_grey600_24dp"
-                android:text="@string/list_search_item_alarm" />
-
-            <Button
-                android:id="@+id/button5"
-                style="@style/BehaviorButton"
-                android:layout_width="match_parent"
-                android:paddingLeft="72dp"
-                android:text="@string/list_search_item_misc" />
-
-        </LinearLayout>
+            <requestFocus />
+        </EditText>
     </ScrollView>
 
 </LinearLayout>

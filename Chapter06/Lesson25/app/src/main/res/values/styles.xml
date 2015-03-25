@@ -13,6 +13,11 @@
 
         <!-- ActionModeを使うのに必要（後述） -->
         <item name="windowActionModeOverlay">true</item>
+        <item name="popupMenuStyle">@style/MyListPopup</item>
+    </style>
+
+    <style name="MyListPopup" parent="android:Widget.Holo.Light.ListPopupWindow">
+        <item name="android:popupBackground">@android:color/white</item>
     </style>
 
     <style name="BehaviorButton" parent="Widget.AppCompat.Button">

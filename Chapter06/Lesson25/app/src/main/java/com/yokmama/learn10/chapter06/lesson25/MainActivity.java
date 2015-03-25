@@ -1,5 +1,6 @@
 package com.yokmama.learn10.chapter06.lesson25;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,13 +8,15 @@ import android.provider.AlarmClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends ActionBarActivity {
 
     private EditText mEditText;
     private Toolbar mToolbar;
@@ -25,11 +28,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         mToolbar = (Toolbar) findViewById(R.id.tool_bar);
         mEditText = (EditText) findViewById(R.id.edit);
-        findViewById(R.id.button1).setOnClickListener(this);
-        findViewById(R.id.button2).setOnClickListener(this);
-        findViewById(R.id.button3).setOnClickListener(this);
-        findViewById(R.id.button4).setOnClickListener(this);
-        findViewById(R.id.button5).setOnClickListener(this);
+//        findViewById(R.id.button1).setOnClickListener(this);
+//        findViewById(R.id.button2).setOnClickListener(this);
+//        findViewById(R.id.button3).setOnClickListener(this);
+//        findViewById(R.id.button4).setOnClickListener(this);
+//        findViewById(R.id.button5).setOnClickListener(this);
 
         setSupportActionBar(mToolbar);
 
@@ -38,63 +41,46 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         String keyword = mEditText.getText().toString();
+        int itemId = item.getItemId();
+        try {
+            if (itemId == R.id.action_send) {
+                if (checkEmpty(keyword)) return true;
 
-        int id = v.getId();
-        if (id == R.id.button1) {
-            // Google検索
-            if (checkEmpty(keyword)) return;
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, keyword);
+                startActivity(intent);
+            } else if (itemId == R.id.action_google) {
+                if (checkEmpty(keyword)) return true;
 
-            // https://www.google.co.jp/search?hl=ja&q=keyword のようなURLを構築する
-            Uri uri = Uri.parse("https://www.google.co.jp/search?hl=ja")
-                    .buildUpon().appendQueryParameter("q", keyword).build();
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
+                // https://www.google.co.jp/search?hl=ja&q=keyword のようなURLを構築する
+                Uri uri = Uri.parse("https://www.google.co.jp/search?hl=ja")
+                .buildUpon().appendQueryParameter("q", keyword).build();
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            } else if (itemId == R.id.action_store) {
+                // Playストア検索
+                if (checkEmpty(keyword)) return true;
 
-        } else if (id == R.id.button2) {
-            // Youtube検索
-            if (checkEmpty(keyword)) return;
+                Uri uri = Uri.parse("https://play.google.com/store/search")
+                        .buildUpon().appendQueryParameter("q", keyword).build();
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            } else {
 
-            Intent intent = new Intent(Intent.ACTION_SEARCH);
-            intent.setPackage("com.google.android.youtube");
-            intent.putExtra("query", keyword);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-
-        } else if (id == R.id.button3) {
-            // Playストア検索
-            if (checkEmpty(keyword)) return;
-
-            Uri uri = Uri.parse("https://play.google.com/store/search")
-                    .buildUpon().appendQueryParameter("q", keyword).build();
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-
-        } else if (id == R.id.button4) {
-            // アラーム設定
-            if (checkEmpty(keyword)) return;
-
-            Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
-            intent.putExtra(AlarmClock.EXTRA_MESSAGE, keyword);
-            // 時間を予め適当に指定
-            intent.putExtra(AlarmClock.EXTRA_HOUR, 8); // 時
-            intent.putExtra(AlarmClock.EXTRA_MINUTES, 5); // 分
-            startActivity(intent);
-
-        } else if (id == R.id.button5) {
-            // その他のアプリへ
-            if (checkEmpty(keyword)) return;
-
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, keyword);
-            startActivity(intent);
-
-        } else {
-            throw new RuntimeException("no match btnId");
+            }
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, getString(R.string.lb_activity_not_found), Toast.LENGTH_SHORT).show();
         }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
