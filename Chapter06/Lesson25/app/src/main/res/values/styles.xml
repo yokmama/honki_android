@@ -1,10 +1,25 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.Dialog">
-        <!-- Customize your theme here. -->
-        <!-- ダイアログのタイトルを非表示にする -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- 背景を透過にする -->
         <item name="windowActionBar">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/bg_black_transparency</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/md_indigo_500</item>
+        <item name="colorPrimaryDark">@color/md_indigo_700</item>
+        <item name="colorAccent">@color/md_blue_500</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorHint">@color/md_blue_grey_100</item>
+        <item name="colorControlNormal">@android:color/black</item>
+    </style>
+
+    <style name="BehaviorButton" parent="Widget.AppCompat.Button">
+        <item name="android:elevation" tools:ignore="NewApi">8dp</item>
+        <item name="android:background">@drawable/selector_fab</item>
     </style>
 
 </resources>
