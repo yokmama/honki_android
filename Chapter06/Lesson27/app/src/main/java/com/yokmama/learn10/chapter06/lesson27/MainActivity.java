@@ -15,7 +15,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private TextView mTvPreview;
 
-    private Calculater mCalculater = new Calculater();
+    private Calculator mCalculator = new Calculator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +80,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         Button btn = (Button) v;
         if (btn.getId() == R.id.clear) {
-            mCalculater.reset();
+            mCalculator.reset();
             mTvPreview.setText("0");
         } else {
             String input = btn.getText().toString();
             Log.d("MainActivity", "input=" + input);
 
-            String dispText = mCalculater.putInput(input);
+            String dispText = mCalculator.putInput(input);
             if (!TextUtils.isEmpty(dispText)) {
                 mTvPreview.setText(dispText);
             }
