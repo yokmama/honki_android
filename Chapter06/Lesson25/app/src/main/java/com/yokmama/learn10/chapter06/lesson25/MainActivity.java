@@ -19,22 +19,16 @@ import android.widget.Toast;
 public class MainActivity extends ActionBarActivity {
 
     private EditText mEditText;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolBar = (Toolbar) findViewById(R.id.tool_bar);
         mEditText = (EditText) findViewById(R.id.edit);
-//        findViewById(R.id.button1).setOnClickListener(this);
-//        findViewById(R.id.button2).setOnClickListener(this);
-//        findViewById(R.id.button3).setOnClickListener(this);
-//        findViewById(R.id.button4).setOnClickListener(this);
-//        findViewById(R.id.button5).setOnClickListener(this);
 
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolBar);
 
         // キーボードを表示させる
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);

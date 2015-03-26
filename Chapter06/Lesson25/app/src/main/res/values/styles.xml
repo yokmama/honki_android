@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -6,28 +6,6 @@
         <item name="colorPrimary">@color/md_blue_500</item>
         <item name="colorPrimaryDark">@color/md_blue_700</item>
         <item name="colorAccent">@color/md_blue_A400</item>
-        <!--<item name="android:textColorPrimary">@android:color/white</item>-->
-
-        <!--<item name="android:textColorHint">@color/md_blue_grey_100</item>-->
-        <!--<item name="colorControlNormal">@android:color/white</item>-->
-
-        <!-- ActionModeを使うのに必要（後述） -->
-        <item name="windowActionModeOverlay">true</item>
-        <item name="popupMenuStyle">@style/MyListPopup</item>
-    </style>
-
-    <style name="MyListPopup" parent="android:Widget.Holo.Light.ListPopupWindow">
-        <item name="android:popupBackground">@android:color/white</item>
-    </style>
-
-    <style name="BehaviorButton" parent="Widget.AppCompat.Button">
-        <item name="android:layout_height">48dp</item>
-        <item name="android:background">@drawable/selector_fab</item>
-        <item name="android:textSize">13sp</item>
-        <item name="android:gravity">start|center_vertical</item>
-        <item name="android:textColor">@drawable/selector_fab</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:drawablePadding">32dp</item>
     </style>
 
 </resources>
