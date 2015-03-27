@@ -1,10 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.Dialog">
-        <!-- Customize your theme here. -->
-        <!-- ダイアログのタイトルを非表示にする -->
-        <item name="windowActionBar">false</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 色の設定 -->
+        <item name="colorPrimary">@color/md_blue_500</item>
+        <item name="colorPrimaryDark">@color/md_blue_700</item>
+        <item name="colorAccent">@color/md_blue_A400</item>
+
+        <!-- テキストを長押しするなどして、ActionModeにした場合のスタイル -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeBackground">@color/md_indigo_700</item>
     </style>
 
 </resources>
