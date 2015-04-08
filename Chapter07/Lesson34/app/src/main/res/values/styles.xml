@@ -5,4 +5,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="fab" parent="android:Widget.Button">
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:background">@drawable/selector_fab</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
