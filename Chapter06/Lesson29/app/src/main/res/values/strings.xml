@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Lesson29</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="intent_action_change_wallpaper">action.CHANGE_WALLPAPER</string>
+    <string name="lb_change_auto_wallpaper">壁紙を自動的に変更する</string>
 </resources>

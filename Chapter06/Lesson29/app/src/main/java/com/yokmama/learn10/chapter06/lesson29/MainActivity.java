@@ -1,9 +1,23 @@
 package com.yokmama.learn10.chapter06.lesson29;
 
+import android.app.WallpaperManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.AssetManager;
+import android.service.wallpaper.WallpaperService;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -11,29 +25,24 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final PreferenceDao preferenceDao = new PreferenceDao(this);
+
         setContentView(R.layout.activity_main);
-    }
 
+        Switch s = (Switch) findViewById(R.id.switchAutoWallpaper);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        // チェックボックスを設定
+        s.setChecked(preferenceDao.isAutoWallpaperEnabled());
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    WallpaperBroadcastReceiver.startPolling(getApplicationContext());
+                } else {
+                    WallpaperBroadcastReceiver.stopPolling(getApplicationContext());
+                }
+                preferenceDao.setAutoWallpaperEnabled(getApplicationContext(), isChecked);
+            }
+        });
     }
 }
