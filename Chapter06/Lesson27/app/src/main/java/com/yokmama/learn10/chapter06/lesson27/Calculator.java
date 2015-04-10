@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-public class Calculater {
+public class Calculator {
 
     StringBuilder mInputNumber = new StringBuilder();
 
