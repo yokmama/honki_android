@@ -8,12 +8,25 @@ import android.preference.PreferenceManager;
  * Created by kayo on 15/04/08.
  */
 public class PreferenceDao {
+    /** キーワード */
+    private static final String PREF_KEYWORD = "pref.KEYWORD";
+    /** 現在表示中の壁紙の位置 */
     private static final String PREF_WALLPAPER_POSITION = "pref.WALLPAPER_POSITION";
+    /** 自動で壁紙を変更することを許可するかどうか。 */
     private static final String PREF_AUTO_WALLPAPER = "pref.AUTO_WALLPAPER";
     private final SharedPreferences mPrefs;
 
     public PreferenceDao(Context context) {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+    }
+
+    public String getKeyword() {
+        String data = mPrefs.getString(PREF_KEYWORD, "");
+        return data;
+    }
+
+    public void putKeyword(String keyword) {
+        mPrefs.edit().putString(PREF_KEYWORD, keyword).apply();
     }
 
     public int getWallpaperPosition() {

@@ -1,23 +1,15 @@
 package com.yokmama.learn10.chapter06.lesson29;
 
-import android.app.WallpaperManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.res.AssetManager;
-import android.service.wallpaper.WallpaperService;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.yokmama.learn10.chapter06.lesson29.net.CustomSearchApiItem;
+import com.yokmama.learn10.chapter06.lesson29.net.RequestGoogleCustomSearchApi;
+
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -42,6 +34,21 @@ public class MainActivity extends ActionBarActivity {
                     WallpaperBroadcastReceiver.stopPolling(getApplicationContext());
                 }
                 preferenceDao.setAutoWallpaperEnabled(getApplicationContext(), isChecked);
+            }
+        });
+
+        RequestGoogleCustomSearchApi api = new RequestGoogleCustomSearchApi(this);
+        api.setMock(true);
+        api.reqCustomSearchApi("Android", new RequestGoogleCustomSearchApi.RestResultCallback<List<CustomSearchApiItem>>() {
+            @Override
+            public void onCompletion(List<CustomSearchApiItem> result, Throwable error) {
+                if (error == null) {
+                    for (CustomSearchApiItem item : result) {
+                        
+                    }
+                } else {
+                    Log.d("MainActivity", "通信エラー", error);
+                }
             }
         });
     }

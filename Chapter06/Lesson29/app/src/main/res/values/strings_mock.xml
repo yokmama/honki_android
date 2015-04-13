@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mock_custom_search_api">
+{
+ "kind": "customsearch#search",
+ "url": {
+  "type": "application/json",
+  "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&amp;num={count?}&amp;start={startIndex?}&amp;lr={language?}&amp;safe={safe?}&amp;cx={cx?}&amp;cref={cref?}&amp;sort={sort?}&amp;filter={filter?}&amp;gl={gl?}&amp;cr={cr?}&amp;googlehost={googleHost?}&amp;c2coff={disableCnTwTranslation?}&amp;hq={hq?}&amp;hl={hl?}&amp;siteSearch={siteSearch?}&amp;siteSearchFilter={siteSearchFilter?}&amp;exactTerms={exactTerms?}&amp;excludeTerms={excludeTerms?}&amp;linkSite={linkSite?}&amp;orTerms={orTerms?}&amp;relatedSite={relatedSite?}&amp;dateRestrict={dateRestrict?}&amp;lowRange={lowRange?}&amp;highRange={highRange?}&amp;searchType={searchType}&amp;fileType={fileType?}&amp;rights={rights?}&amp;imgSize={imgSize?}&amp;imgType={imgType?}&amp;imgColorType={imgColorType?}&amp;imgDominantColor={imgDominantColor?}&amp;alt=json"
+ },
+ "queries": {
+  "nextPage": [
+   {
+    "title": "Google Custom Search - Android",
+    "totalResults": "248000000",
+    "searchTerms": "Android",
+    "count": 10,
+    "startIndex": 11,
+    "inputEncoding": "utf8",
+    "outputEncoding": "utf8",
+    "safe": "high",
+    "cx": "017763129430879683958:8nd-pkaf4tq",
+    "searchType": "image",
+    "imgSize": "huge"
+   }
+  ],
+  "request": [
+   {
+    "title": "Google Custom Search - Android",
+    "totalResults": "248000000",
+    "searchTerms": "Android",
+    "count": 10,
+    "startIndex": 1,
+    "inputEncoding": "utf8",
+    "outputEncoding": "utf8",
+    "safe": "high",
+    "cx": "017763129430879683958:8nd-pkaf4tq",
+    "searchType": "image",
+    "imgSize": "huge"
+   }
+  ]
+ },
+ "context": {
+  "title": "Google"
+ },
+ "searchInformation": {
+  "searchTime": 0.4146,
+  "formattedSearchTime": "0.41",
+  "totalResults": "248000000",
+  "formattedTotalResults": "248,000,000"
+ },
+ "items": [
+  {
+   "kind": "customsearch#result",
+   "title": "Android (operating system) - Wikipedia, the free encyclopedia",
+   "htmlTitle": "\u003cb\u003eAndroid\u003c/b\u003e (operating system) - Wikipedia, the free encyclopedia",
+   "link": "http://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Android-System-Architecture.svg/2000px-Android-System-Architecture.svg.png",
+   "displayLink": "en.wikipedia.org",
+   "snippet": "Android's architecture diagram",
+   "htmlSnippet": "\u003cb\u003eAndroid&amp;#39;s\u003c/b\u003e architecture diagram",
+   "mime": "image/png",
+   "fileFormat": "Image Document",
+   "image": {
+    "contextLink": "http://en.wikipedia.org/wiki/Android_(operating_system)",
+    "height": 1623,
+    "width": 2000,
+    "byteSize": 402096,
+    "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhjpIUvXOlkYGU2rziu-Wcyf6n4E4a4TtS0QoCZKCs4zlf01xEnjsGRLPj",
+    "thumbnailHeight": 122,
+    "thumbnailWidth": 150
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Android-logo.png",
+   "htmlTitle": "\u003cb\u003eAndroid\u003c/b\u003e-logo.png",
+   "link": "http://www.tivix.com/uploads/blog_pics/Android-logo.png",
+   "displayLink": "www.tivix.com",
+   "snippet": "Android-logo.png",
+   "htmlSnippet": "\u003cb\u003eAndroid\u003c/b\u003e-logo.png",
+   "mime": "image/png",
+   "fileFormat": "Image Document",
+   "image": {
+    "contextLink": "http://www.tivix.com/blog/perfect-resource-image-size-dpi-for-any-android-de/",
+    "height": 1600,
+    "width": 1600,
+    "byteSize": 82371,
+    "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWbZaeoipBGWjVltld4Qx-MDkFMnQ7FkEJRmaUN-j-a63RKepmvOv-pfZp",
+    "thumbnailHeight": 150,
+    "thumbnailWidth": 150
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Get This Look! - AndroidGuys",
+   "htmlTitle": "Get This Look! - AndroidGuys",
+   "link": "http://www.androidguys.com/wp-content/uploads/2014/07/android-for-wallpaper-8.png",
+   "displayLink": "www.androidguys.com",
+   "snippet": "our Android device.",
+   "htmlSnippet": "our \u003cb\u003eAndroid\u003c/b\u003e device.",
+   "mime": "image/png",
+   "fileFormat": "Image Document",
+   "image": {
+    "contextLink": "http://www.androidguys.com/category/featured/get-this-look/",
+    "height": 1080,
+    "width": 1920,
+    "byteSize": 1330483,
+    "thumbnailLink": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQkbrHL7XZkc29JMifWnRJzO6dO1SEwOMD15r0OmaADmKO4Zz8E7ubf-MyJ",
+    "thumbnailHeight": 84,
+    "thumbnailWidth": 150
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Android - Wikipedia",
+   "htmlTitle": "\u003cb\u003eAndroid\u003c/b\u003e - Wikipedia",
+   "link": "http://upload.wikimedia.org/wikipedia/commons/a/a7/Android_L_Develpment_Preview.png",
+   "displayLink": "ja.wikipedia.org",
+   "snippet": "Android L Develpment Preview.",
+   "htmlSnippet": "\u003cb\u003eAndroid\u003c/b\u003e L Develpment Preview.",
+   "mime": "image/png",
+   "fileFormat": "Image Document",
+   "image": {
+    "contextLink": "http://ja.wikipedia.org/wiki/Android",
+    "height": 1920,
+    "width": 1080,
+    "byteSize": 2116381,
+    "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnSJATOF7l_t5OjOdAzN1q9TFd-IDVImfY3ZVWW9zUjF8OGQRvxUkAh8vU",
+    "thumbnailHeight": 150,
+    "thumbnailWidth": 84
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Android tablet surge will be led by Google-Motorola, HP, Dell in ...",
+   "htmlTitle": "\u003cb\u003eAndroid\u003c/b\u003e tablet surge will be led by Google-Motorola, HP, Dell in \u003cb\u003e...\u003c/b\u003e",
+   "link": "http://www.zdnet.com/i/story/60/05/010558/android-wallpaper5_2560x1600.jpg",
+   "displayLink": "www.zdnet.com",
+   "snippet": "market as Android is in",
+   "htmlSnippet": "market as \u003cb\u003eAndroid\u003c/b\u003e is in",
+   "mime": "image/jpeg",
+   "image": {
+    "contextLink": "http://www.zdnet.com/article/android-tablet-surge-will-be-led-by-google-motorola-hp-dell-in-12/",
+    "height": 1600,
+    "width": 2560,
+    "byteSize": 137815,
+    "thumbnailLink": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSUtKFCcpWgm8ji50mKfJ963mTtfesYl6JnbHg_LKj7xmiCgHg-kTI068ut",
+    "thumbnailHeight": 94,
+    "thumbnailWidth": 150
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "8795800-android-background.jpg",
+   "htmlTitle": "8795800-\u003cb\u003eandroid\u003c/b\u003e-background.jpg",
+   "link": "http://blog.smartthings.com/wp-content/uploads/2014/05/8795800-android-background.jpg",
+   "displayLink": "blog.smartthings.com",
+   "snippet": "8795800-android-background.jpg",
+   "htmlSnippet": "8795800-\u003cb\u003eandroid\u003c/b\u003e-background.jpg",
+   "mime": "image/jpeg",
+   "image": {
+    "contextLink": "http://blog.smartthings.com/news/smartthings-updates/new-smartthings-experience-android/",
+    "height": 1080,
+    "width": 1920,
+    "byteSize": 332808,
+    "thumbnailLink": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRW_95nJxUracFiv6K6jaCz8CzJq0De3t4DHeVz4vIKB_hqVRZDBh-hUvQk",
+    "thumbnailHeight": 84,
+    "thumbnailWidth": 150
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Android-Developer21.png",
+   "htmlTitle": "\u003cb\u003eAndroid\u003c/b\u003e-Developer21.png",
+   "link": "http://www.walterlutzu.it/wordpress/wp-content/uploads/2013/08/Android-Developer21.png",
+   "displayLink": "www.walterlutzu.it",
+   "snippet": "Android-Developer21.png",
+   "htmlSnippet": "\u003cb\u003eAndroid\u003c/b\u003e-Developer21.png",
+   "mime": "image/png",
+   "fileFormat": "Image Document",
+   "image": {
+    "contextLink": "http://www.walterlutzu.it/wordpress/android-apps-for-lighting-tecnhician-and-lighting-designer/",
+    "height": 1729,
+    "width": 1736,
+    "byteSize": 104315,
+    "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz3FCwyYF8jG1pJ_zxuH7vx0KN1jUi-w3H3F1zLxKETWRMbxuSqk1zgv9noA",
+    "thumbnailHeight": 149,
+    "thumbnailWidth": 150
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "How to Recover Deleted Files in Android? | Share In",
+   "htmlTitle": "How to Recover Deleted Files in \u003cb\u003eAndroid\u003c/b\u003e? | Share In",
+   "link": "http://sharein.org/wp-content/uploads/2015/01/android-nombres-postres.jpg",
+   "displayLink": "sharein.org",
+   "snippet": "android-nombres-postres",
+   "htmlSnippet": "\u003cb\u003eandroid\u003c/b\u003e-nombres-postres",
+   "mime": "image/jpeg",
+   "image": {
+    "contextLink": "http://sharein.org/how-to-recover-deleted-files-in-android/",
+    "height": 1118,
+    "width": 2236,
+    "byteSize": 202105,
+    "thumbnailLink": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRvG0QCF2JKEitfNsGgYn8XHofpmebXSzN17oGKJLDkP2BZcbWgkLs2VrLV",
+    "thumbnailHeight": 75,
+    "thumbnailWidth": 150
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Android-x86 - Wikipedia, the free encyclopedia",
+   "htmlTitle": "\u003cb\u003eAndroid\u003c/b\u003e-x86 - Wikipedia, the free encyclopedia",
+   "link": "http://upload.wikimedia.org/wikipedia/commons/a/a0/Android_x86_on_EeePC_701_4G.jpg",
+   "displayLink": "en.wikipedia.org",
+   "snippet": "Android x86 on EeePC 701 4G",
+   "htmlSnippet": "\u003cb\u003eAndroid\u003c/b\u003e x86 on EeePC 701 4G",
+   "mime": "image/jpeg",
+   "image": {
+    "contextLink": "http://en.wikipedia.org/wiki/Android-x86",
+    "height": 1200,
+    "width": 1600,
+    "byteSize": 835753,
+    "thumbnailLink": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTPuM0ihoOe63mAr3DRulM0alBZQYnRkTfHVzh9PeByCGuMvx3wewK6P22u",
+    "thumbnailHeight": 113,
+    "thumbnailWidth": 150
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Android HD desktop wallpaper : High Definition : Fullscreen : Mobile",
+   "htmlTitle": "\u003cb\u003eAndroid\u003c/b\u003e HD desktop wallpaper : High Definition : Fullscreen : Mobile",
+   "link": "http://wallpaperswide.com/download/android-wallpaper-1920x1080.jpg",
+   "displayLink": "wallpaperswide.com",
+   "snippet": "DSLR",
+   "htmlSnippet": "DSLR",
+   "mime": "image/jpeg",
+   "image": {
+    "contextLink": "http://wallpaperswide.com/android-wallpapers.html",
+    "height": 1080,
+    "width": 1920,
+    "byteSize": 102880,
+    "thumbnailLink": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRhvU4q6FjGyoIEIa5IU_jgS9yTcVDoGbTJGYEoAQgGaa0An0mzUBYrEw",
+    "thumbnailHeight": 84,
+    "thumbnailWidth": 150
+   }
+  }
+ ]
+}
+    </string>
+</resources>
