@@ -1,11 +1,12 @@
 package com.yokmama.learn10.chapter06.lesson29.net;
 
 import android.app.IntentService;
+import android.app.WallpaperManager;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.yokmama.learn10.chapter06.lesson29.storage.FileUtils;
+import com.yokmama.learn10.chapter06.lesson29.WallpaperBroadcastReceiver;
 
 import org.json.JSONException;
 
@@ -16,19 +17,20 @@ import java.util.List;
 
 /**
  * バックグラウンドで通信を行うサービス
- *
  * Created by kayo on 15/04/13.
  */
 public class ConnectionService extends IntentService {
     private static final String TAG = ConnectionService.class.getSimpleName();
 
+    public static final String ACTION_START = "extra.START";
+    public static final String ACTION_STOP = "extra.STOP";
     public static final String EXTRA_SEARCH_KEYWORD = "extra.SEARCH_KEYWORD";
     public static final String EXTRA_IMAGE_URL = "extra.IMAGE_URL";
     private RequestGoogleCustomSearchApi mApi;
     private RequestDownloadImage mRequestDownloadImage;
 
     public ConnectionService() {
-        super("ConnectionThread");
+        super(TAG);
     }
 
     @Override
@@ -44,32 +46,42 @@ public class ConnectionService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent == null) {
-            Log.i(TAG, "onHandleIntent");
+            Log.i(TAG, "onHandleIntent is null.");
             return;
         }
 
-        // 画像のダウンロード
-        String url = intent.getStringExtra(EXTRA_IMAGE_URL);
-        if (!TextUtils.isEmpty(url)) {
-            startDownloadImage(url);
-            return;
-        }
+        if (ACTION_START.equals(intent.getAction())) {
+            Log.v(TAG, "キーワード検索");
+            String keyword = intent.getStringExtra(EXTRA_SEARCH_KEYWORD);
+            if (!TextUtils.isEmpty(keyword)) {
+                startSearch(keyword);
+            }
 
-        // キーワードで検索
-        String keyword = intent.getStringExtra(EXTRA_SEARCH_KEYWORD);
-        if (!TextUtils.isEmpty(keyword)) {
-            startSearch(keyword);
-            return;
-        }
+            Log.v(TAG, "壁紙の変更開始");
+            WallpaperBroadcastReceiver.startPolling(getApplicationContext());
+        } else if (ACTION_STOP.equals(intent.getAction())) {
+            Log.v(TAG, "壁紙の変更を停止");
 
-        Log.i(TAG, "onHandleIntent");
+            WallpaperBroadcastReceiver.cancelPolling(getApplicationContext());
+            WallpaperManager wm = WallpaperManager.getInstance(getApplicationContext());
+            try {
+                wm.clear();
+            } catch (IOException e) {
+                Log.e(TAG, "壁紙のクリアに失敗しました。", e);
+            }
+        } else {
+            // 画像のダウンロード
+            String url = intent.getStringExtra(EXTRA_IMAGE_URL);
+            if (!TextUtils.isEmpty(url)) {
+                startDownloadImage(url);
+            }
+        }
     }
 
     private void startSearch(String keyword) {
         Log.v(TAG, "Start search: keyword=" + keyword);
         final List<CustomSearchApiItem> items;
         try {
-            FileUtils.delete(mRequestDownloadImage.getImageDir());
             items = mApi.reqCustomSearchApiSync(keyword);
         } catch (MalformedURLException e) {
             Log.e(TAG, "URLの形式が不正です。", e);
@@ -82,13 +94,23 @@ public class ConnectionService extends IntentService {
             return;
         }
 
-        // ダウンロードする画像一覧をキューに詰める
-        for (CustomSearchApiItem item : items) {
-            String link = item.getLink();
-            Intent intent = new Intent(this, getClass());
-            intent.putExtra(EXTRA_IMAGE_URL, link);
+        // 既存の画像(別のキーワードで検索した時の一覧)を削除
+        File[] files = mRequestDownloadImage.getImageDir().listFiles();
+        if (files != null) {
+            for (File file : files) {
+                file.delete();
+            }
+        }
 
-            this.startService(intent);
+        // ダウンロードする画像一覧をキューに詰める
+        if (items.size() > 0) {
+            for (CustomSearchApiItem item : items) {
+                String link = item.getLink();
+                Intent intent = new Intent(this, getClass());
+                intent.putExtra(EXTRA_IMAGE_URL, link);
+
+                this.startService(intent);
+            }
         }
     }
 
@@ -96,10 +118,15 @@ public class ConnectionService extends IntentService {
         Log.v(TAG, "ダウンロード開始: url=" + url);
 
         try {
+            // 画像を取得
             File file = mRequestDownloadImage.reqDownloadImageSync(url);
-            Log.i(TAG, "ダウンロード終了: file=" + file);
+
+            // 元画像はディスプレイに合っていない場合があるので、
+            // 任意でリサイズ処理を挟む。
+
+            Log.v(TAG, "ダウンロード終了: file=" + file);
         } catch (IOException e) {
-            Log.i(TAG, "ダウンロード失敗");
+            Log.i(TAG, "ダウンロード失敗", e);
         }
     }
 

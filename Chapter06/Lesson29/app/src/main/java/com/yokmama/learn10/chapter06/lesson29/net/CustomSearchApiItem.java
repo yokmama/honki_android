@@ -10,8 +10,6 @@ import java.util.ArrayList;
  * Created by kayo on 15/04/13.
  */
 public class CustomSearchApiItem {
-    /** 画像があったサイトのタイトル */
-    private String title;
     /** 画像へのリンク */
     private String link;
 
@@ -21,8 +19,7 @@ public class CustomSearchApiItem {
             JSONObject jsItem = jsItems.getJSONObject(i);
             CustomSearchApiItem item = new CustomSearchApiItem();
 
-            // 最低限必要な物だけ取得しています。
-            item.title = jsItem.getString("title");
+            // とりあえず、最低限必要な画像リンクだけを取得
             item.link = jsItem.getString("link");
 
             list.add(item);
@@ -31,15 +28,11 @@ public class CustomSearchApiItem {
         return list;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public String getLink() {
         return link;
     }
 
-/*
+/* 引数の JSONArray は、以下の様なJSONの形です。
  "items": [
   {
    "kind": "customsearch#result",

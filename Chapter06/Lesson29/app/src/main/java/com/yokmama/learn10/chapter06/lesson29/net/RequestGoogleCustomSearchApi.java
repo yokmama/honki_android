@@ -1,10 +1,7 @@
 package com.yokmama.learn10.chapter06.lesson29.net;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.util.Log;
 
 import com.yokmama.learn10.chapter06.lesson29.R;
 
@@ -13,9 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -27,25 +22,19 @@ import java.util.List;
  * Created by kayo on 15/04/13.
  */
 public class RequestGoogleCustomSearchApi {
-    private static final String TAG = RequestGoogleCustomSearchApi.class.getSimpleName();
     private final Context mContext;
-    private boolean mMock = false;
 
     public RequestGoogleCustomSearchApi(Context context) {
         mContext = context;
     }
 
-    public void setMock(boolean isMock) {
-        mMock = isMock;
-    }
-
     /**
-     * 同期で検索を行います。
+     * [同期] Google画像検索を行います。
      *
      * @param searchWord 検索ワード
-     * @return
-     * @throws IOException
-     * @throws JSONException
+     * @return 取得結果
+     * @throws IOException 通信に失敗した時
+     * @throws JSONException 取得結果が意図しないものであった場合
      * @see "https://developers.google.com/custom-search/json-api/v1/reference/cse/list"
      */
     public List<CustomSearchApiItem> reqCustomSearchApiSync(final String searchWord) throws IOException, JSONException {
@@ -66,67 +55,42 @@ public class RequestGoogleCustomSearchApi {
         InputStream stream = null;
         try {
             try {
-                final String json;
-                if (!mMock) {
-                    conn = (HttpURLConnection) url.openConnection();
-                    conn.addRequestProperty("Referrer", "http://www.google.co.jp/");
-                    conn.setRequestMethod("GET");
-                    conn.setRequestProperty("Accept", "application/json");
-                    stream = new BufferedInputStream(conn.getInputStream());
+                // 通信を開始
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+                stream = new BufferedInputStream(conn.getInputStream());
 
-                    // 文字列に変換
-                    json = getString(stream);
-                    stream.close();
-                    stream = null;
-                    conn.disconnect();
-                } else {
-                    Log.i(TAG, "モックデータを利用して擬似的に通信を行います。");
-                    try {
-                        Thread.sleep(1000L);
-                    } catch (InterruptedException e) {
-                    }
-                    json = mContext.getString(R.string.mock_custom_search_api);
+                // 文字列に変換
+                StringBuilder json = new StringBuilder();
+                byte[] buffer = new byte[1024];
+                int byteCount;
+                while ((byteCount = stream.read(buffer)) != -1) {
+                    String read = new String(buffer, 0, byteCount);
+                    json.append(read);
                 }
 
                 // JSONのパース
-                JSONObject jsRoot = new JSONObject(json);
+                JSONObject jsRoot = new JSONObject(json.toString());
                 JSONArray jsItems = jsRoot.getJSONArray("items");
                 ArrayList<CustomSearchApiItem> items = CustomSearchApiItem.parse(jsItems);
 
                 return items;
             } catch (FileNotFoundException e) {
                 // ステータスコードが 4xx や 5xx などのエラーの場合に通る
-                if (conn == null) {
-                    throw new FileNotFoundException("コネクションのオープンに失敗しました。");
-                }
-                stream = new BufferedInputStream(conn.getErrorStream());
-
-                // レスポンスの内容を読み取る
-                String s = getString(stream);
-                throw new FileNotFoundException("通信ステータスエラー: Error=" + s);
+                // APIのアクセスに失敗した場合や、制限に引っかかった場合はここを通ります。
+                throw e;
             }
         } finally {
-            if (conn != null) {
-                conn.disconnect();
-            }
             if (stream != null) {
                 try {
                     stream.close();
                 } catch (IOException e) {
                 }
             }
+            if (conn != null) {
+                conn.disconnect();
+            }
         }
-    }
-
-    private static String getString(InputStream bis) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        byte[] buffer = new byte[1024];
-        int byteCount = 0;
-        while ((byteCount = bis.read(buffer)) != -1) {
-            String read = new String(buffer, 0, byteCount);
-            sb.append(read);
-        }
-
-        return sb.toString();
     }
 }

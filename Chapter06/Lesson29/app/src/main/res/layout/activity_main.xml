@@ -27,31 +27,4 @@
         android:gravity="center_vertical"
         android:text="@string/lb_change_auto_wallpaper" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/switchAutoWallpaper"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#CCC" />
-
-        <TextView
-            android:id="@+id/labelEdit"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:text="検索キーワード" />
-
-        <EditText
-            android:id="@+id/edit"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:hint="壁紙にする画像の検索キーワードを入力"
-            android:inputType="text" />
-    </LinearLayout>
-
 </RelativeLayout>
