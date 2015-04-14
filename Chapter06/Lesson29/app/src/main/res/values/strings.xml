@@ -3,4 +3,5 @@
 
     <string name="intent_action_change_wallpaper">action.CHANGE_WALLPAPER</string>
     <string name="lb_change_auto_wallpaper">壁紙を自動的に変更する</string>
+
 </resources>

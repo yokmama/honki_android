@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Google Custom Search JSON/Atom APIキー -->
+    <string name="api_custom_search_api_key">AIzaSyDS23xN2CFJg6EPH9hsXRrWewER1ks9wNo</string>
+    <!-- カスタム検索エンジンID -->
+    <string name="api_custom_search_engine_id">017763129430879683958:8nd-pkaf4tq</string>
+
+</resources>

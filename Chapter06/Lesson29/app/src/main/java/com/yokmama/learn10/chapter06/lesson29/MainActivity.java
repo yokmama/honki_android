@@ -1,30 +1,33 @@
 package com.yokmama.learn10.chapter06.lesson29;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.text.TextUtils;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
 
-import com.yokmama.learn10.chapter06.lesson29.net.CustomSearchApiItem;
-import com.yokmama.learn10.chapter06.lesson29.net.RequestGoogleCustomSearchApi;
-
-import java.util.List;
+import com.yokmama.learn10.chapter06.lesson29.net.ConnectionService;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    private EditText mEditText;
+    private PreferenceDao mPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final PreferenceDao preferenceDao = new PreferenceDao(this);
+        mPref = new PreferenceDao(this);
 
         setContentView(R.layout.activity_main);
 
         Switch s = (Switch) findViewById(R.id.switchAutoWallpaper);
+        mEditText = (EditText) findViewById(R.id.edit);
 
         // チェックボックスを設定
-        s.setChecked(preferenceDao.isAutoWallpaperEnabled());
+        s.setChecked(mPref.isAutoWallpaperEnabled());
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -33,23 +36,27 @@ public class MainActivity extends ActionBarActivity {
                 } else {
                     WallpaperBroadcastReceiver.stopPolling(getApplicationContext());
                 }
-                preferenceDao.setAutoWallpaperEnabled(getApplicationContext(), isChecked);
+                mPref.setAutoWallpaperEnabled(getApplicationContext(), isChecked);
             }
         });
 
-        RequestGoogleCustomSearchApi api = new RequestGoogleCustomSearchApi(this);
-        api.setMock(true);
-        api.reqCustomSearchApi("Android", new RequestGoogleCustomSearchApi.RestResultCallback<List<CustomSearchApiItem>>() {
-            @Override
-            public void onCompletion(List<CustomSearchApiItem> result, Throwable error) {
-                if (error == null) {
-                    for (CustomSearchApiItem item : result) {
-                        
-                    }
-                } else {
-                    Log.d("MainActivity", "通信エラー", error);
-                }
-            }
-        });
+        // 最後にセットしたキーワードを入力
+        mEditText.setText(mPref.getKeyword());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // キーワードを追加
+        String keyword = mEditText.getText().toString();
+        if (!TextUtils.isEmpty(keyword) && !mPref.getKeyword().equals(keyword)) {
+            mPref.putKeyword(keyword);
+
+            // バックグラウンドで検索と画像の取得を行う
+            Intent intent = new Intent(this, ConnectionService.class);
+            intent.putExtra(ConnectionService.EXTRA_SEARCH_KEYWORD, keyword);
+            startService(intent);
+        }
     }
 }

@@ -17,6 +17,10 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.yokmama.learn10.chapter06.lesson29.net.RequestDownloadImage;
+
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -75,17 +79,18 @@ public class WallpaperBroadcastReceiver extends BroadcastReceiver {
                 sThread.start();
             }
         }
-
     }
 
     private Bitmap getWallpaper(Context context) throws IOException {
-        AssetManager assets = context.getResources().getAssets();
+        RequestDownloadImage requestDownloadImage = new RequestDownloadImage(context);
+        File imageDir = requestDownloadImage.getImageDir();
 
         // どの画像を表示するのかを選択
-        String filePath = nextWallpaperPath(assets);
+        String filePath = nextWallpaperPath(imageDir);
 
         // 元画像を取得
-        InputStream inputStream = assets.open(filePath);
+//        InputStream inputStream = assets.open(filePath);
+        InputStream inputStream = new FileInputStream(filePath);
         Bitmap originalWallpaper = BitmapFactory.decodeStream(inputStream);
         inputStream.close();
 
@@ -98,11 +103,12 @@ public class WallpaperBroadcastReceiver extends BroadcastReceiver {
         return resizedWallpaper;
     }
 
-    private String nextWallpaperPath(AssetManager assets) throws IOException {
-        final String ASSETS_WALLPAPERS_DIR_NAME = "wallpapers";
-
+    private String nextWallpaperPath(File imageDir) throws IOException {
+//        final String ASSETS_WALLPAPERS_DIR_NAME = "wallpapers";
+//
         // 画像一覧を取得
-        String[] wallpapers = assets.list(ASSETS_WALLPAPERS_DIR_NAME);
+//        String[] wallpapers = assets.list(ASSETS_WALLPAPERS_DIR_NAME);
+        String[] wallpapers = imageDir.list();
 
         // 以前表示していた壁紙の位置を取得
         int oldPosition = mPrefs.getWallpaperPosition();
@@ -118,7 +124,8 @@ public class WallpaperBroadcastReceiver extends BroadcastReceiver {
         }
 
         final String wallpaperName = wallpapers[newPosition];
-        return ASSETS_WALLPAPERS_DIR_NAME + '/' + wallpaperName;
+        return new File(imageDir, wallpaperName).getAbsolutePath();
+//        return ASSETS_WALLPAPERS_DIR_NAME + '/' + wallpaperName;
     }
 
     private Bitmap createResizedWallpaper(Context context, Bitmap originalWallpaper) {
