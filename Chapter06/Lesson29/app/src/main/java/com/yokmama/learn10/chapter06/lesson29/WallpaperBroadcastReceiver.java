@@ -109,6 +109,10 @@ public class WallpaperBroadcastReceiver extends BroadcastReceiver {
         // 画像一覧を取得
 //        String[] wallpapers = assets.list(ASSETS_WALLPAPERS_DIR_NAME);
         String[] wallpapers = imageDir.list();
+        if (wallpapers == null || wallpapers.length == 0) {
+            // 壁紙が見つからなかった。
+            return null;
+        }
 
         // 以前表示していた壁紙の位置を取得
         int oldPosition = mPrefs.getWallpaperPosition();
