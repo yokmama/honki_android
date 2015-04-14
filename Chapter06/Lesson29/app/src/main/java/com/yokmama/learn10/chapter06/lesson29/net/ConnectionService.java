@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.yokmama.learn10.chapter06.lesson29.storage.FileUtils;
+
 import org.json.JSONException;
 
 import java.io.File;
@@ -33,7 +35,9 @@ public class ConnectionService extends IntentService {
     public void onCreate() {
         super.onCreate();
 
+        // Google APIにアクセスするためのクラス呼び出し
         mApi = new RequestGoogleCustomSearchApi(this);
+        // 画像ダウンロードのためのクラス呼び出し
         mRequestDownloadImage = new RequestDownloadImage(this);
     }
 
@@ -65,6 +69,7 @@ public class ConnectionService extends IntentService {
         Log.v(TAG, "Start search: keyword=" + keyword);
         final List<CustomSearchApiItem> items;
         try {
+            FileUtils.delete(mRequestDownloadImage.getImageDir());
             items = mApi.reqCustomSearchApiSync(keyword);
         } catch (MalformedURLException e) {
             Log.e(TAG, "URLの形式が不正です。", e);
