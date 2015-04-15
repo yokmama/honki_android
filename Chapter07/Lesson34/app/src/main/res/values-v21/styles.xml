@@ -25,4 +25,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Lesson34.Transition" parent="AppTheme">
+        <item name="android:windowContentTransitions">true</item>
+        <!--<item name="android:windowEnterTransition">@android:transition/slide_right</item>-->
+        <!--<item name="android:windowExitTransition">@android:transition/slide_left</item>-->
+    </style>
+
 </resources>

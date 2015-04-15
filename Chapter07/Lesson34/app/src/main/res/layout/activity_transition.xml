@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".TranslateAnimationActivity">
+    tools:context=".TransitionActivity">
 
     <Button
         android:id="@+id/button"
@@ -19,6 +19,6 @@
         android:id="@+id/btn_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_change_dialog_animation" />
+        android:text="@string/btn_to_next_activity" />
 
 </LinearLayout>

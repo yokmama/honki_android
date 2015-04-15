@@ -3,5 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="btn_to_next_activity">次のActivityへ</string>
+    <string name="btn_to_next_activity">画面遷移を行う</string>
+    <string name="btn_change_dialog_animation">ダイアログ表示アニメーションを変更する</string>
 </resources>
