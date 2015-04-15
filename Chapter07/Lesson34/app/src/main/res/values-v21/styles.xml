@@ -13,7 +13,7 @@
     </style>
 
     <style name="Lesson34.fab" parent="android:Widget.Button">
-        <item name="android:elevation">8dp</item>
+        <item name="android:elevation">16dp</item>
     </style>
 
     <style name="fab" parent="Lesson34.fab">
