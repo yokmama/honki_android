@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yokmama.learn10.chapter07.lesson32" >
+    package="com.yokmama.learn10.chapter07.lesson32.lesson32" >
 
     <application
         android:allowBackup="true"

@@ -11,7 +11,6 @@
         <item name="android:background">@drawable/selector_fab</item>
         <item name="android:textSize">32sp</item>
         <item name="android:textColor">@color/md_white_1000</item>
-        <item name="android:elevation">16dp</item>
     </style>
 
 </resources>
