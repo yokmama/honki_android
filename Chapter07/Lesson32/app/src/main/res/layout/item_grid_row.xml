@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardView"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    card_view:contentPadding="@dimen/fix_padding"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="@dimen/padding_small">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="@dimen/padding_small"
+            android:paddingRight="@dimen/padding_small"
+            android:background="@drawable/bg_name"
+            android:textSize="@dimen/text_size_large"
+            android:textColor="@color/md_white_1000"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:alpha="0.7"
+            android:ellipsize="end"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/grid_name_height" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:paddingLeft="@dimen/padding_large"
+            android:paddingRight="@dimen/padding_large"
+            android:paddingBottom="@dimen/padding_large"
+            android:layout_centerInParent="true"
+            android:layout_width="@dimen/grid_icon_size"
+            android:layout_height="@dimen/grid_icon_size" />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
