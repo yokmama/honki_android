@@ -31,11 +31,10 @@ public class MainActivity extends ActionBarActivity {
         final ArrayAdapter<Activities> adapter = new ArrayAdapter<Activities>(
                 this, android.R.layout.simple_list_item_1, Activities.values());
         mListView.setAdapter(adapter);
-
-        // アイテム
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // 選択した項目の情報を取り出す
                 Activities item = adapter.getItem(position);
 
                 // エラーチェック
@@ -61,19 +60,18 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
+    /**
+     * 項目一覧
+     */
     public enum Activities {
-        PropertyAnimation(PropertyAnimationActivity.class),
-        TranslateAnimation(TranslateAnimationActivity.class),
+        PropertyAnimation("PropertyAnimation", PropertyAnimationActivity.class),
+        TranslateAnimation("TranslateAnimation", TranslateAnimationActivity.class),
         Transition_Fade("Transition (fade)", TransitionActivity.class),
         Transition_Explode("Transition (explode)", TransitionActivity.class),
         Transition_Slide("Transition (slide)", TransitionActivity.class),
         ;
         private final String title;
         private final Class<? extends Activity> activityClass;
-
-        Activities(Class<? extends Activity> activityClass) {
-            this(activityClass.getSimpleName(), activityClass);
-        }
 
         Activities(String title, Class<? extends Activity> activityClass) {
             this.title = title;
@@ -82,7 +80,7 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public String toString() {
-            return this.name();
+            return this.title;
         }
     }
 

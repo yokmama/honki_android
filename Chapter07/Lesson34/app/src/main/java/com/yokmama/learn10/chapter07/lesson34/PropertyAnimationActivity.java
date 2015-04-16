@@ -32,6 +32,7 @@ public class PropertyAnimationActivity extends ActionBarActivity implements View
 
         findViewById(R.id.action).setOnClickListener(this);
 
+        // GridLayoutにボタンを複数追加
         int maxChild = mGridLayout.getRowCount() * mGridLayout.getColumnCount();
         for (int i = 0; i < maxChild; i++) {
             Button button = (Button) getLayoutInflater().inflate(R.layout.activity_main_button, mGridLayout, false);
@@ -50,6 +51,7 @@ public class PropertyAnimationActivity extends ActionBarActivity implements View
         }
     }
 
+    /** GridLayout のアニメーション */
     private void doAnimationToGridLayout() {
         for (int i = 0, iL = mGridLayout.getChildCount(); i < iL; i++) {
             // 左上を基準として、距離を計算する。
@@ -72,12 +74,14 @@ public class PropertyAnimationActivity extends ActionBarActivity implements View
         isShowingGridLayout = !isShowingGridLayout;
     }
 
+    /** XMLで定義したプロパティアニメーションを実行 */
     private void doAnimationToBtnXXml() {
         Animator anim = AnimatorInflater.loadAnimator(this, R.animator.move_x);
         anim.setTarget(mBtnXXml);
         anim.start();
     }
 
+    /** コードで定義したプロパティアニメーションを実行 */
     private void doAnimationToBtnXCode() {
         Interpolator interpolator = AnimationUtils.loadInterpolator(this, android.R.interpolator.decelerate_quint);
 

@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.view.ViewAnimationUtils;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.yokmama.learn10.chapter07.lesson34.R;
 
@@ -25,6 +28,7 @@ public class TransitionAfterActivity extends ActionBarActivity {
 
     private Toolbar mToolbar;
     private Button mFab;
+    private TextView mToolbarTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +37,9 @@ public class TransitionAfterActivity extends ActionBarActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mFab = (Button) findViewById(R.id.action);
+        mToolbarTitle = (TextView) findViewById(R.id.toolbar_title);
 
-        setSupportActionBar(mToolbar);
-
+        mToolbarTitle.setText(getTitle());
         mToolbar.setBackgroundColor(getResources().getColor(getIntent().getIntExtra(EXTRA_COLOR_ACCENT_ID, 0)));
         mFab.setBackgroundResource(getIntent().getIntExtra(EXTRA_BACKGROUND_ID, 0));
 
@@ -46,6 +50,20 @@ public class TransitionAfterActivity extends ActionBarActivity {
                 onBackPressed();
             }
         });
+
+//        mGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                int width = mParentLayout.getWidth();
+//                int height = mParentLayout.getHeight();
+//                Log.d(TAG, "width = " + width);
+//                Log.d(TAG, "height = " + height);
+//                removeOnGlobalLayoutListener(mParentLayout.getViewTreeObserver(), mGlobalLayoutListener);
+//            }
+//        };
+//        mParentLayout.getViewTreeObserver().addOnGlobalLayoutListener(mGlobalLayoutListener);
+//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(MP, MP);
+//        addContentView(mParentLayout, layoutParams);
     }
 
     @Override

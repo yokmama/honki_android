@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TransitionActivity"
-    tools:ignore="UnusedAttribute">
+    tools:context=".TransitionActivity">
 
     <View
         android:id="@+id/fake_view"

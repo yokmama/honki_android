@@ -15,12 +15,27 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:gravity="center_vertical"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="start|top" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_transition_toolbar_height"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
         <Button
             android:id="@+id/action"
             style="@style/fab"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:transitionName="@string/transition_name_fab" />
-    </android.support.v7.widget.Toolbar>
+    </FrameLayout>
 
 </RelativeLayout>
