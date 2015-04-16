@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "21.1.2"
+    buildToolsVersion "22.0.0"
 
     defaultConfig {
-        applicationId "com.yokmama.learn10.chapter06.lesson27"
+        applicationId "com.yokmama.learn10.chapter06.lesson29"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
