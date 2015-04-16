@@ -22,14 +22,15 @@
         <activity
             android:name=".PropertyAnimationActivity"
             android:label="@string/app_name" />
+
         <activity
             android:name=".TranslateAnimationActivity"
             android:label="@string/app_name"
             android:theme="@style/Lesson34.TranslateAnimation" />
+
         <activity
             android:name=".ui.transition.TransitionActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Lesson34.Transition.Slide" />
+            android:label="@string/app_name" />
         <activity
             android:name=".ui.transition.TransitionAfterActivity"
             android:label="@string/app_name" />

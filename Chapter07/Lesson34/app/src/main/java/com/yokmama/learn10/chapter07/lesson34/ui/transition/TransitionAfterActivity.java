@@ -52,10 +52,9 @@ public class TransitionAfterActivity extends ActionBarActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        Point displaySize = new Point();
-        getWindowManager().getDefaultDisplay().getSize(displaySize);
-        int centerX = displaySize.x / 2;
-        int centerY = getResources().getDimensionPixelSize(R.dimen.activity_transition_toolbar_height) / 2;
+        // Reveal Effect を実施
+        int centerX = mToolbar.getWidth() / 2;
+        int centerY = mToolbar.getHeight() / 2;
         Animator animator = ViewAnimationUtils.createCircularReveal(
                 mToolbar,
                 centerX, centerY,

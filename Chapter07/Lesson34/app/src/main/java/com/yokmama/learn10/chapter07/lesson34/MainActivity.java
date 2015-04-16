@@ -39,9 +39,9 @@ public class MainActivity extends ActionBarActivity {
                 Activities item = adapter.getItem(position);
 
                 // エラーチェック
-                if (Activities.Transition.equals(item)) {
+                if (item.name().startsWith("Transition")) {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                        String msg = "Android Lolipop以降でのみ実行可能な項目です。";
+                        String msg = "Android Lolipop以降でのみ実行可能です。";
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -49,6 +49,13 @@ public class MainActivity extends ActionBarActivity {
 
                 // Intent発行
                 Intent intent = new Intent(MainActivity.this, item.activityClass);
+                if (item == Activities.Transition_Fade) {
+                    intent.putExtra(TransitionActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Fade);
+                } else if (item == Activities.Transition_Explode) {
+                    intent.putExtra(TransitionActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Explode);
+                } else if (item == Activities.Transition_Slide) {
+                    intent.putExtra(TransitionActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Slide);
+                }
                 startActivity(intent);
             }
         });
@@ -57,11 +64,19 @@ public class MainActivity extends ActionBarActivity {
     public enum Activities {
         PropertyAnimation(PropertyAnimationActivity.class),
         TranslateAnimation(TranslateAnimationActivity.class),
-        Transition(TransitionActivity.class),
+        Transition_Fade("Transition (fade)", TransitionActivity.class),
+        Transition_Explode("Transition (explode)", TransitionActivity.class),
+        Transition_Slide("Transition (slide)", TransitionActivity.class),
         ;
+        private final String title;
         private final Class<? extends Activity> activityClass;
 
         Activities(Class<? extends Activity> activityClass) {
+            this(activityClass.getSimpleName(), activityClass);
+        }
+
+        Activities(String title, Class<? extends Activity> activityClass) {
+            this.title = title;
             this.activityClass = activityClass;
         }
 

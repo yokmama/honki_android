@@ -19,6 +19,7 @@ import java.util.List;
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class TransitionActivity extends ActionBarActivity {
+    public static final String EXTRA_THEME_ID = "extra.THEME_ID";
 
     /** 表示するボタンとそれに関連づいたリソース一覧を定義 */
     private final List<ResIdHolder> BTN_LIST = new ArrayList<ResIdHolder>() {
@@ -31,6 +32,10 @@ public class TransitionActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // 遷移元から指定されたテーマをセット
+        int themeId = getIntent().getIntExtra(EXTRA_THEME_ID, 0);
+        setTheme(themeId);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transition);
 

@@ -20,17 +20,23 @@
 
     <style name="Lesson34.Transition" parent="AppTheme">
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/activity_transition</item>
+        <item name="android:windowSharedElementExitTransition">@transition/activity_transition</item>
+    </style>
+
+    <style name="Lesson34.Transition.Fade">
+        <item name="android:windowEnterTransition">@android:transition/fade</item>
+        <item name="android:windowExitTransition">@android:transition/fade</item>
     </style>
 
     <style name="Lesson34.Transition.Slide">
-        <!--<item name="android:windowEnterTransition">@android:transition/slide_right</item>-->
-        <!--<item name="android:windowExitTransition">@android:transition/slide_left</item>-->
+        <item name="android:windowEnterTransition">@android:transition/slide_right</item>
+        <item name="android:windowExitTransition">@android:transition/slide_left</item>
+    </style>
+
+    <style name="Lesson34.Transition.Explode">
         <item name="android:windowEnterTransition">@android:transition/explode</item>
         <item name="android:windowExitTransition">@android:transition/explode</item>
-        <!--<item name="android:windowEnterTransition">@android:transition/fade</item>-->
-        <!--<item name="android:windowExitTransition">@android:transition/fade</item>-->
-        <item name="android:windowSharedElementEnterTransition">@transition/activity_transition</item>
-        <item name="android:windowSharedElementExitTransition">@transition/activity_transition</item>
     </style>
 
 </resources>
