@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/action_lime"
+        android:id="@+id/action_light_green"
         style="@style/fab"
         android:layout_alignStart="@id/fake_view"
         android:layout_alignBottom="@id/fake_view" />

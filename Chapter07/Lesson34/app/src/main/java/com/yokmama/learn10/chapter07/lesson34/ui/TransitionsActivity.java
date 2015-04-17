@@ -25,7 +25,7 @@ public class TransitionsActivity extends ActionBarActivity {
     private final List<ResIdHolder> BTN_LIST = new ArrayList<ResIdHolder>() {
         {
             add(new ResIdHolder(R.id.action_pink, R.color.md_pink_500, R.drawable.fab_pink));
-            add(new ResIdHolder(R.id.action_lime, R.color.md_lime_500, R.drawable.fab_lime));
+            add(new ResIdHolder(R.id.action_light_green, R.color.md_light_green_500, R.drawable.fab_light_green));
             add(new ResIdHolder(R.id.action_blue, R.color.md_blue_500, R.drawable.fab_blue));
         }
     };
