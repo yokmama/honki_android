@@ -30,25 +30,9 @@ public class TranslateAnimationActivity extends ActionBarActivity implements Vie
             Intent intent = new Intent(TranslateAnimationActivity.this, TranslateAnimationActivity.class);
             startActivity(intent);
         } else if (id == R.id.btn_fragment) {
-            AnimationDialogFragment f = new AnimationDialogFragment();
-            f.show(getSupportFragmentManager(), "AnimationDialogFragment");
+            TranslateAnimationDialogFragment f = new TranslateAnimationDialogFragment();
+            f.show(getSupportFragmentManager(), "TranslateAnimationDialogFragment");
         }
     }
 
-    public static class AnimationDialogFragment extends DialogFragment {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.Lesson34_Animation_Dialog);
-            builder.setTitle("タイトル")
-                    .setMessage("メッセージ")
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dismissAllowingStateLoss();
-                        }
-                    });
-            return builder.create();
-        }
-    }
 }
