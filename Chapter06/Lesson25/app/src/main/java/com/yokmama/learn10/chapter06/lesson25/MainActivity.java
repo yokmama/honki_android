@@ -23,9 +23,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolBar = (Toolbar) findViewById(R.id.tool_bar);
         mEditText = (EditText) findViewById(R.id.edit);
 
+        //Toolbarを初期化
+        Toolbar toolBar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolBar);
 
         // キーボードを表示させる
@@ -34,16 +35,21 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //メニューを生成
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //入力されているテキストを取得
         String keyword = mEditText.getText().toString();
+
+        //連携処理を実施
         int itemId = item.getItemId();
         try {
             if (itemId == R.id.action_send) {
+                //テキスト連携
                 if (checkEmpty(keyword)) {
                     return true;
                 }
@@ -53,11 +59,11 @@ public class MainActivity extends ActionBarActivity {
                 intent.putExtra(Intent.EXTRA_TEXT, keyword);
                 startActivity(intent);
             } else if (itemId == R.id.action_google) {
+                //ウェブ検索
                 if (checkEmpty(keyword)) {
                     return true;
                 }
 
-                // https://www.google.co.jp/search?hl=ja&q=keyword のようなURLを構築する
                 Uri uri = Uri.parse("https://www.google.co.jp/search?hl=ja")
                         .buildUpon().appendQueryParameter("q", keyword).build();
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);

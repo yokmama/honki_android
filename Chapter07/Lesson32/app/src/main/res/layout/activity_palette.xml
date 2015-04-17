@@ -24,7 +24,6 @@
 
     <ImageView
         android:id="@+id/image"
-        android:src="@drawable/cat1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/pallet_image_size"
         android:transitionName="@string/se_image"

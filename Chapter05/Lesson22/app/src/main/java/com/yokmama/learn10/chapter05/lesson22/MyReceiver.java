@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class MyReceiver extends BroadcastReceiver {
+
     private static final String TAG = MyReceiver.class.getSimpleName();
 
     public MyReceiver() {
@@ -15,14 +16,16 @@ public class MyReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if("up".equals(intent.getAction())){
+        if ("up".equals(intent.getAction())) {
 
+            //カウントを読込
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
             int count = preferences.getInt("count", 0);
 
+            //カウントアップ
             count++;
 
+            //カウントを保存
             SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("count", count);
             editor.commit();

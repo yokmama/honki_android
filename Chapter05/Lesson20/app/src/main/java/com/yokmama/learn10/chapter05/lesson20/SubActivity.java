@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 
 public class SubActivity extends ActionBarActivity {
+
     private EditText mEditText;
 
     @Override
@@ -17,11 +18,14 @@ public class SubActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub);
 
-        mEditText = (EditText)findViewById(R.id.editText);
+        //エディットテキストのインスタンスを取得
+        mEditText = (EditText) findViewById(R.id.editText);
 
+        //OKをクリックした時の処理
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //エディットテキストに入力されている文字をMainActivityに結果として渡す
                 Intent data = new Intent();
                 data.putExtra("text", mEditText.getText().toString());
                 setResult(RESULT_OK, data);

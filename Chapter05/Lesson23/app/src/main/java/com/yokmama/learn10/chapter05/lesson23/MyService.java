@@ -16,7 +16,7 @@ public class MyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+        //アプリケーションからカウントの値を取得して1つカウントアップ
         MyApplication myApplication = (MyApplication)getApplication();
         myApplication.setCount(myApplication.getCount()+1);
 
