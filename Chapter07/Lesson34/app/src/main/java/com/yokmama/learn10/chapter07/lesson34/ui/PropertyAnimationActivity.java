@@ -11,14 +11,15 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 
 import com.yokmama.learn10.chapter07.lesson34.R;
 
 
 public class PropertyAnimationActivity extends ActionBarActivity implements View.OnClickListener {
 
-    private Button mBtnXXml;
-    private Button mBtnXCode;
+    private ImageButton mBtnXXml;
+    private ImageButton mBtnXCode;
     private GridLayout mGridLayout;
 
     private boolean isShowingGridLayout = true;
@@ -28,11 +29,13 @@ public class PropertyAnimationActivity extends ActionBarActivity implements View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_animation);
 
-        mBtnXXml = (Button) findViewById(R.id.btn_x_xml);
-        mBtnXCode = (Button) findViewById(R.id.btn_x_code);
+        mBtnXXml = (ImageButton) findViewById(R.id.btn_x_xml);
+        mBtnXCode = (ImageButton) findViewById(R.id.btn_x_code);
         mGridLayout = (GridLayout) findViewById(R.id.grid);
 
-        findViewById(R.id.action).setOnClickListener(this);
+        findViewById(R.id.btn_grid).setOnClickListener(this);
+        mBtnXXml.setOnClickListener(this);
+        mBtnXCode.setOnClickListener(this);
 
         // GridLayoutにボタンを複数追加
         int maxChild = mGridLayout.getRowCount() * mGridLayout.getColumnCount();
@@ -46,10 +49,12 @@ public class PropertyAnimationActivity extends ActionBarActivity implements View
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.action) {
-            doAnimationToGridLayout();
+        if (id == R.id.btn_x_xml) {
             doAnimationToBtnXXml();
+        } else if (id == R.id.btn_x_code) {
             doAnimationToBtnXCode();
+        } else if (id == R.id.btn_grid) {
+            doAnimationToGridLayout();
         }
     }
 
@@ -89,8 +94,8 @@ public class PropertyAnimationActivity extends ActionBarActivity implements View
                 this, android.R.interpolator.decelerate_quint);
 
         // 右向き、左向きのアニメーションをそれぞれ作成
-        ObjectAnimator animStart = ObjectAnimator.ofFloat(mBtnXCode, "x", 0, 500).setDuration(500);
-        ObjectAnimator animEnd = ObjectAnimator.ofFloat(mBtnXCode, "x", 500, 0).setDuration(500);
+        ObjectAnimator animStart = ObjectAnimator.ofFloat(mBtnXCode, "translationX", 0.f, 500.f).setDuration(500);
+        ObjectAnimator animEnd = ObjectAnimator.ofFloat(mBtnXCode, "translationX", 500.f, 0.f).setDuration(500);
         animStart.setInterpolator(interpolator);
         animEnd.setInterpolator(interpolator);
 

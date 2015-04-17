@@ -5,14 +5,14 @@
     <objectAnimator
         android:duration="500"
         android:interpolator="@android:interpolator/decelerate_quint"
-        android:propertyName="x"
+        android:propertyName="translationX"
         android:valueFrom="0"
         android:valueTo="500" />
 
     <objectAnimator
         android:duration="500"
         android:interpolator="@android:interpolator/decelerate_quint"
-        android:propertyName="x"
+        android:propertyName="translationX"
         android:valueFrom="500"
         android:valueTo="0" />
 

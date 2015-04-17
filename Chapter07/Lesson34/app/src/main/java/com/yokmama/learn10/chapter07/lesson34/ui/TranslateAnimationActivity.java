@@ -38,14 +38,8 @@ public class TranslateAnimationActivity extends ActionBarActivity implements Vie
     public static class AnimationDialogFragment extends DialogFragment {
 
         @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setStyle(STYLE_NORMAL, R.style.Lesson34_Animation_Dialog);
-        }
-
-        @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), getTheme());
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.Lesson34_Animation_Dialog);
             builder.setTitle("タイトル")
                     .setMessage("メッセージ")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {

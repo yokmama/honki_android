@@ -27,16 +27,17 @@
             android:theme="@style/Lesson34.TranslateAnimation" />
 
         <activity
-            android:name=".ui.FragmentTransitionsActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Lesson34.FragmentTransitions" />
-
-        <activity
             android:name=".ui.TransitionsActivity"
             android:label="@string/app_name" />
         <activity
             android:name=".ui.TransitionsAfterActivity"
+            android:theme="@style/Lesson34.TransitionAfter"
             android:label="@string/app_name" />
+
+        <activity
+            android:name=".ui.FragmentTransitionsActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Lesson34.FragmentTransitions" />
     </application>
 
 </manifest>

@@ -51,11 +51,11 @@ public class MainActivity extends ActionBarActivity {
 
                 // Intent発行
                 Intent intent = new Intent(MainActivity.this, item.activityClass);
-                if (item == Activities.Transition_Fade) {
+                if (item == Activities.Transitions_Fade) {
                     intent.putExtra(TransitionsActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Fade);
-                } else if (item == Activities.Transition_Explode) {
+                } else if (item == Activities.Transitions_Explode) {
                     intent.putExtra(TransitionsActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Explode);
-                } else if (item == Activities.Transition_Slide) {
+                } else if (item == Activities.Transitions_Slide) {
                     intent.putExtra(TransitionsActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Slide);
                 }
                 startActivity(intent);
@@ -67,12 +67,12 @@ public class MainActivity extends ActionBarActivity {
      * 項目一覧
      */
     public enum Activities {
-        PropertyAnimation("PropertyAnimation", PropertyAnimationActivity.class),
-        TranslateAnimation("TranslateAnimation", TranslateAnimationActivity.class),
-        Transition_Fade("Transition (fade)", TransitionsActivity.class),
-        Transition_Explode("Transition (explode)", TransitionsActivity.class),
-        Transition_Slide("Transition (slide)", TransitionsActivity.class),
-        FragmentTransitions("Fragment Transitions", FragmentTransitionsActivity.class),
+        PropertyAnimation("Property Animation", PropertyAnimationActivity.class),
+        TranslateAnimation("Translate Animation", TranslateAnimationActivity.class),
+        Transitions_Fade("Activity Transitions (fade)", TransitionsActivity.class),
+        Transitions_Explode("Activity Transitions (explode)", TransitionsActivity.class),
+        Transitions_Slide("Activity Transitions (slide)", TransitionsActivity.class),
+        Transitions_Fragment("Fragment Transitions", FragmentTransitionsActivity.class),
         ;
         private final String title;
         private final Class<? extends Activity> activityClass;
