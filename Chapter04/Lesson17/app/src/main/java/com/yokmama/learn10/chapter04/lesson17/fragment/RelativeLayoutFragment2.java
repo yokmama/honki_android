@@ -12,10 +12,10 @@ import com.yokmama.learn10.chapter04.lesson17.R;
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass.
  */
-public class RelativeLayoutExFragment extends Fragment {
+public class RelativeLayoutFragment2 extends Fragment {
 
 
-    public RelativeLayoutExFragment() {
+    public RelativeLayoutFragment2() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class RelativeLayoutExFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_relative_ex_layout, container, false);
+        return inflater.inflate(R.layout.fragment_relative_layout2, container, false);
     }
 
 

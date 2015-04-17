@@ -12,17 +12,17 @@
 
     <include layout="@layout/header"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
         android:layout_weight="1">
-        <include layout="@layout/content"/>
-        <include layout="@layout/content"/>
-        <include layout="@layout/content"/>
-        <include layout="@layout/content"/>
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/contents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
-    <include layout="@layout/footer" />
+    <include layout="@layout/footer"/>
 </LinearLayout>
 

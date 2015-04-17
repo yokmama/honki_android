@@ -25,16 +25,8 @@
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="0">
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </android.support.v4.app.FragmentTabHost>
 </FrameLayout>

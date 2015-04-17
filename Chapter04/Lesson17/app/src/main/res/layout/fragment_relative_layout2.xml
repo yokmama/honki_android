@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment">
+    tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment2">
 
     <Button
         android:layout_width="150dip"
