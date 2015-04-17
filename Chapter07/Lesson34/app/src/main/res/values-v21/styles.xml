@@ -1,28 +1,42 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:windowContentTransitions">true</item>
-        <!--<item name="android:windowEnterTransition">@android:transition/slide_left</item>-->
-        <!--<item name="android:windowExitTransition">@android:transition/slide_right</item>-->
-        <!--<item name="android:windowEnterTransition">@android:transition/fade</item>-->
-        <!--<item name="android:windowExitTransition">@android:transition/fade</item>-->
-        <!--<item name="android:windowEnterTransition">@android:transition/explode</item>-->
-        <!--<item name="android:windowExitTransition">@android:transition/explode</item>-->
     </style>
 
     <style name="Lesson34.fab" parent="android:Widget.Button">
-        <item name="android:elevation">8dp</item>
+        <item name="android:elevation">16dp</item>
     </style>
 
     <style name="fab" parent="Lesson34.fab">
         <item name="android:layout_width">56dp</item>
         <item name="android:layout_height">56dp</item>
-        <item name="android:background">@drawable/selector_fab</item>
+        <item name="android:background">@drawable/fab_pink</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/md_white_1000</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Lesson34.Transition" parent="AppTheme">
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/activity_transition</item>
+        <item name="android:windowSharedElementExitTransition">@transition/activity_transition</item>
+    </style>
+
+    <style name="Lesson34.Transition.Fade">
+        <item name="android:windowEnterTransition">@android:transition/fade</item>
+        <item name="android:windowExitTransition">@android:transition/fade</item>
+    </style>
+
+    <style name="Lesson34.Transition.Slide">
+        <item name="android:windowEnterTransition">@android:transition/slide_right</item>
+        <item name="android:windowExitTransition">@android:transition/slide_left</item>
+    </style>
+
+    <style name="Lesson34.Transition.Explode">
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
     </style>
 
 </resources>
