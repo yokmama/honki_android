@@ -20,8 +20,8 @@
 
     <style name="Lesson34.Transition" parent="AppTheme">
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowSharedElementEnterTransition">@transition/activity_transition</item>
-        <item name="android:windowSharedElementExitTransition">@transition/activity_transition</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/activity_transitions</item>
+        <item name="android:windowSharedElementExitTransition">@transition/activity_transitions</item>
     </style>
 
     <style name="Lesson34.Transition.Fade">

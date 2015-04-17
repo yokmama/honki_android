@@ -18,7 +18,7 @@ import java.util.List;
  * Created by kayo on 15/04/15.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class TransitionActivity extends ActionBarActivity {
+public class TransitionsActivity extends ActionBarActivity {
     public static final String EXTRA_THEME_ID = "extra.THEME_ID";
 
     /** 表示するボタンとそれに関連づいたリソース一覧を定義 */
@@ -37,7 +37,7 @@ public class TransitionActivity extends ActionBarActivity {
         setTheme(themeId);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transition);
+        setContentView(R.layout.activity_transitions);
 
         for (final ResIdHolder rh : BTN_LIST) {
             View v = findViewById(rh.viewId);
@@ -45,12 +45,12 @@ public class TransitionActivity extends ActionBarActivity {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    TransitionActivity self = TransitionActivity.this;
+                    TransitionsActivity self = TransitionsActivity.this;
 
                     // 遷移先渡す情報をIntentに詰める
-                    Intent intent = new Intent(self, TransitionAfterActivity.class);
-                    intent.putExtra(TransitionAfterActivity.EXTRA_COLOR_ACCENT_ID, rh.colorResId);
-                    intent.putExtra(TransitionAfterActivity.EXTRA_BACKGROUND_ID, rh.backgroundId);
+                    Intent intent = new Intent(self, TransitionsAfterActivity.class);
+                    intent.putExtra(TransitionsAfterActivity.EXTRA_COLOR_ACCENT_ID, rh.colorResId);
+                    intent.putExtra(TransitionsAfterActivity.EXTRA_BACKGROUND_ID, rh.backgroundId);
 
                     // 遷移先の android:transitionName とマッチする
                     ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(

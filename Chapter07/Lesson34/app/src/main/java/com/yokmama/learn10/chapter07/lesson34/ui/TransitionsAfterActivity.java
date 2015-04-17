@@ -20,7 +20,7 @@ import com.yokmama.learn10.chapter07.lesson34.utils.ViewUtils;
  * Created by kayo on 15/04/15.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class TransitionAfterActivity extends ActionBarActivity {
+public class TransitionsAfterActivity extends ActionBarActivity {
     public static final String EXTRA_COLOR_ACCENT_ID = "extra.COLOR_ACCENT_ID";
     public static final String EXTRA_BACKGROUND_ID = "extra.BACKGROUND_ID";
 
@@ -31,7 +31,7 @@ public class TransitionAfterActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transition_after);
+        setContentView(R.layout.activity_transitions_after);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mFab = (Button) findViewById(R.id.action);
