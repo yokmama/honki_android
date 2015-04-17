@@ -58,10 +58,12 @@ public class FragmentTransitionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_fragment_transitions, container, false);
-        TextView textView = (TextView) v.findViewById(android.R.id.text1);
+        TextView textView = (TextView) v.findViewById(R.id.text);
+
+        // 現在のページ数でテキストと背景を設定
         int page = getPage();
         v.setBackgroundResource(MD_COLORS[page % MD_COLORS.length]);
-        textView.setText("" + page);
+        textView.setText(String.valueOf(page));
 
         return v;
     }
@@ -70,8 +72,10 @@ public class FragmentTransitionsFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        // Transitionsを生成
         TransitionInflater ti = TransitionInflater.from(getActivity());
 
+        // 指定されたタイプの Transitions を設定
         int viewId = getArguments().getInt(EXTRA_TRANSITIONS_TYPE_VIEW_ID);
         if (viewId == R.id.btn_add_fragment_explode) {
             setEnterTransition(ti.inflateTransition(android.R.transition.explode));

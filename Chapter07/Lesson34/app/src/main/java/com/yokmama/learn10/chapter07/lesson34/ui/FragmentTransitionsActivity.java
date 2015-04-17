@@ -25,6 +25,7 @@ public class FragmentTransitionsActivity extends ActionBarActivity implements Vi
         findViewById(R.id.btn_add_fragment_slide).setOnClickListener(this);
         findViewById(R.id.btn_add_fragment_none).setOnClickListener(this);
 
+        // 最初の Fragment を貼り付け
         if (savedInstanceState == null) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransitionsFragment newFrg = FragmentTransitionsFragment.newInstance(0, 0);
@@ -34,6 +35,7 @@ public class FragmentTransitionsActivity extends ActionBarActivity implements Vi
 
     @Override
     public void onClick(View v) {
+        // 各種ボタンクリック時、 Fragment 追加
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransitionsFragment f = (FragmentTransitionsFragment) fm.findFragmentById(R.id.container);
         FragmentTransitionsFragment newFrg = FragmentTransitionsFragment.newInstance(f.getPage() + 1, v.getId());
