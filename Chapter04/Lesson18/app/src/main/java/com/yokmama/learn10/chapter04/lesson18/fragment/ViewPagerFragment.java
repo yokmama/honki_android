@@ -117,7 +117,7 @@ public class ViewPagerFragment extends Fragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            View layout =mLayoutInflaternflater.inflate(R.layout.hoge, null);
+            View layout =mLayoutInflaternflater.inflate(R.layout.view_pager_item, null);
             switch (position){
                 case 0:
                     layout.setBackgroundColor(Color.RED);
