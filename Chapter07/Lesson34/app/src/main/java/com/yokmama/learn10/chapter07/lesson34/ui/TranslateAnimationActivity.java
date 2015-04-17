@@ -1,6 +1,5 @@
-package com.yokmama.learn10.chapter07.lesson34;
+package com.yokmama.learn10.chapter07.lesson34.ui;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -9,7 +8,8 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.widget.Button;
+
+import com.yokmama.learn10.chapter07.lesson34.R;
 
 /**
  * Created by kayo on 15/04/15.

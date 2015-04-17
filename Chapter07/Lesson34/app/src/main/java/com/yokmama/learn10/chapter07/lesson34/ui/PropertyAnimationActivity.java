@@ -1,4 +1,4 @@
-package com.yokmama.learn10.chapter07.lesson34;
+package com.yokmama.learn10.chapter07.lesson34.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
@@ -11,6 +11,8 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.GridLayout;
+
+import com.yokmama.learn10.chapter07.lesson34.R;
 
 
 public class PropertyAnimationActivity extends ActionBarActivity implements View.OnClickListener {
@@ -58,15 +60,14 @@ public class PropertyAnimationActivity extends ActionBarActivity implements View
             int vi = i % mGridLayout.getColumnCount();
             int hi = i / mGridLayout.getRowCount();
             int dist = vi + hi;
-//            int dist = Math.max(vi, hi);
 
             // childを読み込み
             View childAt = mGridLayout.getChildAt(i);
 
             // アニメーション読み込み、設定
             Animator anim = (isShowingGridLayout)
-                    ? AnimatorInflater.loadAnimator(this, R.animator.md_grid_hide)
-                    : AnimatorInflater.loadAnimator(this, R.animator.md_grid_show);
+                    ? AnimatorInflater.loadAnimator(this, R.animator.activity_property_animation_grid_hide)
+                    : AnimatorInflater.loadAnimator(this, R.animator.activity_property_animation_grid_show);
             anim.setTarget(childAt);
             anim.setStartDelay(dist * 60);
             anim.start();
@@ -76,20 +77,24 @@ public class PropertyAnimationActivity extends ActionBarActivity implements View
 
     /** XMLで定義したプロパティアニメーションを実行 */
     private void doAnimationToBtnXXml() {
-        Animator anim = AnimatorInflater.loadAnimator(this, R.animator.move_x);
+        Animator anim = AnimatorInflater.loadAnimator(
+                this,R.animator.activity_property_animation_move_x);
         anim.setTarget(mBtnXXml);
         anim.start();
     }
 
     /** コードで定義したプロパティアニメーションを実行 */
     private void doAnimationToBtnXCode() {
-        Interpolator interpolator = AnimationUtils.loadInterpolator(this, android.R.interpolator.decelerate_quint);
+        Interpolator interpolator = AnimationUtils.loadInterpolator(
+                this, android.R.interpolator.decelerate_quint);
 
+        // 右向き、左向きのアニメーションをそれぞれ作成
         ObjectAnimator animStart = ObjectAnimator.ofFloat(mBtnXCode, "x", 0, 500).setDuration(500);
         ObjectAnimator animEnd = ObjectAnimator.ofFloat(mBtnXCode, "x", 500, 0).setDuration(500);
         animStart.setInterpolator(interpolator);
         animEnd.setInterpolator(interpolator);
 
+        // 順番に実行
         AnimatorSet set = new AnimatorSet();
         set.playSequentially(animStart, animEnd);
         set.start();

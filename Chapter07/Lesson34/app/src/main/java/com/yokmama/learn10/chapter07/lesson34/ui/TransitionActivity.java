@@ -1,4 +1,4 @@
-package com.yokmama.learn10.chapter07.lesson34.ui.transition;
+package com.yokmama.learn10.chapter07.lesson34.ui;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -61,6 +61,7 @@ public class TransitionActivity extends ActionBarActivity {
         }
     }
 
+    /** ViewのIDと各種リソースを紐付けるためのクラス */
     private static class ResIdHolder {
         int viewId;
         int colorResId;
