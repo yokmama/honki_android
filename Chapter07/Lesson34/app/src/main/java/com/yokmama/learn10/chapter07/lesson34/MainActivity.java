@@ -11,7 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.yokmama.learn10.chapter07.lesson34.ui.transition.TransitionActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.FragmentTransitionsActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.PropertyAnimationActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.TranslateAnimationActivity;
 
 /**
  * Created by kayo on 15/04/15.
@@ -48,12 +51,12 @@ public class MainActivity extends ActionBarActivity {
 
                 // Intent発行
                 Intent intent = new Intent(MainActivity.this, item.activityClass);
-                if (item == Activities.Transition_Fade) {
-                    intent.putExtra(TransitionActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Fade);
-                } else if (item == Activities.Transition_Explode) {
-                    intent.putExtra(TransitionActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Explode);
-                } else if (item == Activities.Transition_Slide) {
-                    intent.putExtra(TransitionActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Slide);
+                if (item == Activities.Transitions_Fade) {
+                    intent.putExtra(TransitionsActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Fade);
+                } else if (item == Activities.Transitions_Explode) {
+                    intent.putExtra(TransitionsActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Explode);
+                } else if (item == Activities.Transitions_Slide) {
+                    intent.putExtra(TransitionsActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Slide);
                 }
                 startActivity(intent);
             }
@@ -64,11 +67,12 @@ public class MainActivity extends ActionBarActivity {
      * 項目一覧
      */
     public enum Activities {
-        PropertyAnimation("PropertyAnimation", PropertyAnimationActivity.class),
-        TranslateAnimation("TranslateAnimation", TranslateAnimationActivity.class),
-        Transition_Fade("Transition (fade)", TransitionActivity.class),
-        Transition_Explode("Transition (explode)", TransitionActivity.class),
-        Transition_Slide("Transition (slide)", TransitionActivity.class),
+        PropertyAnimation("Property Animation", PropertyAnimationActivity.class),
+        TranslateAnimation("Translate Animation", TranslateAnimationActivity.class),
+        Transitions_Fade("Activity Transitions (fade)", TransitionsActivity.class),
+        Transitions_Explode("Activity Transitions (explode)", TransitionsActivity.class),
+        Transitions_Slide("Activity Transitions (slide)", TransitionsActivity.class),
+        Transitions_Fragment("Fragment Transitions", FragmentTransitionsActivity.class),
         ;
         private final String title;
         private final Class<? extends Activity> activityClass;

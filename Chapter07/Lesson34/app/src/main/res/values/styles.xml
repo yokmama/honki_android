@@ -1,13 +1,11 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- 共通のスタイル -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowActionModeOverlay">true</item>
         <item name="colorPrimary">@color/md_pink_500</item>
         <item name="colorPrimaryDark">@color/md_pink_800</item>
         <!--<item name="colorAccent">#ff0000</item>-->
@@ -24,6 +22,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- Translate Animation -->
+
     <style name="Lesson34.Animation.Translate" parent="android:Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
         <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
@@ -33,6 +33,7 @@
 
     <style name="Lesson34.Animation.Dialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="Lesson34.Animation.Window" parent="android:Animation.Dialog">
@@ -43,7 +44,5 @@
     <style name="Lesson34.TranslateAnimation" parent="AppTheme">
         <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Translate</item>
     </style>
-
-    <style name="Lesson34.Transition" parent="AppTheme"></style>
 
 </resources>
