@@ -11,22 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="140dp" />
 
-    <Button
-        android:id="@+id/clear"
-        style="@style/fab"
-        android:elevation="8dp"
-        android:text="DEL"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/selector_fab"
-        android:layout_alignBottom="@+id/fabFrame"
-        android:layout_alignEnd="@+id/preview" />
-
     <View
         android:id="@+id/fabFrame"
         android:layout_below="@+id/preview"
         android:layout_width="match_parent"
         android:layout_height="28dp"
-        android:background="?android:attr/colorPrimary" />
+        android:background="?attr/colorPrimary" />
 
     <GridLayout
         android:layout_below="@+id/fabFrame"
@@ -34,7 +24,7 @@
         android:useDefaultMargins="false"
         android:rowOrderPreserved="false"
         android:alignmentMode="alignBounds"
-        android:background="?android:attr/colorPrimary"
+        android:background="?attr/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="4"
@@ -152,4 +142,15 @@
             android:layout_row="3"
             android:text="+" />
     </GridLayout>
+
+    <Button
+        android:id="@+id/clear"
+        style="@style/Lesson27.fab"
+        android:text="DEL"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/selector_fab"
+        android:layout_alignBottom="@+id/fabFrame"
+        android:layout_alignRight="@+id/preview"
+        android:layout_alignEnd="@+id/preview" />
 </RelativeLayout>

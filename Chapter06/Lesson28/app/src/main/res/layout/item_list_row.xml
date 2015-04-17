@@ -22,7 +22,7 @@
         android:maxLines="2"
         android:ellipsize="end"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/colorLabel" />
+        android:layout_toRightOf="@+id/colorLabel" />
 
     <TextView
         android:id="@+id/createdTime"

@@ -1,0 +1,68 @@
+<resources>
+
+    <!-- 共通のスタイル -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Lesson34.fab" parent="android:Widget.Button">
+        <item name="android:elevation">16dp</item>
+    </style>
+
+    <style name="fab" parent="Lesson34.fab">
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:background">@drawable/fab_pink</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Translate Animation -->
+
+    <style name="Lesson34.Animation.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
+    </style>
+
+    <!-- Transitions -->
+
+    <style name="Lesson34.Transition" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/activity_transitions</item>
+        <item name="android:windowSharedElementExitTransition">@transition/activity_transitions</item>
+    </style>
+
+    <style name="Lesson34.TransitionAfter" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+    </style>
+
+    <style name="Lesson34.Transition.Fade">
+        <item name="android:windowEnterTransition">@android:transition/fade</item>
+        <item name="android:windowExitTransition">@android:transition/fade</item>
+    </style>
+
+    <style name="Lesson34.Transition.Slide">
+        <item name="android:windowEnterTransition">@android:transition/slide_right</item>
+        <item name="android:windowExitTransition">@android:transition/slide_left</item>
+    </style>
+
+    <style name="Lesson34.Transition.Explode">
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
+    </style>
+
+    <!-- Fragment Transitions -->
+
+    <style name="Lesson34.FragmentTransitions" parent="AppTheme">
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:fragmentEnterTransition">@android:transition/slide_left</item>
+        <item name="android:fragmentExitTransition">@android:transition/slide_right</item>
+        <item name="android:fragmentReenterTransition">@android:transition/slide_left</item>
+        <item name="android:fragmentReturnTransition">@android:transition/slide_right</item>
+    </style>
+
+</resources>

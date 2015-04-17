@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lesson34</string>
+
+    <string name="transition_name_fab">fab</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="btn_to_next_activity">画面遷移を行う</string>
+    <string name="btn_change_dialog_animation">ダイアログ表示アニメーションを変更する</string>
+</resources>
