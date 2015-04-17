@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">LESSON32</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="se_image">SharedElements_Image</string>
 </resources>
