@@ -1,15 +1,24 @@
 package com.yokmama.learn10.chapter07.lesson32.lesson32;
 
-import android.content.pm.ApplicationInfo;
-import android.os.AsyncTask;
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
-    private static final String TAG = MainActivity.class.getSimpleName();
+public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
+
+    //画像リソース
+    private static final int[] catImages = {R.raw.cat1, R.raw.cat2, R.raw.cat3, R.raw.cat4,
+            R.raw.cat5, R.raw.cat6, R.raw.cat7, R.raw.cat8, R.raw.cat9, R.raw.cat10, R.raw.cat11,
+            R.raw.cat12, R.raw.cat13, R.raw.cat14, R.raw.cat15, R.raw.cat16, R.raw.cat17};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,28 +26,31 @@ public class MainActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_main);
 
-        // インストール済みアプリケーションアイコンをGridViewに表示
-        new GetInstalledAppIconTask().execute();
+        //GridViewにセットする画像リストを生成
+        List<Integer> itemList = new ArrayList<>();
+        for (int i = 0; i < catImages.length; i++) {
+            itemList.add(catImages[i]);
+        }
+
+        //GirdViewに画像をセット
+        GridView gridView = (GridView) findViewById(R.id.gridView);
+        GridItemAdapter adapter = new GridItemAdapter(MainActivity.this, itemList);
+        gridView.setAdapter(adapter);
+
+        //GridViewにクリックリスナーをセット
+        gridView.setOnItemClickListener(this);
     }
 
-    /**
-     * インストール済みのアプリのアイコンを取得するAsyncTask.
-     */
-    private class GetInstalledAppIconTask extends AsyncTask<Void, Void, List<ApplicationInfo>> {
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        //クリックされた画像のリソースIDを取得
+        int resId = (int) adapterView.getAdapter().getItem(i);
 
-        @Override
-        protected List<ApplicationInfo> doInBackground(Void... voids) {
-            //アプリケーション情報を取得
-            return getPackageManager().getInstalledApplications(0);
-        }
-
-        @Override
-        protected void onPostExecute(List<ApplicationInfo> result) {
-            super.onPostExecute(result);
-            //GirdViewにアイコンを表示
-            GridView gridView = (GridView) findViewById(R.id.gridView);
-            InstalledAppAdapter adapter = new InstalledAppAdapter(MainActivity.this, result);
-            gridView.setAdapter(adapter);
-        }
+        //パレット解析を行うアクティビティに移動
+        ActivityOptionsCompat options = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(this, view, getString(R.string.se_image));
+        Intent intent = new Intent(MainActivity.this, PaletteActivity.class);
+        intent.putExtra(PaletteActivity.KEY_IMAGE, resId);
+        ActivityCompat.startActivity(this, intent, options.toBundle());
     }
 }
