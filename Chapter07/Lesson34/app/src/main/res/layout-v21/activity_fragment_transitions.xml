@@ -1,33 +1,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TransitionActivity">
+    tools:context=".FragmentTransitionsActivity">
 
-    <View
-        android:id="@+id/fake_view"
-        android:layout_width="168dp"
-        android:layout_height="168dp"
-        android:layout_centerInParent="true"
-        android:visibility="invisible" />
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <Button
-        android:id="@+id/action_pink"
-        style="@style/fab"
-        android:layout_alignTop="@id/fake_view"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/btn_add_fragment_explode"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="Explode" />
 
     <Button
-        android:id="@+id/action_lime"
-        style="@style/fab"
-        android:layout_alignStart="@id/fake_view"
-        android:layout_alignBottom="@id/fake_view" />
+        android:id="@+id/btn_add_fragment_fade"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_add_fragment_explode"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="Fade" />
 
     <Button
-        android:id="@+id/action_blue"
-        style="@style/fab"
-        android:layout_alignEnd="@id/fake_view"
-        android:layout_alignBottom="@id/fake_view" />
+        android:id="@+id/btn_add_fragment_slide"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_add_fragment_fade"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="Slide" />
+
+    <Button
+        android:id="@+id/btn_add_fragment_none"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_add_fragment_slide"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="None" />
 
 </RelativeLayout>

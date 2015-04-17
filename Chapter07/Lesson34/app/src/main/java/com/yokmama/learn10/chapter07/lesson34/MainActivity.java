@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.yokmama.learn10.chapter07.lesson34.ui.FragmentTransitionsActivity;
 import com.yokmama.learn10.chapter07.lesson34.ui.PropertyAnimationActivity;
 import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsActivity;
 import com.yokmama.learn10.chapter07.lesson34.ui.TranslateAnimationActivity;
@@ -71,6 +72,7 @@ public class MainActivity extends ActionBarActivity {
         Transition_Fade("Transition (fade)", TransitionsActivity.class),
         Transition_Explode("Transition (explode)", TransitionsActivity.class),
         Transition_Slide("Transition (slide)", TransitionsActivity.class),
+        FragmentTransitions("Fragment Transitions", FragmentTransitionsActivity.class),
         ;
         private final String title;
         private final Class<? extends Activity> activityClass;
