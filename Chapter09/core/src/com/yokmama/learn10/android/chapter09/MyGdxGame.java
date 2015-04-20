@@ -140,7 +140,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         chipScales = new float[] { 0.6f, 0.65f, 0.7f, 0.8f };
 
-        mineTexture = new TextureRegion(new Texture("mine.png"));
+        mineTexture = new TextureRegion(new Texture("fire.png"));
 
         Texture heroTexture = new Texture("UnityChan.png");
         float[] timePerFrame = new float[] { 0.05f, 0.05f, 0.05f };
