@@ -86,7 +86,6 @@ public class MyGdxGame extends ApplicationAdapter {
 
     Music music;
     Sound explode;
-    Sound evillaugh;
     Sound drop;
     Sound finaleCrackers;
     Sound finaleCheers;
@@ -159,7 +158,6 @@ public class MyGdxGame extends ApplicationAdapter {
         music.play();
 
         explode = Gdx.audio.newSound(Gdx.files.internal("explode.wav"));
-        evillaugh = Gdx.audio.newSound(Gdx.files.internal("evillaugh.wav"));
         drop = Gdx.audio.newSound(Gdx.files.internal("coin05.mp3"));
         finaleCrackers = Gdx.audio.newSound(Gdx.files.internal("finale-crackers.wav"));
         finaleCheers = Gdx.audio.newSound(Gdx.files.internal("finale-cheers.wav"));
@@ -325,7 +323,6 @@ public class MyGdxGame extends ApplicationAdapter {
             if (!mine.hasCollided && Intersector.overlaps(mine.collisionCircle, heroCollision)) {
                 mine.collide();
                 explode.play();
-                evillaugh.play(0.8f);
                 hero.die();
                 gameState = GameState.GameOver;
                 mTimeAfterEnd = 0;
