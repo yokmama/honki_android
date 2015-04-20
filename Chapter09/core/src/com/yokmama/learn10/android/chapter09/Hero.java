@@ -53,13 +53,14 @@ class Hero {
         mAnimations = new Animation[3];
 
         Array<TextureRegion> regions;
-        regions = Utils.getFrames(texture, 0, stateFrames[ANIM_STATE_RUNNING], spriteWidth, spriteHeight);
+        regions = Utils.getFrames(texture, spriteHeight, stateFrames[ANIM_STATE_RUNNING], spriteWidth, spriteHeight);
+        regions.addAll(Utils.getFrames(texture, 2 * spriteHeight, stateFrames[ANIM_STATE_RUNNING], spriteWidth, spriteHeight));
         mAnimations[ANIM_STATE_RUNNING] = new Animation(msPerFrame[ANIM_STATE_RUNNING], regions, Animation.PlayMode.LOOP);
 
-        regions = Utils.getFrames(texture, spriteHeight, stateFrames[ANIM_STATE_JUMPING], spriteWidth, spriteHeight);
+        regions = Utils.getFrames(texture, 3 * spriteHeight, stateFrames[ANIM_STATE_JUMPING], spriteWidth, spriteHeight);
         mAnimations[ANIM_STATE_JUMPING] = new Animation(msPerFrame[ANIM_STATE_JUMPING], regions, Animation.PlayMode.NORMAL);
 
-        regions = Utils.getFrames(texture, 2 * spriteHeight, stateFrames[ANIM_STATE_WIN], spriteWidth, spriteHeight);
+        regions = Utils.getFrames(texture, 0, stateFrames[ANIM_STATE_WIN], spriteWidth, spriteHeight);
         mAnimations[ANIM_STATE_WIN] = new Animation(msPerFrame[ANIM_STATE_WIN], regions, Animation.PlayMode.LOOP);
 
         init();

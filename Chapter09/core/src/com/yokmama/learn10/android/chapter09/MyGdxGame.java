@@ -146,10 +146,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
         mineTexture = new TextureRegion(new Texture("mine.png"));
 
-        Texture heroTexture = new Texture("hero_sprite.png");
+        Texture heroTexture = new Texture("UnityChan.png");
         float[] timePerFrame = new float[] { 0.05f, 0.05f, 0.05f };
-        int[] numFrames = new int[] { 8, 7, 8 };
-        hero = new Hero(heroTexture, 50, 34, timePerFrame, numFrames);
+        int[] numFrames = new int[] { 4, 7, 5 };
+        hero = new Hero(heroTexture, 64, 64, timePerFrame, numFrames);
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
         music.setLooping(true);
