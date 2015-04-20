@@ -157,7 +157,7 @@ public class MyGdxGame extends ApplicationAdapter {
         music.setVolume(0.3f);
         music.play();
 
-        explode = Gdx.audio.newSound(Gdx.files.internal("explode.wav"));
+        explode = Gdx.audio.newSound(Gdx.files.internal("laser3.mp3"));
         drop = Gdx.audio.newSound(Gdx.files.internal("coin05.mp3"));
         finaleCrackers = Gdx.audio.newSound(Gdx.files.internal("finale-crackers.wav"));
         finaleCheers = Gdx.audio.newSound(Gdx.files.internal("finale-cheers.wav"));
