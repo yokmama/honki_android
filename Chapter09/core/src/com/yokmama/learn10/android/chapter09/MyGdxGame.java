@@ -131,10 +131,12 @@ public class MyGdxGame extends ApplicationAdapter {
         finishX = (bgWidth - viewportWidth) / bgSpeed + HERO_LEFT_X;
 
         chipTextures = new TextureRegion[4];
-        chipTextures[CHIP_ONE] = new TextureRegion(new Texture("chip_one.png"));
-        chipTextures[CHIP_TWO] = new TextureRegion(new Texture("chip_two.png"));
-        chipTextures[CHIP_THREE] = new TextureRegion(new Texture("chip_three.png"));
-        chipTextures[CHIP_FOUR] = new TextureRegion(new Texture("chip_four.png"));
+        Texture coins = new Texture("coins.png");
+        final int COINS_SIZE = 16;
+        chipTextures[CHIP_ONE] = new TextureRegion(coins, 0, 0, COINS_SIZE, COINS_SIZE);
+        chipTextures[CHIP_TWO] = new TextureRegion(coins, COINS_SIZE, 0, COINS_SIZE, COINS_SIZE);
+        chipTextures[CHIP_THREE] = new TextureRegion(coins, COINS_SIZE * 2, 0, COINS_SIZE, COINS_SIZE);
+        chipTextures[CHIP_FOUR] = new TextureRegion(coins, COINS_SIZE * 3, 0, COINS_SIZE, COINS_SIZE);
 
         chipScores = new int[4];
         chipScores[CHIP_ONE] = 10;
