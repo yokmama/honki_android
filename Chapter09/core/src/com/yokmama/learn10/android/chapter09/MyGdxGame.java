@@ -119,7 +119,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         font = new BitmapFont(Gdx.files.internal("arial.fnt"));
 
-        backgroundClear = new Texture("bg.jpg");
+        backgroundClear = new Texture("bg.png");
         background = new Texture("city_skyline.png");
         backgroundFar = new Texture("city_skyline_far.png");
         bridge = new Texture("bridge.png");
