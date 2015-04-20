@@ -8,16 +8,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 
@@ -87,8 +83,7 @@ public class MyGdxGame extends ApplicationAdapter {
     Music music;
     Sound explode;
     Sound drop;
-    Sound finaleCrackers;
-    Sound finaleCheers;
+    Sound finaleClaps;
     float mTimeAfterEnd;
 
     boolean mPause = false;
@@ -159,8 +154,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         explode = Gdx.audio.newSound(Gdx.files.internal("laser3.mp3"));
         drop = Gdx.audio.newSound(Gdx.files.internal("coin05.mp3"));
-        finaleCrackers = Gdx.audio.newSound(Gdx.files.internal("finale-crackers.wav"));
-        finaleCheers = Gdx.audio.newSound(Gdx.files.internal("finale-cheers.wav"));
+        finaleClaps = Gdx.audio.newSound(Gdx.files.internal("clapping.mp3"));
 
         resetWorld(defaultDifficulty);
     }
@@ -286,8 +280,7 @@ public class MyGdxGame extends ApplicationAdapter {
         if (gameState != GameState.LevelCleared) {
             float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
             if (drawOffset + bgWidth < cameraLeftEdge + viewportWidth) {
-                finaleCrackers.play();
-                finaleCheers.play();
+                finaleClaps.play();
                 gameState = GameState.LevelCleared;
                 mTimeAfterEnd = 0;
                 hero.win();
