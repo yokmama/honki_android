@@ -42,4 +42,14 @@
         android:background="@drawable/flat_button"
         android:text="シェイプボタン"
         android:textColor="@color/md_white_1000" />
+
+    <!-- リップルイメージ背景ボタン-->
+    <Button
+        android:id="@+id/buttonRipple"
+        android:layout_width="@dimen/item_size"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_normal"
+        android:background="@drawable/ripple_button"
+        android:text="リップルボタン"
+        android:textColor="@color/md_white_1000" />
 </LinearLayout>
