@@ -126,33 +126,17 @@ class Hero {
                 }
                 else if (mWinAnimState == WIN_ANIM_STATE_RUN) {
                     if (mCurrentStateDisplayTime > 0.4f) {
-                        mWinAnimState = WIN_ANIM_STATE_JUMP;
-                        mAnimState = ANIM_STATE_JUMPING;
-                        mCurrentStateDisplayTime = 0;
-                        mVelocity.set(0, 0);
-                    }
-                }
-                else if (mWinAnimState == WIN_ANIM_STATE_JUMP) {
-                    float jumpTime = mCurrentStateDisplayTime / 1.0f;
-                    mPosition.y = MyGdxGame.HERO_FLOOR_Y + jumpFunc(jumpTime) * mJumpHeight / 2.0f;
-                    if (mCurrentStateDisplayTime >= 0.35f) {
-                        mAnimState = ANIM_STATE_WIN;
-                    }
-                    if (mCurrentStateDisplayTime >= 0.65f) {
-                        mAnimState = ANIM_STATE_JUMPING;
-                    }
-                    if (mCurrentStateDisplayTime >= 1.0f) {
                         mWinAnimState = WIN_ANIM_STATE_SPIRAL;
                         mAnimState = ANIM_STATE_WIN;
                         mCurrentStateDisplayTime = 0;
-                        mPosition.y = MyGdxGame.HERO_FLOOR_Y;
+                        mVelocity.set(0, 0);
                     }
                 }
                 else if (mWinAnimState == WIN_ANIM_STATE_SPIRAL) {
                     if (mCurrentStateDisplayTime > 0.6f) {
                         mWinAnimState = WIN_ANIM_STATE_STATIC;
                         mAnimState = ANIM_STATE_STILL;
-                        mAnimStillFrame = mAnimations[ANIM_STATE_JUMPING].getKeyFrame(0);
+                        mAnimStillFrame = mAnimations[ANIM_STATE_WIN].getKeyFrame(2);
                         mCurrentStateDisplayTime = 0;
                     }
                 }
@@ -179,6 +163,15 @@ class Hero {
             return;
 
         if (mAnimState == ANIM_STATE_STILL) {
+            game.batch.draw(mAnimStillFrame, mPosition.x, mPosition.y, 100, 98);
+        }
+        else if (mAnimState == ANIM_STATE_WIN) {
+            // ぐらぐら
+            if ((int)(mCurrentStateDisplayTime * 10.f / 2) % 2 == 0) {
+                mAnimStillFrame = mAnimations[ANIM_STATE_WIN].getKeyFrames()[3];
+            } else {
+                mAnimStillFrame = mAnimations[ANIM_STATE_WIN].getKeyFrames()[4];
+            }
             game.batch.draw(mAnimStillFrame, mPosition.x, mPosition.y, 100, 98);
         }
         else {
