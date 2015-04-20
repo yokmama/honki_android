@@ -2,6 +2,6 @@
 <resources>
     <dimen name="layout_space">16dp</dimen>
     <dimen name="item_space">4dp</dimen>
-    <dimen name="image_button_size">72dip</dimen>
+    <dimen name="image_view_size">72dip</dimen>
 
 </resources>

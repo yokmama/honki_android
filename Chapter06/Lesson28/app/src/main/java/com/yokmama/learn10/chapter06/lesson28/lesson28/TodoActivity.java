@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -12,7 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 
-public class TodoActivity extends Activity implements RadioGroup.OnCheckedChangeListener,
+public class TodoActivity extends ActionBarActivity implements RadioGroup.OnCheckedChangeListener,
         TextWatcher {
 
     public static final String KEY_COLORLABEL = "key-colorlabel";
@@ -79,7 +80,7 @@ public class TodoActivity extends Activity implements RadioGroup.OnCheckedChange
         }
 
         //戻るボタンを追加
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.yokmama.learn10.chapter06.lesson26;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -10,7 +11,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

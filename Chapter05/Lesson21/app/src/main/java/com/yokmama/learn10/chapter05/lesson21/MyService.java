@@ -19,8 +19,10 @@ public class MyService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(intent!=null){
             if("show".equals(intent.getAction())){
+                //通知を表示
                 showNotification();
             }else if("hide".equals(intent.getAction())){
+                //通知を非表示
                 hideNotification();
             }
         }
@@ -33,6 +35,9 @@ public class MyService extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    /**
+     * Notificationを作成.
+     */
     private void showNotification(){
         // Intent の作成
         Intent intent = new Intent(this, MainActivity.class);
@@ -71,6 +76,9 @@ public class MyService extends Service {
         manager.notify(0, builder.build());
     }
 
+    /**
+     * Notificationを消去.
+     */
     private void hideNotification(){
         // NotificationManagerを取得
         NotificationManager manager = (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);

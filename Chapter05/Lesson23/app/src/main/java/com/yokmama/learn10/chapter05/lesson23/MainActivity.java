@@ -8,6 +8,7 @@ import android.widget.Button;
 
 
 public class MainActivity extends Activity {
+
     private Button mButton;
 
     @Override
@@ -15,15 +16,18 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //ボタンのインスタンスを取得
+        mButton = (Button) findViewById(R.id.button);
 
-        mButton = (Button)findViewById(R.id.button);
-
+        //ボタンのクリック処理
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //サービスを起動
                 Intent intent = new Intent(MainActivity.this, MyService.class);
                 startService(intent);
 
+                //ボタンのテキストを更新
                 updateButtonText();
             }
         });
@@ -31,8 +35,12 @@ public class MainActivity extends Activity {
         updateButtonText();
     }
 
-    private void updateButtonText(){
-        MyApplication myApplication = (MyApplication)getApplication();
-        mButton.setText("count="+myApplication.getCount());
+    /**
+     * ボタンのテキスト表示を更新.
+     */
+    private void updateButtonText() {
+        //アプリケーションからカウントの値を取得してボタンにセット
+        MyApplication myApplication = (MyApplication) getApplication();
+        mButton.setText("count=" + myApplication.getCount());
     }
 }

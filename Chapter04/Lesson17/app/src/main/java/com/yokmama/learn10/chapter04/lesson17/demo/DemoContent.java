@@ -11,7 +11,7 @@ import android.widget.TableLayout;
 import com.yokmama.learn10.chapter04.lesson17.fragment.FrameLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.GridLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.LinearLayoutFragment;
-import com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutExFragment;
+import com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment2;
 import com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.TableLayoutFragment;
 
@@ -37,7 +37,7 @@ public class DemoContent {
         addItem(new DemoItem(TableLayout.class.getSimpleName(), TableLayoutFragment.class.getCanonicalName()));
         addItem(new DemoItem(GridLayout.class.getSimpleName(), GridLayoutFragment.class.getCanonicalName()));
         addItem(new DemoItem(RelativeLayout.class.getSimpleName(), RelativeLayoutFragment.class.getCanonicalName()));
-        addItem(new DemoItem(RelativeLayout.class.getSimpleName()+"Ex", RelativeLayoutExFragment.class.getCanonicalName()));
+        addItem(new DemoItem(RelativeLayout.class.getSimpleName()+"2", RelativeLayoutFragment2.class.getCanonicalName()));
     }
 
     private static void addItem(DemoItem item) {

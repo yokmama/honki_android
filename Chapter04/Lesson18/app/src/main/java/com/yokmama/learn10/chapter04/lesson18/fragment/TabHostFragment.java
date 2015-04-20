@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.yokmama.learn10.chapter04.lesson18.R;
 
@@ -22,7 +23,7 @@ public class TabHostFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_tab_host, container, false);
 
         FragmentTabHost host = (FragmentTabHost)rootView.findViewById(R.id.tabHost);
-        host.setup(getActivity(), getFragmentManager(), R.id.content);
+        host.setup(getActivity(), getFragmentManager(), android.R.id.tabcontent);
 
         TabHost.TabSpec tabSpec1 = host.newTabSpec("List").setIndicator("List");
         host.addTab(tabSpec1, ListViewFragment.class, null);
@@ -32,6 +33,13 @@ public class TabHostFragment extends Fragment {
 
         TabHost.TabSpec tabSpec3 = host.newTabSpec("Scroll").setIndicator("Scroll");
         host.addTab(tabSpec3, ScrollViewFragment.class, null);
+
+        host.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                Toast.makeText(getActivity(), "selected "+tabId, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return rootView;
     }

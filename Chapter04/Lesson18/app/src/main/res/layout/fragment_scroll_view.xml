@@ -7,7 +7,8 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,64 +20,81 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
                 android:src="@drawable/cat1"/>
+
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
                 android:src="@drawable/cat2"/>
+
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
                 android:src="@drawable/cat3"/>
+
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
                 android:src="@drawable/cat4"/>
+
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
                 android:src="@drawable/cat5"/>
+
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
                 android:src="@drawable/cat6"/>
+
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
                 android:src="@drawable/cat7"/>
+
             <ImageView
                 android:id="@+id/imageView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
                 android:src="@drawable/cat8"/>
+
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
                 android:src="@drawable/cat9"/>
+
             <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
                 android:src="@drawable/cat10"/>
-
         </LinearLayout>
     </ScrollView>
-
 
 </FrameLayout>

@@ -18,8 +18,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //テキストビューのインスタンスを取得
         mTextView = (TextView)findViewById(R.id.textView);
 
+        //クリックリスナーをセット
         findViewById(R.id.button1).setOnClickListener(this);
         findViewById(R.id.button2).setOnClickListener(this);
     }
@@ -29,6 +31,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 100){
             if(resultCode == Activity.RESULT_OK){
+                //SubActivityから受け取ったテキストを表示
                 String text = data.getStringExtra("text");
                 mTextView.setText(text);
             }
@@ -38,9 +41,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.button1){
+           //startActivityで起動
             Intent intent = new Intent(this, SubActivity.class);
             startActivity(intent);
         }else if(v.getId() == R.id.button2){
+            //startActivityForResultで起動
             Intent intent = new Intent(this, SubActivity.class);
             startActivityForResult(intent, 100);
         }
