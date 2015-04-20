@@ -111,7 +111,7 @@ public class MyGdxGame extends ApplicationAdapter {
         uiCamera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         uiCamera.update();
 
-        font = new BitmapFont(Gdx.files.internal("arial.fnt"));
+        font = new BitmapFont(Gdx.files.internal("verdana39.fnt"));
 
         backgroundClear = new Texture("bg.png");
         background = new Texture("city_skyline.png");
