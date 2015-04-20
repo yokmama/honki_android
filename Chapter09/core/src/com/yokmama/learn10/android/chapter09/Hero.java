@@ -179,16 +179,16 @@ class Hero {
             return;
 
         if (mAnimState == ANIM_STATE_STILL) {
-            game.batch.draw(mAnimStillFrame, mPosition.x, mPosition.y, 100, 68);
+            game.batch.draw(mAnimStillFrame, mPosition.x, mPosition.y, 100, 98);
         }
         else {
-            game.batch.draw(mAnimations[mAnimState].getKeyFrame(mCurrentStateDisplayTime), mPosition.x, mPosition.y, 100, 68);
+            game.batch.draw(mAnimations[mAnimState].getKeyFrame(mCurrentStateDisplayTime), mPosition.x, mPosition.y, 100, 98);
         }
     }
 
     public void drawDebug(MyGdxGame game) {
         game.shapeRenderer.setColor(Color.WHITE);
-        game.shapeRenderer.rect(mPosition.x, mPosition.y, 100, 68);
+        game.shapeRenderer.rect(mPosition.x, mPosition.y, 100, 98);
         game.shapeRenderer.setColor(Color.YELLOW);
         game.shapeRenderer.rect(mCollisionRect.x, mCollisionRect.y, mCollisionRect.width, mCollisionRect.height);
     }
