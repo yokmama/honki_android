@@ -11,9 +11,11 @@
         android:text="header text" />
 
     <Button
+        style="@style/tealButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:id="@+id/addButton"
-        android:text="OK" />
+        android:text="OK"
+        android:layout_margin="@dimen/padding_small" />
 </FrameLayout>

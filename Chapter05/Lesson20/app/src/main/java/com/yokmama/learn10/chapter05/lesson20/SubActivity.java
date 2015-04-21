@@ -18,14 +18,14 @@ public class SubActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub);
 
-        //エディットテキストのインスタンスを取得
+        //EditTextのインスタンスを取得
         mEditText = (EditText) findViewById(R.id.editText);
 
-        //OKをクリックした時の処理
+        //リスナーをセット
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //エディットテキストに入力されている文字をMainActivityに結果として渡す
+                //EditTextに入力されたテキストをMainActivityに渡す
                 Intent data = new Intent();
                 data.putExtra("text", mEditText.getText().toString());
                 setResult(RESULT_OK, data);

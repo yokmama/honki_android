@@ -18,10 +18,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //テキストビューのインスタンスを取得
+        //TextViewのインスタンスを取得
         mTextView = (TextView)findViewById(R.id.textView);
 
-        //クリックリスナーをセット
+        //リスナーをセット
         findViewById(R.id.button1).setOnClickListener(this);
         findViewById(R.id.button2).setOnClickListener(this);
     }

@@ -12,12 +12,15 @@
 
 
     <Button
+        style="@style/tealButton"
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Show"/>
 
     <Button
+        style="@style/tealButton"
+        android:layout_marginTop="@dimen/padding_normal"
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
