@@ -1,7 +1,7 @@
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:padding="@dimen/padding_normal"
     android:layout_height="match_parent"
     tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.TableLayoutFragment">
 
@@ -13,18 +13,18 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="りんご"/>
+            android:text="りんご" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_span="2"
-            android:text="パイナップル"/>
+            android:text="パイナップル" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ぶどう"/>
+            android:text="ぶどう" />
     </TableRow>
 
     <TableRow
@@ -34,22 +34,22 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ねこ"/>
+            android:text="ねこ" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ライオン"/>
+            android:text="ライオン" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ワニ"/>
+            android:text="ワニ" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="トラ"/>
+            android:text="トラ" />
     </TableRow>
 
     <TableRow
@@ -57,19 +57,22 @@
         android:layout_height="fill_parent">
 
         <Button
+            android:textColor="@color/md_grey_900"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:text="車"/>
+            android:text="車" />
 
         <Button
+            android:textColor="@color/md_grey_900"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="自転車"/>
+            android:text="自転車" />
 
         <Button
+            android:textColor="@color/md_grey_900"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="バイク"/>
+            android:text="バイク" />
     </TableRow>
 </TableLayout>

@@ -14,7 +14,9 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_100"
+        android:textColor="@color/md_grey_700"
         android:text="@string/irohani"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"/>

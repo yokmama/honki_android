@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        android:text="top|left"
+        android:text="top | left"
         android:textSize="9sp"/>
 
     <Button
@@ -20,7 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:text="top|center"
+        android:text="top | center"
         android:textSize="9sp"/>
 
     <Button
@@ -29,7 +29,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        android:text="top|right"
+        android:text="top | right"
         android:textSize="9sp"/>
 
     <Button
@@ -38,7 +38,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:text="center|left"
+        android:text="center | left"
         android:textSize="9sp"/>
 
     <Button
@@ -55,7 +55,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:text="center|right"
+        android:text="center | right"
         android:textSize="9sp"/>
 
     <Button
@@ -64,7 +64,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_gravity="center"
-        android:text="bottom|left"
+        android:text="bottom | left"
         android:textSize="9sp"/>
 
     <Button
@@ -73,7 +73,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:text="bottom|center"
+        android:text="bottom | center"
         android:textSize="9sp"/>
 
     <Button
@@ -82,6 +82,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_gravity="center"
-        android:text="bottom|right"
+        android:text="bottom | right"
         android:textSize="9sp"/>
 </RelativeLayout>

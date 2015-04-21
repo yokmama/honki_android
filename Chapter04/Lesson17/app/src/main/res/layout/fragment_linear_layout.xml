@@ -1,5 +1,4 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,71 +12,76 @@
 
 
         <LinearLayout
+            android:background="@drawable/bg_lime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_normal"
             android:orientation="vertical">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"/>
+                android:text="New Button" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"/>
+                android:text="New Button" />
         </LinearLayout>
 
         <LinearLayout
+            android:background="@drawable/bg_teal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_normal"
             android:gravity="right"
             android:orientation="vertical">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"/>
+                android:text="New Button" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"/>
+                android:text="New Button" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_margin="@dimen/padding_normal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FF0000"
+            android:background="@drawable/bg_pink"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"/>
+                android:text="New Button" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"/>
+                android:text="New Button" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00FF00"
+                android:background="@drawable/bg_indigo"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Button"/>
+                    android:text="New Button" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Button"/>
+                    android:text="New Button" />
 
             </LinearLayout>
         </LinearLayout>
@@ -85,54 +89,57 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#0000FF"
+            android:layout_margin="@dimen/padding_normal"
+            android:background="@drawable/bg_cyan"
             android:orientation="horizontal">
 
             <Button
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="New Button"/>
+                android:text="New Button" />
 
             <Button
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="New Button"/>
+                android:text="New Button" />
 
             <Button
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="New Button"/>
+                android:text="New Button" />
 
         </LinearLayout>
 
 
         <LinearLayout
+            android:layout_margin="@dimen/padding_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#FF00FF"
+            android:background="@drawable/bg_orange"
             android:orientation="horizontal">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dip"
-                android:text="New Button"/>
+                android:text="New Button" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#00FFFF"
+            android:layout_margin="@dimen/padding_normal"
+            android:background="@drawable/bg_deep_purple"
             android:orientation="horizontal">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="30dip"
-                android:text="New Button"/>
+                android:text="New Button" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

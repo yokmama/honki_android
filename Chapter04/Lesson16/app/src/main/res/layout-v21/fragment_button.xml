@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_normal"
+    tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.ButtonFragment">
+
+    <!-- ノーマルボタン-->
+    <Button
+        android:id="@+id/buttonNormal"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_normal"
+        android:text="ボタン" />
+
+    <!-- イメージ背景ボタン-->
+    <Button
+        android:id="@+id/buttonImage"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_normal"
+        android:background="@drawable/image_button" />
+
+    <!-- ９パッチイメージ背景ボタン-->
+    <Button
+        android:id="@+id/patchImage"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_normal"
+        android:background="@drawable/patch_button"
+        android:text="９パッチ"
+        android:textColor="@color/md_white_1000" />
+
+    <!-- シェイプイメージ背景ボタン-->
+    <Button
+        android:id="@+id/buttonShape"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_normal"
+        android:background="@drawable/shape_button"
+        android:text="シェイプボタン"
+        android:textColor="@color/md_white_1000" />
+
+    <!-- リップルイメージ背景ボタン-->
+    <Button
+        android:id="@+id/buttonRipple"
+        android:layout_width="@dimen/item_size"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_normal"
+        android:background="@drawable/ripple_button"
+        android:text="リップルボタン"
+        android:textColor="@color/md_white_1000" />
+</LinearLayout>

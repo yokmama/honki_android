@@ -6,7 +6,7 @@
     tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment2">
 
     <Button
-        android:layout_width="150dip"
+        android:layout_width="@dimen/item_size"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="above|left"
+        android:text="above | left"
         android:id="@+id/textView1"
         android:textSize="9sp"
         android:layout_above="@+id/buttonCenter"
@@ -26,7 +26,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="above|right"
+        android:text="above | right"
         android:id="@+id/textView2"
         android:textSize="9sp"
         android:layout_above="@+id/buttonCenter"
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="below|left"
+        android:text="below | left"
         android:id="@+id/textView3"
         android:layout_below="@+id/buttonCenter"
         android:textSize="9sp"
@@ -44,7 +44,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="below|right"
+        android:text="below | right"
         android:id="@+id/textView4"
         android:textSize="9sp"
         android:layout_below="@+id/buttonCenter"
@@ -53,7 +53,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="below|center"
+        android:text="below | center"
         android:id="@+id/textView"
         android:textSize="9sp"
         android:layout_below="@+id/buttonCenter"
@@ -62,7 +62,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="left|center"
+        android:text="left | center"
         android:id="@+id/textView5"
         android:textSize="9sp"
         android:layout_centerVertical="true"
@@ -71,7 +71,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="right|center"
+        android:text="right | center"
         android:id="@+id/textView6"
         android:textSize="9sp"
         android:layout_centerVertical="true"
@@ -80,7 +80,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="top|center"
+        android:text="top | center"
         android:id="@+id/textView7"
         android:textSize="9sp"
         android:layout_alignTop="@+id/textView1"
@@ -89,7 +89,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="bottom|right"
+        android:text="bottom | right"
         android:id="@+id/textView8"
         android:textSize="9sp"
         android:layout_alignBottom="@+id/buttonCenter"
@@ -98,7 +98,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="top|right"
+        android:text="top | right"
         android:id="@+id/textView9"
         android:textSize="9sp"
         android:layout_alignTop="@+id/buttonCenter"
@@ -108,7 +108,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="bottom|left"
+        android:text="bottom | left"
         android:id="@+id/textView14"
         android:textSize="9sp"
         android:layout_alignBottom="@+id/buttonCenter"
@@ -117,7 +117,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="top|left"
+        android:text="top | left"
         android:id="@+id/textView15"
         android:textSize="9sp"
         android:layout_alignTop="@+id/buttonCenter"
@@ -127,7 +127,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="top|left"
+        android:text="top | left"
         android:id="@+id/textView10"
         android:textSize="9sp"
         android:layout_above="@+id/textView7"
@@ -136,7 +136,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="top|right"
+        android:text="top | right"
         android:id="@+id/textView11"
         android:textSize="9sp"
         android:layout_above="@+id/textView7"
@@ -145,7 +145,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="bottom|left"
+        android:text="bottom | left"
         android:id="@+id/textView12"
         android:textSize="9sp"
         android:layout_below="@+id/textView"
@@ -154,7 +154,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="bottom|right"
+        android:text="bottom | right"
         android:id="@+id/textView13"
         android:textSize="9sp"
         android:layout_below="@+id/textView"
@@ -163,7 +163,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="base|below"
+        android:text="base | below"
         android:id="@+id/textView16"
         android:textSize="9sp"
         android:layout_below="@+id/buttonCenter"

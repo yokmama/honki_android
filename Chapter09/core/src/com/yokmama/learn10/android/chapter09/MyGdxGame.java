@@ -8,16 +8,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 
@@ -86,10 +82,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
     Music music;
     Sound explode;
-    Sound evillaugh;
     Sound drop;
-    Sound finaleCrackers;
-    Sound finaleCheers;
+    Sound finaleClaps;
     float mTimeAfterEnd;
 
     boolean mPause = false;
@@ -117,9 +111,9 @@ public class MyGdxGame extends ApplicationAdapter {
         uiCamera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         uiCamera.update();
 
-        font = new BitmapFont(Gdx.files.internal("arial.fnt"));
+        font = new BitmapFont(Gdx.files.internal("verdana39.fnt"));
 
-        backgroundClear = new Texture("bg.jpg");
+        backgroundClear = new Texture("bg.png");
         background = new Texture("city_skyline.png");
         backgroundFar = new Texture("city_skyline_far.png");
         bridge = new Texture("bridge.png");
@@ -131,10 +125,12 @@ public class MyGdxGame extends ApplicationAdapter {
         finishX = (bgWidth - viewportWidth) / bgSpeed + HERO_LEFT_X;
 
         chipTextures = new TextureRegion[4];
-        chipTextures[CHIP_ONE] = new TextureRegion(new Texture("chip_one.png"));
-        chipTextures[CHIP_TWO] = new TextureRegion(new Texture("chip_two.png"));
-        chipTextures[CHIP_THREE] = new TextureRegion(new Texture("chip_three.png"));
-        chipTextures[CHIP_FOUR] = new TextureRegion(new Texture("chip_four.png"));
+        Texture coins = new Texture("coins.png");
+        final int COINS_SIZE = 16;
+        chipTextures[CHIP_ONE] = new TextureRegion(coins, 0, 0, COINS_SIZE, COINS_SIZE);
+        chipTextures[CHIP_TWO] = new TextureRegion(coins, COINS_SIZE, 0, COINS_SIZE, COINS_SIZE);
+        chipTextures[CHIP_THREE] = new TextureRegion(coins, COINS_SIZE * 2, 0, COINS_SIZE, COINS_SIZE);
+        chipTextures[CHIP_FOUR] = new TextureRegion(coins, COINS_SIZE * 3, 0, COINS_SIZE, COINS_SIZE);
 
         chipScores = new int[4];
         chipScores[CHIP_ONE] = 10;
@@ -144,23 +140,21 @@ public class MyGdxGame extends ApplicationAdapter {
 
         chipScales = new float[] { 0.6f, 0.65f, 0.7f, 0.8f };
 
-        mineTexture = new TextureRegion(new Texture("mine.png"));
+        mineTexture = new TextureRegion(new Texture("fire.png"));
 
-        Texture heroTexture = new Texture("hero_sprite.png");
+        Texture heroTexture = new Texture("UnityChan.png");
         float[] timePerFrame = new float[] { 0.05f, 0.05f, 0.05f };
-        int[] numFrames = new int[] { 8, 7, 8 };
-        hero = new Hero(heroTexture, 50, 34, timePerFrame, numFrames);
+        int[] numFrames = new int[] { 4, 7, 5 };
+        hero = new Hero(heroTexture, 64, 64, timePerFrame, numFrames);
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
         music.setLooping(true);
         music.setVolume(0.3f);
         music.play();
 
-        explode = Gdx.audio.newSound(Gdx.files.internal("explode.wav"));
-        evillaugh = Gdx.audio.newSound(Gdx.files.internal("evillaugh.wav"));
-        drop = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
-        finaleCrackers = Gdx.audio.newSound(Gdx.files.internal("finale-crackers.wav"));
-        finaleCheers = Gdx.audio.newSound(Gdx.files.internal("finale-cheers.wav"));
+        explode = Gdx.audio.newSound(Gdx.files.internal("laser3.mp3"));
+        drop = Gdx.audio.newSound(Gdx.files.internal("coin05.mp3"));
+        finaleClaps = Gdx.audio.newSound(Gdx.files.internal("clapping.mp3"));
 
         resetWorld(defaultDifficulty);
     }
@@ -286,8 +280,7 @@ public class MyGdxGame extends ApplicationAdapter {
         if (gameState != GameState.LevelCleared) {
             float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
             if (drawOffset + bgWidth < cameraLeftEdge + viewportWidth) {
-                finaleCrackers.play();
-                finaleCheers.play();
+                finaleClaps.play();
                 gameState = GameState.LevelCleared;
                 mTimeAfterEnd = 0;
                 hero.win();
@@ -323,7 +316,6 @@ public class MyGdxGame extends ApplicationAdapter {
             if (!mine.hasCollided && Intersector.overlaps(mine.collisionCircle, heroCollision)) {
                 mine.collide();
                 explode.play();
-                evillaugh.play(0.8f);
                 hero.die();
                 gameState = GameState.GameOver;
                 mTimeAfterEnd = 0;
