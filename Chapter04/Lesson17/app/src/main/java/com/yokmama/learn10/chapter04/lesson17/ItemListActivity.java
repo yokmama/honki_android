@@ -3,6 +3,7 @@ package com.yokmama.learn10.chapter04.lesson17;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 
 import com.yokmama.learn10.chapter04.lesson17.R;
 import com.yokmama.learn10.chapter04.lesson17.demo.DemoContent;
@@ -25,7 +26,7 @@ import com.yokmama.learn10.chapter04.lesson17.demo.DemoCreator;
  * {@link ItemListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class ItemListActivity extends FragmentActivity
+public class ItemListActivity extends ActionBarActivity
         implements ItemListFragment.Callbacks {
 
     public static final String ARG_CLASS_NAME = "demoItem";

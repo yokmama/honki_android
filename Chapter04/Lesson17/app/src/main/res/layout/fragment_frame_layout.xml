@@ -1,75 +1,104 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.FrameLayoutFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.FrameLayoutFragment">
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/cat"
-        android:layout_gravity="right|bottom"/>
+        android:layout_gravity="right|bottom" />
 
     <Button
         android:layout_width="wrap_content"
+        android:padding="@dimen/padding_small"
+        android:textAllCaps="false"
         android:layout_height="wrap_content"
-        android:text="left|center_vertical"
+        android:alpha="0.9"
+        android:text="left | center_vertical"
         android:textSize="9sp"
-        android:layout_gravity="left|center_vertical"/>
+        android:layout_gravity="left|center_vertical" />
 
     <Button
         android:layout_width="wrap_content"
+        android:textAllCaps="false"
+        android:padding="@dimen/padding_small"
         android:layout_height="wrap_content"
-        android:text="left|top"
+        android:text="left | top"
         android:textSize="9sp"
-        android:layout_gravity="left|top"/>
+        android:alpha="0.9"
+        android:layout_gravity="left|top" />
 
     <Button
         android:layout_width="wrap_content"
+        android:padding="@dimen/padding_small"
         android:layout_height="wrap_content"
-        android:text="center_horizontal|top"
+        android:textAllCaps="false"
+        android:alpha="0.9"
+        android:text="center_horizontal | top"
         android:textSize="9sp"
-        android:layout_gravity="center_horizontal|top"/>
+        android:layout_gravity="center_horizontal|top" />
 
     <Button
         android:layout_width="wrap_content"
+        android:padding="@dimen/padding_small"
+        android:textAllCaps="false"
+        android:alpha="0.9"
         android:layout_height="wrap_content"
-        android:text="right|top"
+        android:text="right | top"
         android:textSize="9sp"
-        android:layout_gravity="right|top"/>
+        android:layout_gravity="right|top" />
 
     <Button
         android:layout_width="wrap_content"
+        android:padding="@dimen/padding_small"
+        android:textAllCaps="false"
         android:layout_height="wrap_content"
-        android:text="right|center_vertical"
+        android:alpha="0.9"
+        android:text="right | center_vertical"
         android:textSize="9sp"
-        android:layout_gravity="right|center_vertical"/>
+        android:layout_gravity="right|center_vertical" />
 
     <Button
         android:layout_width="wrap_content"
+        android:padding="@dimen/padding_small"
         android:layout_height="wrap_content"
-        android:text="left|bottom"
+        android:textAllCaps="false"
+        android:alpha="0.9"
+        android:text="left | bottom"
         android:textSize="9sp"
-        android:layout_gravity="left|bottom"/>
+        android:layout_gravity="left|bottom" />
 
     <Button
         android:layout_width="wrap_content"
+        android:padding="@dimen/padding_small"
+        android:alpha="0.9"
+        android:textAllCaps="false"
         android:layout_height="wrap_content"
-        android:text="center_horizontal|bottom"
+        android:text="center_horizontal | bottom"
         android:textSize="9sp"
-        android:layout_gravity="center_horizontal|bottom"/>
+        android:layout_gravity="center_horizontal|bottom" />
 
     <Button
         android:layout_width="wrap_content"
+        android:alpha="0.9"
+        android:padding="@dimen/padding_small"
+        android:textAllCaps="false"
         android:layout_height="wrap_content"
-        android:text="right|bottom"
+        android:text="right | bottom"
         android:textSize="9sp"
-        android:layout_gravity="right|bottom"/>
+        android:layout_gravity="right|bottom" />
+
     <Button
         android:layout_width="wrap_content"
+        android:padding="@dimen/padding_small"
+        android:textAllCaps="false"
         android:layout_height="wrap_content"
+        android:alpha="0.9"
         android:text="center"
         android:textSize="9sp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
 </FrameLayout>
