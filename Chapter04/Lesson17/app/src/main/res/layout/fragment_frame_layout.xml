@@ -13,8 +13,6 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:padding="@dimen/padding_small"
-        android:textAllCaps="false"
         android:layout_height="wrap_content"
         android:alpha="0.9"
         android:text="left | center_vertical"
@@ -23,8 +21,6 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:textAllCaps="false"
-        android:padding="@dimen/padding_small"
         android:layout_height="wrap_content"
         android:text="left | top"
         android:textSize="9sp"
@@ -33,9 +29,7 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:padding="@dimen/padding_small"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
         android:alpha="0.9"
         android:text="center_horizontal | top"
         android:textSize="9sp"
@@ -43,8 +37,6 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:padding="@dimen/padding_small"
-        android:textAllCaps="false"
         android:alpha="0.9"
         android:layout_height="wrap_content"
         android:text="right | top"
@@ -53,8 +45,6 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:padding="@dimen/padding_small"
-        android:textAllCaps="false"
         android:layout_height="wrap_content"
         android:alpha="0.9"
         android:text="right | center_vertical"
@@ -63,9 +53,7 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:padding="@dimen/padding_small"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
         android:alpha="0.9"
         android:text="left | bottom"
         android:textSize="9sp"
@@ -73,9 +61,7 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:padding="@dimen/padding_small"
         android:alpha="0.9"
-        android:textAllCaps="false"
         android:layout_height="wrap_content"
         android:text="center_horizontal | bottom"
         android:textSize="9sp"
@@ -84,8 +70,6 @@
     <Button
         android:layout_width="wrap_content"
         android:alpha="0.9"
-        android:padding="@dimen/padding_small"
-        android:textAllCaps="false"
         android:layout_height="wrap_content"
         android:text="right | bottom"
         android:textSize="9sp"
@@ -93,8 +77,6 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:padding="@dimen/padding_small"
-        android:textAllCaps="false"
         android:layout_height="wrap_content"
         android:alpha="0.9"
         android:text="center"

@@ -6,7 +6,7 @@
     tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment2">
 
     <Button
-        android:layout_width="@dimen/item_size"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"

@@ -1,18 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 余白 -->
-    <dimen name="padding_small">8dp</dimen>
-    <dimen name="padding_normal">16dp</dimen>
-    <dimen name="padding_large">24dp</dimen>
-    <dimen name="padding_xlarge">32dp</dimen>
-
-    <!-- テキストサイズ -->
-    <dimen name="text_size_small">12sp</dimen>
-    <dimen name="text_size_medium">14sp</dimen>
-    <dimen name="text_size_large">18sp</dimen>
-    <dimen name="text_size_xlarge">22sp</dimen>
-
-    <!-- ビューのサイズ -->
-    <dimen name="item_size">120dp</dimen>
-
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

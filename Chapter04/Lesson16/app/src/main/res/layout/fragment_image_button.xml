@@ -11,8 +11,8 @@
 
         <ImageView
             android:id="@+id/imageButton1"
-            android:layout_width="@dimen/image_view_size"
-            android:layout_height="@dimen/image_view_size"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:scaleType="center"
@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/imageButton2"
-            android:layout_width="@dimen/image_view_size"
-            android:layout_height="@dimen/image_view_size"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
             android:layout_below="@id/imageButton1"
             android:layout_centerHorizontal="true"
             android:scaleType="centerInside"
@@ -29,8 +29,8 @@
 
         <ImageView
             android:id="@+id/imageButton3"
-            android:layout_width="@dimen/image_view_size"
-            android:layout_height="@dimen/image_view_size"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
             android:layout_below="@id/imageButton2"
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
@@ -38,8 +38,8 @@
 
         <ImageView
             android:id="@+id/imageButton4"
-            android:layout_width="@dimen/image_view_size"
-            android:layout_height="@dimen/image_view_size"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
             android:layout_below="@id/imageButton3"
             android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
@@ -47,8 +47,8 @@
 
         <ImageView
             android:id="@+id/imageButton5"
-            android:layout_width="@dimen/image_view_size"
-            android:layout_height="@dimen/image_view_size"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
             android:layout_below="@id/imageButton4"
             android:layout_centerHorizontal="true"
             android:scaleType="fitXY"
@@ -56,8 +56,8 @@
 
         <ImageView
             android:id="@+id/imageButton6"
-            android:layout_width="@dimen/image_view_size"
-            android:layout_height="@dimen/image_view_size"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
             android:layout_below="@id/imageButton5"
             android:layout_centerHorizontal="true"
             android:scaleType="fitStart"
@@ -65,8 +65,8 @@
 
         <ImageView
             android:id="@+id/imageButton7"
-            android:layout_width="@dimen/image_view_size"
-            android:layout_height="@dimen/image_view_size"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
             android:layout_below="@id/imageButton6"
             android:layout_centerHorizontal="true"
             android:scaleType="fitEnd"

@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/padding_normal"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.ImageViewFragment">
 
     <LinearLayout
@@ -11,7 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_widget"
         android:orientation="vertical"
-        android:padding="@dimen/padding_normal">
+        android:padding="16dp">
 
         <RadioGroup
             android:id="@+id/radioFilterType"
@@ -42,7 +45,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_margin="@dimen/padding_small"
+                android:layout_marginTop="8dp"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -61,7 +64,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_margin="@dimen/padding_small"
+                android:layout_marginTop="8dp"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -80,7 +83,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_margin="@dimen/padding_small"
+                android:layout_marginTop="8dp"
                 android:layout_height="wrap_content">
 
                 <TextView

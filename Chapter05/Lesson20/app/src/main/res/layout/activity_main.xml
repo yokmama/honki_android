@@ -19,24 +19,19 @@
 
     <LinearLayout
         android:layout_centerInParent="true"
-        android:layout_width="@dimen/item_size"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/button1"
-            style="@style/tealButton"
-            android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="startActivity" />
 
         <Button
-            android:layout_marginTop="@dimen/padding_normal"
             android:id="@+id/button2"
-            style="@style/tealButton"
             android:layout_width="match_parent"
-            android:textAllCaps="false"
             android:layout_height="wrap_content"
             android:text="startActivityForResult" />
     </LinearLayout>

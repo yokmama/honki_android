@@ -15,7 +15,7 @@
             android:background="@drawable/bg_lime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/padding_normal"
+            android:layout_margin="16dp"
             android:orientation="vertical">
 
             <Button
@@ -33,7 +33,7 @@
             android:background="@drawable/bg_teal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/padding_normal"
+            android:layout_margin="16dp"
             android:gravity="right"
             android:orientation="vertical">
 
@@ -49,7 +49,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_margin="@dimen/padding_normal"
+            android:layout_margin="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_pink"
@@ -89,7 +89,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/padding_normal"
+            android:layout_margin="16dp"
             android:background="@drawable/bg_cyan"
             android:orientation="horizontal">
 
@@ -115,7 +115,7 @@
 
 
         <LinearLayout
-            android:layout_margin="@dimen/padding_normal"
+            android:layout_margin="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_orange"
@@ -131,7 +131,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/padding_normal"
+            android:layout_margin="16dp"
             android:background="@drawable/bg_deep_purple"
             android:orientation="horizontal">
 

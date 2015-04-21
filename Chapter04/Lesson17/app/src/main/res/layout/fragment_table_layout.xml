@@ -1,7 +1,6 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="@dimen/padding_normal"
     android:layout_height="match_parent"
     tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.TableLayoutFragment">
 
@@ -57,20 +56,17 @@
         android:layout_height="fill_parent">
 
         <Button
-            android:textColor="@color/md_grey_900"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:text="車" />
 
         <Button
-            android:textColor="@color/md_grey_900"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="自転車" />
 
         <Button
-            android:textColor="@color/md_grey_900"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="バイク" />
