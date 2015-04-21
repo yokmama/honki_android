@@ -39,7 +39,7 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_normal"
-        android:background="@drawable/flat_button"
+        android:background="@drawable/shape_button"
         android:text="シェイプボタン"
         android:textColor="@color/md_white_1000" />
 </LinearLayout>

@@ -70,7 +70,7 @@ public class ProgressBarFragment extends Fragment {
                     }
                     updateProgress();
                 }
-            }, 0, 1000);
+            }, 0, 50);
         }
     }
 
@@ -82,7 +82,7 @@ public class ProgressBarFragment extends Fragment {
     }
 
     private void updateProgress() {
-        int secondary = (mCounter*5)%100;
+        int secondary = (mCounter*2)%100;
 
         mProgressBar1.setProgress(mCounter);
         mProgressBar2.setProgress(mCounter);
