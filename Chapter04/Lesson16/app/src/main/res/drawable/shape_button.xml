@@ -3,42 +3,18 @@
 
     <!-- pressed -->
     <item android:state_pressed="true">
-        <layer-list>
-            <item android:left="1dp" android:top="1dp">
-                <shape>
-                    <solid android:color="#9e9e9e" />
-
-                    <corners android:radius="4dp" />
-                </shape>
-            </item>
-            <item android:bottom="1dp" android:right="1dp">
-
-                <shape>
-                    <solid android:color="#00796b" />
-                    <corners android:radius="4dp" />
-                </shape>
-            </item>
-        </layer-list>
+        <shape>
+            <solid android:color="#00796b" />
+            <corners android:radius="4dp" />
+        </shape>
     </item>
 
     <!-- default -->
     <item>
-        <layer-list>
-            <item android:left="1dp" android:top="1dp">
-                <shape>
-                    <solid android:color="#9e9e9e" />
-
-                    <corners android:radius="4dp" />
-                </shape>
-            </item>
-            <item android:bottom="1dp" android:right="1dp">
-
-                <shape>
-                    <solid android:color="#009688" />
-                    <corners android:radius="4dp" />
-                </shape>
-            </item>
-        </layer-list>
+        <shape>
+            <solid android:color="#009688" />
+            <corners android:radius="4dp" />
+        </shape>
     </item>
 
 </selector>

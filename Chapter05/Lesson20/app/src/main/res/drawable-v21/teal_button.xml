@@ -6,6 +6,7 @@
             <!-- 余白を確保するためのアイテム-->
             <item>
                 <shape>
+                    <solid android:color="@android:color/transparent" />
                     <padding
                         android:top="2dp"
                         android:bottom="2dp"
