@@ -17,29 +17,39 @@ import com.yokmama.learn10.chapter04.lesson16.R;
  * Created by yokmama on 15/02/19.
  */
 public class ToggleButtonFragment extends Fragment {
+
     ToggleButton mToggleButton;
+
     TextView mTextView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_toggle_button, container, false);
 
+        //TextView,ToggleButtonのインスタンスを取得
         mTextView = (TextView) rootView.findViewById(R.id.textView);
         mToggleButton = (ToggleButton) rootView.findViewById(R.id.toggleButton1);
+
+        //リスナーをセット
         mToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(getActivity(), "onCheckedChanged:" + isChecked, Toast.LENGTH_SHORT).show();
+                //テキストを更新
                 updateText();
             }
         });
 
+        //TextViewを更新
         updateText();
 
         return rootView;
     }
 
 
+    /**
+     * ToggleButtonの値をテキストで表示.
+     */
     private void updateText() {
         mTextView.setText("Toggle is " + mToggleButton.isChecked());
     }

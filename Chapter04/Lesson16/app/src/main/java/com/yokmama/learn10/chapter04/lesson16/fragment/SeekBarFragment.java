@@ -28,23 +28,29 @@ public class SeekBarFragment extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_seek_bar, container, false);
 
+        //TextView,SeekBarインスタンスを取得
         textView1 = (TextView) rootView.findViewById(R.id.textView1);
         textView2 = (TextView) rootView.findViewById(R.id.textView2);
         mSeekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
+
+        //リスナーをセット
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //トラッキング中の値をTextView1にセット
                 textView1.setText("progress:" + progress);
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+                //トラッキング開始時の値をTextView2にセット
                 textView2.setText("start :" + seekBar.getProgress());
                 textView2.setTextColor(Color.RED);
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                //トラッキング終了時の値をTextView2にセット
                 textView2.setText("stop :" + seekBar.getProgress());
                 textView2.setTextColor(textView1.getTextColors());
             }

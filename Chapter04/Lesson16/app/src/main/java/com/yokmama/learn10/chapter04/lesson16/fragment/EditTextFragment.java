@@ -19,20 +19,23 @@ import com.yokmama.learn10.chapter04.lesson16.R;
  * Created by yokmama on 15/02/19.
  */
 public class EditTextFragment extends Fragment {
+
     private static final String TAG = EditTextFragment.class.getSimpleName();
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_edit_text, container, false);
 
-        //入力制限
-        EditText editValidate = (EditText) rootView.findViewById(R.id.editValidate);
-        // フィルターを作成
+        //EditTextのインスタンスを取得
+        EditText etValidate = (EditText) rootView.findViewById(R.id.editValidate);
+
+        // 入力を制限するInputFilterを作成
         InputFilter inputFilter = new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end,
-                                       Spanned dest, int dstart, int dend) {
+                    Spanned dest, int dstart, int dend) {
                 if (source.toString().matches("^[0-9a-zA-Z@¥.¥_¥¥-]+$")) {
                     return source;
                 } else {
@@ -40,30 +43,29 @@ public class EditTextFragment extends Fragment {
                 }
             }
         };
-        editValidate.setFilters(new InputFilter[]{inputFilter});
+        //InputFilterをセット
+        etValidate.setFilters(new InputFilter[]{inputFilter});
 
-        //入力処理
-        EditText editChange = (EditText) rootView.findViewById(R.id.editChange);
-        // リスナーを作成
-        TextWatcher textWatcher = new TextWatcher() {
+        //EditTextのインスタンスを取得
+        EditText etChange = (EditText) rootView.findViewById(R.id.editChange);
 
+        //リスナーをセット
+        etChange.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                //テキストが変更される直前に呼ばれる
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                //テキストが変更されたら呼ばれる
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                Log.d(TAG, "input:" + s.toString());
-
+                //テキストが変更された後に呼ばれる
             }
-        };
-        editChange.addTextChangedListener(textWatcher);
+        });
 
         return rootView;
     }

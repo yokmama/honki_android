@@ -24,15 +24,20 @@ public class ViewPagerFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_view_pager, container, false);
 
+        //ViewPagerのインスタンスを取得
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
+
+        //ViewPagerにAdapterをセット
         viewPager.setAdapter(new MyFragmentAdapter(getFragmentManager()));
 
+        //リスナーをセット
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset,
+                    int positionOffsetPixels) {
                 // ページのスワイプ中に呼ばれる
                 // position : スクロール中のページ。
                 // positionOffset : ドラッグ量（0〜1）
@@ -58,7 +63,6 @@ public class ViewPagerFragment extends Fragment {
 
         return rootView;
     }
-
 
     public class MyFragmentAdapter extends FragmentPagerAdapter {
 
@@ -96,12 +100,14 @@ public class ViewPagerFragment extends Fragment {
         }
     }
 
-    /***
+    /**
      * PagerAdapterの実装例
      * 本サンプルプログラムでは使用していません。
      */
     public class MyPagerAdapter extends PagerAdapter {
+
         private LayoutInflater mLayoutInflaternflater = null;
+
         private Object mCurrentObject;
 
         public MyPagerAdapter(Context c) {
@@ -117,8 +123,8 @@ public class ViewPagerFragment extends Fragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            View layout =mLayoutInflaternflater.inflate(R.layout.view_pager_item, null);
-            switch (position){
+            View layout = mLayoutInflaternflater.inflate(R.layout.view_pager_item, null);
+            switch (position) {
                 case 0:
                     layout.setBackgroundColor(Color.RED);
                     break;

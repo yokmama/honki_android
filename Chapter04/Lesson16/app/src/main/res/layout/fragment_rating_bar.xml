@@ -11,19 +11,30 @@
     tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.RatingBarFragment">
 
     <LinearLayout
-        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/bg_widget"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
+        <!--通常のRatingBar-->
         <RatingBar
             android:id="@+id/ratingBar1"
+            style="?android:attr/ratingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <!--インジケータ用RatingBar-->
+        <RatingBar
+            android:id="@+id/ratingBar3"
+            style="?android:attr/ratingBarStyleIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <!--小さいインジケータ用RatingBar-->
         <RatingBar
             android:id="@+id/ratingBar2"
             style="?android:attr/ratingBarStyleSmall"
@@ -31,18 +42,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp" />
 
-        <RatingBar
-            android:id="@+id/ratingBar3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
 
-        <RatingBar
-            android:id="@+id/ratingBar4"
-            style="?android:attr/ratingBarStyleIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
-            android:isIndicator="false" />
     </LinearLayout>
 </LinearLayout>

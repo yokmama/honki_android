@@ -17,12 +17,14 @@
         android:background="@drawable/bg_widget"
         android:orientation="vertical">
 
+        <!-- Checkbox1-->
         <CheckBox
             android:id="@+id/checkBox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CheckBox1" />
 
+        <!-- Checkbox2-->
         <CheckBox
             android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
@@ -30,6 +32,7 @@
             android:layout_marginTop="16dp"
             android:text="CheckBox2" />
 
+        <!-- Checkbox3-->
         <CheckBox
             android:id="@+id/checkBox3"
             android:layout_width="wrap_content"

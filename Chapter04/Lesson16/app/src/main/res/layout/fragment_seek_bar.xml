@@ -19,6 +19,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- SeekBar操作中に最新の値を表示-->
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
@@ -27,6 +28,7 @@
             android:layout_weight="1"
             android:text="" />
 
+        <!-- SeekBar操作開始時の値を表示-->
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -36,6 +38,7 @@
             android:text="" />
     </LinearLayout>
 
+    <!-- SeekBar-->
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="match_parent"

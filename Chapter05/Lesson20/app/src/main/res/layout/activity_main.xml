@@ -6,6 +6,7 @@
     android:padding="@dimen/padding_normal"
     tools:context=".MainActivity">
 
+    <!--SubActivityから受け取った値を表示するTextView-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="@dimen/item_size"
@@ -23,12 +24,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!--StartActivityで起動するButton-->
         <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="startActivity" />
 
+        <!--StartActivityForResultで起動するButton-->
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"

@@ -1,13 +1,13 @@
 package com.yokmama.learn10.chapter05.lesson23;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     private Button mButton;
 
@@ -16,18 +16,18 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //ボタンのインスタンスを取得
+        //Buttonのインスタンスを取得
         mButton = (Button) findViewById(R.id.button);
 
-        //ボタンのクリック処理
+        //リスナーをセット
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //サービスを起動
+                //Serviceを起動
                 Intent intent = new Intent(MainActivity.this, MyService.class);
                 startService(intent);
 
-                //ボタンのテキストを更新
+                //Buttonのテキストを更新
                 updateButtonText();
             }
         });
@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
      * ボタンのテキスト表示を更新.
      */
     private void updateButtonText() {
-        //アプリケーションからカウントの値を取得してボタンにセット
+        //Applicationからカウントの値を取得してButtonにセット
         MyApplication myApplication = (MyApplication) getApplication();
         mButton.setText("count=" + myApplication.getCount());
     }

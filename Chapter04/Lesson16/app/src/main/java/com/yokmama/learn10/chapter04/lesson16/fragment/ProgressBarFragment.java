@@ -17,27 +17,33 @@ import com.yokmama.learn10.chapter04.lesson16.R;
  * A simple {@link Fragment} subclass.
  */
 public class ProgressBarFragment extends Fragment {
+
     private static final int PROGRESS_MAX = 100;
 
     private ProgressBar mProgressBar1;
+
     private ProgressBar mProgressBar2;
+
     private ProgressBar mProgressBar3;
+
     private ProgressBar mProgressBar4;
 
-
     private Timer mTimer;
+
     private int mCounter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_progress_bar, container, false);
 
+        //ProgressBarのインスタンスを取得
         mProgressBar1 = (ProgressBar) rootView.findViewById(R.id.progressBar1);
         mProgressBar2 = (ProgressBar) rootView.findViewById(R.id.progressBar2);
         mProgressBar3 = (ProgressBar) rootView.findViewById(R.id.progressBar3);
         mProgressBar4 = (ProgressBar) rootView.findViewById(R.id.progressBar4);
 
+        //ProgressBarの最大値をセット
         mProgressBar1.setMax(PROGRESS_MAX);
         mProgressBar2.setMax(PROGRESS_MAX);
         mProgressBar3.setMax(PROGRESS_MAX);
@@ -49,15 +55,20 @@ public class ProgressBarFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        //ProgressBarの進捗を開始.
         stopProgress();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        //ProgressBarの進捗を停止.
         startProgress();
     }
 
+    /**
+     * ProgressBarの進捗を進める.
+     */
     private void startProgress() {
         if (mTimer == null) {
             mTimer = new Timer(true);
@@ -74,6 +85,9 @@ public class ProgressBarFragment extends Fragment {
         }
     }
 
+    /**
+     * ProgressBarの進捗を停止.
+     */
     private void stopProgress() {
         if (mTimer != null) {
             mTimer.cancel();
@@ -81,8 +95,11 @@ public class ProgressBarFragment extends Fragment {
         }
     }
 
+    /**
+     * ProgressBarを更新.
+     */
     private void updateProgress() {
-        int secondary = (mCounter*2)%100;
+        int secondary = (mCounter * 2) % 100;
 
         mProgressBar1.setProgress(mCounter);
         mProgressBar2.setProgress(mCounter);
@@ -94,6 +111,4 @@ public class ProgressBarFragment extends Fragment {
         mProgressBar3.setSecondaryProgress(secondary);
         mProgressBar4.setSecondaryProgress(secondary);
     }
-
-
 }

@@ -1,5 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,15 +10,17 @@
     tools:context=".MainActivity">
 
 
+    <!--通知を表示するServiceを起動するButton-->
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show"/>
+        android:text="Show" />
 
+    <!--通知を非表示にするServiceを起動するButton-->
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hide"/>
+        android:text="Hide" />
 </LinearLayout>

@@ -20,6 +20,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- カテゴリを選択するスピナー-->
         <Spinner
             android:id="@+id/spinner1"
             android:layout_width="match_parent"
@@ -27,6 +28,7 @@
             android:layout_gravity="center_horizontal"
             android:entries="@array/main_list" />
 
+        <!-- アイテムを選択するスピナー-->
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="match_parent"

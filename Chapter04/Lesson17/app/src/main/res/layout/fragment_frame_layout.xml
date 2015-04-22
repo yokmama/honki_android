@@ -4,21 +4,15 @@
     android:layout_height="match_parent"
     tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.FrameLayoutFragment">
 
+    <!--中央/下段に配置-->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/cat"
-        android:layout_gravity="right|bottom" />
+        android:layout_gravity="center|bottom" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha="0.9"
-        android:text="left | center_vertical"
-        android:textSize="9sp"
-        android:layout_gravity="left|center_vertical" />
-
+    <!--上段/左に配置-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,6 +21,7 @@
         android:alpha="0.9"
         android:layout_gravity="left|top" />
 
+    <!--上段/中央に配置-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,6 +30,7 @@
         android:textSize="9sp"
         android:layout_gravity="center_horizontal|top" />
 
+    <!--上段/右に配置-->
     <Button
         android:layout_width="wrap_content"
         android:alpha="0.9"
@@ -43,6 +39,25 @@
         android:textSize="9sp"
         android:layout_gravity="right|top" />
 
+    <!--中段/左に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.9"
+        android:text="left | center_vertical"
+        android:textSize="9sp"
+        android:layout_gravity="left|center_vertical" />
+
+    <!--中段/中央に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.9"
+        android:text="center"
+        android:textSize="9sp"
+        android:layout_gravity="center" />
+
+    <!--中段/右に配置-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,6 +66,7 @@
         android:textSize="9sp"
         android:layout_gravity="right|center_vertical" />
 
+    <!--下段/左に追加-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,6 +75,7 @@
         android:textSize="9sp"
         android:layout_gravity="left|bottom" />
 
+    <!--下段/中央に追加-->
     <Button
         android:layout_width="wrap_content"
         android:alpha="0.9"
@@ -67,6 +84,7 @@
         android:textSize="9sp"
         android:layout_gravity="center_horizontal|bottom" />
 
+    <!--下段/右に追加-->
     <Button
         android:layout_width="wrap_content"
         android:alpha="0.9"
@@ -74,13 +92,5 @@
         android:text="right | bottom"
         android:textSize="9sp"
         android:layout_gravity="right|bottom" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha="0.9"
-        android:text="center"
-        android:textSize="9sp"
-        android:layout_gravity="center" />
 
 </FrameLayout>

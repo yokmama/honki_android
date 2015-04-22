@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CALL_RESULT_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                //SubActivityから受け取った文字列を表示
+                //SubActivityから受け取ったテキストを表示
                 String text = data.getStringExtra("text");
                 mTextView.setText(text);
             }

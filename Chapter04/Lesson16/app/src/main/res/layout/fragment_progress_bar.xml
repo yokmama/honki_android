@@ -18,18 +18,21 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- プログレス表示(大)-->
         <ProgressBar
             android:id="@+id/progressBar1"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <!-- プログレス表示(通常)-->
         <ProgressBar
             android:id="@+id/progressBar2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp" />
 
+        <!-- プログレス表示(小)-->
         <ProgressBar
             android:id="@+id/progressBar3"
             style="?android:attr/progressBarStyleSmall"
@@ -37,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp" />
 
+        <!-- プログレス表示(進捗)-->
         <ProgressBar
             android:id="@+id/progressBar4"
             style="?android:attr/progressBarStyleHorizontal"

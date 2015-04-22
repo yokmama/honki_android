@@ -14,10 +14,9 @@ import com.yokmama.learn10.chapter04.lesson17.R;
  */
 public class LinearLayoutFragment extends Fragment {
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_linear_layout, container, false);
     }
