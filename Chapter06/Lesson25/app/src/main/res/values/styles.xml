@@ -1,15 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- 色の設定 -->
-        <item name="colorPrimary">@color/md_blue_500</item>
-        <item name="colorPrimaryDark">@color/md_blue_700</item>
-        <item name="colorAccent">@color/md_blue_A400</item>
-
-        <!-- テキストを長押しするなどして、ActionModeにした場合のスタイル -->
-        <item name="windowActionModeOverlay">true</item>
-        <item name="actionModeBackground">@color/md_indigo_700</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#009688</item>
+        <item name="colorPrimaryDark">#00796b</item>
     </style>
-
 </resources>

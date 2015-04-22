@@ -1,7 +1,0 @@
-<resources>
-
-    <style name="Lesson27.Base.fab" parent="android:Widget.Button">
-        <item name="android:elevation">8dp</item>
-    </style>
-
-</resources>
