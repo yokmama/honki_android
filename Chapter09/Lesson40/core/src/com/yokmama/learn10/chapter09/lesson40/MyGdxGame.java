@@ -5,10 +5,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class MyGdxGame extends ApplicationAdapter {
     SpriteBatch batch;
     Texture img;
+
+    // キャラクターのマスの大きさ指定
+    final int SIZE_UNITY_CHAN = 64;
 
     @Override
     public void create() {
@@ -22,7 +26,11 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        batch.draw(img, 0, 0);
+
+        // テクスチャ
+        TextureRegion textureRegion = new TextureRegion(img, 0, SIZE_UNITY_CHAN, SIZE_UNITY_CHAN, SIZE_UNITY_CHAN);
+        batch.draw(textureRegion, 0, 0);
+
         batch.end();
     }
 }
