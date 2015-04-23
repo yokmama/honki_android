@@ -58,22 +58,12 @@ public class Todo {
      */
     public static List<Todo> addDummyItem() {
         List<Todo> items = new ArrayList<>();
-        items.add(new Todo(Todo.ColorLabel.INDIGO,
-                "100回叩くと壊れる壁があったとする。でもみんな何回叩けば壊れるかわからないから、99回まで来ていても途中であきらめてしまう。",
-                System.currentTimeMillis() + 1));
-        items.add(new Todo(Todo.ColorLabel.PINK,
-                "失敗？これはうまくいかないということを確認した成功だよ。",
-                System.currentTimeMillis() + 2));
-        items.add(new Todo(Todo.ColorLabel.GREEN,
-                "つらいのは、頑張っているから。迷っているのは、進もうとしているから",
-                System.currentTimeMillis() + 3));
+        items.add(new Todo(Todo.ColorLabel.INDIGO, "猫に小判", System.currentTimeMillis() + 1));
+        items.add(new Todo(Todo.ColorLabel.PINK, "猫の手も借りたい", System.currentTimeMillis() + 2));
+        items.add(new Todo(Todo.ColorLabel.GREEN, "窮鼠猫を噛む", System.currentTimeMillis() + 3));
         items.add(new Todo(Todo.ColorLabel.AMBER,
-                "自分をダメだと思えば、その時点から自分はダメになる",
-                System.currentTimeMillis() + 4));
-        items.add(new Todo(Todo.ColorLabel.NONE,
-                "本当に転がった者は、起き上がる時になにか得をしている。",
-                System.currentTimeMillis() + 5));
+                "猫は三年飼っても三日で恩を忘れる", System.currentTimeMillis() + 4));
+        items.add(new Todo(Todo.ColorLabel.NONE, "猫も杓子も", System.currentTimeMillis() + 5));
         return items;
     }
-
 }

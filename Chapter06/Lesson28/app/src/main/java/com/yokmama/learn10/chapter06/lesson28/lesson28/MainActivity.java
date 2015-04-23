@@ -41,28 +41,29 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         listView.setAdapter(mAdapter);
         registerForContextMenu(listView);
 
-        //追加ボタンのクリック処理
+        //リスナーをセット
         findViewById(R.id.createTodo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODOリストを追加
                 createTodo();
             }
         });
 
-        //新規TODOリストを検知するブロードキャストレシーバを登録
+        //BroadcastReceiverを登録
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(mAddTodoReceiver, new IntentFilter(ACTION_CREATE_TODO));
     }
 
     @Override
     protected void onDestroy() {
-        //新規TODOリストを検知するブロードキャストレシーバを解除
+        //BroadcastReceiverを解除
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mAddTodoReceiver);
         super.onDestroy();
     }
 
     /**
-     * 作成したTodoリストを追加する検知するブロードキャストレシーバ.
+     * Todoリストの作成・変更を検知するBroadcastReceiver.
      */
     BroadcastReceiver mAddTodoReceiver = new BroadcastReceiver() {
         @Override
@@ -85,9 +86,12 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 //既存データがなければ新規Todoとして追加
                 mTodoList.add(newItem);
             } else {
+                //既存データがあれば上書き
                 mTodoList.remove(updateIndex);
                 mTodoList.add(updateIndex, newItem);
             }
+
+            //TODOリストを更新
             mAdapter.notifyDataSetChanged();
 
         }

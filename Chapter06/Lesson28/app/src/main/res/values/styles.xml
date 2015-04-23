@@ -1,19 +1,30 @@
 <resources>
 
     <!-- Base application theme. -->
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/md_teal_500</item>
-        <item name="colorPrimaryDark">@color/md_teal_700</item>
-        <item name="colorAccent">@color/md_lime_500</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#009688</item>
+        <item name="colorPrimaryDark">#00796b</item>
     </style>
 
+    <!--アクセントカラー-->
+    <color name="colorFab">#cddc39</color>
+
+    <!--カラーラベルー-->
+    <color name="material_amber_500">#ffc107</color>
+    <color name="material_green_500">#259b24</color>
+    <color name="material_grey_500">#9e9e9e</color>
+    <color name="material_indigo_500">#3f51b5</color>
+    <color name="material_pink_500">#e91e63</color>
+
+    <!-- FloatingActionButtonのスタイル -->
     <style name="fab" parent="android:Widget.Button">
         <item name="android:layout_width">56dp</item>
         <item name="android:layout_height">56dp</item>
+        <item name="android:textSize">32dp</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/selector_fab</item>
-        <item name="android:textSize">32sp</item>
-        <item name="android:textColor">@color/md_white_1000</item>
     </style>
+
 
 </resources>

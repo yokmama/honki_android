@@ -51,17 +51,17 @@ public class ConnectionService extends IntentService {
         }
 
         if (ACTION_START.equals(intent.getAction())) {
+            //壁紙の変更を開始
             Log.v(TAG, "キーワード検索");
             String keyword = intent.getStringExtra(EXTRA_SEARCH_KEYWORD);
             if (!TextUtils.isEmpty(keyword)) {
                 startSearch(keyword);
             }
-
             Log.v(TAG, "壁紙の変更開始");
             WallpaperBroadcastReceiver.startPolling(getApplicationContext());
         } else if (ACTION_STOP.equals(intent.getAction())) {
+            //壁紙の変更を停止
             Log.v(TAG, "壁紙の変更を停止");
-
             WallpaperBroadcastReceiver.cancelPolling(getApplicationContext());
             WallpaperManager wm = WallpaperManager.getInstance(getApplicationContext());
             try {
@@ -78,6 +78,10 @@ public class ConnectionService extends IntentService {
         }
     }
 
+    /**
+     * 壁紙の検索を開始.
+     * @param keyword
+     */
     private void startSearch(String keyword) {
         Log.v(TAG, "Start search: keyword=" + keyword);
         final List<CustomSearchApiItem> items;
@@ -108,12 +112,15 @@ public class ConnectionService extends IntentService {
                 String link = item.getLink();
                 Intent intent = new Intent(this, getClass());
                 intent.putExtra(EXTRA_IMAGE_URL, link);
-
                 this.startService(intent);
             }
         }
     }
 
+    /**
+     * 画像のダウンロードを開始.
+     * @param url URL
+     */
     private void startDownloadImage(String url) {
         Log.v(TAG, "ダウンロード開始: url=" + url);
 
@@ -123,11 +130,9 @@ public class ConnectionService extends IntentService {
 
             // 元画像はディスプレイに合っていない場合があるので、
             // 任意でリサイズ処理を挟む。
-
             Log.v(TAG, "ダウンロード終了: file=" + file);
         } catch (IOException e) {
             Log.i(TAG, "ダウンロード失敗", e);
         }
     }
-
 }

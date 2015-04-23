@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">Lesson29</string>
-
+    <string name="app_name">Chapter06 Lesson29</string>
     <string name="intent_action_change_wallpaper">action.CHANGE_WALLPAPER</string>
     <string name="lb_change_auto_wallpaper">壁紙を自動的に変更する</string>
+
+    <!-- Google Custom Search JSON/Atom APIキー -->
+    <string name="api_custom_search_api_key">AIzaSyDS23xN2CFJg6EPH9hsXRrWewER1ks9wNo</string>
+    <!-- カスタム検索エンジンID -->
+    <string name="api_custom_search_engine_id">017763129430879683958:8nd-pkaf4tq</string>
+
 
 </resources>
