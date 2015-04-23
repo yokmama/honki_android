@@ -15,59 +15,59 @@
         android:layout_alignBottom="@+id/colorLabelFrame"
         android:layout_alignTop="@+id/colorLabelFrame" />
 
-    <RadioGroup
+    <!--各カラーラベルを設置-->
+    <LinearLayout
         android:layout_toRightOf="@+id/colorLabel"
         android:id="@+id/colorLabelFrame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <RadioButton
+        <Button
+            android:background="@drawable/bg_colorlabel_grey"
             android:id="@+id/none"
             android:checked="true"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/md_grey_500" />
+            android:layout_margin="@dimen/colorlabel_padding"
+            android:layout_width="@dimen/colorlabel_size"
+            android:layout_height="@dimen/colorlabel_size" />
 
-        <RadioButton
+        <Button
+            android:background="@drawable/bg_colorlabel_amber"
+            android:layout_margin="@dimen/colorlabel_padding"
             android:id="@+id/amber"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/md_amber_500" />
+            android:layout_width="@dimen/colorlabel_size"
+            android:layout_height="@dimen/colorlabel_size" />
 
-        <RadioButton
+        <Button
+            android:background="@drawable/bg_colorlabel_pink"
             android:id="@+id/pink"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/md_pink_500" />
+            android:layout_margin="@dimen/colorlabel_padding"
+            android:layout_width="@dimen/colorlabel_size"
+            android:layout_height="@dimen/colorlabel_size" />
 
 
-        <RadioButton
+        <Button
+            android:layout_margin="@dimen/colorlabel_padding"
+            android:background="@drawable/bg_colorlabel_indigo"
             android:id="@+id/indigo"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/md_indigo_500" />
+            android:layout_width="@dimen/colorlabel_size"
+            android:layout_height="@dimen/colorlabel_size" />
 
 
-        <RadioButton
+        <Button
+            android:layout_margin="@dimen/colorlabel_padding"
+            android:background="@drawable/bg_colorlabel_green"
             android:id="@+id/green"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/md_green_500" />
+            android:layout_width="@dimen/colorlabel_size"
+            android:layout_height="@dimen/colorlabel_size" />
+    </LinearLayout>
 
-    </RadioGroup>
-
+    <!--テキスト入力フォーム-->
     <EditText
         android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/colorLabelFrame"
-        android:backgroundTint="@color/md_teal_500" />
+        android:layout_below="@+id/colorLabelFrame" />
 
 
 </RelativeLayout>

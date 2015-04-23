@@ -9,12 +9,12 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
 
-public class TodoActivity extends ActionBarActivity implements RadioGroup.OnCheckedChangeListener,
-        TextWatcher {
+public class TodoActivity extends ActionBarActivity implements View.OnClickListener {
 
     public static final String KEY_COLORLABEL = "key-colorlabel";
 
@@ -35,7 +35,7 @@ public class TodoActivity extends ActionBarActivity implements RadioGroup.OnChec
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                //戻るボタンをクリック
+                //TODOリスト画面を閉じる
                 finish();
                 return true;
         }
@@ -47,11 +47,33 @@ public class TodoActivity extends ActionBarActivity implements RadioGroup.OnChec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
 
-        mEtInput = (EditText) findViewById(R.id.input);
-        mEtInput.addTextChangedListener(this);
+        //戻るボタンを追加
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        RadioGroup rgColorLabel = (RadioGroup) findViewById(R.id.colorLabelFrame);
-        rgColorLabel.setOnCheckedChangeListener(this);
+        //カラーラベルのインスタンスを取得
+        findViewById(R.id.none).setOnClickListener(this);
+        findViewById(R.id.amber).setOnClickListener(this);
+        findViewById(R.id.green).setOnClickListener(this);
+        findViewById(R.id.indigo).setOnClickListener(this);
+        findViewById(R.id.pink).setOnClickListener(this);
+
+        //入力フォームのインスタンスを取得
+        mEtInput = (EditText) findViewById(R.id.input);
+        mEtInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //テキストの中身が変更されたら編集したと判定
+                mIsTextEdited = true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
         //編集データを受け取っていたらセット
         Intent intent = getIntent();
@@ -59,17 +81,6 @@ public class TodoActivity extends ActionBarActivity implements RadioGroup.OnChec
             //カラーラベルをセット
             mColorLabel = intent.getIntExtra(KEY_COLORLABEL, Todo.ColorLabel.NONE);
             mEtInput.setTextColor(getColorResource(mColorLabel));
-            if (mColorLabel == Todo.ColorLabel.NONE) {
-                rgColorLabel.check(R.id.none);
-            } else if (mColorLabel == Todo.ColorLabel.AMBER) {
-                rgColorLabel.check(R.id.amber);
-            } else if (mColorLabel == Todo.ColorLabel.PINK) {
-                rgColorLabel.check(R.id.pink);
-            } else if (mColorLabel == Todo.ColorLabel.INDIGO) {
-                rgColorLabel.check(R.id.indigo);
-            } else if (mColorLabel == Todo.ColorLabel.GREEN) {
-                rgColorLabel.check(R.id.green);
-            }
 
             //値をセット
             String value = intent.getStringExtra(KEY_VALUE);
@@ -78,14 +89,11 @@ public class TodoActivity extends ActionBarActivity implements RadioGroup.OnChec
             //作成時間をセット
             mCreatedTime = intent.getLongExtra(KEY_CREATEDTIME, 0);
         }
-
-        //戻るボタンを追加
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     protected void onDestroy() {
-        //Todoリストの中身があればデータを送信
+        //TODOリストのテキストを取得
         String value = mEtInput.getText().toString();
         if (!TextUtils.isEmpty(value) && mIsTextEdited) {
             Intent resultData = new Intent();
@@ -98,6 +106,8 @@ public class TodoActivity extends ActionBarActivity implements RadioGroup.OnChec
                 //作成時間がある場合は既存のデータを更新
                 resultData.putExtra(KEY_CREATEDTIME, mCreatedTime);
             }
+
+            //Broadcastを送信
             resultData.setAction(MainActivity.ACTION_CREATE_TODO);
             LocalBroadcastManager.getInstance(this).sendBroadcast(resultData);
             finish();
@@ -106,16 +116,17 @@ public class TodoActivity extends ActionBarActivity implements RadioGroup.OnChec
     }
 
     @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        if (checkedId == R.id.none) {
+    public void onClick(View v) {
+        int viewId = v.getId();
+        if (viewId == R.id.none) {
             mColorLabel = Todo.ColorLabel.NONE;
-        } else if (checkedId == R.id.amber) {
+        } else if (viewId == R.id.amber) {
             mColorLabel = Todo.ColorLabel.AMBER;
-        } else if (checkedId == R.id.pink) {
+        } else if (viewId == R.id.pink) {
             mColorLabel = Todo.ColorLabel.PINK;
-        } else if (checkedId == R.id.indigo) {
+        } else if (viewId == R.id.indigo) {
             mColorLabel = Todo.ColorLabel.INDIGO;
-        } else if (checkedId == R.id.green) {
+        } else if (viewId == R.id.green) {
             mColorLabel = Todo.ColorLabel.GREEN;
         }
         mEtInput.setTextColor(getColorResource(mColorLabel));
@@ -129,30 +140,18 @@ public class TodoActivity extends ActionBarActivity implements RadioGroup.OnChec
     private int getColorResource(int color) {
         int resId = Todo.ColorLabel.NONE;
         if (color == Todo.ColorLabel.NONE) {
-            resId = getResources().getColor(R.color.md_grey_500);
+            resId = getResources().getColor(R.color.material_grey_500);
         } else if (color == Todo.ColorLabel.AMBER) {
-            resId = getResources().getColor(R.color.md_amber_500);
+            resId = getResources().getColor(R.color.material_amber_500);
         } else if (color == Todo.ColorLabel.PINK) {
-            resId = getResources().getColor(R.color.md_pink_500);
+            resId = getResources().getColor(R.color.material_pink_500);
         } else if (color == Todo.ColorLabel.INDIGO) {
-            resId = getResources().getColor(R.color.md_indigo_500);
+            resId = getResources().getColor(R.color.material_indigo_500);
         } else if (color == Todo.ColorLabel.GREEN) {
-            resId = getResources().getColor(R.color.md_green_500);
+            resId = getResources().getColor(R.color.material_green_500);
         }
         return resId;
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
 
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        //テキストを編集したと判定
-        mIsTextEdited = true;
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-    }
 }

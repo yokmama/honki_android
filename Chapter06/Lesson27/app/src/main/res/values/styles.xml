@@ -6,7 +6,6 @@
         <item name="colorPrimary">#009688</item>
         <item name="colorPrimaryDark">#00796b</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
     <!--アクセントカラー-->

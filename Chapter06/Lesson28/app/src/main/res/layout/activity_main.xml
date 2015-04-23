@@ -4,16 +4,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--TODOリストを表示するListView-->
     <ListView
+        android:id="@+id/todoList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/todoList"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerVertical="true" />
 
+    <!--TODOリストを新規作成するFloatingActionButton-->
     <Button
-        android:id="@+id/createTodo"
         style="@style/fab"
+        android:id="@+id/createTodo"
         android:text="+"
         android:layout_margin="32dp"
         android:layout_alignParentRight="true"
