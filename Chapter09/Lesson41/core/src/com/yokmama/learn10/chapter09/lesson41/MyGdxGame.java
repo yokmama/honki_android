@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -89,7 +90,6 @@ public class MyGdxGame extends ApplicationAdapter {
     boolean mPause = false;
 
     // Temporary variables
-    BitmapFont.TextBounds uiTextBounds;
     Color oldColor;
     float textX;
     float textY;
@@ -409,16 +409,16 @@ public class MyGdxGame extends ApplicationAdapter {
     }
 
     private void drawTextTop(String text) {
-        uiTextBounds = font.getBounds(text);
-        textX = Gdx.graphics.getWidth() * 0.5f - uiTextBounds.width * 0.5f;
+        GlyphLayout glyphLayout = new GlyphLayout(font, text);
+        textX = Gdx.graphics.getWidth() * 0.5f - glyphLayout.width * 0.5f;
         textY = Gdx.graphics.getHeight() - font.getLineHeight();
         font.draw(batch, text, textX, textY);
     }
 
     private void drawTextCenter(String text) {
-        uiTextBounds = font.getBounds(text);
-        textX = Gdx.graphics.getWidth() * 0.5f - uiTextBounds.width * 0.5f;
-        textY = Gdx.graphics.getHeight() * 0.5f + uiTextBounds.height * 0.5f;
+        GlyphLayout glyphLayout = new GlyphLayout(font, text);
+        textX = Gdx.graphics.getWidth() * 0.5f - glyphLayout.width * 0.5f;
+        textY = Gdx.graphics.getHeight() * 0.5f + glyphLayout.height * 0.5f;
         font.draw(batch, text, textX, textY);
     }
 

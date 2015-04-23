@@ -1,6 +1,7 @@
 package com.yokmama.learn10.chapter09.lesson41;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -80,8 +81,7 @@ class Chip {
             game.oldColor = game.batch.getColor();
             if (isCollected) {
                 if (collectAnimTimeFraction < 0.5f) {
-                    game.uiTextBounds = game.font.getBounds("+" + game.chipScores[type]);
-                    game.font.setScale(game.chipScales[type]);
+                    game.font.getData().setScale(game.chipScales[type]);
                     game.font.setColor(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
                     game.font.draw(
                             game.batch,
@@ -89,7 +89,7 @@ class Chip {
                             position.x + game.chipSize * 0.5f - bounds.width * 0.5f,
                             position.y + game.chipSize + bounds.height + scorePhase
                     );
-                    game.font.setScale(1.0f);
+                    game.font.getData().setScale(1.0f);
                 }
 
                 game.batch.setColor(Color.alpha(1.0f - collectAnimTimeFraction));
