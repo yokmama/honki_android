@@ -60,8 +60,8 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.draw(keyFrame, 0, 0, SIZE_UNITY_CHAN * 2, SIZE_UNITY_CHAN * 2);
 
         // フォント
-        GlyphLayout glyphLayout = new GlyphLayout(font, "Are you ready?", Color.WHITE, Gdx.graphics.getWidth(), Align.center, true);
-        font.draw(batch, glyphLayout, Gdx.graphics.getWidth() - (glyphLayout.width / 2), 0);
+        GlyphLayout glyphLayout = new GlyphLayout(font, "Are you ready?", Color.WHITE, 0, Align.center, true);
+        font.draw(batch, glyphLayout, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2 + glyphLayout.height / 2);
 
         batch.end();
     }
