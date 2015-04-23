@@ -2,6 +2,8 @@ package com.yokmama.learn10.chapter09.lesson40;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -34,6 +36,10 @@ public class MyGdxGame extends ApplicationAdapter {
     // タッチ
     private int touchCount = 0;
 
+    // 音
+    Music music;
+    Sound coin;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -57,6 +63,14 @@ public class MyGdxGame extends ApplicationAdapter {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+
+        // 音
+        music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.3f);
+        music.play();
+
+        coin = Gdx.audio.newSound(Gdx.files.internal("coin05.mp3"));
     }
 
     @Override
@@ -78,6 +92,7 @@ public class MyGdxGame extends ApplicationAdapter {
         // フォント
         if (Gdx.input.justTouched()) {
             touchCount++;
+            coin.play();
         }
         final String text = (touchCount <= 0) ? "Are you Ready?" : "Sure!\ncount=" + touchCount;
         GlyphLayout glyphLayout = new GlyphLayout(font, text, Color.WHITE, 0, Align.center, true);
