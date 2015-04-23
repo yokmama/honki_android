@@ -31,6 +31,9 @@ public class MyGdxGame extends ApplicationAdapter {
     final int VIEWPORT_HEIGHT = 480;
     private OrthographicCamera camera;
 
+    // タッチ
+    private int touchCount = 0;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -73,7 +76,11 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.draw(keyFrame, 0, 0, SIZE_UNITY_CHAN * 2, SIZE_UNITY_CHAN * 2);
 
         // フォント
-        GlyphLayout glyphLayout = new GlyphLayout(font, "Are you ready?", Color.WHITE, 0, Align.center, true);
+        if (Gdx.input.justTouched()) {
+            touchCount++;
+        }
+        final String text = (touchCount <= 0) ? "Are you Ready?" : "Sure!\ncount=" + touchCount;
+        GlyphLayout glyphLayout = new GlyphLayout(font, text, Color.WHITE, 0, Align.center, true);
         font.draw(batch, glyphLayout, VIEWPORT_WIDTH / 2, VIEWPORT_HEIGHT / 2 + glyphLayout.height / 2);
 
         batch.end();
