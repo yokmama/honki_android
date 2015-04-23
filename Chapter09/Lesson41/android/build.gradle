@@ -1,6 +1,6 @@
 android {
-    buildToolsVersion "21.1.2"
-    compileSdkVersion 21
+    buildToolsVersion "22.0.1"
+    compileSdkVersion 22
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -63,7 +63,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.yokmama.learn10.android.chapter09.android/com.yokmama.learn10.android.chapter09.android.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.yokmama.learn10.chapter09.lesson41.android/com.yokmama.learn10.chapter09.lesson41.android.AndroidLauncher'
 }
 
 // sets up the Android Eclipse project, using the old Ant based build.

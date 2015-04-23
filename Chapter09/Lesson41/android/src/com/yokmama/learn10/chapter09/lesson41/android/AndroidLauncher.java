@@ -1,4 +1,4 @@
-package com.yokmama.learn10.android.chapter09.android;
+package com.yokmama.learn10.chapter09.lesson41.android;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.badlogic.gdx.backends.android.AndroidApplication;
-import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.yokmama.learn10.android.chapter09.MyGdxGame;
 
 public class AndroidLauncher extends Activity {
 

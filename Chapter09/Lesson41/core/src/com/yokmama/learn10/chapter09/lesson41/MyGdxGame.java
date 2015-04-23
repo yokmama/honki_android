@@ -1,4 +1,4 @@
-package com.yokmama.learn10.android.chapter09;
+package com.yokmama.learn10.chapter09.lesson41;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -29,7 +29,7 @@ public class MyGdxGame extends ApplicationAdapter {
     static final float HERO_FLOOR_Y = 45;
     static final float HERO_LEFT_X = 150;
 
-    static final boolean DEBUG_DRAW = false;
+    static final boolean DEBUG_DRAW = true;
     private final int defaultDifficulty;
 
     ShapeRenderer shapeRenderer;

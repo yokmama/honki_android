@@ -1,18 +1,14 @@
-package com.yokmama.learn10.android.chapter09.android;
+package com.yokmama.learn10.chapter09.lesson41.android;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.yokmama.learn10.android.chapter09.MyGdxGame;
+import com.yokmama.learn10.chapter09.lesson41.MyGdxGame;
 
 
 public class GameActivity extends AndroidApplication {

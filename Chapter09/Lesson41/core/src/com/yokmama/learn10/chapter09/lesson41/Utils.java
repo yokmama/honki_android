@@ -1,4 +1,4 @@
-package com.yokmama.learn10.android.chapter09;
+package com.yokmama.learn10.chapter09.lesson41;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
