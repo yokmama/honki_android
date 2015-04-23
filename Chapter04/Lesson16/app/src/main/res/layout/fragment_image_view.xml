@@ -3,103 +3,115 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.ImageViewFragment">
-
-    <!-- ImageView-->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#616161"
-        android:src="@drawable/cat" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
         android:background="@drawable/bg_widget"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/radioFilterType"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_marginTop="8dp"
-            android:text="@string/label_scaletype" />
+            android:orientation="horizontal">
+
+            <!--画像をカラーに変更するRadioButton-->
+            <RadioButton
+                android:id="@+id/radioColor"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Color" />
+
+            <!--画像をグレースケールに変更するRadioButton-->
+            <RadioButton
+                android:id="@+id/radioGray"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Gray" />
+        </RadioGroup>
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:stretchColumns="0,1,2">
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
 
-            <TableRow>
+            <!--赤色のカラースケールを操作-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/center"
-                    android:layout_column="1"
-                    android:text="center"
-                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:text="Red" />
 
-                <Button
-                    android:id="@+id/centerCrop"
-                    android:layout_column="2"
-                    android:text="center Crop"
-                    android:textSize="12sp" />
-
-                <Button
-                    android:id="@+id/centerInside"
-                    android:layout_column="3"
-                    android:text="center Inside"
-                    android:textSize="12sp" />
-
+                <SeekBar
+                    android:id="@+id/seekBarRed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="255"
+                    android:progress="0" />
             </TableRow>
 
-            <TableRow>
+            <!--緑色のカラースケールを操作-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/fitCenter"
-                    android:layout_column="1"
-                    android:text="fit Center"
-                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:text="Green" />
 
-                <Button
-                    android:id="@+id/fitStart"
-                    android:layout_column="2"
-                    android:text="fit Start"
-                    android:textSize="12sp" />
-
-                <Button
-                    android:id="@+id/fitEnd"
-                    android:layout_column="3"
-                    android:text="fit End"
-                    android:textSize="12sp" />
-
-
+                <SeekBar
+                    android:id="@+id/seekBarGreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="255"
+                    android:progress="0" />
             </TableRow>
 
-            <TableRow>
+            <!--青色のカラースケールを操作-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/fitXY"
-                    android:layout_column="1"
-                    android:text="fit XY"
-                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:text="Blue" />
 
-                <Button
-                    android:id="@+id/matrix"
-                    android:layout_column="2"
-                    android:text="matrix"
-                    android:textSize="12sp" />
+                <SeekBar
+                    android:id="@+id/seekBarBlue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="255"
+                    android:progress="0" />
             </TableRow>
         </TableLayout>
     </LinearLayout>
+
+    <!--画像を表示するImageView-->
+    <ImageView
+        android:id="@+id/imageColorFilter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:src="@drawable/cat" />
 </LinearLayout>
