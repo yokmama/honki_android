@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -25,6 +26,11 @@ public class MyGdxGame extends ApplicationAdapter {
     // フォント
     private BitmapFont font;
 
+    // カメラ
+    final int VIEWPORT_WIDTH = 800;
+    final int VIEWPORT_HEIGHT = 480;
+    private OrthographicCamera camera;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -43,6 +49,11 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // フォント
         font = new BitmapFont(Gdx.files.internal("verdana39.fnt"));
+
+        // カメラ
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
     }
 
     @Override
@@ -53,6 +64,8 @@ public class MyGdxGame extends ApplicationAdapter {
         float deltaTime = Gdx.graphics.getDeltaTime();
         mCurrentDeltaTime += deltaTime;
 
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
         batch.begin();
 
         // テクスチャ
@@ -61,7 +74,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // フォント
         GlyphLayout glyphLayout = new GlyphLayout(font, "Are you ready?", Color.WHITE, 0, Align.center, true);
-        font.draw(batch, glyphLayout, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2 + glyphLayout.height / 2);
+        font.draw(batch, glyphLayout, VIEWPORT_WIDTH / 2, VIEWPORT_HEIGHT / 2 + glyphLayout.height / 2);
 
         batch.end();
     }
