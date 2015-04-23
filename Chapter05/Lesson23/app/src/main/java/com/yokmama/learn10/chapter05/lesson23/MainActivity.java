@@ -1,6 +1,9 @@
 package com.yokmama.learn10.chapter05.lesson23;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -24,23 +27,44 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 //Serviceを起動
-                Intent intent = new Intent(MainActivity.this, MyService.class);
+                Intent intent = new Intent(MainActivity.this, MyIntentService.class);
+                intent.setAction(MyIntentService.ACTION_COUNT_UP);
                 startService(intent);
-
-                //Buttonのテキストを更新
-                updateButtonText();
             }
         });
 
-        updateButtonText();
+        //Buttonのテキストを更新
+        updateUI();
     }
 
-    /**
-     * ボタンのテキスト表示を更新.
-     */
-    private void updateButtonText() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //更新用BroadcastReceiverの登録
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(MyIntentService.ACTION_UPDATE_VALUE);
+        registerReceiver(myReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        //更新用BroadcastReceiverの解除
+        unregisterReceiver(myReceiver);
+    }
+
+    private void updateUI(){
         //Applicationからカウントの値を取得してButtonにセット
         MyApplication myApplication = (MyApplication) getApplication();
         mButton.setText("count=" + myApplication.getCount());
     }
+
+    private BroadcastReceiver myReceiver = new BroadcastReceiver(){
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateUI();
+        }
+    };
 }
