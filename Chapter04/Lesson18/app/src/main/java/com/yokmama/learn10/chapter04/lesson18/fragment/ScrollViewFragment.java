@@ -18,8 +18,8 @@ public class ScrollViewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView =  inflater.inflate(R.layout.fragment_scroll_view, container, false);
+            Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_scroll_view, container, false);
 
         return rootView;
     }

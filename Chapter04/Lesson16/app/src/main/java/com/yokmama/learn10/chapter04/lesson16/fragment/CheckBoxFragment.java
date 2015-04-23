@@ -21,10 +21,11 @@ public class CheckBoxFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_check_box, container, false);
 
-        //各ボタンにチェック変更時の処理を設定
+        //各Checkboxにリスナーをセット
         CheckBox checkBox1 = (CheckBox) rootView.findViewById(R.id.checkBox1);
         checkBox1.setOnCheckedChangeListener(mListener);
 
@@ -37,11 +38,15 @@ public class CheckBoxFragment extends Fragment {
         return rootView;
     }
 
-    CompoundButton.OnCheckedChangeListener mListener = new CompoundButton.OnCheckedChangeListener() {
+    //Checkboxの変更を検出するリスナー
+    CompoundButton.OnCheckedChangeListener mListener
+            = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
-                Toast.makeText(getActivity(), buttonView.getText() + " Checked", Toast.LENGTH_SHORT).show();
+                //トーストを表示
+                Toast.makeText(getActivity(), buttonView.getText() + " Checked", Toast.LENGTH_SHORT)
+                        .show();
             }
         }
     };

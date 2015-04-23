@@ -8,6 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.SwitchFragment">
 
+    <!--ToggleButton-->
     <ToggleButton
         android:id="@+id/toggleButton1"
         android:layout_width="wrap_content"
@@ -15,6 +16,7 @@
         android:layout_centerInParent="true"
         android:text="New Switch" />
 
+    <!--ToggleButtonの値を表示-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="200dp"

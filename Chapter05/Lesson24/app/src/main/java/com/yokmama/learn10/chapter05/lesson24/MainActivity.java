@@ -1,17 +1,16 @@
 package com.yokmama.learn10.chapter05.lesson24;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Looper;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 
 import java.util.Random;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     private HandlerThread mHandlerThread;
 
@@ -29,12 +28,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //ハンドラーを生成
+        //Handlerを生成
         mHandlerThread = new HandlerThread("my looper");
         mHandlerThread.start();
         mHandler = new Handler(mHandlerThread.getLooper());
 
-        //ボタンのクリック処理
+        //リスナーをセット
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,11 +46,10 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
 
-        //ハンドラーを閉じる
+        //Handlerを閉じる
         mHandlerThread.quit();
         mHandlerThread = null;
     }
-
 
     private void procText() {
         mHandler.post(new Task(mCounter++));

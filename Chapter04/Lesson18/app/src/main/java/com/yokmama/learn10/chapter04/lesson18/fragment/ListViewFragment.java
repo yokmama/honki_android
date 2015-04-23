@@ -24,21 +24,26 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListViewFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<ListItem>>{
+public class ListViewFragment extends Fragment
+        implements LoaderManager.LoaderCallbacks<List<ListItem>> {
+
     private ListView mListView;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView =  inflater.inflate(R.layout.fragment_list_view, container, false);
+            Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_list_view, container, false);
 
-        mListView = (ListView)rootView.findViewById(R.id.listView);
+        //ListViewのインスタンスを取得
+        mListView = (ListView) rootView.findViewById(R.id.listView);
 
+        //リスナーをセット
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ListItem item = (ListItem)mListView.getAdapter().getItem(position);
+                //クリックしたアイテムの名前を表示
+                ListItem item = (ListItem) mListView.getAdapter().getItem(position);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setMessage("Selected " + item.getName());
                 dialog.setPositiveButton(android.R.string.ok, null);
@@ -46,31 +51,32 @@ public class ListViewFragment extends Fragment implements LoaderManager.LoaderCa
             }
         });
 
-
         return rootView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        //Loaderを初期化
         getLoaderManager().initLoader(0, null, this);
     }
 
     @Override
     public void onDestroy() {
+        //Loaderを破棄
         getLoaderManager().destroyLoader(0);
         super.onDestroy();
     }
 
     @Override
     public Loader<List<ListItem>> onCreateLoader(int i, Bundle bundle) {
+        //データを生成
         return new SampleDataGenerator(getActivity(), SampleDataGenerator.DataType.Text);
     }
 
     @Override
     public void onLoadFinished(Loader<List<ListItem>> stringLoader, List<ListItem> items) {
-
+        //データをListViewにセット
         SampleListAdapter adapter = new SampleListAdapter(getActivity(), items);
         mListView.setAdapter(adapter);
     }

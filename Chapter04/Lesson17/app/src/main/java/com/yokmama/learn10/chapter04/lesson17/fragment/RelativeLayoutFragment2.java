@@ -14,15 +14,9 @@ import com.yokmama.learn10.chapter04.lesson17.R;
  */
 public class RelativeLayoutFragment2 extends Fragment {
 
-
-    public RelativeLayoutFragment2() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_relative_layout2, container, false);
     }

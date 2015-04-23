@@ -21,16 +21,21 @@ public class RadioButtonFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_radio_button, container, false);
 
-        //ラジオボタンの状態が変更された際の処理を設定
+        //RadioGroupのインスタンスを取得
         RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
+
+        //リスナーをセット
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                //選択したRadioButtonのテキストを表示
                 RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
-                Toast.makeText(getActivity(), radioButton.getText() + " Selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), radioButton.getText() + " Selected",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

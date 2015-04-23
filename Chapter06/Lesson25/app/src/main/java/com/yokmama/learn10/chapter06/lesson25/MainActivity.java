@@ -25,11 +25,7 @@ public class MainActivity extends ActionBarActivity {
 
         mEditText = (EditText) findViewById(R.id.edit);
 
-        //Toolbarを初期化
-        Toolbar toolBar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolBar);
-
-        // キーボードを表示させる
+        // キーボードを表示
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
@@ -89,7 +85,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /**
-     * キーワードが空(null、または空文字列)かどうかを調べる
+     * キーワードが空(null、または空文字列)かどうかを確認.
      *
      * @param keyword キーワード
      * @return キーワードが空なら true

@@ -25,11 +25,11 @@ public class SubActivity extends ActionBarActivity {
             mEditText.setText(intent.getStringExtra("text"));
         }
 
-        //OKをクリックした時の処理
+        //リスナーをセット
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //EditTextに入力されている文字をMainActivityに結果として渡す
+                //EditTextに入力されているテキストをMainActivityに渡す
                 Intent data = new Intent();
                 data.putExtra("text", mEditText.getText().toString());
                 setResult(RESULT_OK, data);

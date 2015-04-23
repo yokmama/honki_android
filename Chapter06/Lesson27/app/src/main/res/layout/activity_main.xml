@@ -2,22 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_white_1000"
+    android:background="@android:color/white"
     tools:context=".MainActivity">
 
+    <!--計算画面-->
     <TextView
         android:id="@+id/preview"
-        style="@style/preview"
+        android:textSize="60sp"
+        android:textColor="#424242"
+        android:gravity="center_vertical|right"
+        android:padding="@dimen/preview_text_padding"
         android:layout_width="match_parent"
-        android:layout_height="140dp" />
+        android:layout_height="@dimen/preview_text_height" />
 
     <View
         android:id="@+id/fabFrame"
         android:layout_below="@+id/preview"
         android:layout_width="match_parent"
-        android:layout_height="28dp"
+        android:layout_height="@dimen/fab_halfsize"
         android:background="?attr/colorPrimary" />
 
+    <!--計算ボタンを格子状に配置するGridLayout-->
     <GridLayout
         android:layout_below="@+id/fabFrame"
         android:id="@+id/calcFrame"
@@ -143,9 +148,10 @@
             android:text="+" />
     </GridLayout>
 
+    <!--デリート機能のFloatingActionButton-->
     <Button
         android:id="@+id/clear"
-        style="@style/Lesson27.fab"
+        style="@style/fab"
         android:text="DEL"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"

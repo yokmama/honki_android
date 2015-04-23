@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.ButtonFragment">
 
-    <!-- ノーマルボタン-->
+    <!-- ノーマルButton-->
     <Button
         android:id="@+id/buttonNormal"
         android:layout_width="120dp"
@@ -18,7 +18,7 @@
         android:layout_marginTop="16dp"
         android:text="ボタン" />
 
-    <!-- イメージ背景ボタン-->
+    <!-- イメージ背景Button-->
     <Button
         android:id="@+id/buttonImage"
         android:layout_width="120dp"
@@ -26,7 +26,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/image_button" />
 
-    <!-- ９パッチイメージ背景ボタン-->
+    <!-- ９パッチイメージ背景Button-->
     <Button
         android:id="@+id/patchImage"
         android:layout_width="120dp"
@@ -36,7 +36,7 @@
         android:text="９パッチ"
         android:textColor="@android:color/white" />
 
-    <!-- シェイプイメージ背景ボタン-->
+    <!-- シェイプイメージ背景Button-->
     <Button
         android:id="@+id/buttonShape"
         android:layout_width="120dp"

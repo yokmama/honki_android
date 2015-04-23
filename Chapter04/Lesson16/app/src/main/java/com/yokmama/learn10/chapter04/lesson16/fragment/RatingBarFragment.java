@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.yokmama.learn10.chapter04.lesson16.R;
 
@@ -18,28 +19,23 @@ public class RatingBarFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_rating_bar, container, false);
 
-        RatingBar ratingBar1 = (RatingBar)rootView.findViewById(R.id.ratingBar1);
-        RatingBar ratingBar4 = (RatingBar)rootView.findViewById(R.id.ratingBar4);
+        //RatingBarのインスタンスを取得
+        final RatingBar ratingBar1 = (RatingBar) rootView.findViewById(R.id.ratingBar1);
+        final RatingBar ratingBar2 = (RatingBar) rootView.findViewById(R.id.ratingBar2);
+        final RatingBar ratingBar3 = (RatingBar) rootView.findViewById(R.id.ratingBar3);
 
+        //リスナーをセット
         ratingBar1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                RatingBar ratingBar2 = (RatingBar)getView().findViewById(R.id.ratingBar2);
+                //他のRatingBarにも同じレーティングをセット
                 ratingBar2.setRating(rating);
-            }
-        });
-
-        ratingBar4.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                RatingBar ratingBar3 = (RatingBar)getView().findViewById(R.id.ratingBar3);
                 ratingBar3.setRating(rating);
             }
         });
-
         return rootView;
     }
 

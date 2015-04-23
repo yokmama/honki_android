@@ -3,35 +3,31 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/md_teal_500</item>
-        <item name="colorPrimaryDark">@color/md_teal_700</item>
-        <item name="colorAccent">@color/md_lime_500</item>
+        <item name="colorPrimary">#009688</item>
+        <item name="colorPrimaryDark">#00796b</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
-    <style name="preview" parent="android:Widget.TextView">
-        <item name="android:textSize">60sp</item>
-        <item name="android:textColor">@color/md_grey_800</item>
-        <item name="android:gravity">center_vertical|right</item>
-        <item name="android:padding">16dp</item>
-    </style>
+    <!--アクセントカラー-->
+    <color name="colorAccent">#cddc39</color>
 
-    <style name="Lesson27.Base.fab" parent="android:Widget.Button">
-    </style>
-
-    <style name="Lesson27.fab" parent="Lesson27.Base.fab">
+    <!-- FloatingActionButtonのスタイル -->
+    <style name="fab" parent="android:Widget.Button">
         <item name="android:layout_width">56dp</item>
         <item name="android:layout_height">56dp</item>
-        <item name="android:background">@drawable/selector_fab</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/selector_fab</item>
     </style>
 
+    <!--計算Buttonのスタイル-->
     <style name="calcButton" parent="android:Widget.Button">
         <item name="android:background">@drawable/selector_button</item>
         <item name="android:textSize">32sp</item>
-        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">normal</item>
     </style>
+
 </resources>

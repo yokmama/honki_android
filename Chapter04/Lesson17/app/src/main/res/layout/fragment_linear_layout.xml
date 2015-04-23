@@ -10,7 +10,7 @@
         android:background="#FFFFFF"
         android:orientation="vertical">
 
-
+        <!--Buttonを縦に配置-->
         <LinearLayout
             android:background="@drawable/bg_lime"
             android:layout_width="match_parent"
@@ -29,6 +29,7 @@
                 android:text="New Button" />
         </LinearLayout>
 
+        <!--Buttonを縦に配置(右寄せ)-->
         <LinearLayout
             android:background="@drawable/bg_teal"
             android:layout_width="match_parent"
@@ -48,6 +49,7 @@
                 android:text="New Button" />
         </LinearLayout>
 
+        <!--ButtonとLinearLayoutを横に配置-->
         <LinearLayout
             android:layout_margin="16dp"
             android:layout_width="match_parent"
@@ -70,7 +72,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_indigo"
-                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <Button
@@ -86,6 +87,7 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!--Buttonを均等な幅で横に配置-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,35 +113,6 @@
                 android:layout_weight="1"
                 android:text="New Button" />
 
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_margin="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_orange"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dip"
-                android:text="New Button" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@drawable/bg_deep_purple"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="30dip"
-                android:text="New Button" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

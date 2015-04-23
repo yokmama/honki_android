@@ -19,10 +19,11 @@ public class ButtonFragment extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_button, container, false);
 
-        //Buttonクリック処理
+        //リスナーをセット
         rootView.findViewById(R.id.buttonNormal).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //トーストを表示
                 Toast.makeText(getActivity(), "Button Click!", Toast.LENGTH_SHORT).show();
             }
         });

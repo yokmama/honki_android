@@ -18,6 +18,7 @@
         android:background="@drawable/bg_widget"
         android:padding="16dp">
 
+        <!-- RadioButton1-->
         <RadioButton
             android:id="@+id/radioButton1"
             android:layout_width="match_parent"
@@ -25,6 +26,7 @@
             android:checked="true"
             android:text="RadioButton1" />
 
+        <!-- RadioButton2-->
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="match_parent"
@@ -32,6 +34,7 @@
             android:layout_marginTop="16dp"
             android:text="RadioButton2" />
 
+        <!-- RadioButton3-->
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="match_parent"
