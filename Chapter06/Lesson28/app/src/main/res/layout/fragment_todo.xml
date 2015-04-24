@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:clickable="true"
+    android:background="?android:attr/windowBackground"
     tools:context=".MainActivity">
 
     <TextView
@@ -64,10 +66,9 @@
 
     <!--テキスト入力フォーム-->
     <EditText
+        android:layout_marginTop="@dimen/inputform_margin"
         android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/colorLabelFrame" />
-
-
 </RelativeLayout>
