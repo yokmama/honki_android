@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
@@ -22,7 +23,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
     // キャラクターのマスの大きさ指定
     final int SIZE_UNITY_CHAN = 64;
-    private Animation unityChanAnimation;
+    private Animation imgAnimation;
     private float mCurrentDeltaTime;
 
     // フォント
@@ -46,15 +47,16 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // テクスチャ
         img = new Texture("UnityChan.png");
-        Array<TextureRegion> unityChanKeyFrames = new Array<TextureRegion>();
+        Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int rows = 1; rows <= 2; ++rows) {
             for (int columns = 0; columns < 4; ++columns) {
                 TextureRegion region = new TextureRegion(img, columns * SIZE_UNITY_CHAN, rows * SIZE_UNITY_CHAN, SIZE_UNITY_CHAN, SIZE_UNITY_CHAN);
-                unityChanKeyFrames.add(region);
+                frames.add(region);
             }
         }
         float frameDuration = 0.05f;
-        unityChanAnimation = new Animation(frameDuration, unityChanKeyFrames, Animation.PlayMode.LOOP);
+        Animation.PlayMode playMode = Animation.PlayMode.LOOP;
+        imgAnimation = new Animation(frameDuration, frames, playMode);
 
         // フォント
         font = new BitmapFont(Gdx.files.internal("verdana39.fnt"));
@@ -86,7 +88,7 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
 
         // テクスチャ
-        TextureRegion keyFrame = unityChanAnimation.getKeyFrame(mCurrentDeltaTime);
+        TextureRegion keyFrame = imgAnimation.getKeyFrame(mCurrentDeltaTime);
         batch.draw(keyFrame, 0, 0, SIZE_UNITY_CHAN * 2, SIZE_UNITY_CHAN * 2);
 
         // フォント
