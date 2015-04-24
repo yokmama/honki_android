@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#009688</item>
+        <item name="colorPrimaryDark">#00796b</item>
+        <item name="android:buttonStyle">@style/tealButton</item>
+    </style>
+
+    <!-- Buttonスタイル -->
+    <style name="tealButton" parent="android:Widget.Button">
+        <item name="android:background">@drawable/teal_button</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>
