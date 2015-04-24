@@ -8,16 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MyFragment1 extends Fragment {
 
-
     public MyFragment1() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +34,4 @@ public class MyFragment1 extends Fragment {
 
         return view;
     }
-
-
 }

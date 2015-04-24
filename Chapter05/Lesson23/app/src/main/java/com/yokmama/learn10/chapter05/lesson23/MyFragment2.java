@@ -13,10 +13,8 @@ import android.view.ViewGroup;
  */
 public class MyFragment2 extends Fragment {
 
-
     public MyFragment2() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,6 +28,4 @@ public class MyFragment2 extends Fragment {
         });
         return view;
     }
-
-
 }
