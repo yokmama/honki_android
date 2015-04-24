@@ -11,10 +11,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <!--カウントアップを実行するServiceを起動するButton-->
+    <!--Handlerを実行するButton-->
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/button" />
+        android:text="Count Up!"/>
 </LinearLayout>
