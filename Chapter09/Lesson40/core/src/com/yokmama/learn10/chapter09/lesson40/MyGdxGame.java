@@ -96,7 +96,7 @@ public class MyGdxGame extends ApplicationAdapter {
             touchCount++;
             coin.play();
         }
-        final String text = (touchCount <= 0) ? "Are you Ready?" : "Sure!\ncount=" + touchCount;
+        final String text = (touchCount <= 0) ? "Are you Ready?" : "Of course.\ncount=" + touchCount;
         GlyphLayout glyphLayout = new GlyphLayout(font, text, Color.WHITE, 0, Align.center, true);
         font.draw(batch, glyphLayout, VIEWPORT_WIDTH / 2, VIEWPORT_HEIGHT / 2 + glyphLayout.height / 2);
 
