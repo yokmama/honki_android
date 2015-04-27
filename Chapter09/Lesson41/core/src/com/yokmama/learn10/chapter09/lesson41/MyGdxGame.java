@@ -20,7 +20,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class MyGdxGame extends ApplicationAdapter {
 
-    static enum GameState {
+    enum GameState {
         Start, Running, GameOver, LevelCleared
     }
 
