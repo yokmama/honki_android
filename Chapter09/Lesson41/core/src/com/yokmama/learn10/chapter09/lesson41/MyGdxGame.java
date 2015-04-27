@@ -30,7 +30,7 @@ public class MyGdxGame extends ApplicationAdapter {
     static final float HERO_FLOOR_Y = 45;
     static final float HERO_LEFT_X = 150;
 
-    static final boolean DEBUG_DRAW = true;
+    static final boolean DEBUG_DRAW = false;
     private final int defaultDifficulty;
 
     ShapeRenderer shapeRenderer;
