@@ -5,16 +5,8 @@
     android:versionName="1.0">
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="21" />
-
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="22" />
 
     <application
         android:allowBackup="true"
@@ -36,7 +28,7 @@
             android:name=".GameActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_game"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>
