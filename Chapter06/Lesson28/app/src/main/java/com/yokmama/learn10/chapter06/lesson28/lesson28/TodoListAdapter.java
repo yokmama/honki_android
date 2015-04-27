@@ -74,7 +74,7 @@ public class TodoListAdapter extends ArrayAdapter<Todo> {
      * @param color : カラー
      */
     private int getColorLabelResource(int color) {
-        int resId = R.drawable.bg_colorlabel_none;
+        int resId = R.drawable.bg_colorlabel_grey;
         switch (color) {
             case Todo.ColorLabel.PINK:
                 resId = R.drawable.bg_colorlabel_pink;
@@ -87,9 +87,6 @@ public class TodoListAdapter extends ArrayAdapter<Todo> {
                 break;
             case Todo.ColorLabel.AMBER:
                 resId = R.drawable.bg_colorlabel_amber;
-                break;
-            case Todo.ColorLabel.NONE:
-                resId = R.drawable.bg_colorlabel_none;
                 break;
         }
         return resId;

@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
+    <!--壁紙変更を有効/無効にするSwitch-->
     <Switch
         android:id="@+id/switchAutoWallpaper"
         android:layout_width="wrap_content"

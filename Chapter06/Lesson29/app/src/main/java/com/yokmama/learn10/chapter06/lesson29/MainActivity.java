@@ -16,12 +16,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Switchのインスタンスを取得
         Switch sw = (Switch) findViewById(R.id.switchAutoWallpaper);
 
+        // Switchに前回の値をセット
         final PreferenceDao pref = new PreferenceDao(this);
-
-        // チェックボックスを設定
         sw.setChecked(pref.isAutoWallpaperEnabled());
+
+        //リスナーをセット
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -29,14 +31,18 @@ public class MainActivity extends ActionBarActivity {
                     // 壁紙の変更を開始
                     startSearch();
                 } else {
+                    // 壁紙の変更を停止
                     stopSearch();
                 }
+                //壁紙変更の設定を保存
                 pref.setAutoWallpaperEnabled(isChecked);
             }
         });
     }
 
-    /** 壁紙の変更を開始する */
+    /**
+     * 壁紙の変更を開始
+     */
     private void startSearch() {
         // 検索キーワード固定
         final String keyword = "スマホ壁紙";
@@ -48,7 +54,9 @@ public class MainActivity extends ActionBarActivity {
         startService(intent);
     }
 
-    /** 壁紙の変更を停止する */
+    /**
+     * 壁紙の変更を停止
+     */
     private void stopSearch() {
         Intent intent = new Intent(this, ConnectionService.class);
         intent.setAction(ConnectionService.ACTION_STOP);

@@ -23,6 +23,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //インスタンスを取得
         mTvPreview = (TextView) findViewById(R.id.preview);
         findViewById(R.id.button0).setOnClickListener(this);
         findViewById(R.id.button1).setOnClickListener(this);
@@ -47,14 +48,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        // GridLayoutの子ViewをLayoutサイズに合わせてストレッチさせる
+        // GridLayout内のアイテムをレイアウトサイズに合わせてストレッチ
         final GridLayout gl = (GridLayout) findViewById(R.id.calcFrame);
         stretchColumns(gl);
         stretchRows(gl);
     }
 
     /**
-     * GridLayoutの子Viewの横幅ストレッチ.
+     * GridLayout内のアイテムの横幅をストレッチ.
      */
     public void stretchColumns(GridLayout gl) {
         int childWidth = (int) (gl.getWidth() / gl.getColumnCount());
@@ -65,7 +66,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     /**
-     * GridLayoutの子Viewの縦幅をストレッチ.
+     * GridLayout内のアイテムの縦幅をストレッチ.
      */
     public void stretchRows(GridLayout gl) {
         int childHeight = (int) (gl.getHeight() / gl.getRowCount());
@@ -79,17 +80,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
         Button btn = (Button) v;
         if (btn.getId() == R.id.clear) {
+            //計算をリセット
             mCalculator.reset();
             mTvPreview.setText("0");
         } else {
+            //入力した値を元に計算
             String input = btn.getText().toString();
-            Log.d("MainActivity", "input=" + input);
-
             String dispText = mCalculator.putInput(input);
+
+            //計算結果をTextViewに表示
             if (!TextUtils.isEmpty(dispText)) {
                 mTvPreview.setText(dispText);
             }
         }
     }
-
 }

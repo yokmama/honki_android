@@ -1,79 +1,70 @@
 package com.yokmama.learn10.chapter05.lesson24;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
-
-import java.util.Random;
+import android.widget.Button;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    private HandlerThread mHandlerThread;
-
-    private Handler mHandler;
-
-    private int mCounter;
-
-    private static final String TAG = Task.class.getSimpleName();
-
-    private Random mRand = new Random();
-
+    private Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Handlerを生成
-        mHandlerThread = new HandlerThread("my looper");
-        mHandlerThread.start();
-        mHandler = new Handler(mHandlerThread.getLooper());
+        //Buttonのインスタンスを取得
+        mButton = (Button) findViewById(R.id.button);
 
         //リスナーをセット
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                procText();
+                //Serviceを起動
+                Intent intent = new Intent(MainActivity.this, MyIntentService.class);
+                intent.setAction(MyIntentService.ACTION_COUNT_UP);
+                startService(intent);
             }
         });
+
+        //Buttonのテキストを更新
+        updateUI();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onResume() {
+        super.onResume();
 
-        //Handlerを閉じる
-        mHandlerThread.quit();
-        mHandlerThread = null;
+        //更新用BroadcastReceiverの登録
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(MyIntentService.ACTION_UPDATE_VALUE);
+        registerReceiver(myReceiver, intentFilter);
     }
 
-    private void procText() {
-        mHandler.post(new Task(mCounter++));
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        //更新用BroadcastReceiverの解除
+        unregisterReceiver(myReceiver);
     }
 
-    private class Task implements Runnable {
+    private void updateUI(){
+        //Applicationからカウントの値を取得してButtonにセット
+        MyApplication myApplication = (MyApplication) getApplication();
+        mButton.setText("count=" + myApplication.getCount());
+    }
 
-        private int mIndex;
-
-        public Task(int index) {
-            mIndex = index;
-        }
-
+    private BroadcastReceiver myReceiver = new BroadcastReceiver(){
         @Override
-        public void run() {
-            try {
-                //スレッドをランダムにスリープ
-                int sleepTime = mRand.nextInt(5) * 1000;
-                Log.d(TAG, "sleep " + sleepTime);
-                Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Log.d(TAG, "My Index is " + mIndex);
+        public void onReceive(Context context, Intent intent) {
+            updateUI();
         }
-    }
+    };
 }
