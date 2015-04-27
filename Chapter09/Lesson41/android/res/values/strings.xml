@@ -3,7 +3,6 @@
 
     <string name="app_name">Lesson41</string>
     <string name="title_activity_game">GameActivity</string>
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
 
     <string name="button_start">Start Game</string>
     <string name="button_start_hard">Hard Mode</string>
