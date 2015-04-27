@@ -12,7 +12,7 @@ import com.yokmama.learn10.chapter09.lesson41.MyGdxGame;
 
 
 public class GameActivity extends AndroidApplication {
-    public final static String INTENT_EXTRA_MODE = "jp.co.kayo.android.examplerun.GAME_MODE";
+    public final static String INTENT_EXTRA_MODE = "com.yokmama.learn10.chapter09.lesson41.android.GAME_MODE";
     public static final int GAME_MODE_EASY = 0;
     public static final int GAME_MODE_HARD = 1;
     private boolean mPaused = false;

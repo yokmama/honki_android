@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:background="#0099cc"
-    tools:context="jp.co.kayo.android.examplerun.GameActivity">
+    tools:context="com.yokmama.learn10.chapter09.lesson41.android.GameActivity">
 
     <FrameLayout
         android:id="@+id/fullscreen_content"
