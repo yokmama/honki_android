@@ -28,6 +28,7 @@
             android:name=".GameActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_game"
+            android:theme="@style/GdxTheme"
             android:screenOrientation="landscape" />
     </application>
 
