@@ -21,14 +21,20 @@ public class GameActivity extends AndroidApplication {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        // 難易度を取得
         Intent intent = getIntent();
+        int mode = intent.getExtras().getInt(INTENT_EXTRA_MODE);
+
+        // ゲーム画面の初期化と、ビュー階層への追加
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
         config.useImmersiveMode = true;
-        final MyGdxGame game = new MyGdxGame(intent.getExtras().getInt(INTENT_EXTRA_MODE));
+        final MyGdxGame game = new MyGdxGame(mode);
         final View gameView = initializeForView(game, config);
         ViewGroup content = (ViewGroup) findViewById(R.id.fullscreen_content);
         content.addView(gameView);
 
+        // 各種ボタン押下時の実装
         final Button pauseButton = (Button) findViewById(R.id.pauseButton);
         pauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +50,6 @@ public class GameActivity extends AndroidApplication {
                 mPaused = !mPaused;
             }
         });
-
         final Button exitButton = (Button) findViewById(R.id.exitButton);
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
