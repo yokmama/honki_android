@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="main_menu_item_margin">16dp</dimen>
+    <dimen name="game_item_margin">8dp</dimen>
+
+</resources>
