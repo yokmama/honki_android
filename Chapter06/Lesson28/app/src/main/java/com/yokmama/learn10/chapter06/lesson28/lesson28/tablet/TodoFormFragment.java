@@ -43,6 +43,8 @@ public class TodoFormFragment extends Fragment implements View.OnClickListener {
 
     private boolean mIsTextEdited = false;
 
+    private MenuItem mMenuAdd;
+
     public static TodoFormFragment newInstance() {
         return new TodoFormFragment();
     }
@@ -115,14 +117,13 @@ public class TodoFormFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    MenuItem mei;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         MenuItem menuItem = menu.findItem(MENU_ADD);
         if (menuItem == null) {
-            mei = menu.add(Menu.NONE, MENU_ADD, Menu.NONE, "ADD");
-            mei.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            mMenuAdd = menu.add(Menu.NONE, MENU_ADD, Menu.NONE, "ADD");
+            mMenuAdd.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         }
         super.onCreateOptionsMenu(menu, inflater);
     }

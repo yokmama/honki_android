@@ -1,5 +1,6 @@
 package com.yokmama.learn10.chapter06.lesson26;
 
+import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -54,9 +55,9 @@ public class MainActivity extends ActionBarActivity {
             } else if (itemId == R.id.action_google) {
                 //ウェブ検索
                 if (!checkEmpty(keyword)) {
-                    Uri uri = Uri.parse("https://www.google.co.jp/search?hl=ja")
-                            .buildUpon().appendQueryParameter("q", keyword).build();
-                    startActivity(new Intent(Intent.ACTION_VIEW, uri));
+                    Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                    intent.putExtra(SearchManager.QUERY, keyword);
+                    startActivity(intent);
                 }
             } else if (itemId == R.id.action_store) {
                 // Playストア検索
