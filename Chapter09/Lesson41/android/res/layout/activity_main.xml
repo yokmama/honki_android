@@ -1,0 +1,56 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#0099cc"
+    tools:context="com.yokmama.learn10.chapter09.lesson41.android.AndroidLauncher">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_start"
+            android:id="@+id/startButton"
+            android:background="@android:color/transparent"
+            android:textColor="@drawable/main_menu_button"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/main_menu_item_margin"
+            android:layout_marginBottom="@dimen/main_menu_item_margin" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_start_hard"
+            android:id="@+id/startHardButton"
+            android:background="@android:color/transparent"
+            android:textColor="@drawable/main_menu_button"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/main_menu_item_margin"
+            android:layout_marginBottom="@dimen/main_menu_item_margin" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_exit"
+            android:id="@+id/exitButton"
+            android:background="@android:color/transparent"
+            android:textColor="@drawable/main_menu_button"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/main_menu_item_margin"
+            android:layout_marginBottom="@dimen/main_menu_item_margin" />
+    </LinearLayout>
+
+</FrameLayout>
