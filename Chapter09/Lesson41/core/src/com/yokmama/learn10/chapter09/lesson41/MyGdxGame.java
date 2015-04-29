@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends ApplicationAdapter {
@@ -30,6 +31,10 @@ public class MyGdxGame extends ApplicationAdapter {
     // UI用カメラ
     OrthographicCamera uiCamera;
 
+    // テキスト
+    BitmapFont font;
+    Text text;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -43,6 +48,10 @@ public class MyGdxGame extends ApplicationAdapter {
         uiCamera = new OrthographicCamera();
         uiCamera.setToOrtho(false, camera.viewportWidth, camera.viewportHeight);
         uiCamera.update();
+
+        // テキスト
+        font = new BitmapFont(Gdx.files.internal("verdana39.fnt"));
+        text = new Text(uiCamera);
 
         resetWorld();
     }
@@ -100,6 +109,23 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
 
         // UI描画
+
+        // 文字列描画
+
+        if (gameState == GameState.Ready) {
+            text.drawTextTop(batch, font, "START");
+        }
+        else if (gameState == GameState.GameCleared) {
+            text.drawTextTop(batch, font, "SCORE: " + score);
+            text.drawTextCenter(batch, font, "LEVEL CLEAR");
+        }
+        else if (gameState == GameState.GameOver) {
+            text.drawTextTop(batch, font, "SCORE: " + score);
+            text.drawTextCenter(batch, font, "GAME OVER");
+        }
+        else if (gameState == GameState.Running) {
+            text.drawTextTop(batch, font, "SCORE: " + score);
+        }
 
         batch.end();
     }
