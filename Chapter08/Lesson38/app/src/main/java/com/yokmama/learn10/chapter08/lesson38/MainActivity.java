@@ -1,26 +1,24 @@
 package com.yokmama.learn10.chapter08.lesson38;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
-    EditText mEditName;
-    EditText mEditAge;
-    EditText mEditEmailAddress;
+    private EditText mEditName;
+    private EditText mEditAge;
+    private EditText mEditEmailAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mEditName = (EditText)findViewById(R.id.editName);
-        mEditAge = (EditText)findViewById(R.id.editAge);
-        mEditEmailAddress = (EditText)findViewById(R.id.editEmailAddress);
+        mEditName = (EditText) findViewById(R.id.editName);
+        mEditAge = (EditText) findViewById(R.id.editAge);
+        mEditEmailAddress = (EditText) findViewById(R.id.editEmailAddress);
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,7 +27,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        if(getIntent()!=null && getIntent().hasExtra("contact")){
+        if (getIntent() != null && getIntent().hasExtra("contact")) {
             Contact contact = getIntent().getParcelableExtra("contact");
             mEditName.setText(contact.getName());
             mEditAge.setText(String.valueOf(contact.getAge()));
@@ -38,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    private void callActivity(){
+    private void callActivity() {
 
         Contact contact = new Contact();
         contact.setName(mEditName.getText().toString());

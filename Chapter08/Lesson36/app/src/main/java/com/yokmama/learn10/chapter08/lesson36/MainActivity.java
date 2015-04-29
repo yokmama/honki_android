@@ -2,42 +2,59 @@ package com.yokmama.learn10.chapter08.lesson36;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.support.v7.app.ActionBarActivity;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import greendao.Box;
-import greendao.BoxDao;
+import java.util.Calendar;
 
 
 public class MainActivity extends ActionBarActivity {
-
-    private static final String TAG = MainActivity.class.getSimpleName();
+    public static final Uri CONTENT_URI = Uri.parse("content://com.yokmama.learn10.chapter08.lesson35/memo");
+    private EditText mEditText;
+    private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testWrite();
-        testRead();
+        mEditText = (EditText) findViewById(R.id.editText);
+        mTextView = (TextView) findViewById(R.id.textView);
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                insertMemo(mEditText.getText().toString(), System.currentTimeMillis());
+                mEditText.setText("");
+                loadMemo();
+            }
+        });
+        loadMemo();
     }
 
-    private void testWrite(){
+    private void insertMemo(String text, long date) {
         ContentValues values = new ContentValues();
-        values.put(BoxDao.Properties.Name.columnName, "Name "+System.currentTimeMillis());
-        getContentResolver().insert(MyContentProvider.CONTENT_URI, values);
+        values.put("text", text);
+        values.put("date", date);
+        getContentResolver().insert(CONTENT_URI, values);
     }
 
-    private void testRead(){
-        Cursor cursor = getContentResolver().query(MyContentProvider.CONTENT_URI, null, null, null, null);
-        BoxDao dao = ((MyApplication)getApplication()).getDaoSession().getBoxDao();
-        while(cursor.moveToNext()){
-            Box box = dao.readEntity(cursor, 0);
-            Log.d(TAG, box.getName());
-
+    private void loadMemo() {
+        Calendar calendar = Calendar.getInstance();
+        StringBuilder builder = new StringBuilder();
+        Cursor cursor = getContentResolver().query(CONTENT_URI, new String[]{"date", "text"}, null, null, "date ASC");
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                calendar.setTimeInMillis(cursor.getLong(0));
+                CharSequence date = android.text.format.DateFormat.format("yyyy/MM/dd, E, kk:mm", calendar);
+                String text = cursor.getString(1);
+                builder.append(date + ":" + text).append("\n");
+            }
         }
+        mTextView.setText(builder.toString());
     }
 }
