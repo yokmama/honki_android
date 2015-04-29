@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -35,6 +36,11 @@ public class MyGdxGame extends ApplicationAdapter {
     BitmapFont font;
     Text text;
 
+    // キャラクターの制御オブジェクト
+    Hero hero;
+    // キャラクターの速度
+    float heroVelocityX = 400;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -53,12 +59,23 @@ public class MyGdxGame extends ApplicationAdapter {
         font = new BitmapFont(Gdx.files.internal("verdana39.fnt"));
         text = new Text(uiCamera);
 
+        // キャラクター
+        Texture hero = new Texture("UnityChan.png");
+        float[] timePerFrame = new float[] { 0.05f, 0.05f, 0.05f };
+        int[] numFrames = new int[] { 4, 7, 5 };
+        this.hero = new Hero(hero, 64, 64, timePerFrame, numFrames);
+
         resetWorld();
     }
 
     // ゲームを最初の状態に戻す
     private void resetWorld() {
         score = 0;
+
+        // キャラクターの位置と状態の初期化
+        hero.getPosition().set(Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y);
+        hero.getVelocity().set(0, 0);
+        hero.init();
     }
 
     @Override
@@ -73,11 +90,16 @@ public class MyGdxGame extends ApplicationAdapter {
     // 各種状態を変更するメソッド
     private void updateWorld() {
 
+        float deltaTime = Gdx.graphics.getDeltaTime();
+
         // 入力制御
 
         if (Gdx.input.justTouched()) {
             if (gameState == GameState.Ready) {
                 gameState = GameState.Running;
+
+                hero.startRunning();
+                hero.getVelocity().set(heroVelocityX, 0);
             }
             else if (gameState == GameState.GameOver) {
                 gameState = GameState.Ready;
@@ -88,12 +110,17 @@ public class MyGdxGame extends ApplicationAdapter {
                 resetWorld();
             }
             else if (gameState == GameState.Running) {
-                // FIXME: 試しに状態を変化させる
-                gameState = GameState.GameCleared;
+//                // FIXME: 試しに状態を変化させる
+//                gameState = GameState.GameCleared;
 //                gameState = GameState.GameOver;
+                hero.jump();
             }
             Gdx.app.log("MyGdxGame", "gameState=" + gameState);
         }
+
+        // キャラクターの状態を更新
+
+        hero.update(deltaTime);
     }
 
     // 描画メソッド
@@ -103,6 +130,8 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
 
         // ゲーム描画
+
+        hero.draw(this);
 
         batch.end();
         batch.setProjectionMatrix(uiCamera.combined);
