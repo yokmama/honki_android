@@ -28,6 +28,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
     // カメラ
     OrthographicCamera camera;
+    float cameraLeftEdge;
 
     // UI用カメラ
     OrthographicCamera uiCamera;
@@ -40,6 +41,15 @@ public class MyGdxGame extends ApplicationAdapter {
     Hero hero;
     // キャラクターの速度
     float heroVelocityX = 400;
+
+    // 背景
+    Texture backgroundClear;
+    float bgWidth;
+    float bgSpeed;
+
+    // ゴール
+    Texture finish;
+    float finishX;
 
     @Override
     public void create() {
@@ -65,6 +75,15 @@ public class MyGdxGame extends ApplicationAdapter {
         int[] numFrames = new int[] { 4, 7, 5 };
         this.hero = new Hero(hero, 64, 64, timePerFrame, numFrames);
 
+        // 背景
+        backgroundClear = new Texture("bg.png");
+        bgWidth = viewportHeight * (backgroundClear.getWidth() / backgroundClear.getHeight());
+        bgSpeed = 0.2f;
+
+        // ゴール
+        finish = new Texture("flag.png");
+        finishX = (bgWidth - viewportWidth) / bgSpeed + Hero.HERO_LEFT_X;
+
         resetWorld();
     }
 
@@ -76,6 +95,10 @@ public class MyGdxGame extends ApplicationAdapter {
         hero.getPosition().set(Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y);
         hero.getVelocity().set(0, 0);
         hero.init();
+
+        // カメラの位置を開始点へ設定
+        camera.position.x = viewportWidth / 2 - Hero.HERO_LEFT_X;
+        cameraLeftEdge = camera.position.x - viewportWidth / 2;
     }
 
     @Override
@@ -118,6 +141,23 @@ public class MyGdxGame extends ApplicationAdapter {
         // キャラクターの状態を更新
 
         hero.update(deltaTime);
+
+        // カメラの位置をキャラクターに合わせて移動させる
+
+        if (gameState != GameState.GameCleared) {
+            camera.position.x = viewportWidth / 2 + hero.getPosition().x - Hero.HERO_LEFT_X;
+            cameraLeftEdge = camera.position.x - viewportWidth / 2;
+        }
+
+        // ゲームクリアチェック
+
+        if (gameState != GameState.GameCleared) {
+            float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
+            if (drawOffset + bgWidth < cameraLeftEdge + viewportWidth) {
+                gameState = GameState.GameCleared;
+                hero.win(); // クリアしたことを通知
+            }
+        }
     }
 
     // 描画メソッド
@@ -128,7 +168,14 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // ゲーム描画
 
+        float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
+        batch.draw(backgroundClear, drawOffset, 0, bgWidth, viewportHeight);
+
         hero.draw(this);
+
+        batch.draw(finish, finishX, 0,
+                finish.getWidth() * 0.35f,
+                finish.getHeight() * 0.35f);
 
         batch.end();
         batch.setProjectionMatrix(uiCamera.combined);
