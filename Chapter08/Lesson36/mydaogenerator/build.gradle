@@ -1,9 +1,9 @@
 apply plugin: 'application'
 apply plugin: 'java'
 
-mainClassName = "com.yokmama.learn10.chapter08.lesson36.MyDaoGenerator"
+mainClassName = "com.yokmama.learn10.chapter08.lesson35.MyDaoGenerator"
 // edit output direction
-def outputDir = "../app/src/main/java-gen"
+def outputDir = "../lesson35/src/main/java-gen"
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
