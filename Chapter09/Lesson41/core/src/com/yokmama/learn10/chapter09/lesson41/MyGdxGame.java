@@ -7,6 +7,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 
 public class MyGdxGame extends ApplicationAdapter {
 
@@ -51,6 +55,19 @@ public class MyGdxGame extends ApplicationAdapter {
     Texture finish;
     float finishX;
 
+    // スコアアイテム毎の添字
+    static final int SCORE_ITEM_ONE = 0;
+    static final int SCORE_ITEM_TWO = 1;
+    static final int SCORE_ITEM_THREE = 2;
+    static final int SCORE_ITEM_FOUR = 3;
+
+    // スコアアイテム
+    TextureRegion[] chipRegions;
+    Array<Chip> chips = new Array<Chip>();
+    Array<Chip> chipsToRemove = new Array<Chip>();
+    int[] chipScores;
+    float chipSize = 50.0f;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -84,6 +101,21 @@ public class MyGdxGame extends ApplicationAdapter {
         finish = new Texture("flag.png");
         finishX = (bgWidth - viewportWidth) / bgSpeed + Hero.HERO_LEFT_X;
 
+        // スコアアイテム
+        chipRegions = new TextureRegion[4];
+        Texture coins = new Texture("coins.png");
+        final int COINS_SIZE = 16;
+        chipRegions[SCORE_ITEM_ONE] = new TextureRegion(coins, 0, 0, COINS_SIZE, COINS_SIZE);
+        chipRegions[SCORE_ITEM_TWO] = new TextureRegion(coins, COINS_SIZE, 0, COINS_SIZE, COINS_SIZE);
+        chipRegions[SCORE_ITEM_THREE] = new TextureRegion(coins, COINS_SIZE * 2, 0, COINS_SIZE, COINS_SIZE);
+        chipRegions[SCORE_ITEM_FOUR] = new TextureRegion(coins, COINS_SIZE * 3, 0, COINS_SIZE, COINS_SIZE);
+
+        chipScores = new int[4];
+        chipScores[SCORE_ITEM_ONE] = 10;
+        chipScores[SCORE_ITEM_TWO] = 20;
+        chipScores[SCORE_ITEM_THREE] = 50;
+        chipScores[SCORE_ITEM_FOUR] = 100;
+
         resetWorld();
     }
 
@@ -99,6 +131,9 @@ public class MyGdxGame extends ApplicationAdapter {
         // カメラの位置を開始点へ設定
         camera.position.x = viewportWidth / 2 - Hero.HERO_LEFT_X;
         cameraLeftEdge = camera.position.x - viewportWidth / 2;
+
+        Generator.init(viewportWidth);
+        chips.clear();
     }
 
     @Override
@@ -138,6 +173,30 @@ public class MyGdxGame extends ApplicationAdapter {
             Gdx.app.log("MyGdxGame", "gameState=" + gameState);
         }
 
+        // オブジェクトの新規生成
+
+        if (Generator.chipGenerationLine < cameraLeftEdge + viewportWidth &&
+                Generator.chipGenerationLine + 5 * 50.0f < finishX) {
+            Generator.generate(this);
+        }
+
+        // オブジェクトの更新
+
+        chipsToRemove.clear();
+        for (Chip chip : chips) {
+            chip.update(deltaTime);
+
+            if (chip.isDead) {
+                chipsToRemove.add(chip);
+            }
+            else if (chip.position.x + chip.size.x < cameraLeftEdge) {
+                chipsToRemove.add(chip);
+            }
+        }
+        for (Chip chip : chipsToRemove) {
+            chips.removeValue(chip, false);
+        }
+
         // キャラクターの状態を更新
 
         hero.update(deltaTime);
@@ -158,6 +217,24 @@ public class MyGdxGame extends ApplicationAdapter {
                 hero.win(); // クリアしたことを通知
             }
         }
+
+        // ゲームオーバーまたはゲームクリア後は衝突判定を行わない
+
+        if (gameState == GameState.GameOver || gameState == GameState.GameCleared) {
+            return;
+        }
+
+        // 衝突判定
+
+        Rectangle heroCollision = hero.getCollisionRect();
+
+        for (Chip chip : chips) {
+            if (!chip.isCollected && Intersector.overlaps(chip.collisionCircle, heroCollision)) {
+                chip.collect();
+
+                score += chipScores[chip.type];
+            }
+        }
     }
 
     // 描画メソッド
@@ -170,6 +247,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
         float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
         batch.draw(backgroundClear, drawOffset, 0, bgWidth, viewportHeight);
+
+        for (Chip chip : chips) {
+            chip.draw(this);
+        }
 
         hero.draw(this);
 
