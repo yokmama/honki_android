@@ -2,6 +2,8 @@ package com.yokmama.learn10.chapter09.lesson41;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -74,6 +76,12 @@ public class MyGdxGame extends ApplicationAdapter {
     Array<Mine> minesToRemove = new Array<Mine>();
     float mineSize = 50.0f;
 
+    // サウンド
+    Music music;
+    Sound collision;
+    Sound coin;
+    Sound finaleClaps;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -124,6 +132,16 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // 障害物
         mineTexture = new TextureRegion(new Texture("fire.png"));
+
+        // サウンド
+        music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.5f);
+        music.play();
+
+        collision = Gdx.audio.newSound(Gdx.files.internal("laser3.mp3"));
+        coin = Gdx.audio.newSound(Gdx.files.internal("coin05.mp3"));
+        finaleClaps = Gdx.audio.newSound(Gdx.files.internal("clapping.mp3"));
 
         resetWorld();
     }
@@ -235,6 +253,7 @@ public class MyGdxGame extends ApplicationAdapter {
         if (gameState != GameState.GameCleared) {
             float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
             if (drawOffset + bgWidth < cameraLeftEdge + viewportWidth) {
+                finaleClaps.play();
                 gameState = GameState.GameCleared;
                 hero.win(); // クリアしたことを通知
             }
@@ -253,6 +272,7 @@ public class MyGdxGame extends ApplicationAdapter {
         for (Chip chip : chips) {
             if (!chip.isCollected && Intersector.overlaps(chip.collisionCircle, heroCollision)) {
                 chip.collect();
+                coin.play();
 
                 score += chipScores[chip.type];
             }
@@ -261,6 +281,7 @@ public class MyGdxGame extends ApplicationAdapter {
         for (Mine mine : mines) {
             if (!mine.hasCollided && Intersector.overlaps(mine.collisionCircle, heroCollision)) {
                 mine.collide();
+                collision.play();
                 hero.die();
                 gameState = GameState.GameOver;
             }
