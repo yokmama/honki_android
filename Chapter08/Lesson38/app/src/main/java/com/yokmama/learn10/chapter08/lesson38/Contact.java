@@ -39,11 +39,22 @@ public class Contact implements Parcelable {
         mEmail = email;
     }
 
+    /***
+     * シリアライズされたオブジェクトの種類を判別するためのビットマスクを返す
+     *
+     * @return
+     */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /***
+     * データのParcelに保存
+     *
+     * @param dest
+     * @param flags
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mName);
@@ -51,6 +62,9 @@ public class Contact implements Parcelable {
         dest.writeString(mEmail);
     }
 
+    /***
+     * ParcelからこのParcelableのインスタンスを作るためのCreator
+     */
     public static final Parcelable.Creator<Contact> CREATOR
             = new Parcelable.Creator<Contact>() {
         public Contact createFromParcel(Parcel in) {
@@ -62,6 +76,11 @@ public class Contact implements Parcelable {
         }
     };
 
+    /***
+     * Parcelからデータを読み出すprivateコンストラクタ
+     *
+     * @param in
+     */
     private Contact(Parcel in) {
         mName = in.readString();
         mAge = in.readInt();
