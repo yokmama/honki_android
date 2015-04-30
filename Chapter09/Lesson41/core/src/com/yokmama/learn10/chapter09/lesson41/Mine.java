@@ -1,9 +1,6 @@
 package com.yokmama.learn10.chapter09.lesson41;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -24,10 +21,6 @@ class Mine {
     float phaseShift = 0.0f;
     float collisionAnimTime = 1.0f;
     float visiblePart;
-
-    public Mine(TextureRegion image, float x, float y, float width, float height) {
-        this(image, x, y, width, height, 0);
-    }
 
     public Mine(TextureRegion image, float x, float y, float width, float height, float phaseShift) {
         this.position.x = x;
@@ -65,13 +58,6 @@ class Mine {
     public void draw(MyGdxGame game) {
         image.setRegion(0, 0, image.getTexture().getWidth(), (int) (image.getTexture().getHeight() * visiblePart));
         game.batch.draw(image, position.x, position.y, size.x, size.y * visiblePart);
-    }
-
-    public void drawDebug(MyGdxGame game) {
-        game.shapeRenderer.setColor(Color.RED);
-        game.shapeRenderer.circle(collisionCircle.x, collisionCircle.y, collisionCircle.radius);
-        game.shapeRenderer.setColor(Color.WHITE);
-        game.shapeRenderer.rect(position.x, position.y, size.x, size.y);
     }
 
     public void collide() {

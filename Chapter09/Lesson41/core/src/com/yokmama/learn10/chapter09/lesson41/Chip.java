@@ -6,17 +6,20 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Align;
 
 /**
 * Created by maciek on 1/28/15.
 */
 class Chip {
-    Vector2 position = new Vector2();
-    Vector2 positionPhase = new Vector2();
-    Vector2 size = new Vector2();
-    Rectangle bounds = new Rectangle();
-    TextureRegion image;
-    Circle collisionCircle;
+    final float[] chipScales;
+
+    final Vector2 position = new Vector2();
+    final Vector2 positionPhase = new Vector2();
+    final Vector2 size = new Vector2();
+    final Rectangle bounds = new Rectangle();
+    final TextureRegion image;
+    final Circle collisionCircle;
     boolean isCollected;
     boolean isDead;
     float timeSinceCreation;
@@ -28,6 +31,7 @@ class Chip {
     float collectAnimTime = 1.0f;
     float collectAnimHeight = 100.0f;
     private float scorePhase;
+    private Color oldColor;
 
     public Chip(int type, TextureRegion image, float x, float y, float width, float height) {
         this(type, image, x, y, width, height, 0);
@@ -46,6 +50,7 @@ class Chip {
         this.collisionCircle = new Circle(x + width / 2, y + height / 2, Math.min(width, height) / 2);
         this.isCollected = false;
         this.isDead = false;
+        this.chipScales = new float[] { 0.6f, 0.65f, 0.7f, 0.8f };
     }
 
     public void update(float deltaTime) {
@@ -78,17 +83,15 @@ class Chip {
 
     public void draw(MyGdxGame game) {
         if (!isDead) {
-            game.oldColor = game.batch.getColor();
+            oldColor = game.batch.getColor();
             if (isCollected) {
                 if (collectAnimTimeFraction < 0.5f) {
-                    game.font.getData().setScale(game.chipScales[type]);
-                    game.font.setColor(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
-                    game.font.draw(
-                            game.batch,
-                            "+" + game.chipScores[type],
+                    Color color = new Color(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
+                    GlyphLayout glyphLayout = new GlyphLayout(game.font, "+" + game.chipScores[type], color, 0, Align.left, false);
+                    game.font.getData().setScale(chipScales[type]);
+                    game.font.draw(game.batch, glyphLayout,
                             position.x + game.chipSize * 0.5f - bounds.width * 0.5f,
-                            position.y + game.chipSize + bounds.height + scorePhase
-                    );
+                            position.y + game.chipSize + bounds.height + scorePhase);
                     game.font.getData().setScale(1.0f);
                 }
 
@@ -96,15 +99,8 @@ class Chip {
             }
             game.batch.draw(image, position.x + positionPhase.x, position.y + positionPhase.y, size.x, size.y);
             if (isCollected) {
-                game.batch.setColor(game.oldColor);
+                game.batch.setColor(oldColor);
             }
-        }
-    }
-
-    public void drawDebug(MyGdxGame game) {
-        if (!isCollected) {
-            game.shapeRenderer.setColor(Color.YELLOW);
-            game.shapeRenderer.circle(collisionCircle.x, collisionCircle.y, collisionCircle.radius);
         }
     }
 
