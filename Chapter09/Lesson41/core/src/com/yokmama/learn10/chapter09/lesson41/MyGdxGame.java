@@ -110,9 +110,6 @@ public class MyGdxGame extends ApplicationAdapter {
                 resetWorld();
             }
             else if (gameState == GameState.Running) {
-//                // FIXME: 試しに状態を変化させる
-//                gameState = GameState.GameCleared;
-//                gameState = GameState.GameOver;
                 hero.jump();
             }
             Gdx.app.log("MyGdxGame", "gameState=" + gameState);
