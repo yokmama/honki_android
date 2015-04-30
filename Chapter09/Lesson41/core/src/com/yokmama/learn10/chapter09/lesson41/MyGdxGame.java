@@ -68,6 +68,12 @@ public class MyGdxGame extends ApplicationAdapter {
     int[] chipScores;
     float chipSize = 50.0f;
 
+    // 障害物
+    TextureRegion mineTexture;
+    Array<Mine> mines = new Array<Mine>();
+    Array<Mine> minesToRemove = new Array<Mine>();
+    float mineSize = 50.0f;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -116,6 +122,9 @@ public class MyGdxGame extends ApplicationAdapter {
         chipScores[SCORE_ITEM_THREE] = 50;
         chipScores[SCORE_ITEM_FOUR] = 100;
 
+        // 障害物
+        mineTexture = new TextureRegion(new Texture("fire.png"));
+
         resetWorld();
     }
 
@@ -134,6 +143,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         Generator.init(viewportWidth);
         chips.clear();
+        mines.clear();
     }
 
     @Override
@@ -197,6 +207,18 @@ public class MyGdxGame extends ApplicationAdapter {
             chips.removeValue(chip, false);
         }
 
+        minesToRemove.clear();
+        for (Mine mine : mines) {
+            mine.update(deltaTime);
+
+            if (mine.position.x + mine.size.x < cameraLeftEdge) {
+                minesToRemove.add(mine);
+            }
+        }
+        for (Mine mine : minesToRemove) {
+            mines.removeValue(mine, false);
+        }
+
         // キャラクターの状態を更新
 
         hero.update(deltaTime);
@@ -235,6 +257,14 @@ public class MyGdxGame extends ApplicationAdapter {
                 score += chipScores[chip.type];
             }
         }
+
+        for (Mine mine : mines) {
+            if (!mine.hasCollided && Intersector.overlaps(mine.collisionCircle, heroCollision)) {
+                mine.collide();
+                hero.die();
+                gameState = GameState.GameOver;
+            }
+        }
     }
 
     // 描画メソッド
@@ -250,6 +280,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
         for (Chip chip : chips) {
             chip.draw(this);
+        }
+
+        for (Mine mine : mines) {
+            mine.draw(this);
         }
 
         hero.draw(this);

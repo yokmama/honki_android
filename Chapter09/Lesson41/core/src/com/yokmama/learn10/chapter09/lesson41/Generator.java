@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 public class Generator {
     static final int GENERATE_SPACE = 0;
     static final int GENERATE_CHIPS = 1;
+    static final int GENERATE_MINES = 2;
 
     static float chipGenerationLine;
     static int successiveMinesGenerated;
@@ -24,6 +25,16 @@ public class Generator {
         }
         else if (generate == GENERATE_CHIPS) {
             generateChips(game);
+        }
+        else if (generate == GENERATE_MINES) {
+            if (successiveMinesGenerated < 2) {
+                generateMines(game);
+            }
+            else {
+                // Try once again
+                generate(game);
+                return;
+            }
         }
     }
 
@@ -59,6 +70,18 @@ public class Generator {
             // Add space
             chipGenerationLine += game.chipSize;
         }
+    }
+
+    private static void generateMines(MyGdxGame game) {
+        ++successiveMinesGenerated;
+
+        float phaseShift = MathUtils.random();
+        Mine mine = new Mine(game.mineTexture, chipGenerationLine, Hero.HERO_FLOOR_Y, game.mineSize, 50.0f, phaseShift);
+        game.mines.add(mine);
+        chipGenerationLine += game.mineSize;
+
+        // Add space
+        chipGenerationLine += 3 * game.chipSize;
     }
 
 }
