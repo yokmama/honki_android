@@ -22,7 +22,19 @@
         android:layout_height="@dimen/fab_halfsize"
         android:background="?attr/colorPrimary" />
 
-    <!--計算ボタンを格子状に配置するGridLayout-->
+    <!--DELETE Button-->
+    <Button
+        android:id="@+id/clear"
+        style="@style/fab"
+        android:text="DEL"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/selector_fab"
+        android:layout_alignBottom="@+id/fabFrame"
+        android:layout_alignRight="@+id/preview"
+        android:layout_alignEnd="@+id/preview" />
+
+    <!--計算Buttonを格子状に配置するGridLayout-->
     <GridLayout
         android:layout_below="@+id/fabFrame"
         android:id="@+id/calcFrame"
@@ -148,15 +160,4 @@
             android:text="+" />
     </GridLayout>
 
-    <!--デリート機能のFloatingActionButton-->
-    <Button
-        android:id="@+id/clear"
-        style="@style/fab"
-        android:text="DEL"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/selector_fab"
-        android:layout_alignBottom="@+id/fabFrame"
-        android:layout_alignRight="@+id/preview"
-        android:layout_alignEnd="@+id/preview" />
 </RelativeLayout>
