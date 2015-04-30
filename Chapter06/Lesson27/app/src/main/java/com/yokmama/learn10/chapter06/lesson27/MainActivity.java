@@ -1,16 +1,12 @@
 package com.yokmama.learn10.chapter06.lesson27;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
-
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -50,29 +46,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         // GridLayout内のアイテムをレイアウトサイズに合わせてストレッチ
         final GridLayout gl = (GridLayout) findViewById(R.id.calcFrame);
-        stretchColumns(gl);
-        stretchRows(gl);
-    }
-
-    /**
-     * GridLayout内のアイテムの横幅をストレッチ.
-     */
-    public void stretchColumns(GridLayout gl) {
-        int childWidth = (int) (gl.getWidth() / gl.getColumnCount());
+        int childWidth = gl.getWidth() / gl.getColumnCount();
+        int childHeight = gl.getHeight() / gl.getRowCount();
         for (int i = 0; i < gl.getChildCount(); i++) {
-            View childView = gl.getChildAt(i);
-            childView.setMinimumWidth(childWidth);
-        }
-    }
-
-    /**
-     * GridLayout内のアイテムの縦幅をストレッチ.
-     */
-    public void stretchRows(GridLayout gl) {
-        int childHeight = (int) (gl.getHeight() / gl.getRowCount());
-        for (int i = 0; i < gl.getChildCount(); i++) {
-            View childView = gl.getChildAt(i);
-            childView.setMinimumHeight(childHeight);
+            gl.getChildAt(i).setMinimumWidth(childWidth);
+            gl.getChildAt(i).setMinimumHeight(childHeight);
         }
     }
 
@@ -86,7 +64,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         } else {
             //入力した値を元に計算
             String input = btn.getText().toString();
-            String dispText = mCalculator.putInput(input);
+            String dispText = mCalculator.input(input);
 
             //計算結果をTextViewに表示
             if (!TextUtils.isEmpty(dispText)) {
