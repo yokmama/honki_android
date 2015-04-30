@@ -4,240 +4,211 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
-
 public class MyGdxGame extends ApplicationAdapter {
 
+    // ゲームの状態
     enum GameState {
-        Start, Running, GameOver, LevelCleared
+        Ready, Running, GameOver, GameCleared
     }
 
-    public static final int DIFFICULTY_EASY = 0;
-    public static final int DIFFICULTY_HARD = 1;
+    // 現在のゲームの状態
+    GameState gameState = GameState.Ready;
+    // スコア
+    int score;
 
-    static final float HERO_FLOOR_Y = 45;
-    static final float HERO_LEFT_X = 150;
-
-    static final boolean DEBUG_DRAW = false;
-    private final int defaultDifficulty;
-
-    ShapeRenderer shapeRenderer;
     SpriteBatch batch;
 
-    OrthographicCamera camera;
-    OrthographicCamera uiCamera;
+    // 描画範囲
     int viewportWidth = 800;
     int viewportHeight = 480;
+
+    // カメラ
+    OrthographicCamera camera;
     float cameraLeftEdge;
 
+    // UI用カメラ
+    OrthographicCamera uiCamera;
+
+    // テキスト
     BitmapFont font;
+    Text text;
 
+    // キャラクターの制御オブジェクト
     Hero hero;
-    Rectangle heroCollision = new Rectangle();
-    float heroVelocityX;
+    // キャラクターの速度
+    float heroVelocityX = 400;
 
+    // 背景
     Texture backgroundClear;
-    Texture background;
-    Texture backgroundFar;
-    Texture bridge;
     float bgWidth;
     float bgSpeed;
 
+    // ゴール
     Texture finish;
     float finishX;
 
-    static final int CHIP_ONE = 0;
-    static final int CHIP_TWO = 1;
-    static final int CHIP_THREE = 2;
-    static final int CHIP_FOUR = 3;
+    // スコアアイテム毎の添字
+    static final int SCORE_ITEM_ONE = 0;
+    static final int SCORE_ITEM_TWO = 1;
+    static final int SCORE_ITEM_THREE = 2;
+    static final int SCORE_ITEM_FOUR = 3;
 
-    TextureRegion[] chipTextures;
+    // スコアアイテム
+    TextureRegion[] chipRegions;
     Array<Chip> chips = new Array<Chip>();
     Array<Chip> chipsToRemove = new Array<Chip>();
     int[] chipScores;
-    float[] chipScales;
+    float chipSize = 50.0f;
 
+    // 障害物
     TextureRegion mineTexture;
     Array<Mine> mines = new Array<Mine>();
     Array<Mine> minesToRemove = new Array<Mine>();
-
-    float chipSize = 50.0f;
     float mineSize = 50.0f;
 
-    int currentDifficulty;
-    GameState gameState = GameState.Start;
-    int score = 0;
-    int previousScore;
-
+    // サウンド
     Music music;
-    Sound explode;
-    Sound drop;
+    Sound collision;
+    Sound coin;
     Sound finaleClaps;
-    float mTimeAfterEnd;
-
-    boolean mPause = false;
-
-    // Temporary variables
-    Color oldColor;
-    float textX;
-    float textY;
-
-    public MyGdxGame(int difficulty) {
-        defaultDifficulty = difficulty;
-    }
 
     @Override
-    public void create () {
-        shapeRenderer = new ShapeRenderer();
+    public void create() {
         batch = new SpriteBatch();
 
+        // カメラ
         camera = new OrthographicCamera();
         camera.setToOrtho(false, viewportWidth, viewportHeight);
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
 
+        // UI用カメラ
         uiCamera = new OrthographicCamera();
-        uiCamera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        uiCamera.setToOrtho(false, camera.viewportWidth, camera.viewportHeight);
         uiCamera.update();
 
+        // テキスト
         font = new BitmapFont(Gdx.files.internal("verdana39.fnt"));
+        text = new Text(uiCamera);
 
-        backgroundClear = new Texture("bg.png");
-        background = new Texture("city_skyline.png");
-        backgroundFar = new Texture("city_skyline_far.png");
-        bridge = new Texture("bridge.png");
-
-        bgWidth = viewportHeight * (backgroundClear.getWidth() / backgroundClear.getHeight());
-        bgSpeed = 0.05f;
-
-        finish = new Texture("flag.png");
-        finishX = (bgWidth - viewportWidth) / bgSpeed + HERO_LEFT_X;
-
-        chipTextures = new TextureRegion[4];
-        Texture coins = new Texture("coins.png");
-        final int COINS_SIZE = 16;
-        chipTextures[CHIP_ONE] = new TextureRegion(coins, 0, 0, COINS_SIZE, COINS_SIZE);
-        chipTextures[CHIP_TWO] = new TextureRegion(coins, COINS_SIZE, 0, COINS_SIZE, COINS_SIZE);
-        chipTextures[CHIP_THREE] = new TextureRegion(coins, COINS_SIZE * 2, 0, COINS_SIZE, COINS_SIZE);
-        chipTextures[CHIP_FOUR] = new TextureRegion(coins, COINS_SIZE * 3, 0, COINS_SIZE, COINS_SIZE);
-
-        chipScores = new int[4];
-        chipScores[CHIP_ONE] = 10;
-        chipScores[CHIP_TWO] = 20;
-        chipScores[CHIP_THREE] = 50;
-        chipScores[CHIP_FOUR] = 100;
-
-        chipScales = new float[] { 0.6f, 0.65f, 0.7f, 0.8f };
-
-        mineTexture = new TextureRegion(new Texture("fire.png"));
-
-        Texture heroTexture = new Texture("UnityChan.png");
+        // キャラクター
+        Texture hero = new Texture("UnityChan.png");
         float[] timePerFrame = new float[] { 0.05f, 0.05f, 0.05f };
         int[] numFrames = new int[] { 4, 7, 5 };
-        hero = new Hero(heroTexture, 64, 64, timePerFrame, numFrames);
+        this.hero = new Hero(hero, 64, 64, timePerFrame, numFrames);
 
+        // 背景
+        backgroundClear = new Texture("bg.png");
+        bgWidth = viewportHeight * (backgroundClear.getWidth() / backgroundClear.getHeight());
+        bgSpeed = 0.2f;
+
+        // ゴール
+        finish = new Texture("flag.png");
+        finishX = (bgWidth - viewportWidth) / bgSpeed + Hero.HERO_LEFT_X;
+
+        // スコアアイテム
+        chipRegions = new TextureRegion[4];
+        Texture coins = new Texture("coins.png");
+        final int COINS_SIZE = 16;
+        chipRegions[SCORE_ITEM_ONE] = new TextureRegion(coins, 0, 0, COINS_SIZE, COINS_SIZE);
+        chipRegions[SCORE_ITEM_TWO] = new TextureRegion(coins, COINS_SIZE, 0, COINS_SIZE, COINS_SIZE);
+        chipRegions[SCORE_ITEM_THREE] = new TextureRegion(coins, COINS_SIZE * 2, 0, COINS_SIZE, COINS_SIZE);
+        chipRegions[SCORE_ITEM_FOUR] = new TextureRegion(coins, COINS_SIZE * 3, 0, COINS_SIZE, COINS_SIZE);
+
+        chipScores = new int[4];
+        chipScores[SCORE_ITEM_ONE] = 10;
+        chipScores[SCORE_ITEM_TWO] = 20;
+        chipScores[SCORE_ITEM_THREE] = 50;
+        chipScores[SCORE_ITEM_FOUR] = 100;
+
+        // 障害物
+        mineTexture = new TextureRegion(new Texture("fire.png"));
+
+        // サウンド
         music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
         music.setLooping(true);
-        music.setVolume(0.3f);
+        music.setVolume(0.5f);
         music.play();
 
-        explode = Gdx.audio.newSound(Gdx.files.internal("laser3.mp3"));
-        drop = Gdx.audio.newSound(Gdx.files.internal("coin05.mp3"));
+        collision = Gdx.audio.newSound(Gdx.files.internal("laser3.mp3"));
+        coin = Gdx.audio.newSound(Gdx.files.internal("coin05.mp3"));
         finaleClaps = Gdx.audio.newSound(Gdx.files.internal("clapping.mp3"));
 
-        resetWorld(defaultDifficulty);
+        resetWorld();
     }
 
-    private void resetWorld(int difficulty) {
+    // ゲームを最初の状態に戻す
+    private void resetWorld() {
         score = 0;
 
-        Generator.init(viewportWidth);
-
-        hero.getPosition().set(HERO_LEFT_X, HERO_FLOOR_Y);
+        // キャラクターの位置と状態の初期化
+        hero.getPosition().set(Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y);
         hero.getVelocity().set(0, 0);
         hero.init();
 
-        currentDifficulty = difficulty;
-
-        if (difficulty == DIFFICULTY_EASY) {
-            heroVelocityX = 400;
-        }
-        else if (difficulty == DIFFICULTY_HARD) {
-            heroVelocityX = 600;
-        }
-
-        camera.position.x = viewportWidth / 2 - HERO_LEFT_X;
+        // カメラの位置を開始点へ設定
+        camera.position.x = viewportWidth / 2 - Hero.HERO_LEFT_X;
         cameraLeftEdge = camera.position.x - viewportWidth / 2;
 
+        Generator.init(viewportWidth);
         chips.clear();
         mines.clear();
     }
 
     @Override
-    public void render () {
-        Gdx.gl.glClearColor(0, 153.0f / 255.0f, 204.0f / 255.0f, 1);
+    public void render() {
+        Gdx.gl.glClearColor(0, 153.0f / 255.0f, 204.0f / 255.0f, 1); // #0099CC
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         updateWorld();
         drawWorld();
     }
 
+    // 各種状態を変更するメソッド
     private void updateWorld() {
-        if (mPause)
-            return;
 
         float deltaTime = Gdx.graphics.getDeltaTime();
 
-        if (gameState == GameState.GameOver || gameState == GameState.LevelCleared) {
-            mTimeAfterEnd += deltaTime;
-        }
-
-        // Handle input
+        // 入力制御
 
         if (Gdx.input.justTouched()) {
-            if (gameState == GameState.Start) {
+            if (gameState == GameState.Ready) {
                 gameState = GameState.Running;
+
                 hero.startRunning();
-                hero.mVelocity.set(heroVelocityX, 0);
+                hero.getVelocity().set(heroVelocityX, 0);
             }
             else if (gameState == GameState.GameOver) {
-                // Prevent accidental taps
-                if (mTimeAfterEnd > 0.6f) {
-                    gameState = GameState.Start;
-                    resetWorld(currentDifficulty);
-                }
+                gameState = GameState.Ready;
+                resetWorld();
             }
-            else if (gameState == GameState.LevelCleared) {
-                // Prevent accidental taps
-                if (mTimeAfterEnd > 0.6f) {
-                    gameState = GameState.Start;
-                    resetWorld(currentDifficulty);
-                }
+            else if (gameState == GameState.GameCleared) {
+                gameState = GameState.Ready;
+                resetWorld();
             }
             else if (gameState == GameState.Running) {
                 hero.jump();
             }
+            Gdx.app.log("MyGdxGame", "gameState=" + gameState);
         }
 
-        // Generate new objects
+        // オブジェクトの新規生成
 
         if (Generator.chipGenerationLine < cameraLeftEdge + viewportWidth &&
                 Generator.chipGenerationLine + 5 * 50.0f < finishX) {
             Generator.generate(this);
         }
 
-        // Update objects
+        // オブジェクトの更新
 
         chipsToRemove.clear();
         for (Chip chip : chips) {
@@ -266,89 +237,67 @@ public class MyGdxGame extends ApplicationAdapter {
             mines.removeValue(mine, false);
         }
 
-        // Update hero and camera
+        // キャラクターの状態を更新
 
         hero.update(deltaTime);
 
-        if (gameState != GameState.LevelCleared) {
-            camera.position.x = viewportWidth / 2 + hero.getPosition().x - HERO_LEFT_X;
+        // カメラの位置をキャラクターに合わせて移動させる
+
+        if (gameState != GameState.GameCleared) {
+            camera.position.x = viewportWidth / 2 + hero.getPosition().x - Hero.HERO_LEFT_X;
             cameraLeftEdge = camera.position.x - viewportWidth / 2;
         }
 
-        // Check for winning condition
+        // ゲームクリアチェック
 
-        if (gameState != GameState.LevelCleared) {
+        if (gameState != GameState.GameCleared) {
             float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
             if (drawOffset + bgWidth < cameraLeftEdge + viewportWidth) {
                 finaleClaps.play();
-                gameState = GameState.LevelCleared;
-                mTimeAfterEnd = 0;
-                hero.win();
+                gameState = GameState.GameCleared;
+                hero.win(); // クリアしたことを通知
             }
         }
 
-        // Stop collision checks after Game Over or Level Cleared
+        // ゲームオーバーまたはゲームクリア後は衝突判定を行わない
 
-        if (gameState == GameState.GameOver || gameState == GameState.LevelCleared) {
+        if (gameState == GameState.GameOver || gameState == GameState.GameCleared) {
             return;
         }
 
-        // Check collisions
+        // 衝突判定
 
-        heroCollision = hero.mCollisionRect;
+        Rectangle heroCollision = hero.getCollisionRect();
 
         for (Chip chip : chips) {
             if (!chip.isCollected && Intersector.overlaps(chip.collisionCircle, heroCollision)) {
                 chip.collect();
-                drop.play();
+                coin.play();
 
-                previousScore = score;
                 score += chipScores[chip.type];
-
-                // Speedup
-                if (previousScore / 500 != score / 500) {
-                    heroVelocityX += 100;
-                }
             }
         }
 
         for (Mine mine : mines) {
             if (!mine.hasCollided && Intersector.overlaps(mine.collisionCircle, heroCollision)) {
                 mine.collide();
-                explode.play();
+                collision.play();
                 hero.die();
                 gameState = GameState.GameOver;
-                mTimeAfterEnd = 0;
             }
         }
     }
 
+    // 描画メソッド
     private void drawWorld() {
         camera.update();
-
-        // Draw graphics
-
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
 
+        // ゲーム描画
+
         float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
         batch.draw(backgroundClear, drawOffset, 0, bgWidth, viewportHeight);
-
-        // Repeat two far background textures
-        drawOffset = cameraLeftEdge - (cameraLeftEdge * 0.4f) % viewportWidth;
-        batch.draw(backgroundFar, drawOffset, 80, viewportWidth, 250);
-        batch.draw(backgroundFar, drawOffset + viewportWidth, 80, viewportWidth, 250);
-
-        // Repeat three near background textures
-        float viewportWidthTwoThirds = 2.0f * viewportWidth / 3.0f;
-        drawOffset = cameraLeftEdge - (cameraLeftEdge * 0.6f) % viewportWidthTwoThirds;
-        batch.draw(background, drawOffset, 40, viewportWidthTwoThirds, 400);
-        batch.draw(background, drawOffset + viewportWidthTwoThirds, 40, viewportWidthTwoThirds, 400);
-        batch.draw(background, drawOffset + 2 * viewportWidthTwoThirds, 40, viewportWidthTwoThirds, 400);
-
-        drawOffset = cameraLeftEdge - cameraLeftEdge % viewportWidth;
-        batch.draw(bridge, drawOffset, 0, viewportWidth, 58 * 1.2f);
-        batch.draw(bridge, drawOffset + viewportWidth, 0, viewportWidth, 58 * 1.2f);
 
         for (Chip chip : chips) {
             chip.draw(this);
@@ -360,73 +309,33 @@ public class MyGdxGame extends ApplicationAdapter {
 
         hero.draw(this);
 
-        batch.draw(finish, finishX, 0, finish.getWidth() * 0.35f, finish.getHeight() * 0.35f);
+        batch.draw(finish, finishX, 0,
+                finish.getWidth() * 0.35f,
+                finish.getHeight() * 0.35f);
 
         batch.end();
-
-        // Draw debug primitives
-
-        if (DEBUG_DRAW) {
-            shapeRenderer.setProjectionMatrix(camera.combined);
-            shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-
-            shapeRenderer.setColor(Color.GREEN);
-            shapeRenderer.circle((bgWidth - viewportWidth) / bgSpeed + HERO_LEFT_X, HERO_FLOOR_Y, 5);
-
-            for (Chip chip : chips) {
-                chip.drawDebug(this);
-            }
-
-            for (Mine mine : mines) {
-                mine.drawDebug(this);
-            }
-
-            hero.drawDebug(this);
-
-            shapeRenderer.end();
-        }
-
-        // Draw UI
-
         batch.setProjectionMatrix(uiCamera.combined);
         batch.begin();
-        font.setColor(Color.WHITE);
-        if (gameState == GameState.Start) {
-            drawTextTop("START");
+
+        // UI描画
+
+        // 文字列描画
+
+        if (gameState == GameState.Ready) {
+            text.drawTextTop(batch, font, "START");
         }
-        else if (gameState == GameState.LevelCleared) {
-            drawTextTop("SCORE: " + score);
-            drawTextCenter("LEVEL CLEAR");
+        else if (gameState == GameState.GameCleared) {
+            text.drawTextTop(batch, font, "SCORE: " + score);
+            text.drawTextCenter(batch, font, "LEVEL CLEAR");
         }
         else if (gameState == GameState.GameOver) {
-            drawTextTop("SCORE: " + score);
-            drawTextCenter("GAME OVER");
+            text.drawTextTop(batch, font, "SCORE: " + score);
+            text.drawTextCenter(batch, font, "GAME OVER");
         }
         else if (gameState == GameState.Running) {
-            drawTextTop("SCORE: " + score);
+            text.drawTextTop(batch, font, "SCORE: " + score);
         }
+
         batch.end();
-    }
-
-    private void drawTextTop(String text) {
-        GlyphLayout glyphLayout = new GlyphLayout(font, text);
-        textX = Gdx.graphics.getWidth() * 0.5f - glyphLayout.width * 0.5f;
-        textY = Gdx.graphics.getHeight() - font.getLineHeight();
-        font.draw(batch, text, textX, textY);
-    }
-
-    private void drawTextCenter(String text) {
-        GlyphLayout glyphLayout = new GlyphLayout(font, text);
-        textX = Gdx.graphics.getWidth() * 0.5f - glyphLayout.width * 0.5f;
-        textY = Gdx.graphics.getHeight() * 0.5f + glyphLayout.height * 0.5f;
-        font.draw(batch, text, textX, textY);
-    }
-
-    public void resumeGame() {
-        mPause = false;
-    }
-
-    public void pauseGame() {
-        mPause = true;
     }
 }

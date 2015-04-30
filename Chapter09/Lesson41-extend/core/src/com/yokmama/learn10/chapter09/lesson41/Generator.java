@@ -20,13 +20,7 @@ public class Generator {
 
     public static void generate(MyGdxGame game) {
         int generate = MathUtils.random(0, 2);
-        if (generate == GENERATE_SPACE) {
-            generateSpace(game);
-        }
-        else if (generate == GENERATE_CHIPS) {
-            generateChips(game);
-        }
-        else if (generate == GENERATE_MINES) {
+        if (generate == GENERATE_MINES) {
             if (successiveMinesGenerated < 2) {
                 generateMines(game);
             }
@@ -35,6 +29,12 @@ public class Generator {
                 generate(game);
                 return;
             }
+        }
+        else if (generate == GENERATE_SPACE) {
+            generateSpace(game);
+        }
+        else if (generate == GENERATE_CHIPS) {
+            generateChips(game);
         }
     }
 
@@ -49,11 +49,11 @@ public class Generator {
         successiveMinesGenerated = 0;
 
         int chipType = MathUtils.random(0, 3);
-        if (chipType == MyGdxGame.SCORE_ITEM_ONE) {
+        if (chipType == game.CHIP_ONE) {
             boolean up = MathUtils.randomBoolean();
             for (int i = 0; i < 5; ++i) {
                 float offsetY = up ? 2 - Math.abs(i - 2) : Math.abs(i - 2);
-                Chip chip = new Chip(chipType, game.chipRegions[chipType], chipGenerationLine, 200 + offsetY * game.chipSize, game.chipSize, game.chipSize);
+                Chip chip = new Chip(chipType, game.chipTextures[chipType], chipGenerationLine, 200 + offsetY * game.chipSize, game.chipSize, game.chipSize);
                 game.chips.add(chip);
                 chipGenerationLine += game.chipSize;
             }
@@ -63,7 +63,7 @@ public class Generator {
         }
         else {
             float phaseShift = MathUtils.random();
-            Chip chip = new Chip(chipType, game.chipRegions[chipType], chipGenerationLine, 200, game.chipSize, game.chipSize, phaseShift);
+            Chip chip = new Chip(chipType, game.chipTextures[chipType], chipGenerationLine, 200, game.chipSize, game.chipSize, phaseShift);
             game.chips.add(chip);
             chipGenerationLine += game.chipSize;
 
@@ -76,12 +76,11 @@ public class Generator {
         ++successiveMinesGenerated;
 
         float phaseShift = MathUtils.random();
-        Mine mine = new Mine(game.mineTexture, chipGenerationLine, Hero.HERO_FLOOR_Y, game.mineSize, 50.0f, phaseShift);
+        Mine mine = new Mine(game.mineTexture, chipGenerationLine, game.HERO_FLOOR_Y, game.mineSize, 50.0f, phaseShift);
         game.mines.add(mine);
         chipGenerationLine += game.mineSize;
 
         // Add space
         chipGenerationLine += 3 * game.chipSize;
     }
-
 }
