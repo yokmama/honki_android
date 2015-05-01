@@ -3,12 +3,12 @@ package com.yokmama.learn10.chapter05.lesson20;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends FragmentActivity implements View.OnClickListener {
     public static final int CALL_RESULT_CODE = 100;
     private TextView mTextView;
 
@@ -18,7 +18,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //TextViewのインスタンスを取得
-        mTextView = (TextView)findViewById(R.id.textView);
+        mTextView = (TextView) findViewById(R.id.textView);
         mTextView = (TextView) findViewById(R.id.textView);
 
         //リスナーをセット
