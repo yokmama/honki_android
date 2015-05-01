@@ -33,7 +33,7 @@ class Hero {
     boolean mIsJumping;
     boolean mIsDoubleJumping;
     float mJumpingTime;
-    float mJumpTime = 1.0f;
+    float mJumpTime = 2.0f;
     float mJumpHeight = 300.0f;
 
     // キャラクタの位置
