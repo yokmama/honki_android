@@ -1,0 +1,11 @@
+<resources>
+    <color name="deep_teal_200">#ff80cbc4</color>
+    <color name="deep_teal_500">#ff009688</color>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Light">
+        <!-- Customize your theme here. -->
+    </style>
+
+
+</resources>
