@@ -3,17 +3,19 @@ package com.yokmama.learn10.chapter07.lesson33;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<List<BaseItem>> {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<BaseItem>> {
     private RecyclerView mRecyclerView;
     private List<BaseItem> mItems;
 
@@ -22,7 +24,7 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RadioGroup listType = (RadioGroup)findViewById(R.id.listType);
+        RadioGroup listType = (RadioGroup) findViewById(R.id.listType);
         listType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -31,6 +33,20 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
         });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView.addOnItemTouchListener(new ItemClickListener(mRecyclerView) {
+
+            @Override
+            boolean performItemClick(RecyclerView parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "Click " + position, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            @Override
+            boolean performItemLongClick(RecyclerView parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "Long Click " + position, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
         updateListType(true);
 
         getSupportLoaderManager().initLoader(0, null, this);
@@ -59,12 +75,12 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
 
     }
 
-    private void updateListType(boolean isList){
-        if(isList){
+    private void updateListType(boolean isList) {
+        if (isList) {
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        }else{
+        } else {
             mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
-            /*
+            //グリッド幅の自動計算
             mRecyclerView.getViewTreeObserver().addOnGlobalLayoutListener(
                     new ViewTreeObserver.OnGlobalLayoutListener() {
                         @Override
@@ -76,8 +92,9 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
                             ((GridLayoutManager) mRecyclerView.getLayoutManager()).setSpanCount(newSpanCount);
                         }
                     }
-            );*/
-            ((GridLayoutManager)mRecyclerView.getLayoutManager()).setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            );
+            //グリッドの個数返却処理
+            ((GridLayoutManager) mRecyclerView.getLayoutManager()).setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int i) {
                     int type = mRecyclerView.getAdapter().getItemViewType(i);
@@ -93,8 +110,8 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
         updateAdapter();
     }
 
-    private void updateAdapter(){
-        if(mItems!=null) {
+    private void updateAdapter() {
+        if (mItems != null) {
             if (mRecyclerView.getLayoutManager() instanceof GridLayoutManager) {
                 MyGridAdapter adapter = new MyGridAdapter(this);
                 adapter.setItems(mItems);
@@ -106,4 +123,5 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
             }
         }
     }
+
 }
