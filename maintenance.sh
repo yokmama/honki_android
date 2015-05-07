@@ -53,7 +53,7 @@ done
 echo
 echo "List of 'buildToolsVersion':"
 for data in `grep -r "buildToolsVersion\s" .`; do
-  if [ -z `echo $data |grep "buildToolsVersion \"21.1.2\""` ]; then
+  if [ -z `echo $data |grep "buildToolsVersion \"22.0.1\""` ]; then
     # 21.1.2じゃなかった時
     echo "Invalid: $data"
   fi
