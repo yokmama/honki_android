@@ -1,12 +1,12 @@
 package com.yokmama.learn10.chapter07.lesson34.ui;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.yokmama.learn10.chapter07.lesson34.R;
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by kayo on 15/04/15.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class TransitionsActivity extends Activity {
+public class TransitionsActivity extends ActionBarActivity {
     public static final String EXTRA_THEME_ID = "extra.THEME_ID";
 
     /** 表示するボタンとそれに関連づいたリソース一覧を定義 */

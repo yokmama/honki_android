@@ -1,9 +1,12 @@
 package com.yokmama.learn10.chapter07.lesson34.ui;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.yokmama.learn10.chapter07.lesson34.R;
@@ -11,7 +14,7 @@ import com.yokmama.learn10.chapter07.lesson34.R;
 /**
  * Created by kayo on 15/04/15.
  */
-public class TranslateAnimationActivity extends FragmentActivity implements View.OnClickListener {
+public class TranslateAnimationActivity extends ActionBarActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

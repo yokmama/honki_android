@@ -19,7 +19,7 @@ import com.yokmama.learn10.chapter07.lesson34.ui.TranslateAnimationActivity;
 /**
  * Created by kayo on 15/04/15.
  */
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     private ListView mListView;
 
