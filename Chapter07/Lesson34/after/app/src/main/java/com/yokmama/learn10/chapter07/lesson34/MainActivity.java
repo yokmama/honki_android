@@ -46,6 +46,12 @@ public class MainActivity extends Activity {
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                         return;
                     }
+                } else if (item == Activities.PropertyAnimation) {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                        String msg = "Android Honeycomb以降でのみ実行可能です。";
+                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
 
                 // Intent発行
