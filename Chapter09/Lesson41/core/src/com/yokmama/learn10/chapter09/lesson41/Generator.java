@@ -13,17 +13,21 @@ public class Generator {
     static float chipGenerationLine;
     static int successiveMinesGenerated;
 
+    // 初期化
     public static void init(float line) {
         chipGenerationLine = line;
         successiveMinesGenerated = 0;
     }
 
+    // 生成
     public static void generate(MyGdxGame game) {
         int generate = MathUtils.random(0, 2);
         if (generate == GENERATE_SPACE) {
+            // 何もない空間を生成する
             generateSpace(game);
         }
         else if (generate == GENERATE_CHIPS) {
+            // スコアアイテムを生成する
             generateChips(game);
         }
         else if (generate == GENERATE_MINES) {
@@ -38,6 +42,7 @@ public class Generator {
         }
     }
 
+    // 空白の生成
     private static void generateSpace(MyGdxGame game) {
         successiveMinesGenerated = 0;
 
@@ -45,6 +50,7 @@ public class Generator {
         chipGenerationLine += game.chipSize * spaceLength;
     }
 
+    // スコアアイテムの生成
     private static void generateChips(MyGdxGame game) {
         successiveMinesGenerated = 0;
 
@@ -58,7 +64,7 @@ public class Generator {
                 chipGenerationLine += game.chipSize;
             }
 
-            // Add space
+            // 空白追加
             chipGenerationLine += game.chipSize;
         }
         else {
@@ -67,11 +73,12 @@ public class Generator {
             game.chips.add(chip);
             chipGenerationLine += game.chipSize;
 
-            // Add space
+            // 空白追加
             chipGenerationLine += game.chipSize;
         }
     }
 
+    // 障害物の生成
     private static void generateMines(MyGdxGame game) {
         ++successiveMinesGenerated;
 
@@ -80,7 +87,7 @@ public class Generator {
         game.mines.add(mine);
         chipGenerationLine += game.mineSize;
 
-        // Add space
+        // 空白追加
         chipGenerationLine += 3 * game.chipSize;
     }
 
