@@ -1,10 +1,8 @@
 package com.yokmama.learn10.chapter07.lesson34.ui;
 
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
@@ -13,7 +11,6 @@ import com.yokmama.learn10.chapter07.lesson34.R;
 /**
  * Created by kayo on 15/04/17.
  */
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class TranslateAnimationDialogFragment extends DialogFragment {
 
     @Override
