@@ -32,7 +32,6 @@ function check() {
 tmpIFS=$IFS
 IFS=$'\n'
 
-echo
 echo "List of 'targetSdkVersion':"
 for data in `grep -r "targetSdkVersion\s" .`; do
   if [ -z `echo $data |grep "targetSdkVersion 22"` ]; then
@@ -90,9 +89,10 @@ IFS=$tmpIFS
 for arg in $@; do
   for availCmd in ${commands[@]}; do
     if [ $arg == $availCmd ]; then
-      echo -ne "\e[36m" # cyan
+      echo
+      echo -ne $'\e[36m' # cyan
       echo -ne "Execute: $availCmd task"
-      echo -e "\e[0m" # reset
+      echo -e $'\e[0m' # reset
       echo
       $availCmd
     fi
