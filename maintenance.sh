@@ -34,10 +34,12 @@ tmpIFS=$IFS
 IFS=$'\n'
 
 function outInvalid() {
-echo -ne $'\e[31m' # cyan
-echo -ne "Invalid: "
-echo -ne $'\e[0m' # reset
-echo "$1"
+if [ -z `echo $1 |grep "^./.git/\|^./maintenance\.sh\|^Binary\sfile\s\./"` ]; then
+  echo -ne $'\e[31m' # cyan
+  echo -ne "Invalid: "
+  echo -ne $'\e[0m' # reset
+  echo "$1"
+fi
 }
 
 echo "List of 'targetSdkVersion':"
@@ -77,15 +79,11 @@ done
 echo
 echo "List of 'appcompat-v7':"
 for data in `grep -r "com.android.support:appcompat-v7" .`; do
-  # ActionBarActivity が見つかった時
   if [ -z `echo $data |grep "com.android.support:appcompat-v7:22.1.1"` ]; then
     # 22.1.1じゃない場合
     outInvalid $data
   fi
 done
-
-echo
-echo "注意: maintainance.shファイル自身が引っかかることがあることがありますが無視してください。"
 
 IFS=$tmpIFS
 }
