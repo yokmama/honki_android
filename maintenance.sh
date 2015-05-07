@@ -4,6 +4,7 @@
 # Define
 #############################
 commands=(
+cleanall
 check
 buildall
 )
@@ -79,12 +80,30 @@ IFS=$'\n'
 for gradlewFile in `find . -type f -name gradlew`; do
   parentDir=${gradlewFile%/*}
   pushd $parentDir
-  ./gradlew clean assembleDebug
+  ./gradlew --daemon clean assembleDebug
   popd
 done
 
 IFS=$tmpIFS
 }
+
+#############################
+
+function cleanall() {
+tmpIFS=$IFS
+IFS=$'\n'
+
+for gradlewFile in `find . -type f -name gradlew`; do
+  parentDir=${gradlewFile%/*}
+  pushd $parentDir
+  ./gradlew --daemon clean
+  popd
+done
+
+IFS=$tmpIFS
+}
+
+#############################
 
 for arg in $@; do
   for availCmd in ${commands[@]}; do
