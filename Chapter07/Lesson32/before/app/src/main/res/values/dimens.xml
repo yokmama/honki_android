@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- 余白 -->
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_normal">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_xlarge">32dp</dimen>
+
+    <!-- テキストサイズ -->
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">22sp</dimen>
+
+    <!-- ビューのサイズ -->
+    <dimen name="item_space">1dp</dimen>
+    <dimen name="list_image_size">144dp</dimen>
+    <dimen name="pallet_image_size">256dp</dimen>
+    <dimen name="pallet_block_size">64dp</dimen>
+
+</resources>
