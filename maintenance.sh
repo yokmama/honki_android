@@ -33,11 +33,19 @@ function check() {
 tmpIFS=$IFS
 IFS=$'\n'
 
+function outInvalid() {
+echo -ne $'\e[31m' # cyan
+echo -ne "Invalid: "
+echo -ne $'\e[0m' # reset
+echo "$1"
+}
+
 echo "List of 'targetSdkVersion':"
 for data in `grep -r "targetSdkVersion\s" .`; do
   if [ -z `echo $data |grep "targetSdkVersion 22"` ]; then
     # 22じゃなかった時
-    echo "Invalid: $data"
+    outInvalid $data
+    #echo "Invalid: $data"
   fi
 done
 
@@ -46,7 +54,7 @@ echo "List of 'minSdkVersion':"
 for data in `grep -r "minSdkVersion\s" .`; do
   if [ -z `echo $data |grep "minSdkVersion 10\|minSdkVersion 14"` ]; then
     # 10じゃなかった時
-    echo "Invalid: $data"
+    outInvalid $data
   fi
 done
 
@@ -55,7 +63,7 @@ echo "List of 'buildToolsVersion':"
 for data in `grep -r "buildToolsVersion\s" .`; do
   if [ -z `echo $data |grep "buildToolsVersion \"22.0.1\""` ]; then
     # 21.1.2じゃなかった時
-    echo "Invalid: $data"
+    outInvalid $data
   fi
 done
 
@@ -63,9 +71,20 @@ echo
 echo "List of 'ActionBarActivity':"
 for data in `grep -r "\sActionBarActivity" .`; do
   # ActionBarActivity が見つかった時
-  echo "Invalid: $data"
+  outInvalid $data
 done
 
+echo
+echo "List of 'appcompat-v7':"
+for data in `grep -r "com.android.support:appcompat-v7" .`; do
+  # ActionBarActivity が見つかった時
+  if [ -z `echo $data |grep "com.android.support:appcompat-v7:22.1.1"` ]; then
+    # 22.1.1じゃない場合
+    outInvalid $data
+  fi
+done
+
+echo
 echo "注意: maintainance.shファイル自身が引っかかることがあることがありますが無視してください。"
 
 IFS=$tmpIFS
