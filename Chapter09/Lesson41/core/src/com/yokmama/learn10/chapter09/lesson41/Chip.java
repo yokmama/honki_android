@@ -53,9 +53,11 @@ class Chip {
         this.chipScales = new float[] { 0.6f, 0.65f, 0.7f, 0.8f };
     }
 
+    // 状態の更新
     public void update(float deltaTime) {
         timeSinceCreation += deltaTime;
         if (isCollected) {
+            // アイテム収集後アニメーション
             timeSinceCollected += deltaTime;
             collectAnimTimeFraction = timeSinceCollected / collectAnimTime;
             positionPhase.y = collectFunc(collectAnimTimeFraction) * collectAnimHeight;
@@ -65,22 +67,27 @@ class Chip {
             }
         }
         else {
-            positionPhase.y = (float) Math.sin(timeSinceCreation * 4.0f + phaseShift * 2.0f * Math.PI) * size.y / 2.0f;
+            // アイテム収集前アニメーション
+            double t = 2.0 * Math.PI / 1.4; // 周期
+            positionPhase.y = (float) Math.sin(timeSinceCreation * t - phaseShift) * size.y / 2.0f;
             collisionCircle.y = position.y + positionPhase.y + size.y / 2;
         }
         bounds.set(position.x, position.y + positionPhase.y, size.x, size.y);
     }
 
+    // スコア表示アニメーション関数
     private float scoreFunc(float t) {
         t = 0.5f * Math.min(Math.max(t, 0.0f), 1.0f);
         return 2.0f * t * (-4.0f * t + 4.0f);
     }
 
+    // アイテム収集後アニメーション関数
     private float collectFunc(float t) {
         t = Math.min(Math.max(t, 0.0f), 1.0f);
         return t * (-4.0f * t + 4.0f);
     }
 
+    // 描画
     public void draw(MyGdxGame game) {
         if (!isDead) {
             oldColor = game.batch.getColor();
@@ -104,6 +111,7 @@ class Chip {
         }
     }
 
+    // アイテムを収集
     public void collect() {
         isCollected = true;
         timeSinceCollected = 0.0f;

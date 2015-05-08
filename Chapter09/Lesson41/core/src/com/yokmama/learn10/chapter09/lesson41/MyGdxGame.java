@@ -251,8 +251,8 @@ public class MyGdxGame extends ApplicationAdapter {
         // ゲームクリアチェック
 
         if (gameState != GameState.GameCleared) {
-            float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
-            if (drawOffset + bgWidth < cameraLeftEdge + viewportWidth) {
+            float heroX = hero.getPosition().x;
+            if (finishX < heroX) {
                 finaleClaps.play();
                 gameState = GameState.GameCleared;
                 hero.win(); // クリアしたことを通知

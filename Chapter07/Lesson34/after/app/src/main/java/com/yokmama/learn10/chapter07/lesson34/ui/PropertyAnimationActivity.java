@@ -1,10 +1,12 @@
 package com.yokmama.learn10.chapter07.lesson34.ui;
 
+import com.yokmama.learn10.chapter07.lesson34.R;
+
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -13,10 +15,8 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 
-import com.yokmama.learn10.chapter07.lesson34.R;
 
-
-public class PropertyAnimationActivity extends ActionBarActivity implements View.OnClickListener {
+public class PropertyAnimationActivity extends Activity implements View.OnClickListener {
 
     private ImageButton mBtnXXml;
     private ImageButton mBtnXCode;

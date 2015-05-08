@@ -1,17 +1,16 @@
 package com.yokmama.learn10.chapter07.lesson34.ui;
 
+import com.yokmama.learn10.chapter07.lesson34.R;
+
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.yokmama.learn10.chapter07.lesson34.R;
 
 /**
  * Created by kayo on 15/04/15.

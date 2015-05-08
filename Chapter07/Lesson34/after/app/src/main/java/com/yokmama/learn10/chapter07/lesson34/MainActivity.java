@@ -1,25 +1,24 @@
 package com.yokmama.learn10.chapter07.lesson34;
 
+import com.yokmama.learn10.chapter07.lesson34.ui.FragmentTransitionsActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.PropertyAnimationActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.TranslateAnimationActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.yokmama.learn10.chapter07.lesson34.ui.FragmentTransitionsActivity;
-import com.yokmama.learn10.chapter07.lesson34.ui.PropertyAnimationActivity;
-import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsActivity;
-import com.yokmama.learn10.chapter07.lesson34.ui.TranslateAnimationActivity;
-
 /**
  * Created by kayo on 15/04/15.
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     private ListView mListView;
 
@@ -44,6 +43,12 @@ public class MainActivity extends ActionBarActivity {
                 if (item.name().startsWith("Transition")) {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                         String msg = "Android Lolipop以降でのみ実行可能です。";
+                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } else if (item == Activities.PropertyAnimation) {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                        String msg = "Android Honeycomb以降でのみ実行可能です。";
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                         return;
                     }
