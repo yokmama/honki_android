@@ -1,0 +1,11 @@
+<resources>
+    <color name="deep_teal_200">#ff80cbc4</color>
+    <color name="deep_teal_500">#ff009688</color>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/deep_teal_200</item>
+        <item name="colorPrimaryDark">@color/deep_teal_500</item>
+    </style>
+
+</resources>

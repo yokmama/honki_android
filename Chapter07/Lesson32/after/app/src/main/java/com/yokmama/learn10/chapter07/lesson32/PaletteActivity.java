@@ -3,11 +3,14 @@ package com.yokmama.learn10.chapter07.lesson32;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -65,6 +68,15 @@ public class PaletteActivity extends AppCompatActivity {
                     mToolbar.setBackgroundColor(muted.getRgb());
                     TextView tvTitle = (TextView) findViewById(R.id.textTitle);
                     tvTitle.setTextColor(muted.getTitleTextColor());
+                    //ステータスバーのカラーを変更（Lollipop以降のみ動作）
+                    if(Build.VERSION.SDK_INT>=21){
+                        Window window = getWindow();
+                        window.addFlags(
+                                WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                        window.clearFlags(
+                                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                        window.setStatusBarColor(muted.getRgb());
+                    }
                 }
 
                 //カラーブロックをセット

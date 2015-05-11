@@ -33,17 +33,22 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        //RecyclerViewに罫線を設定
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getResources()));
+        //RecyclerViewにクリック処理とロングクリック処理を設定
         mRecyclerView.addOnItemTouchListener(new ItemClickListener(mRecyclerView) {
 
             @Override
             boolean performItemClick(RecyclerView parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Click " + position, Toast.LENGTH_SHORT).show();
+                BaseItem item = mItems.get(position);
+                Toast.makeText(MainActivity.this, "Click " + item.getName(), Toast.LENGTH_SHORT).show();
                 return false;
             }
 
             @Override
             boolean performItemLongClick(RecyclerView parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Long Click " + position, Toast.LENGTH_SHORT).show();
+                BaseItem item = mItems.get(position);
+                Toast.makeText(MainActivity.this, "Long Click " + item.getName(), Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -90,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                             float cardViewWidth = getResources().getDimension(R.dimen.grid_width);
                             int newSpanCount = (int) Math.ceil(viewWidth / cardViewWidth);
                             ((GridLayoutManager) mRecyclerView.getLayoutManager()).setSpanCount(newSpanCount);
+                            //スパンを変更したらLayoutの変更通知も行う
+                            mRecyclerView.getLayoutManager().requestLayout();
                         }
                     }
             );
@@ -106,22 +113,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 }
             });
         }
-
         updateAdapter();
     }
 
     private void updateAdapter() {
-        if (mItems != null) {
-            if (mRecyclerView.getLayoutManager() instanceof GridLayoutManager) {
-                MyGridAdapter adapter = new MyGridAdapter(this);
-                adapter.setItems(mItems);
-                mRecyclerView.setAdapter(adapter);
-            } else {
-                MyListAdapter adapter = new MyListAdapter(this);
-                adapter.setItems(mItems);
-                mRecyclerView.setAdapter(adapter);
-            }
+        MyAdapter adapter = new MyAdapter(this);
+        adapter.setItems(mItems);
+        if (mRecyclerView.getLayoutManager() instanceof GridLayoutManager) {
+            adapter.setLayoutType(MyAdapter.LayouType.GridStyle);
+        } else {
+            adapter.setLayoutType(MyAdapter.LayouType.ListStyle);
         }
-    }
+        mRecyclerView.setAdapter(adapter);
 
+    }
 }
