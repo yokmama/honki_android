@@ -10,12 +10,15 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
+ * RecyclerViewのアイテムのクリックを取得するイベントリスナー
+ *
  * Created by yokmama on 15/05/07.
  */
 public abstract class ItemClickListener implements RecyclerView.OnItemTouchListener{
     private final GestureDetectorCompat mGestureDetector;
 
     public ItemClickListener(RecyclerView recyclerView){
+        //RecyclerViewに対するジェスチャーを検出するためGestureDetectorを生成
         mGestureDetector = new ItemClickGestureDetector(recyclerView.getContext(),
                 new ItemClickGestureListener(recyclerView));
     }
@@ -26,6 +29,7 @@ public abstract class ItemClickListener implements RecyclerView.OnItemTouchListe
             return false;
         }
 
+        //RecyclerViewに対するタッチイベントをGestureDetectorにて処理する
         mGestureDetector.onTouchEvent(e);
         return false;
     }
@@ -35,10 +39,34 @@ public abstract class ItemClickListener implements RecyclerView.OnItemTouchListe
 
     }
 
+    /***
+     * クリック時に呼ばれる
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     * @return
+     */
     abstract boolean performItemClick(RecyclerView parent, View view, int position, long id);
 
+    /***
+     * ロングクリック時に呼ばれる
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     * @return
+     */
     abstract boolean performItemLongClick(RecyclerView parent, View view, int position, long id);
 
+    /***
+     * RecyclerViewが画面にアタッチされているかどうか判断
+     *
+     * @param hostView
+     * @return
+     */
     private boolean isAttachedToWindow(RecyclerView hostView) {
         if (Build.VERSION.SDK_INT >= 19) {
             return hostView.isAttachedToWindow();
@@ -47,10 +75,20 @@ public abstract class ItemClickListener implements RecyclerView.OnItemTouchListe
         }
     }
 
+    /***
+     * RecyclerViewにAdapterが設定されているかどうか判断
+     *
+     * @param hostView
+     * @return
+     */
     private boolean hasAdapter(RecyclerView hostView) {
         return (hostView.getAdapter() != null);
     }
 
+    /***
+     * クリック処理のみ検出するGestureDetector
+     *
+     */
     private class ItemClickGestureDetector extends GestureDetectorCompat {
         private final ItemClickGestureListener mGestureListener;
 
@@ -72,6 +110,11 @@ public abstract class ItemClickListener implements RecyclerView.OnItemTouchListe
         }
     }
 
+    /***
+     * クリック処理に応じて、シングルクリックかロングクリックか判定し、
+     * それぞれ設定されたリスナーメソッドをコールする
+     *
+     */
     private class ItemClickGestureListener extends GestureDetector.SimpleOnGestureListener {
         private final RecyclerView mRecyclerView;
         private View mTargetChild;
@@ -80,10 +123,6 @@ public abstract class ItemClickListener implements RecyclerView.OnItemTouchListe
         }
 
         public void dispatchSingleTapUpIfNeeded(MotionEvent event) {
-            // When the long press hook is called but the long press listener
-            // returns false, the target child will be left around to be
-            // handled later. In this case, we should still treat the gesture
-            // as potential item click.
             if (mTargetChild != null) {
                 onSingleTapUp(event);
             }
