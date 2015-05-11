@@ -21,6 +21,7 @@
     </android.support.v7.widget.Toolbar>
 
 
+    <!--画像のトランジッション処理のためandroid:transitionNameを設定（Lollipop以降のみ動作）-->
     <ImageView
         android:id="@+id/imagePicture"
         android:layout_width="match_parent"

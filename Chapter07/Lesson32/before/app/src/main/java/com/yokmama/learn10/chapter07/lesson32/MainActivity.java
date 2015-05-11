@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         int resId = (int) adapterView.getAdapter().getItem(i);
 
         //パレット解析を行うアクティビティに移動
+        //画像のトランジッション処理のためキー名を設定（Lollipop以降のみ動作）
         ActivityOptionsCompat options = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(this, view, getString(R.string.se_image));
         Intent intent = new Intent(MainActivity.this, PaletteActivity.class);

@@ -4,8 +4,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/deep_teal_200</item>
-        <item name="colorPrimaryDark">@color/deep_teal_500</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>
