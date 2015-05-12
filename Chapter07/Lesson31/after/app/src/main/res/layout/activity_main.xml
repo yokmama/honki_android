@@ -27,7 +27,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:elevation="5dp"
-        app:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        android:elevation="5dp"/>
 </RelativeLayout>

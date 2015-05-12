@@ -11,6 +11,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
+        card_view:cardElevation="2dp"
         card_view:cardCornerRadius="4dp">
 
         <ImageView
