@@ -7,34 +7,40 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.yokmama.learn10.chapter07.lesson33.adapter.MyGridAdapter;
+import com.yokmama.learn10.chapter07.lesson33.adapter.MyListAdapter;
+import com.yokmama.learn10.chapter07.lesson33.adapter.MyStaggeredAdapter;
+import com.yokmama.learn10.chapter07.lesson33.item.BaseItem;
 
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<BaseItem>> {
     private RecyclerView mRecyclerView;
+    private RadioGroup mListType;
     private List<BaseItem> mItems;
+    private RecyclerView.ItemDecoration mItemDecoration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RadioGroup listType = (RadioGroup) findViewById(R.id.listType);
-        listType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        mListType = (RadioGroup) findViewById(R.id.listType);
+        mListType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                updateListType(R.id.radioList == checkedId);
+                getSupportLoaderManager().restartLoader(0, null, MainActivity.this);
             }
         });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        //RecyclerViewに罫線を設定
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getResources()));
         //RecyclerViewにクリック処理とロングクリック処理を設定
         mRecyclerView.addOnItemTouchListener(new ItemClickListener(mRecyclerView) {
 
@@ -52,9 +58,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 return false;
             }
         });
-        updateListType(true);
-
         getSupportLoaderManager().initLoader(0, null, this);
+        updateAdapter();
     }
 
     @Override
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<BaseItem>> onCreateLoader(int id, Bundle args) {
-        return new SampleDataGenerator(getApplicationContext());
+        return new SampleDataGenerator(getApplicationContext(), mListType.getCheckedRadioButtonId());
     }
 
     @Override
@@ -80,51 +85,49 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
-    private void updateListType(boolean isList) {
-        if (isList) {
+    private void updateAdapter() {
+        if (mListType.getCheckedRadioButtonId() == R.id.radioList) {
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        } else {
+            //RecyclerViewに罫線を設定
+            mItemDecoration = new DividerItemDecoration(getResources());
+            //Dividerが設定されていなければ設定
+            if (mItemDecoration == null) {
+                mItemDecoration = new DividerItemDecoration(getResources());
+                mRecyclerView.addItemDecoration(mItemDecoration);
+            }
+            //ListViewスタイルのAdapetrを設定
+            mRecyclerView.setAdapter(new MyListAdapter(this, mItems));
+        } else if (mListType.getCheckedRadioButtonId() == R.id.radioGrid) {
             mRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
-            //グリッド幅の自動計算
-            mRecyclerView.getViewTreeObserver().addOnGlobalLayoutListener(
-                    new ViewTreeObserver.OnGlobalLayoutListener() {
-                        @Override
-                        public void onGlobalLayout() {
-                            mRecyclerView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                            int viewWidth = mRecyclerView.getMeasuredWidth();
-                            float cardViewWidth = getResources().getDimension(R.dimen.grid_width);
-                            int newSpanCount = (int) Math.ceil(viewWidth / cardViewWidth);
-                            ((GridLayoutManager) mRecyclerView.getLayoutManager()).setSpanCount(newSpanCount);
-                            //スパンを変更したらLayoutの変更通知も行う
-                            mRecyclerView.getLayoutManager().requestLayout();
-                        }
-                    }
-            );
             //グリッドの個数返却処理
             ((GridLayoutManager) mRecyclerView.getLayoutManager()).setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int i) {
                     int type = mRecyclerView.getAdapter().getItemViewType(i);
-                    if (type == 0) {
+                    if (type == R.id.index_type) {
                         return ((GridLayoutManager) mRecyclerView.getLayoutManager()).getSpanCount();
                     } else {
                         return 1;
                     }
                 }
             });
-        }
-        updateAdapter();
-    }
-
-    private void updateAdapter() {
-        MyAdapter adapter = new MyAdapter(this);
-        adapter.setItems(mItems);
-        if (mRecyclerView.getLayoutManager() instanceof GridLayoutManager) {
-            adapter.setLayoutType(MyAdapter.LayouType.GridStyle);
+            //Dividerが設定されていれば解除
+            if (mItemDecoration != null) {
+                mRecyclerView.removeItemDecoration(mItemDecoration);
+                mItemDecoration = null;
+            }
+            //GridViewスタイルのAdapetrを設定
+            mRecyclerView.setAdapter(new MyGridAdapter(this, mItems));
         } else {
-            adapter.setLayoutType(MyAdapter.LayouType.ListStyle);
+            mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+            //Dividerが設定されていれば解除
+            if (mItemDecoration != null) {
+                mRecyclerView.removeItemDecoration(mItemDecoration);
+                mItemDecoration = null;
+            }
+            //千鳥状スタイルのAdapetrを設定
+            mRecyclerView.setAdapter(new MyStaggeredAdapter(this, mItems));
         }
-        mRecyclerView.setAdapter(adapter);
 
     }
 }

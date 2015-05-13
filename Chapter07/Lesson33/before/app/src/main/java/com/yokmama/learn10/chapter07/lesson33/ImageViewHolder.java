@@ -14,6 +14,7 @@ public class ImageViewHolder {
     public ImageViewHolder(View itemView) {
         mImageView = (ImageView)itemView.findViewById(R.id.imageView);
         mTextView = (TextView)itemView.findViewById(R.id.textView);
+        itemView.setTag(this);
     }
 
     public ImageView getImageView() {

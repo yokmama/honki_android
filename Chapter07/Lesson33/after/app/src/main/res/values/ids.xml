@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="index_type" type="id"/>
+    <item name="small_image_type" type="id"/>
+    <item name="big_image_type" type="id"/>
+</resources>
