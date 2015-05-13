@@ -29,10 +29,6 @@ public class TranslateAnimationActivity extends FragmentActivity implements View
             Intent intent = new Intent(TranslateAnimationActivity.this, TranslateAnimationActivity.class);
             startActivity(intent);
         } else if (id == R.id.btn_fragment) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                Toast.makeText(this, "Android Honeycomb以降のみ実行可能です。", Toast.LENGTH_SHORT).show();
-                return;
-            }
             TranslateAnimationDialogFragment f = new TranslateAnimationDialogFragment();
             f.show(getSupportFragmentManager(), "TranslateAnimationDialogFragment");
         }
