@@ -23,8 +23,7 @@
 
         <activity
             android:name=".ui.TranslateAnimationActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Lesson34.TranslateAnimation" />
+            android:label="@string/app_name" />
 
         <activity
             android:name=".ui.TransitionsActivity"

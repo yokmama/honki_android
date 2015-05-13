@@ -24,17 +24,6 @@
 
     <!-- Translate Animation -->
 
-    <style name="Lesson34.Animation.Translate" parent="android:Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
-        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
-        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
-        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
-    </style>
-
-    <style name="Lesson34.TranslateAnimation" parent="AppTheme">
-        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Translate</item>
-    </style>
-
     <style name="Lesson34.Animation.Dialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
         <item name="android:windowBackground">@android:color/transparent</item>
