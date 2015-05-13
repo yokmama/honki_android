@@ -29,8 +29,6 @@ public class TranslateAnimationActivity extends FragmentActivity implements View
             Intent intent = new Intent(TranslateAnimationActivity.this, TranslateAnimationActivity.class);
             startActivity(intent);
         } else if (id == R.id.btn_fragment) {
-            TranslateAnimationDialogFragment f = new TranslateAnimationDialogFragment();
-            f.show(getSupportFragmentManager(), "TranslateAnimationDialogFragment");
         }
     }
 
