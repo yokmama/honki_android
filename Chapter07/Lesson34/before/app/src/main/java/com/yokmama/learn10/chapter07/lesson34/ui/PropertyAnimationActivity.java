@@ -70,38 +70,15 @@ public class PropertyAnimationActivity extends Activity implements View.OnClickL
             View childAt = mGridLayout.getChildAt(i);
 
             // アニメーション読み込み、設定
-            Animator anim = (isShowingGridLayout)
-                    ? AnimatorInflater.loadAnimator(this, R.animator.activity_property_animation_grid_hide)
-                    : AnimatorInflater.loadAnimator(this, R.animator.activity_property_animation_grid_show);
-            anim.setTarget(childAt);
-            anim.setStartDelay(dist * 60);
-            anim.start();
         }
         isShowingGridLayout = !isShowingGridLayout;
     }
 
     /** XMLで定義したプロパティアニメーションを実行 */
     private void doAnimationToBtnXXml() {
-        Animator anim = AnimatorInflater.loadAnimator(
-                this,R.animator.activity_property_animation_move_x);
-        anim.setTarget(mBtnXXml);
-        anim.start();
     }
 
     /** コードで定義したプロパティアニメーションを実行 */
     private void doAnimationToBtnXCode() {
-        Interpolator interpolator = AnimationUtils.loadInterpolator(
-                this, android.R.interpolator.decelerate_quint);
-
-        // 右向き、左向きのアニメーションをそれぞれ作成
-        ObjectAnimator animStart = ObjectAnimator.ofFloat(mBtnXCode, "translationX", 0.f, 500.f).setDuration(500);
-        ObjectAnimator animEnd = ObjectAnimator.ofFloat(mBtnXCode, "translationX", 500.f, 0.f).setDuration(500);
-        animStart.setInterpolator(interpolator);
-        animEnd.setInterpolator(interpolator);
-
-        // 順番に実行
-        AnimatorSet set = new AnimatorSet();
-        set.playSequentially(animStart, animEnd);
-        set.start();
     }
 }
