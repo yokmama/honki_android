@@ -8,10 +8,10 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="colorPrimary">@color/md_pink_500</item>
         <item name="colorPrimaryDark">@color/md_pink_800</item>
-        <!--<item name="colorAccent">#ff0000</item>-->
     </style>
 
-    <style name="Lesson34.fab" parent="android:Widget.Button"></style>
+    <style name="Lesson34.fab" parent="android:Widget.Button">
+    </style>
 
     <style name="fab" parent="Lesson34.fab">
         <item name="android:layout_width">@dimen/fab</item>
@@ -31,6 +31,10 @@
         <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
     </style>
 
+    <style name="Lesson34.TranslateAnimation" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Translate</item>
+    </style>
+
     <style name="Lesson34.Animation.Dialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -39,10 +43,6 @@
     <style name="Lesson34.Animation.Window" parent="android:Animation.Dialog">
         <item name="android:windowEnterAnimation">@anim/fragment_open_enter</item>
         <item name="android:windowExitAnimation">@anim/fragment_open_exit</item>
-    </style>
-
-    <style name="Lesson34.TranslateAnimation" parent="AppTheme">
-        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Translate</item>
     </style>
 
 </resources>
