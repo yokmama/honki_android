@@ -27,7 +27,7 @@ class Chip {
     float collectAnimTimeFraction;
     int type;
 
-    float phaseShift = 0.0f;
+    float phaseShiftFraction = 0.0f;
     float collectAnimTime = 1.0f;
     float collectAnimHeight = 100.0f;
     private float scorePhase;
@@ -37,7 +37,7 @@ class Chip {
         this(type, image, x, y, width, height, 0);
     }
 
-    public Chip(int type, TextureRegion image, float x, float y, float width, float height, float phaseShift) {
+    public Chip(int type, TextureRegion image, float x, float y, float width, float height, float phaseShiftFraction) {
         this.position.x = x;
         this.position.y = y;
         this.size.x = width;
@@ -46,7 +46,7 @@ class Chip {
         this.image = image;
         this.type = type;
         this.timeSinceCreation = 0;
-        this.phaseShift = phaseShift;
+        this.phaseShiftFraction = phaseShiftFraction;
         this.collisionCircle = new Circle(x + width / 2, y + height / 2, Math.min(width, height) / 2);
         this.isCollected = false;
         this.isDead = false;
@@ -68,8 +68,9 @@ class Chip {
         }
         else {
             // アイテム収集前アニメーション
-            double t = 2.0 * Math.PI / 1.4; // 周期
-            positionPhase.y = (float) Math.sin(timeSinceCreation * t - phaseShift) * size.y / 2.0f;
+            double af = 2 * Math.PI / 1.4f; // 角周波数
+            double phaseShift = 2 * Math.PI * phaseShiftFraction;
+            positionPhase.y = (float) Math.sin(timeSinceCreation * af - phaseShift) * size.y / 2.0f;
             collisionCircle.y = position.y + positionPhase.y + size.y / 2;
         }
         bounds.set(position.x, position.y + positionPhase.y, size.x, size.y);
