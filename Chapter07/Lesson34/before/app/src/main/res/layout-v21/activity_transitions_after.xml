@@ -34,8 +34,7 @@
         <Button
             android:id="@+id/action"
             style="@style/fab"
-            android:layout_gravity="center"
-            android:transitionName="@string/transition_name_fab" />
+            android:layout_gravity="center" />
     </FrameLayout>
 
 </RelativeLayout>

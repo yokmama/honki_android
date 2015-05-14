@@ -55,29 +55,6 @@ public class TransitionsAfterActivity extends Activity {
     }
 
     private void doRevealEffect() {
-        // RevealEffectは、ビューのサイズが計算されたタイミング以降でしか呼び出せない
-        // そのため、ビューが計算されるまで待つ
-        ViewUtils.callOnLayout(mToolbar, new ViewUtils.OnLayoutCallback() {
-            @Override
-            public void onLayout(View v) {
-                // Reveal Effect を実施
-                int centerX = mToolbar.getWidth() / 2;
-                int centerY = mToolbar.getHeight() / 2;
-                Animator animator = ViewAnimationUtils.createCircularReveal(
-                        mToolbar,
-                        centerX, centerY,
-                        0,
-                        (float) Math.hypot(centerX, centerY));
-
-                // 緩急の指定
-                Interpolator interpolator = AnimationUtils.loadInterpolator(getApplicationContext(),
-                        android.R.interpolator.accelerate_cubic);
-                animator.setInterpolator(interpolator);
-
-                // アニメーション開始
-                animator.start();
-            }
-        });
     }
 
 }

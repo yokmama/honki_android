@@ -61,9 +61,7 @@ public abstract class TransitionsBaseActivity extends Activity implements View.O
         intent.putExtra(TransitionsAfterActivity.EXTRA_BACKGROUND_ID, backgroundResId);
 
         // 遷移先の android:transitionName とマッチする
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this, buttonView, getString(R.string.transition_name_fab));
-        ActivityCompat.startActivity(this, intent, options.toBundle());
+        startActivity(intent);
     }
 
 }
