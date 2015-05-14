@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yokmama.learn10.chapter07.lesson34">
+          package="com.yokmama.learn10.chapter07.lesson34">
 
     <application
         android:allowBackup="true"
@@ -18,11 +18,22 @@
         </activity>
 
         <activity
-            android:name=".ui.TranslateAnimationActivity"
+            android:name=".ui.PropertyAnimationActivity"
             android:label="@string/app_name" />
 
         <activity
-            android:name=".ui.PropertyAnimationActivity"
+            android:name=".ui.TransitionsFadeActivity"
+            android:theme="@style/Lesson34.Transition.Fade"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".ui.TransitionsExplodeActivity"
+            android:theme="@style/Lesson34.Transition.Explode"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".ui.TransitionsSlideActivity"
+            android:theme="@style/Lesson34.Transition.Slide"
             android:label="@string/app_name" />
 
         <activity

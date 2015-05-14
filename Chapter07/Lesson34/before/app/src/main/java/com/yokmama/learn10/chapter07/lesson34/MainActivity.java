@@ -2,7 +2,9 @@ package com.yokmama.learn10.chapter07.lesson34;
 
 import com.yokmama.learn10.chapter07.lesson34.ui.FragmentTransitionsActivity;
 import com.yokmama.learn10.chapter07.lesson34.ui.PropertyAnimationActivity;
-import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsExplodeActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsFadeActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsSlideActivity;
 import com.yokmama.learn10.chapter07.lesson34.ui.TranslateAnimationActivity;
 
 import android.app.Activity;
@@ -50,13 +52,6 @@ public class MainActivity extends Activity {
 
                 // Intent発行
                 Intent intent = new Intent(MainActivity.this, item.activityClass);
-                if (item == Activities.Transitions_Fade) {
-                    intent.putExtra(TransitionsActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Fade);
-                } else if (item == Activities.Transitions_Explode) {
-                    intent.putExtra(TransitionsActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Explode);
-                } else if (item == Activities.Transitions_Slide) {
-                    intent.putExtra(TransitionsActivity.EXTRA_THEME_ID, R.style.Lesson34_Transition_Slide);
-                }
                 startActivity(intent);
             }
         });
@@ -68,9 +63,9 @@ public class MainActivity extends Activity {
     public enum Activities {
         TranslateAnimation("Translate Animation", TranslateAnimationActivity.class),
         PropertyAnimation("Property Animation", PropertyAnimationActivity.class),
-        Transitions_Fade("Activity Transitions (fade)", TransitionsActivity.class),
-        Transitions_Explode("Activity Transitions (explode)", TransitionsActivity.class),
-        Transitions_Slide("Activity Transitions (slide)", TransitionsActivity.class),
+        Transitions_Fade("Activity Transitions (fade)", TransitionsFadeActivity.class),
+        Transitions_Explode("Activity Transitions (explode)", TransitionsExplodeActivity.class),
+        Transitions_Slide("Activity Transitions (slide)", TransitionsSlideActivity.class),
         Transitions_Fragment("Fragment Transitions", FragmentTransitionsActivity.class),
         ;
         private final String title;

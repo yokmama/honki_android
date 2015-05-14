@@ -25,7 +25,7 @@ public abstract class TransitionsBaseActivity extends Activity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transitions);
+        setContentView(R.layout.activity_transitions_base);
 
         Button btnPink = (Button) findViewById(R.id.action_pink);
         Button btnLightGreen = (Button) findViewById(R.id.action_light_green);
