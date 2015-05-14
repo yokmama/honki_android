@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
                 // エラーチェック
                 if (item.name().startsWith("Transition")) {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                        String msg = "Android Lolipop以降でのみ実行可能です。";
+                        String msg = "Android Lollipop以降でのみ実行可能です。";
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                         return;
                     }
