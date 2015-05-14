@@ -71,20 +71,11 @@ public class FragmentTransitionsFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // Transitionsを生成
-        TransitionInflater ti = TransitionInflater.from(getActivity());
-
         // 指定されたタイプの Transitions を設定
         int viewId = getArguments().getInt(EXTRA_TRANSITIONS_TYPE_VIEW_ID);
         if (viewId == R.id.btn_add_fragment_explode) {
-            setEnterTransition(ti.inflateTransition(android.R.transition.explode));
-            setExitTransition(ti.inflateTransition(android.R.transition.explode));
         } else if (viewId == R.id.btn_add_fragment_fade) {
-            setEnterTransition(ti.inflateTransition(android.R.transition.fade));
-            setExitTransition(ti.inflateTransition(android.R.transition.fade));
         } else if (viewId == R.id.btn_add_fragment_slide) {
-            setEnterTransition(ti.inflateTransition(android.R.transition.slide_left));
-            setExitTransition(ti.inflateTransition(android.R.transition.slide_right));
         } else {
             // "NONE"押下時。この場合何もセットしない
         }
