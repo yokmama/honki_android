@@ -7,6 +7,7 @@ commands=(
 cleanall
 check
 buildall
+collectapk
 )
 scriptDir="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 cd $scriptDir
@@ -131,6 +132,28 @@ for gradlewFile in `find . -type f -name gradlew`; do
 done
 
 IFS=$tmpIFS
+}
+
+#############################
+
+function collectapk() {
+if [ -z ${WORKSPACE} ]; then
+  echo "Not env on Jenkins"
+  exit 1
+fi
+local resultDir="${WORKSPACE}/result"
+
+for gradlewFile in `find . -type f -name gradlew`; do
+  parentDir=${gradlewFile%/*}
+  pushd $parentDir > /dev/null
+  if [ -f ./app/build/outputs/apk/app-debug.apk ]; then
+    mkdir -p $resultDir/$parentDir
+    cp ./app/build/outputs/apk/app-debug.apk $resultDir/$parentDir/
+  else
+    echo "Not found apk: $parentDir"
+  fi
+  popd > /dev/null
+done
 }
 
 #############################
