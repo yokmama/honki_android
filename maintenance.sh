@@ -96,6 +96,10 @@ IFS=$'\n'
 
 for gradlewFile in `find . -type f -name gradlew`; do
   parentDir=${gradlewFile%/*}
+  if [ `echo $parentDir|grep Chapter07/Lesson33/before` ]; then
+    # 例外。既知のビルド出来ないプロジェクト。
+    continue;
+  fi
   pushd $parentDir
   ./gradlew --daemon clean assembleDebug
   popd
