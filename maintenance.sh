@@ -7,6 +7,7 @@ commands=(
 cleanall
 check
 buildall
+collectapk
 )
 scriptDir="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 cd $scriptDir
@@ -35,14 +36,14 @@ IFS=$'\n'
 
 function outInvalid() {
 if [ -z `echo $1 |grep "^./.git/\|^./maintenance\.sh\|^Binary\sfile\s\./"` ]; then
-  echo -ne $'\e[31m' # cyan
+  #echo -ne $'\e[31m' # cyan
   echo -ne "Invalid: "
-  echo -ne $'\e[0m' # reset
+  #echo -ne $'\e[0m' # reset
   echo "$1"
 fi
 }
 
-echo "List of 'targetSdkVersion':"
+echo "Check targetSdkVersion(22) :"
 for data in `grep -r "targetSdkVersion\s" .`; do
   if [ -z `echo $data |grep "targetSdkVersion 22"` ]; then
     # 22じゃなかった時
@@ -52,7 +53,7 @@ for data in `grep -r "targetSdkVersion\s" .`; do
 done
 
 echo
-echo "List of 'minSdkVersion':"
+echo "Check minSdkVersion(10 or 14) :"
 for data in `grep -r "minSdkVersion\s" .`; do
   if [ -z `echo $data |grep "minSdkVersion 10\|minSdkVersion 14"` ]; then
     # 10じゃなかった時
@@ -61,7 +62,7 @@ for data in `grep -r "minSdkVersion\s" .`; do
 done
 
 echo
-echo "List of 'buildToolsVersion':"
+echo "Check buildToolsVersion(22.0.1) :"
 for data in `grep -r "buildToolsVersion\s" .`; do
   if [ -z `echo $data |grep "buildToolsVersion \"22.0.1\""` ]; then
     # 21.1.2じゃなかった時
@@ -70,16 +71,25 @@ for data in `grep -r "buildToolsVersion\s" .`; do
 done
 
 echo
-echo "List of 'ActionBarActivity':"
+echo "Check exists 'ActionBarActivity' :"
 for data in `grep -r "\sActionBarActivity" .`; do
   # ActionBarActivity が見つかった時
   outInvalid $data
 done
 
 echo
-echo "List of 'appcompat-v7':"
+echo "Check appcompat-v7 version(22.1.1) :"
 for data in `grep -r "com.android.support:appcompat-v7" .`; do
   if [ -z `echo $data |grep "com.android.support:appcompat-v7:22.1.1"` ]; then
+    # 22.1.1じゃない場合
+    outInvalid $data
+  fi
+done
+
+echo
+echo "Check Gradle version(1.2.3) :"
+for data in `grep -r "com.android.tools.build:gradle" .`; do
+  if [ -z `echo $data |grep "com.android.tools.build:gradle:1.2.3"` ]; then
     # 22.1.1じゃない場合
     outInvalid $data
   fi
@@ -101,7 +111,7 @@ for gradlewFile in `find . -type f -name gradlew`; do
     continue;
   fi
   pushd $parentDir
-  ./gradlew --daemon --info clean assembleDebug
+  ./gradlew --info clean assembleDebug
   popd
 done
 
@@ -122,6 +132,28 @@ for gradlewFile in `find . -type f -name gradlew`; do
 done
 
 IFS=$tmpIFS
+}
+
+#############################
+
+function collectapk() {
+if [ -z ${WORKSPACE} ]; then
+  echo "Not env on Jenkins"
+  exit 1
+fi
+local resultDir="${WORKSPACE}/result"
+
+for gradlewFile in `find . -type f -name gradlew`; do
+  parentDir=${gradlewFile%/*}
+  pushd $parentDir > /dev/null
+  if [ -f ./app/build/outputs/apk/app-debug.apk ]; then
+    mkdir -p $resultDir/$parentDir
+    cp ./app/build/outputs/apk/app-debug.apk $resultDir/$parentDir/
+  else
+    echo "Not found apk: $parentDir"
+  fi
+  popd > /dev/null
+done
 }
 
 #############################
