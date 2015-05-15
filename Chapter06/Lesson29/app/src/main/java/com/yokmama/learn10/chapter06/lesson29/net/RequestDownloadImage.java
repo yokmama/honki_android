@@ -33,7 +33,7 @@ public class RequestDownloadImage {
         final File imageFile = new File(mImageDir, UUID.randomUUID().toString());
         if (!mImageDir.exists()) {
             if (!mImageDir.mkdirs()) {
-                throw new IOException("ディレクトリの作成に失敗しました。容量エラー？");
+                throw new IOException("ディレクトリの作成に失敗しました。");
             }
         }
 

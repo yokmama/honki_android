@@ -6,15 +6,15 @@
 
     <!--TODOリストを表示するListView-->
     <ListView
-        android:id="@+id/todoList"
+        android:id="@+id/todo_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerVertical="true" />
 
     <!--TODOリストを新規作成するFloatingActionButton-->
     <Button
-        style="@style/fab"
-        android:id="@+id/createTodo"
+        style="@style/FloatingActionButton"
+        android:id="@+id/create_todo"
         android:text="+"
         android:layout_margin="32dp"
         android:layout_alignParentRight="true"

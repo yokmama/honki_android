@@ -39,6 +39,8 @@ public class TodoFormFragment extends Fragment implements View.OnClickListener {
 
     private boolean mIsTextEdited = false;
 
+    private MenuItem mMenuAdd;
+
     public static TodoFormFragment newInstance() {
         return new TodoFormFragment();
     }
@@ -68,11 +70,11 @@ public class TodoFormFragment extends Fragment implements View.OnClickListener {
         View rootView = inflater.inflate(R.layout.fragment_todo, container, false);
 
         //カラーラベルのインスタンスを取得
-        rootView.findViewById(R.id.none).setOnClickListener(this);
-        rootView.findViewById(R.id.amber).setOnClickListener(this);
-        rootView.findViewById(R.id.green).setOnClickListener(this);
-        rootView.findViewById(R.id.indigo).setOnClickListener(this);
-        rootView.findViewById(R.id.pink).setOnClickListener(this);
+        rootView.findViewById(R.id.color_none).setOnClickListener(this);
+        rootView.findViewById(R.id.color_amber).setOnClickListener(this);
+        rootView.findViewById(R.id.color_green).setOnClickListener(this);
+        rootView.findViewById(R.id.color_indigo).setOnClickListener(this);
+        rootView.findViewById(R.id.color_pink).setOnClickListener(this);
 
         //入力フォームのインスタンスを取得
         mEtInput = (EditText) rootView.findViewById(R.id.input);
@@ -111,14 +113,13 @@ public class TodoFormFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    MenuItem mei;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         MenuItem menuItem = menu.findItem(MENU_ADD);
         if (menuItem == null) {
-            mei = menu.add(Menu.NONE, MENU_ADD, Menu.NONE, "ADD");
-            mei.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            mMenuAdd = menu.add(Menu.NONE, MENU_ADD, Menu.NONE, "ADD");
+            mMenuAdd.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         }
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -145,8 +146,16 @@ public class TodoFormFragment extends Fragment implements View.OnClickListener {
                 resultData.setAction(TodoListFragment.ACTION_CREATE_TODO);
                 LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(resultData);
 
-                //画面を閉じる
-                getFragmentManager().popBackStack();
+                boolean isTablet = ((MainActivity) getActivity()).isTablet();
+                if (!isTablet) {
+                    //通常レイアウトの時はリスト画面に戻る
+                    getFragmentManager().popBackStack();
+                } else {
+                    //タブレットレイアウトで新規TODOを作成した場合はテキストをクリア
+                    if (getArguments() == null) {
+                        mEtInput.getText().clear();
+                    }
+                }
 
                 //ソフトウェアキーボードを閉じる
                 InputMethodManager inputMethodManager = (InputMethodManager) getActivity()
@@ -163,15 +172,15 @@ public class TodoFormFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int viewId = v.getId();
-        if (viewId == R.id.none) {
+        if (viewId == R.id.color_none) {
             mColorLabel = Todo.ColorLabel.NONE;
-        } else if (viewId == R.id.amber) {
+        } else if (viewId == R.id.color_amber) {
             mColorLabel = Todo.ColorLabel.AMBER;
-        } else if (viewId == R.id.pink) {
+        } else if (viewId == R.id.color_pink) {
             mColorLabel = Todo.ColorLabel.PINK;
-        } else if (viewId == R.id.indigo) {
+        } else if (viewId == R.id.color_indigo) {
             mColorLabel = Todo.ColorLabel.INDIGO;
-        } else if (viewId == R.id.green) {
+        } else if (viewId == R.id.color_green) {
             mColorLabel = Todo.ColorLabel.GREEN;
         }
         mEtInput.setTextColor(getColorResource(mColorLabel));

@@ -22,7 +22,9 @@ import java.io.InputStream;
  * Created by kayo on 15/04/08.
  */
 public class WallpaperBroadcastReceiver extends BroadcastReceiver {
+
     private static final String TAG = WallpaperBroadcastReceiver.class.getSimpleName();
+
     private PreferenceDao mPrefs;
 
     @Override
@@ -97,9 +99,7 @@ public class WallpaperBroadcastReceiver extends BroadcastReceiver {
         am.cancel(pIntent);
 
         long current = SystemClock.elapsedRealtime();
-        am.setRepeating(AlarmManager.ELAPSED_REALTIME, current,
-                intervalMillis,
-                pIntent);
+        am.setRepeating(AlarmManager.ELAPSED_REALTIME, current, intervalMillis, pIntent);
 
         Log.v(TAG, "壁紙の自動変更を開始");
     }
