@@ -1,0 +1,38 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yokmama.learn10.chapter07.lesson30.fragment.WebViewFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!--URL入力欄-->
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:text="http://www.shoeisha.co.jp"
+            android:layout_weight="1"/>
+
+        <!--URLを読み込むButton-->
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="GO"/>
+    </LinearLayout>
+
+    <!--WebView-->
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/webView"/>
+</LinearLayout>

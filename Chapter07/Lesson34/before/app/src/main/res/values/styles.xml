@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- 共通のスタイル -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="colorPrimary">@color/md_pink_500</item>
+        <item name="colorPrimaryDark">@color/md_pink_800</item>
+    </style>
+
+    <style name="Lesson34.fab" parent="android:Widget.Button">
+    </style>
+
+    <style name="fab" parent="Lesson34.fab">
+        <item name="android:layout_width">@dimen/fab</item>
+        <item name="android:layout_height">@dimen/fab</item>
+        <item name="android:background">@drawable/fab_pink</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Translate Animation -->
+
+</resources>

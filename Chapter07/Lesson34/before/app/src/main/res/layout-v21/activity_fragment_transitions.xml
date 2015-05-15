@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentTransitionsActivity">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/btn_add_fragment_explode"
+        android:layout_width="@dimen/activity_fragment_transitions_button_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="Explode" />
+
+    <Button
+        android:id="@+id/btn_add_fragment_fade"
+        android:layout_width="@dimen/activity_fragment_transitions_button_width"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_add_fragment_explode"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="Fade" />
+
+    <Button
+        android:id="@+id/btn_add_fragment_slide"
+        android:layout_width="@dimen/activity_fragment_transitions_button_width"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_add_fragment_fade"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="Slide" />
+
+    <Button
+        android:id="@+id/btn_add_fragment_none"
+        android:layout_width="@dimen/activity_fragment_transitions_button_width"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_add_fragment_slide"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="None" />
+
+</RelativeLayout>

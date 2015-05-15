@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Chapter07 Lesson30</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="text_irohani">いろはにほへと　ちりぬるを\nわかよたれそ　つねならむ\nうゐのおくやま　けふこえて\nあさきゆめみし　ゑひもせす</string>
+    <string name="label_scaletype">スケールタイプを選択</string>
+    <string name="button_apply_image">Buttonに画像をセットすると縦横比が崩れる</string>
+    <string name="imagebutton_apply_image1">ImageButtonだと正しい縦横比の表示になる</string>
+    <string name="imagebutton_apply_image2">アイコンのような画像ボタンも作成可能</string>
+</resources>

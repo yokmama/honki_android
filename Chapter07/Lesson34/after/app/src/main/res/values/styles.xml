@@ -1,0 +1,48 @@
+<resources>
+
+    <!-- 共通のスタイル -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="colorPrimary">@color/md_pink_500</item>
+        <item name="colorPrimaryDark">@color/md_pink_800</item>
+    </style>
+
+    <style name="Lesson34.fab" parent="android:Widget.Button">
+    </style>
+
+    <style name="fab" parent="Lesson34.fab">
+        <item name="android:layout_width">@dimen/fab</item>
+        <item name="android:layout_height">@dimen/fab</item>
+        <item name="android:background">@drawable/fab_pink</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Translate Animation -->
+
+    <style name="Lesson34.Animation.Translate" parent="android:Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
+    </style>
+
+    <style name="Lesson34.TranslateAnimation" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Translate</item>
+    </style>
+
+    <style name="Lesson34.Animation.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Lesson34.Animation.Window" parent="android:Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/fragment_open_enter</item>
+        <item name="android:windowExitAnimation">@anim/fragment_open_exit</item>
+    </style>
+
+</resources>
