@@ -29,9 +29,9 @@ public class TodoListAdapter extends ArrayAdapter<Todo> {
         if (convertView == null) {
             convertView = mInflator.inflate(R.layout.item_list_row, parent, false);
             holder = new ViewHolder();
-            holder.tvColorLabel = (TextView) convertView.findViewById(R.id.colorLabel);
+            holder.tvColorLabel = (TextView) convertView.findViewById(R.id.color_label);
             holder.tvValue = (TextView) convertView.findViewById(R.id.value);
-            holder.tvCreatedTime = (TextView) convertView.findViewById(R.id.createdTime);
+            holder.tvCreatedTime = (TextView) convertView.findViewById(R.id.created_time);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

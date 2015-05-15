@@ -11,6 +11,8 @@ public class MainActivity extends ActionBarActivity {
 
     private List<Todo> mTodoList;
 
+    private boolean mIsTablet = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,13 @@ public class MainActivity extends ActionBarActivity {
 
         //TODOリスト一覧を表示
         showTodoList();
+
+        //タブレットレイアウトなら右側にフォーム画面を表示
+        FrameLayout container2 = (FrameLayout) findViewById(R.id.container2);
+        if (container2 != null) {
+            mIsTablet = true;
+            showTodoForm(mTodoList.get(0));
+        }
     }
 
     @Override
@@ -57,12 +66,25 @@ public class MainActivity extends ActionBarActivity {
             fragment = TodoFormFragment.newInstance(item.getColorLabel(),
                     item.getValue(), item.getCreatedTime());
         }
-        getFragmentManager().beginTransaction().replace(R.id.container, fragment, tag)
-                .addToBackStack(tag).commit();
+        int layoutId = R.id.container;
+        //タブレットの場合はcontainer2に表示
+        if (mIsTablet) {
+            layoutId = R.id.container2;
+        }
+        getFragmentManager().beginTransaction().replace(layoutId,
+                fragment, tag).addToBackStack(tag).commit();
     }
 
     public List<Todo> getTodoList() {
         return mTodoList;
+    }
+
+    /**
+     * タブレットか判定.
+     * @return
+     */
+    public boolean isTablet() {
+        return mIsTablet;
     }
 }
 

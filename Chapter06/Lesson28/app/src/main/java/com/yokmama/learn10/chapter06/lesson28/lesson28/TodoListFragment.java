@@ -48,7 +48,7 @@ public class TodoListFragment extends Fragment implements AdapterView.OnItemClic
         mAdapter = new TodoListAdapter(getActivity(), mTodoList);
 
         //ListViewを初期化
-        ListView listView = (ListView) rootView.findViewById(R.id.todoList);
+        ListView listView = (ListView) rootView.findViewById(R.id.todo_list);
         listView.setOnItemClickListener(this);
         listView.setAdapter(mAdapter);
 
@@ -56,7 +56,7 @@ public class TodoListFragment extends Fragment implements AdapterView.OnItemClic
         registerForContextMenu(listView);
 
         //新規作成Buttonの設定
-        rootView.findViewById(R.id.createTodo).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.create_todo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODOリストを追加
@@ -90,23 +90,20 @@ public class TodoListFragment extends Fragment implements AdapterView.OnItemClic
         super.onCreateContextMenu(menu, view, menuInfo);
 
         //ListViewのコンテキストメニューを作成
-        if (view.getId() == R.id.todoList) {
+        if (view.getId() == R.id.todo_list) {
             menu.setHeaderTitle("選択アイテム");
             menu.add(0, MENU_ID_DELETE, 0, "削除");
         }
     }
 
-    //コンテキストメニュークリック時のリスナ
+    //コンテキストメニュークリック時のリスナー
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
                 .getMenuInfo();
-
         int itemId = item.getItemId();
         if (itemId == MENU_ID_DELETE) {
-            //削除
-            mAdapter.remove(mAdapter.getItem(info.position));
-            mAdapter.notifyDataSetChanged();
+            //アイテムを削除
             return true;
         }
         return super.onContextItemSelected(item);

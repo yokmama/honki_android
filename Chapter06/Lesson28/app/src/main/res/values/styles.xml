@@ -8,7 +8,7 @@
     </style>
 
     <!--アクセントカラー-->
-    <color name="colorFab">#cddc39</color>
+    <color name="color_fab">#cddc39</color>
 
     <!--カラーラベルー-->
     <color name="material_amber_500">#ffc107</color>
@@ -18,7 +18,7 @@
     <color name="material_pink_500">#e91e63</color>
 
     <!-- FloatingActionButtonのスタイル -->
-    <style name="fab" parent="android:Widget.Button">
+    <style name="FloatingActionButton" parent="android:Widget.Button">
         <item name="android:layout_width">56dp</item>
         <item name="android:layout_height">56dp</item>
         <item name="android:textSize">32dp</item>
