@@ -101,7 +101,7 @@ for gradlewFile in `find . -type f -name gradlew`; do
     continue;
   fi
   pushd $parentDir
-  ./gradlew --daemon clean assembleDebug
+  ./gradlew --daemon --info clean assembleDebug
   popd
 done
 
