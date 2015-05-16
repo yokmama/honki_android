@@ -8,6 +8,7 @@ cleanall
 check
 buildall
 collectapk
+lintallNoError
 )
 scriptDir="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 cd $scriptDir
@@ -158,6 +159,23 @@ for gradlewFile in `find . -type f -name gradlew`; do
   popd > /dev/null
 done
 }
+
+#############################
+
+function lintallNoError() {
+tmpIFS=$IFS
+IFS=$'\n'
+
+for gradlewFile in `find . -type f -name gradlew`; do
+  parentDir=${gradlewFile%/*}
+  pushd $parentDir
+  ./gradlew --info lint || true
+  popd
+done
+
+IFS=$tmpIFS
+}
+
 
 #############################
 
