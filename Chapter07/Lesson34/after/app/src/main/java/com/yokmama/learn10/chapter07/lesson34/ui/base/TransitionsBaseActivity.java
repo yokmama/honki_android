@@ -1,9 +1,7 @@
 package com.yokmama.learn10.chapter07.lesson34.ui.base;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
@@ -19,7 +17,6 @@ import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsAfterActivity;
 /**
  * Created by kayo on 15/04/15.
  */
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public abstract class TransitionsBaseActivity extends Activity implements View.OnClickListener {
 
     @Override

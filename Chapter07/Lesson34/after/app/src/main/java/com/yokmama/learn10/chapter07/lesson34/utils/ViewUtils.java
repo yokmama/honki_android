@@ -1,5 +1,6 @@
 package com.yokmama.learn10.chapter07.lesson34.utils;
 
+import android.annotation.TargetApi;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -26,6 +27,7 @@ public class ViewUtils {
         v.getViewTreeObserver().addOnGlobalLayoutListener(l);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressWarnings("deprecation")
     private static void removeOnGlobalLayoutListener(ViewTreeObserver observer, ViewTreeObserver.OnGlobalLayoutListener listener) {
         if (observer == null) {

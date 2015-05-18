@@ -22,25 +22,9 @@ public class FragmentTransitionsFragment extends Fragment {
 
     /** 背景のカラー一覧 */
     private static int[] MD_COLORS = new int[] {
-            R.color.md_amber_300,
-            R.color.md_blue_300,
-            R.color.md_blue_grey_300,
-            R.color.md_brown_300,
-            R.color.md_cyan_300,
-            R.color.md_deep_orange_300,
-            R.color.md_deep_purple_300,
-            R.color.md_green_300,
-            R.color.md_grey_300,
-            R.color.md_indigo_300,
-            R.color.md_light_blue_300,
-            R.color.md_light_green_300,
-            R.color.md_lime_300,
-            R.color.md_orange_300,
-            R.color.md_pink_300,
-            R.color.md_purple_300,
-            R.color.md_red_300,
-            R.color.md_teal_300,
-            R.color.md_yellow_300,
+            R.color.md_purple_800,
+            R.color.md_purple_500,
+            R.color.md_pink_800,
     };
 
     public static FragmentTransitionsFragment newInstance(int page, int viewId) {

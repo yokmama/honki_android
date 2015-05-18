@@ -1,4 +1,10 @@
 <resources>
+    <color name="md_blue_500">#5677fc</color>
+    <color name="md_light_green_500">#8bc34a</color>
+    <color name="md_pink_500">#e91e63</color>
+    <color name="md_pink_800">#ad1457</color>
+    <color name="md_purple_500">#9c27b0</color>
+    <color name="md_purple_800">#6a1b9a</color>
 
     <!-- 共通のスタイル -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -18,7 +24,7 @@
         <item name="android:layout_height">@dimen/fab</item>
         <item name="android:background">@drawable/fab_pink</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/md_white_1000</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
