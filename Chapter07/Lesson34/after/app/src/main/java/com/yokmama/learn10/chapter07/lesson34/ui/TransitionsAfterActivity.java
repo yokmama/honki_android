@@ -19,9 +19,9 @@ import android.widget.TextView;
 /**
  * Created by kayo on 15/04/15.
  */
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class TransitionsAfterActivity extends Activity {
-    public static final String EXTRA_COLOR_ACCENT_ID = "extra.COLOR_ACCENT_ID";
+    public static final String EXTRA_COLOR_PRIMARY_ID = "extra.COLOR_ACCENT_ID";
+    public static final String EXTRA_COLOR_PRIMARY_DARK_ID = "extra.COLOR_PRIMARY_DARK_ID";
     public static final String EXTRA_BACKGROUND_ID = "extra.BACKGROUND_ID";
 
     private Toolbar mToolbar;
@@ -47,11 +47,16 @@ public class TransitionsAfterActivity extends Activity {
             }
         });
 
-        // 背景色
-        mToolbar.setBackgroundColor(getResources().getColor(getIntent().getIntExtra(EXTRA_COLOR_ACCENT_ID, 0)));
-        mFab.setBackgroundResource(getIntent().getIntExtra(EXTRA_BACKGROUND_ID, 0));
-
+        setupColors();
         doRevealEffect();
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void setupColors() {
+        // 色設定
+        mToolbar.setBackgroundColor(getResources().getColor(getIntent().getIntExtra(EXTRA_COLOR_PRIMARY_ID, 0)));
+        getWindow().setStatusBarColor(getResources().getColor(getIntent().getIntExtra(EXTRA_COLOR_PRIMARY_DARK_ID, 0)));
+        mFab.setBackgroundResource(getIntent().getIntExtra(EXTRA_BACKGROUND_ID, 0));
     }
 
     private void doRevealEffect() {

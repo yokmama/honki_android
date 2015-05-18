@@ -24,7 +24,7 @@ public class FragmentTransitionsFragment extends Fragment {
     private static int[] MD_COLORS = new int[] {
             R.color.md_purple_800,
             R.color.md_purple_500,
-            R.color.md_pink_800,
+            R.color.md_pink_700,
     };
 
     public static FragmentTransitionsFragment newInstance(int page, int viewId) {

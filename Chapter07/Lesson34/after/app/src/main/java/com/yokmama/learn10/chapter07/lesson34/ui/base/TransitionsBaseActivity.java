@@ -43,21 +43,22 @@ public abstract class TransitionsBaseActivity extends Activity implements View.O
         Button vButton = (Button) v;
         int id = v.getId();
         if (id == R.id.action_pink) {
-            onClickCircleButton(vButton, R.color.md_pink_500, R.drawable.fab_pink);
+            onClickCircleButton(vButton, R.color.md_pink_500, R.color.md_pink_700, R.drawable.fab_pink);
         } else if (id == R.id.action_light_green) {
-            onClickCircleButton(vButton, R.color.md_light_green_500, R.drawable.fab_light_green);
+            onClickCircleButton(vButton, R.color.md_light_green_500, R.color.md_light_green_700, R.drawable.fab_light_green);
         } else if (id == R.id.action_blue) {
-            onClickCircleButton(vButton, R.color.md_blue_500, R.drawable.fab_blue);
+            onClickCircleButton(vButton, R.color.md_blue_500, R.color.md_blue_700, R.drawable.fab_blue);
         } else {
             // いずれにも、ボタン押下
             throw new RuntimeException("No match btnId");
         }
     }
 
-    protected void onClickCircleButton(@IdRes Button buttonView, @ColorRes int colorResId, @DrawableRes int backgroundResId) {
+    protected void onClickCircleButton(@IdRes Button buttonView, @ColorRes int colorPrimaryResId, @ColorRes int colorPrimaryDarkResId, @DrawableRes int backgroundResId) {
         // 遷移先渡す情報をIntentに詰める
         Intent intent = new Intent(this, TransitionsAfterActivity.class);
-        intent.putExtra(TransitionsAfterActivity.EXTRA_COLOR_ACCENT_ID, colorResId);
+        intent.putExtra(TransitionsAfterActivity.EXTRA_COLOR_PRIMARY_ID, colorPrimaryResId);
+        intent.putExtra(TransitionsAfterActivity.EXTRA_COLOR_PRIMARY_DARK_ID, colorPrimaryDarkResId);
         intent.putExtra(TransitionsAfterActivity.EXTRA_BACKGROUND_ID, backgroundResId);
 
         // 遷移先の android:transitionName とマッチする
