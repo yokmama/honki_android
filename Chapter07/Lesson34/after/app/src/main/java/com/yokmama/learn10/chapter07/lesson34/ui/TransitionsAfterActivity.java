@@ -59,6 +59,7 @@ public class TransitionsAfterActivity extends Activity {
         mFab.setBackgroundResource(getIntent().getIntExtra(EXTRA_BACKGROUND_ID, 0));
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void doRevealEffect() {
         // RevealEffectは、ビューのサイズが計算されたタイミング以降でしか呼び出せない
         // そのため、ビューが計算されるまで待つ
