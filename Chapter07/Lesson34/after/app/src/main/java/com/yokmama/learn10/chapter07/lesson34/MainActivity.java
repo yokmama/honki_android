@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
      * 項目一覧
      */
     public enum Activities {
-        TranslateAnimation("Activity Animation", TranslateAnimationActivity.class),
+        ViewAnimation("View Animation", TranslateAnimationActivity.class),
         PropertyAnimation("Property Animation", PropertyAnimationActivity.class),
         Transitions_Fade("Activity Transitions (fade)", TransitionsFadeActivity.class),
         Transitions_Explode("Activity Transitions (explode)", TransitionsExplodeActivity.class),
