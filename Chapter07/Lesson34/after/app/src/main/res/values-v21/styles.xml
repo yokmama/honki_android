@@ -15,7 +15,7 @@
 
     <!-- Translate Animation -->
 
-    <style name="Lesson34.Animation.Dialog" parent="Theme.AppCompat.Light.Dialog">
+    <style name="Lesson34.Animation.Dialog" parent="android:Theme.Material.Light.Dialog.Alert">
         <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
     </style>
 

@@ -43,7 +43,7 @@
         <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Translate</item>
     </style>
 
-    <style name="Lesson34.Animation.Dialog" parent="Theme.AppCompat.Light.Dialog">
+    <style name="Lesson34.Animation.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
