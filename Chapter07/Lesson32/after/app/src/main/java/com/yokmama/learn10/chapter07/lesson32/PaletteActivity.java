@@ -59,7 +59,8 @@ public class PaletteActivity extends AppCompatActivity {
 
         //画像のパレットを解析
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+        Palette.Builder builder = new Palette.Builder(bitmap);
+        builder.generate(new Palette.PaletteAsyncListener() {
             @Override
             public void onGenerated(Palette palette) {
                 // Mutedな色情報を取得してToolbarにセット
@@ -69,12 +70,11 @@ public class PaletteActivity extends AppCompatActivity {
                     TextView tvTitle = (TextView) findViewById(R.id.textTitle);
                     tvTitle.setTextColor(muted.getTitleTextColor());
                     //ステータスバーのカラーを変更（Lollipop以降のみ動作）
-                    if(Build.VERSION.SDK_INT>=21){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         Window window = getWindow();
                         window.addFlags(
                                 WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                        window.clearFlags(
-                                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                         window.setStatusBarColor(muted.getRgb());
                     }
                 }
@@ -88,9 +88,7 @@ public class PaletteActivity extends AppCompatActivity {
                 setPalletBlock(palette.getDarkMutedColor(Color.TRANSPARENT), R.id.viewPalette6);
             }
         });
-
     }
-
 
     /**
      * 指定したViewにカラーをセット(色がない場合は非表示).
