@@ -11,6 +11,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -52,7 +54,9 @@ public class MainActivity extends Activity {
 
                 // Intent発行
                 Intent intent = new Intent(MainActivity.this, item.activityClass);
-                startActivity(intent);
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        MainActivity.this);
+                ActivityCompat.startActivity(MainActivity.this, intent, options.toBundle());
             }
         });
     }
@@ -61,7 +65,7 @@ public class MainActivity extends Activity {
      * 項目一覧
      */
     public enum Activities {
-        TranslateAnimation("Activity Animation", TranslateAnimationActivity.class),
+        ViewAnimation("View Animation", TranslateAnimationActivity.class),
         PropertyAnimation("Property Animation", PropertyAnimationActivity.class),
         Transitions_Fade("Activity Transitions (fade)", TransitionsFadeActivity.class),
         Transitions_Explode("Activity Transitions (explode)", TransitionsExplodeActivity.class),

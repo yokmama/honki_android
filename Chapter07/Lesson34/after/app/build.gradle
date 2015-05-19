@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.yokmama.learn10.chapter07.lesson34"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"

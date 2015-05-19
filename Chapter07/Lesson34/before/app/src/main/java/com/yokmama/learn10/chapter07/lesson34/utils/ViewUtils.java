@@ -1,5 +1,6 @@
 package com.yokmama.learn10.chapter07.lesson34.utils;
 
+import android.annotation.TargetApi;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -15,7 +16,7 @@ public class ViewUtils {
      * @param v        ビュー
      * @param callback ビューがレイアウトされた時に呼び出される
      */
-    public static void callOnLayout(final View v, final OnLayoutCallback callback) {
+    public static <T extends View> void callOnLayout(final T v, final OnLayoutCallback<T> callback) {
         ViewTreeObserver.OnGlobalLayoutListener l = new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -26,6 +27,7 @@ public class ViewUtils {
         v.getViewTreeObserver().addOnGlobalLayoutListener(l);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressWarnings("deprecation")
     private static void removeOnGlobalLayoutListener(ViewTreeObserver observer, ViewTreeObserver.OnGlobalLayoutListener listener) {
         if (observer == null) {
@@ -39,7 +41,7 @@ public class ViewUtils {
         }
     }
 
-    public interface OnLayoutCallback {
-        void onLayout(View v);
+    public interface OnLayoutCallback<T> {
+        void onLayout(T v);
     }
 }

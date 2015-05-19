@@ -54,9 +54,9 @@ for data in `grep -r "targetSdkVersion\s" .`; do
 done
 
 echo
-echo "Check minSdkVersion(10 or 14) :"
+echo "Check minSdkVersion(10 or 15) :"
 for data in `grep -r "minSdkVersion\s" .`; do
-  if [ -z `echo $data |grep "minSdkVersion 10\|minSdkVersion 14"` ]; then
+  if [ -z `echo $data |grep "minSdkVersion 10\|minSdkVersion 15"` ]; then
     # 10じゃなかった時
     outInvalid $data
   fi
