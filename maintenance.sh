@@ -80,7 +80,7 @@ done
 
 echo
 echo "Check appcompat-v7 version(22.1.1) :"
-for data in `grep -r "com.android.support:appcompat-v7" .`; do
+for data in `grep -r "compile\s\'com.android.support:appcompat-v7" .`; do
   if [ -z `echo $data |grep "com.android.support:appcompat-v7:22.1.1"` ]; then
     # 22.1.1じゃない場合
     outInvalid $data
