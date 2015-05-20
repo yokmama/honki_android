@@ -24,19 +24,20 @@
     <style name="Lesson34.Transition" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
-    <style name="Lesson34.Transition.Fade">
+    <style name="Lesson34.Transition.Fade" parent="Lesson34.Transition">
         <item name="android:windowEnterTransition">@android:transition/fade</item>
         <item name="android:windowExitTransition">@android:transition/fade</item>
     </style>
 
-    <style name="Lesson34.Transition.Slide">
+    <style name="Lesson34.Transition.Slide" parent="Lesson34.Transition">
         <item name="android:windowEnterTransition">@android:transition/slide_right</item>
         <item name="android:windowExitTransition">@android:transition/slide_left</item>
     </style>
 
-    <style name="Lesson34.Transition.Explode">
+    <style name="Lesson34.Transition.Explode" parent="Lesson34.Transition">
         <item name="android:windowEnterTransition">@android:transition/explode</item>
         <item name="android:windowExitTransition">@android:transition/explode</item>
     </style>
@@ -44,7 +45,6 @@
     <style name="Lesson34.TransitionAfter" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="android:windowContentTransitions">true</item>
         <item name="android:windowSharedElementEnterTransition">@transition/activity_transitions</item>
         <item name="android:windowSharedElementExitTransition">@transition/activity_transitions</item>
     </style>
@@ -52,12 +52,7 @@
     <!-- Fragment Transitions -->
 
     <style name="Lesson34.FragmentTransitions" parent="AppTheme">
-        <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:fragmentEnterTransition">@android:transition/slide_left</item>
-        <item name="android:fragmentExitTransition">@android:transition/slide_right</item>
-        <item name="android:fragmentReenterTransition">@android:transition/slide_left</item>
-        <item name="android:fragmentReturnTransition">@android:transition/slide_right</item>
     </style>
 
 </resources>
