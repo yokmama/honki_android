@@ -1,0 +1,32 @@
+<resources>
+
+    <style name="Lesson34.fab" parent="android:Widget.Button">
+        <item name="android:elevation">16dp</item>
+    </style>
+
+    <style name="fab" parent="Lesson34.fab">
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:background">@drawable/fab_pink</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Translate Animation -->
+
+    <!-- Transitions -->
+
+    <style name="Lesson34.Transition" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+    </style>
+
+    <style name="Lesson34.TransitionAfter" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+    </style>
+
+    <!-- Fragment Transitions -->
+
+</resources>
