@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cat1" />
+                android:src="@drawable/dog1" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cat2" />
+                android:src="@drawable/dog2" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cat3" />
+                android:src="@drawable/dog3" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cat4" />
+                android:src="@drawable/dog4" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cat5" />
+                android:src="@drawable/dog5" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cat6" />
+                android:src="@drawable/dog6" />
 
             <ImageView
                 android:id="@+id/imageView7"
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cat7" />
+                android:src="@drawable/dog7" />
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cat8" />
+                android:src="@drawable/dog8" />
 
             <ImageView
                 android:id="@+id/imageView9"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cat9" />
+                android:src="@drawable/dog9" />
 
             <ImageView
                 android:id="@+id/imageView10"
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cat10" />
+                android:src="@drawable/dog10" />
         </LinearLayout>
     </ScrollView>
 
