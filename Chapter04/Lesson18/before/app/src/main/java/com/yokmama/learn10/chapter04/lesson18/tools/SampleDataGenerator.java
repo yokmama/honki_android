@@ -57,8 +57,8 @@ public class SampleDataGenerator extends AsyncTaskLoader<List<ListItem>> {
 
     private void load(List<ListItem> col) {
         String name;
-        for(int i=0; i<17;i++) {
-            name = "cat"+(i+1);
+        for(int i=0; i<21;i++) {
+            name = "dog"+(i+1);
             int id = getContext().getResources().getIdentifier(name, "drawable", BuildConfig.APPLICATION_ID);
             ListItem item = new ListItem();
             item.setId(id);
