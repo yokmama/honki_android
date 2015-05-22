@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         contents.addView(brankHeader, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        //17個の画像をScrollViewのItemとして追加
+        //21個の画像をScrollViewのItemとして追加
         for (int i = 1; i <= 21; i++) {
             String resName = "dog" + i;
             if (TextUtils.isEmpty(searchName) || resName.contains(searchName)) {

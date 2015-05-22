@@ -15,11 +15,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    //画像リソース
-    private static final int[] catImages = {R.raw.cat1, R.raw.cat2, R.raw.cat3, R.raw.cat4,
-            R.raw.cat5, R.raw.cat6, R.raw.cat7, R.raw.cat8, R.raw.cat9, R.raw.cat10, R.raw.cat11,
-            R.raw.cat12, R.raw.cat13, R.raw.cat14, R.raw.cat15, R.raw.cat16, R.raw.cat17};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +22,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
 
         //GridViewにセットする画像リストを生成
-        List<Integer> itemList = new ArrayList<>();
-        for (int i = 0; i < catImages.length; i++) {
-            itemList.add(catImages[i]);
-        }
+        List<Integer> itemList = getImageList();
 
         //GirdViewに画像をセット
         GridView gridView = (GridView) findViewById(R.id.gridView);
@@ -53,5 +45,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Intent intent = new Intent(MainActivity.this, PaletteActivity.class);
         intent.putExtra(PaletteActivity.KEY_IMAGE, resId);
         ActivityCompat.startActivity(this, intent, options.toBundle());
+    }
+
+    private List<Integer> getImageList(){
+        List<Integer> imageList = new ArrayList<>();
+        //21個の画像をScrollViewのItemとして追加
+        for (int i = 1; i <= 21; i++) {
+            String resName = "dog" + i;
+            //文字列からリソースのIDを取得
+            int imageId = getResources().getIdentifier(resName, "drawable", getPackageName());
+            imageList.add(imageId);
+        }
+        return imageList;
     }
 }
