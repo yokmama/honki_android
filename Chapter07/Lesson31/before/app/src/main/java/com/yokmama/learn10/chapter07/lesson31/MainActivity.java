@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
         contents.removeAllViews();
 
         //17個の画像をScrollViewのItemとして追加
-        for (int i = 1; i <= 17; i++) {
-            String resName = "cat" + i;
+        for (int i = 1; i <= 21; i++) {
+            String resName = "dog" + i;
             if (TextUtils.isEmpty(searchName) || resName.contains(searchName)) {
                 View view = getLayoutInflater().inflate(R.layout.scroll_item, contents, false);
                 ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
