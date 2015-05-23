@@ -9,8 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
 
 /**
-* Created by maciek on 1/28/15.
-*/
+ * Created by maciek on 1/28/15.
+ */
 class Chip {
     final float[] chipScales;
 
@@ -89,18 +89,18 @@ class Chip {
     }
 
     // 描画
-    public void draw(MyGdxGame game) {
+    public void draw(MyGdxGame game, Text text) {
         if (!isDead) {
             oldColor = game.batch.getColor();
             if (isCollected) {
                 if (collectAnimTimeFraction < 0.5f) {
                     Color color = new Color(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
-                    GlyphLayout glyphLayout = new GlyphLayout(game.font, "+" + game.chipScores[type], color, 0, Align.left, false);
-                    game.font.getData().setScale(chipScales[type]);
-                    game.font.draw(game.batch, glyphLayout,
+                    GlyphLayout glyphLayout = new GlyphLayout(text.getFont(), "+" + game.chipScores[type], color, 0, Align.left, false);
+                    text.getFont().getData().setScale(chipScales[type]);
+                    text.getFont().draw(game.batch, glyphLayout,
                             position.x + game.chipSize * 0.5f - bounds.width * 0.5f,
                             position.y + game.chipSize + bounds.height + scorePhase);
-                    game.font.getData().setScale(1.0f);
+                    text.getFont().getData().setScale(1.0f);
                 }
 
                 game.batch.setColor(Color.alpha(1.0f - collectAnimTimeFraction));

@@ -8,17 +8,20 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Disposable;
 
-
-public class Text {
+/**
+ * テキスト
+ */
+public class Text implements Disposable {
 
     private final GlyphLayout glyphLayout;
-    private OrthographicCamera camera;
+    private final BitmapFont font;
     private final float centerX;
     private final float centerY;
 
-    public Text(OrthographicCamera camera) {
-        this.camera = camera;
+    public Text() {
+        font = new BitmapFont(Gdx.files.internal("verdana39.fnt"));
 
         glyphLayout = new GlyphLayout();
         centerX = Gdx.graphics.getWidth() * 0.5f;
@@ -26,7 +29,7 @@ public class Text {
     }
 
     // 上部にテキストを描画
-    public void drawTextTop(Batch batch, BitmapFont font, String text) {
+    public void drawTextTop(Batch batch, String text, OrthographicCamera camera) {
         glyphLayout.setText(font, text, Color.WHITE, 0, Align.center, false);
         float textY = font.getLineHeight();
         Vector3 v = camera.unproject(new Vector3(centerX, textY, 0));
@@ -34,11 +37,19 @@ public class Text {
     }
 
     // 中央にテキストを描画
-    public void drawTextCenter(Batch batch, BitmapFont font, String text) {
+    public void drawTextCenter(Batch batch, String text, OrthographicCamera camera) {
         glyphLayout.setText(font, text, Color.WHITE, 0, Align.center, false);
         float textY = centerY - glyphLayout.height * 0.5f;
         Vector3 v = camera.unproject(new Vector3(centerX, textY, 0));
         font.draw(batch, glyphLayout, v.x, v.y);
     }
 
+    public BitmapFont getFont() {
+        return font;
+    }
+
+    @Override
+    public void dispose() {
+        font.dispose();
+    }
 }

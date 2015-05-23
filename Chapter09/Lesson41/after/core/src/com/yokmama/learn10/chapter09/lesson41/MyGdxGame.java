@@ -7,7 +7,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
@@ -17,15 +16,15 @@ import com.badlogic.gdx.utils.Array;
 public class MyGdxGame extends ApplicationAdapter {
 
     // 現在のゲームの状態
-    GameState gameState = GameState.Ready;
+    public GameState gameState = GameState.Ready;
     // スコア
-    int score;
+    private int score;
 
-    SpriteBatch batch;
+    public SpriteBatch batch;
 
     // 描画範囲
-    int viewportWidth = 800;
-    int viewportHeight = 480;
+    public final int viewportWidth = 800;
+    public final int viewportHeight = 480;
 
     // カメラ
     OrthographicCamera camera;
@@ -35,7 +34,6 @@ public class MyGdxGame extends ApplicationAdapter {
     OrthographicCamera uiCamera;
 
     // テキスト
-    BitmapFont font;
     Text text;
 
     // キャラクターの制御オブジェクト
@@ -92,8 +90,7 @@ public class MyGdxGame extends ApplicationAdapter {
         uiCamera.update();
 
         // テキスト
-        font = new BitmapFont(Gdx.files.internal("verdana39.fnt"));
-        text = new Text(uiCamera);
+        text = new Text();
 
         // キャラクター
         Texture hero = new Texture("UnityChan.png");
@@ -295,7 +292,7 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.draw(backgroundClear, drawOffset, 0, bgWidth, viewportHeight);
 
         for (Chip chip : chips) {
-            chip.draw(this);
+            chip.draw(this, text);
         }
 
         for (Mine mine : mines) {
@@ -317,18 +314,18 @@ public class MyGdxGame extends ApplicationAdapter {
         // 文字列描画
 
         if (gameState == GameState.Ready) {
-            text.drawTextTop(batch, font, "START");
+            text.drawTextTop(batch, "START", uiCamera);
         }
         else if (gameState == GameState.GameCleared) {
-            text.drawTextTop(batch, font, "SCORE: " + score);
-            text.drawTextCenter(batch, font, "LEVEL CLEAR");
+            text.drawTextTop(batch, "SCORE: " + score, uiCamera);
+            text.drawTextCenter(batch, "LEVEL CLEAR", uiCamera);
         }
         else if (gameState == GameState.GameOver) {
-            text.drawTextTop(batch, font, "SCORE: " + score);
-            text.drawTextCenter(batch, font, "GAME OVER");
+            text.drawTextTop(batch, "SCORE: " + score, uiCamera);
+            text.drawTextCenter(batch, "GAME OVER", uiCamera);
         }
         else if (gameState == GameState.Running) {
-            text.drawTextTop(batch, font, "SCORE: " + score);
+            text.drawTextTop(batch, "SCORE: " + score, uiCamera);
         }
 
         batch.end();
