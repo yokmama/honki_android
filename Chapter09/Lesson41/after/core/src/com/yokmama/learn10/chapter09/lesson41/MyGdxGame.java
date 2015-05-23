@@ -16,11 +16,6 @@ import com.badlogic.gdx.utils.Array;
 
 public class MyGdxGame extends ApplicationAdapter {
 
-    // ゲームの状態
-    enum GameState {
-        Ready, Running, GameOver, GameCleared
-    }
-
     // 現在のゲームの状態
     GameState gameState = GameState.Ready;
     // スコア
