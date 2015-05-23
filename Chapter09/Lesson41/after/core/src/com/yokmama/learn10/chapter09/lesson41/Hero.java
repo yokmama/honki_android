@@ -6,8 +6,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Disposable;
 
-class Hero {
+/**
+ * キャラクター
+ */
+class Hero implements Disposable {
 
     // 地面からの距離
     static final float HERO_FLOOR_Y = 45;
@@ -20,9 +24,10 @@ class Hero {
     final static int ANIM_STATE_JUMPING = 1;
 
     // テクスチャ
-    private final TextureRegion mDeadFrame;
-    Animation[] mAnimations;
-    TextureRegion mAnimStillFrame;
+    private Texture texture;
+    private TextureRegion mAnimStillFrame;
+    private TextureRegion mDeadFrame;
+    private Animation[] mAnimations;
 
     // アニメーションの状態
     int mAnimState;
@@ -47,26 +52,31 @@ class Hero {
     boolean mIsDead;
     boolean mHasWon;
 
-    public Hero(Texture texture, int spriteWidth, int spriteHeight,
-                float[] msPerFrame, int[] stateFrames) {
+    private static final int TILE_WIDTH = 64;
+    private static final int TILE_HEIGHT = 64;
+
+    private static final float TIME_DURATION_JUMPING = 0.05f;
+    private static final float TIME_DURATION_RUNNING = 0.05f;
+
+    public Hero() {
+        texture = new Texture("UnityChan.png");
+
         mAnimations = new Animation[3];
 
         // テクスチャから、状態毎に TextureRegion を取得する
         Array<TextureRegion> regions;
         TextureRegion[][] split = TextureRegion.split(texture,
-                spriteWidth, spriteHeight);
+                TILE_WIDTH, TILE_HEIGHT);
 
         regions = new Array<TextureRegion>();
-        regions.addAll(split[1], 0, stateFrames[ANIM_STATE_RUNNING]);
-        regions.addAll(split[2], 0, stateFrames[ANIM_STATE_RUNNING]);
-        mAnimations[ANIM_STATE_RUNNING] = new Animation(
-                msPerFrame[ANIM_STATE_RUNNING],
+        regions.addAll(split[1], 0, 4);
+        regions.addAll(split[2], 0, 4);
+        mAnimations[ANIM_STATE_RUNNING] = new Animation(TIME_DURATION_RUNNING,
                 regions, Animation.PlayMode.LOOP);
 
         regions = new Array<TextureRegion>();
-        regions.addAll(split[3], 0, stateFrames[ANIM_STATE_JUMPING]);
-        mAnimations[ANIM_STATE_JUMPING] = new Animation(
-                msPerFrame[ANIM_STATE_JUMPING],
+        regions.addAll(split[3], 0, 7);
+        mAnimations[ANIM_STATE_JUMPING] = new Animation(TIME_DURATION_JUMPING,
                 regions, Animation.PlayMode.NORMAL);
 
         mDeadFrame = split[0][3];
@@ -171,5 +181,10 @@ class Hero {
         mAnimStillFrame = mDeadFrame;
         mAnimState = ANIM_STATE_STILL;
         // TODO: ゲームオーバー時
+    }
+
+    @Override
+    public void dispose() {
+
     }
 }
