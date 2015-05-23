@@ -53,14 +53,14 @@ public class MyGdxGame extends ApplicationAdapter {
     public void create() {
         batch = new SpriteBatch();
 
-        // UI用カメラ
-        uiCamera = new OrthographicCamera();
-        uiCamera.setToOrtho(false, camera.viewportWidth, camera.viewportHeight);
-
         // ゲーム用カメラ
         camera = new OrthographicCamera();
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+
+        // UI用カメラ
+        uiCamera = new OrthographicCamera();
+        uiCamera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
         // テキスト
         text = new Text();
