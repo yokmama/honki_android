@@ -21,14 +21,14 @@ class Hero {
     private static final float TIME_DURATION_JUMPING = 0.05f;
     private static final float TIME_DURATION_WIN = 0.2f;
 
-    // アニメーションの状態
+    // アニメーションの状態(または添字)
     private final static int ANIM_STATE_STILL = -1;
     private final static int ANIM_STATE_RUNNING = 0;
     private final static int ANIM_STATE_JUMPING = 1;
     private final static int ANIM_STATE_WIN = 2;
 
     // 地面からの距離
-    static final float HERO_FLOOR_Y = 45;
+    static final float HERO_FLOOR_Y = 40;
     // 画面左からの距離
     static final float HERO_LEFT_X = 150;
 
@@ -61,6 +61,8 @@ class Hero {
     boolean mIsDead;
     float mDeadTime;
     float mDeadPosY;
+    float mDeadJumpHeight = 100.0f;
+    boolean mHasDeathAnimEnded;
 
     // ゲームクリア
     final static int WIN_ANIM_STATE_WAIT_FOR_LANDING = 0;
@@ -89,6 +91,7 @@ class Hero {
         mAnimStillFrame = sAnimations[ANIM_STATE_RUNNING].getKeyFrame(0);
         mPosition.set(Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y);
         mVelocity.set(0, 0);
+        mHasDeathAnimEnded = false;
     }
 
     public static void loadTexture() {
@@ -152,8 +155,15 @@ class Hero {
 
     public void update(float deltaTime) {
         if (mIsDead) {
+            mDeadTime += deltaTime;
+            float deadTimeFrac = mDeadTime / 0.75f;
+            mPosition.y = mDeadPosY + deadFunc(deadTimeFrac) * mDeadJumpHeight;
+            if (deadTimeFrac >= 0.75f) {
+                mHasDeathAnimEnded = true;
+            }
             return;
         }
+
 
         mCurrentStateDisplayTime += deltaTime;
 
@@ -204,12 +214,20 @@ class Hero {
         mCollisionRect.set(mPosition.x + 30, mPosition.y, 40, 68);
     }
 
+    private float deadFunc(float t) {
+        t = Math.min(Math.max(t, 0.0f), 1.0f);
+        return -7.6f * t * t + 5.62f * t;
+    }
+
     private float jumpFunc(float t) {
         t = Math.min(Math.max(t, 0.0f), 1.0f);
         return t * (-4.0f * t + 4.0f);
     }
 
     public void draw(MyGdxGame game) {
+        if (mHasDeathAnimEnded)
+            return;
+
         if (mAnimState == ANIM_STATE_STILL) {
             game.batch.draw(mAnimStillFrame,
                     mPosition.x, mPosition.y, 100, 98);
