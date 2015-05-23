@@ -12,8 +12,8 @@ import com.badlogic.gdx.math.Rectangle;
 public class MyGdxGame extends ApplicationAdapter {
 
     // 描画範囲
-    public final int VIEWPORT_WIDTH = 800;
-    public final int VIEWPORT_HEIGHT = 480;
+    public static final int VIEWPORT_WIDTH = 800;
+    public static final int VIEWPORT_HEIGHT = 480;
 
     // 現在のゲームの状態
     public GameState gameState = GameState.Ready;
@@ -35,9 +35,7 @@ public class MyGdxGame extends ApplicationAdapter {
     Hero mHero;
 
     // 背景
-    Texture backgroundClear;
-    float bgWidth;
-    float bgSpeed;
+    private Background background;
 
     // ゴール
     Texture finish;
@@ -69,13 +67,11 @@ public class MyGdxGame extends ApplicationAdapter {
         mHero = new Hero();
 
         // 背景
-        backgroundClear = new Texture("bg.png");
-        bgWidth = VIEWPORT_HEIGHT * (backgroundClear.getWidth() / backgroundClear.getHeight());
-        bgSpeed = 0.2f;
+        background = new Background(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
         // ゴール
         finish = new Texture("flag.png");
-        finishX = (bgWidth - VIEWPORT_WIDTH) / bgSpeed + Hero.HERO_LEFT_X;
+        finishX = (background.getStageWidth() - VIEWPORT_WIDTH) / Background.SPEED + Hero.HERO_LEFT_X;
 
         mGenerator = new Generator();
 
@@ -217,9 +213,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // ゲーム描画
 
-        float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
-        batch.draw(backgroundClear, drawOffset, 0, bgWidth, VIEWPORT_HEIGHT);
-
+        background.draw(batch, cameraLeftEdge);
         mGenerator.draw(this);
         mHero.draw(this);
 
