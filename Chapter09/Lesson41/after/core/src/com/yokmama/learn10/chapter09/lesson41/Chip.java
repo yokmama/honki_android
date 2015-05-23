@@ -2,59 +2,61 @@ package com.yokmama.learn10.chapter09.lesson41;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Disposable;
 
 /**
  * Created by maciek on 1/28/15.
  */
-class Chip implements Disposable {
+public class Chip {
 
-    // スコアアイテム毎の添字
-    static final int SCORE_ITEM_ONE = 0;
-    static final int SCORE_ITEM_TWO = 1;
-    static final int SCORE_ITEM_THREE = 2;
-    static final int SCORE_ITEM_FOUR = 3;
+    // スコアアイテム毎の種別
+    public static final int TYPE_ONE = 0;
+    public static final int TYPE_TWO = 1;
+    public static final int TYPE_THREE = 2;
+    public static final int TYPE_FOUR = 3;
 
-    static Texture coins;
+    // テクスチャの大きさ
+    private static final int TEXTURE_COIN_SIZE = 16;
+
+    // 取得時にアニメーションする時間
+    private static final float COLLECT_ANIM_TIME = 1.0f;
+    private static final float COLLECT_ANIM_HEIGHT = 100.0f;
+
+    // 大きさ
+    public static final float CHIP_SIZE = 50.0f;
+
+    // スコアアイテム毎の種別
+    public int type;
+
+    //
+    static Texture chipsTexture;
     static TextureRegion[] chipRegions;
-    public static final int[] chipScores = new int[4];
-    public static final float chipSize = 50.0f;
-
-    final float[] chipScales;
+    public static final int[] chipScores;
+    private static final float[] scoreTextScales;
 
     final Vector2 position = new Vector2();
     final Vector2 positionPhase = new Vector2();
     final Vector2 size = new Vector2();
     final Rectangle bounds = new Rectangle();
     final Circle collisionCircle;
-    boolean isCollected;
-    boolean isDead;
-    float timeSinceCreation;
-    float timeSinceCollected;
-    float collectAnimTimeFraction;
-    int type;
+    public boolean isCollected = false;
+    public boolean isDead = false;
 
-    float phaseShiftFraction = 0.0f;
-    float collectAnimTime = 1.0f;
-    float collectAnimHeight = 100.0f;
+    // アニメーション変数
+    private float timeSinceCreation;
+    private float timeSinceCollected;
+    private float collectAnimTimeFraction;
+    private final float phaseShiftFraction;
     private float scorePhase;
-    private Color oldColor;
-
-    private static final int COINS_SIZE = 16;
 
     static {
-        chipScores[SCORE_ITEM_ONE] = 10;
-        chipScores[SCORE_ITEM_TWO] = 20;
-        chipScores[SCORE_ITEM_THREE] = 50;
-        chipScores[SCORE_ITEM_FOUR] = 100;
+        chipScores = new int[] { 10, 20, 50, 100 };
+        scoreTextScales = new float[] { 0.6f, 0.65f, 0.7f, 0.8f };
     }
 
     public Chip(int type, float x, float y, float width, float height) {
@@ -71,27 +73,25 @@ class Chip implements Disposable {
         this.timeSinceCreation = 0;
         this.phaseShiftFraction = phaseShiftFraction;
         this.collisionCircle = new Circle(x + width / 2, y + height / 2, Math.min(width, height) / 2);
-        this.isCollected = false;
-        this.isDead = false;
-        this.chipScales = new float[] { 0.6f, 0.65f, 0.7f, 0.8f };
     }
 
-    public static void load() {
-        if (coins == null) {
-            coins = new Texture("coins.png");
-            TextureRegion[] split = TextureRegion.split(coins, COINS_SIZE, COINS_SIZE)[0];
+    public static void loadTexture() {
+        if (chipsTexture == null) {
+            chipsTexture = new Texture("coins.png");
+            TextureRegion[] split = TextureRegion.split(chipsTexture, TEXTURE_COIN_SIZE, TEXTURE_COIN_SIZE)[0];
             chipRegions = new TextureRegion[4];
-            chipRegions[SCORE_ITEM_ONE] = split[0];
-            chipRegions[SCORE_ITEM_TWO] = split[1];
-            chipRegions[SCORE_ITEM_THREE] = split[2];
-            chipRegions[SCORE_ITEM_FOUR] = split[3];
+            chipRegions[TYPE_ONE] = split[0];
+            chipRegions[TYPE_TWO] = split[1];
+            chipRegions[TYPE_THREE] = split[2];
+            chipRegions[TYPE_FOUR] = split[3];
         }
     }
 
-    @Override
-    public void dispose() {
-        coins.dispose();
-        chipRegions = null;
+    public static void disposeTexture() {
+        if (chipsTexture != null) {
+            chipsTexture.dispose();
+            chipRegions = null;
+        }
     }
 
     // 状態の更新
@@ -100,10 +100,10 @@ class Chip implements Disposable {
         if (isCollected) {
             // アイテム収集後アニメーション
             timeSinceCollected += deltaTime;
-            collectAnimTimeFraction = timeSinceCollected / collectAnimTime;
-            positionPhase.y = collectFunc(collectAnimTimeFraction) * collectAnimHeight;
-            scorePhase = scoreFunc(collectAnimTimeFraction) * collectAnimHeight;
-            if (timeSinceCollected > collectAnimTime) {
+            collectAnimTimeFraction = timeSinceCollected / COLLECT_ANIM_TIME;
+            positionPhase.y = collectFunc(collectAnimTimeFraction) * COLLECT_ANIM_HEIGHT;
+            scorePhase = scoreFunc(collectAnimTimeFraction) * COLLECT_ANIM_HEIGHT;
+            if (timeSinceCollected > COLLECT_ANIM_TIME) {
                 isDead = true;
             }
         }
@@ -132,15 +132,15 @@ class Chip implements Disposable {
     // 描画
     public void draw(MyGdxGame game, Text text) {
         if (!isDead) {
-            oldColor = game.batch.getColor();
+            Color oldColor = game.batch.getColor();
             if (isCollected) {
                 if (collectAnimTimeFraction < 0.5f) {
                     Color color = new Color(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
                     GlyphLayout glyphLayout = new GlyphLayout(text.getFont(), "+" + chipScores[type], color, 0, Align.left, false);
-                    text.getFont().getData().setScale(chipScales[type]);
+                    text.getFont().getData().setScale(scoreTextScales[type]);
                     text.getFont().draw(game.batch, glyphLayout,
-                            position.x + chipSize * 0.5f - bounds.width * 0.5f,
-                            position.y + chipSize + bounds.height + scorePhase);
+                            position.x + CHIP_SIZE * 0.5f - bounds.width * 0.5f,
+                            position.y + CHIP_SIZE + bounds.height + scorePhase);
                     text.getFont().getData().setScale(1.0f);
                 }
 
@@ -160,4 +160,8 @@ class Chip implements Disposable {
         scorePhase = 0.0f;
     }
 
+    // スコアを取得
+    public int getScore() {
+        return chipScores[this.type];
+    }
 }

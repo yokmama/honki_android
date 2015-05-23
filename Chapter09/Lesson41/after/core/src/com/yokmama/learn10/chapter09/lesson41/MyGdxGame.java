@@ -6,38 +6,33 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Array;
 
 public class MyGdxGame extends ApplicationAdapter {
 
+    // 描画範囲
+    public final int VIEWPORT_WIDTH = 800;
+    public final int VIEWPORT_HEIGHT = 480;
+
     // 現在のゲームの状態
     public GameState gameState = GameState.Ready;
+
     // スコア
     private int score;
 
     public SpriteBatch batch;
 
-    // 描画範囲
-    public final int viewportWidth = 800;
-    public final int viewportHeight = 480;
-
     // カメラ
+    OrthographicCamera uiCamera;
     OrthographicCamera camera;
     float cameraLeftEdge;
 
-    // UI用カメラ
-    OrthographicCamera uiCamera;
-
     // テキスト
-    Text mText;
+    Text text;
 
     // キャラクターの制御オブジェクト
     Hero mHero;
-    // キャラクターの速度
-    float heroVelocityX = 400;
 
     // 背景
     Texture backgroundClear;
@@ -49,11 +44,7 @@ public class MyGdxGame extends ApplicationAdapter {
     float finishX;
 
     // Generator
-    private Generator generator;
-
-    // スコアアイテム
-
-    // 障害物
+    private Generator mGenerator;
 
     // サウンド
     private SoundManager mSound;
@@ -62,32 +53,31 @@ public class MyGdxGame extends ApplicationAdapter {
     public void create() {
         batch = new SpriteBatch();
 
-        // カメラ
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, viewportWidth, viewportHeight);
-        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
-
         // UI用カメラ
         uiCamera = new OrthographicCamera();
         uiCamera.setToOrtho(false, camera.viewportWidth, camera.viewportHeight);
-        uiCamera.update();
+
+        // ゲーム用カメラ
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
 
         // テキスト
-        mText = new Text();
+        text = new Text();
 
         // キャラクター
         mHero = new Hero();
 
         // 背景
         backgroundClear = new Texture("bg.png");
-        bgWidth = viewportHeight * (backgroundClear.getWidth() / backgroundClear.getHeight());
+        bgWidth = VIEWPORT_HEIGHT * (backgroundClear.getWidth() / backgroundClear.getHeight());
         bgSpeed = 0.2f;
 
         // ゴール
         finish = new Texture("flag.png");
-        finishX = (bgWidth - viewportWidth) / bgSpeed + Hero.HERO_LEFT_X;
+        finishX = (bgWidth - VIEWPORT_WIDTH) / bgSpeed + Hero.HERO_LEFT_X;
 
-        generator = new Generator();
+        mGenerator = new Generator();
 
         mSound = new SoundManager();
         mSound.music.play();
@@ -95,21 +85,30 @@ public class MyGdxGame extends ApplicationAdapter {
         resetWorld();
     }
 
+    @Override
+    public void resize(int width, int height) {
+        uiCamera.update();
+    }
+
+    @Override
+    public void dispose() {
+        Hero.disposeTexture();
+        mSound.dispose();
+    }
+
     // ゲームを最初の状態に戻す
     private void resetWorld() {
         score = 0;
 
         // キャラクターの位置と状態の初期化
-        mHero.getPosition().set(Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y);
-        mHero.getVelocity().set(0, 0);
         mHero.init();
 
         // カメラの位置を開始点へ設定
-        camera.position.x = viewportWidth / 2 - Hero.HERO_LEFT_X;
-        cameraLeftEdge = camera.position.x - viewportWidth / 2;
+        camera.position.x = VIEWPORT_WIDTH / 2 - Hero.HERO_LEFT_X;
+        cameraLeftEdge = camera.position.x - VIEWPORT_WIDTH / 2;
 
-        generator.init(viewportWidth);
-        generator.clear();
+        mGenerator.init(VIEWPORT_WIDTH);
+        mGenerator.clear();
     }
 
     @Override
@@ -133,7 +132,6 @@ public class MyGdxGame extends ApplicationAdapter {
                 gameState = GameState.Running;
 
                 mHero.startRunning();
-                mHero.getVelocity().set(heroVelocityX, 0);
             }
             else if (gameState == GameState.GameOver) {
                 gameState = GameState.Ready;
@@ -151,14 +149,14 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // オブジェクトの新規生成
 
-        if (generator.chipGenerationLine < cameraLeftEdge + viewportWidth &&
-                generator.chipGenerationLine + 5 * 50.0f < finishX) {
-            generator.generate(this);
+        if (mGenerator.chipGenerationLine < cameraLeftEdge + VIEWPORT_WIDTH &&
+                mGenerator.chipGenerationLine + 5 * 50.0f < finishX) {
+            mGenerator.generate(this);
         }
 
         // オブジェクトの更新
 
-        generator.update(this, deltaTime);
+        mGenerator.update(this, deltaTime);
 
         // キャラクターの状態を更新
 
@@ -167,8 +165,8 @@ public class MyGdxGame extends ApplicationAdapter {
         // カメラの位置をキャラクターに合わせて移動させる
 
         if (gameState != GameState.GameCleared) {
-            camera.position.x = viewportWidth / 2 + mHero.getPosition().x - Hero.HERO_LEFT_X;
-            cameraLeftEdge = camera.position.x - viewportWidth / 2;
+            camera.position.x = VIEWPORT_WIDTH / 2 + mHero.getPosition().x - Hero.HERO_LEFT_X;
+            cameraLeftEdge = camera.position.x - VIEWPORT_WIDTH / 2;
         }
 
         // ゲームクリアチェック
@@ -192,16 +190,16 @@ public class MyGdxGame extends ApplicationAdapter {
 
         Rectangle heroCollision = mHero.getCollisionRect();
 
-        for (Chip chip : generator.chips) {
+        for (Chip chip : mGenerator.chips) {
             if (!chip.isCollected && Intersector.overlaps(chip.collisionCircle, heroCollision)) {
                 chip.collect();
                 mSound.coin.play();
 
-                score += Chip.chipScores[chip.type];
+                score += chip.getScore();
             }
         }
 
-        for (Mine mine : generator.mines) {
+        for (Mine mine : mGenerator.mines) {
             if (!mine.hasCollided && Intersector.overlaps(mine.collisionCircle, heroCollision)) {
                 mine.collide();
                 mSound.collision.play();
@@ -220,10 +218,9 @@ public class MyGdxGame extends ApplicationAdapter {
         // ゲーム描画
 
         float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
-        batch.draw(backgroundClear, drawOffset, 0, bgWidth, viewportHeight);
+        batch.draw(backgroundClear, drawOffset, 0, bgWidth, VIEWPORT_HEIGHT);
 
-        generator.draw(this);
-
+        mGenerator.draw(this);
         mHero.draw(this);
 
         batch.draw(finish, finishX, 0,
@@ -239,26 +236,20 @@ public class MyGdxGame extends ApplicationAdapter {
         // 文字列描画
 
         if (gameState == GameState.Ready) {
-            mText.drawTextTop(batch, "START", uiCamera);
+            text.drawTextTop(batch, "START", uiCamera);
         }
         else if (gameState == GameState.GameCleared) {
-            mText.drawTextTop(batch, "SCORE: " + score, uiCamera);
-            mText.drawTextCenter(batch, "LEVEL CLEAR", uiCamera);
+            text.drawTextTop(batch, "SCORE: " + score, uiCamera);
+            text.drawTextCenter(batch, "LEVEL CLEAR", uiCamera);
         }
         else if (gameState == GameState.GameOver) {
-            mText.drawTextTop(batch, "SCORE: " + score, uiCamera);
-            mText.drawTextCenter(batch, "GAME OVER", uiCamera);
+            text.drawTextTop(batch, "SCORE: " + score, uiCamera);
+            text.drawTextCenter(batch, "GAME OVER", uiCamera);
         }
         else if (gameState == GameState.Running) {
-            mText.drawTextTop(batch, "SCORE: " + score, uiCamera);
+            text.drawTextTop(batch, "SCORE: " + score, uiCamera);
         }
 
         batch.end();
-    }
-
-    @Override
-    public void dispose() {
-        mHero.dispose();
-        mSound.dispose();
     }
 }

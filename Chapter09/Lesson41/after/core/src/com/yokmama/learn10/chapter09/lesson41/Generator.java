@@ -2,11 +2,14 @@ package com.yokmama.learn10.chapter09.lesson41;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Disposable;
 
 /**
+ * スコアアイテムと障害物を生成する
+ *
  * Created by maciek on 1/29/15.
  */
-public class Generator {
+public class Generator implements Disposable {
     private static final int GENERATE_SPACE = 0;
     private static final int GENERATE_CHIPS = 1;
     private static final int GENERATE_MINES = 2;
@@ -20,8 +23,8 @@ public class Generator {
     final Array<Mine> minesToRemove = new Array<Mine>();
 
     public Generator() {
-        Chip.load();
-        Mine.load();
+        Chip.loadTexture();
+        Mine.loadTexture();
     }
 
     // 初期化
@@ -58,7 +61,7 @@ public class Generator {
         successiveMinesGenerated = 0;
 
         int spaceLength = MathUtils.random(3, 6);
-        chipGenerationLine += Chip.chipSize * spaceLength;
+        chipGenerationLine += Chip.CHIP_SIZE * spaceLength;
     }
 
     // スコアアイテムの生成
@@ -66,31 +69,31 @@ public class Generator {
         successiveMinesGenerated = 0;
 
         int chipType = MathUtils.random(0, 3);
-        if (chipType == Chip.SCORE_ITEM_ONE) {
+        if (chipType == Chip.TYPE_ONE) {
             boolean up = MathUtils.randomBoolean();
             for (int i = 0; i < 5; ++i) {
                 float offsetY = up ? 2 - Math.abs(i - 2) : Math.abs(i - 2);
-                Chip chip = new Chip(chipType, chipGenerationLine, 200 + offsetY * Chip.chipSize, Chip.chipSize, Chip.chipSize);
+                Chip chip = new Chip(chipType, chipGenerationLine, 200 + offsetY * Chip.CHIP_SIZE, Chip.CHIP_SIZE, Chip.CHIP_SIZE);
                 chips.add(chip);
 
                 // 空白追加
-                chipGenerationLine += Chip.chipSize;
+                chipGenerationLine += Chip.CHIP_SIZE;
             }
 
             // 空白追加
-            chipGenerationLine += Chip.chipSize;
+            chipGenerationLine += Chip.CHIP_SIZE;
         }
         else {
             float phaseShift = MathUtils.random();
             Chip chip = new Chip(chipType,
                     chipGenerationLine, 200,
-                    Chip.chipSize, Chip.chipSize,
+                    Chip.CHIP_SIZE, Chip.CHIP_SIZE,
                     phaseShift);
             chips.add(chip);
-            chipGenerationLine += Chip.chipSize;
+            chipGenerationLine += Chip.CHIP_SIZE;
 
             // 空白追加
-            chipGenerationLine += Chip.chipSize;
+            chipGenerationLine += Chip.CHIP_SIZE;
         }
     }
 
@@ -99,12 +102,12 @@ public class Generator {
         ++successiveMinesGenerated;
 
         float phaseShift = MathUtils.random();
-        Mine mine = new Mine(chipGenerationLine, Hero.HERO_FLOOR_Y, Mine.mineSize, 50.0f, phaseShift);
+        Mine mine = new Mine(chipGenerationLine, Hero.HERO_FLOOR_Y, Mine.TEXTURE_SIZE, 50.0f, phaseShift);
         mines.add(mine);
-        chipGenerationLine += Mine.mineSize;
+        chipGenerationLine += Mine.TEXTURE_SIZE;
 
         // 空白追加
-        chipGenerationLine += 3 * Chip.chipSize;
+        chipGenerationLine += 3 * Chip.CHIP_SIZE;
     }
 
     public void update(MyGdxGame game, float deltaTime) {
@@ -138,7 +141,7 @@ public class Generator {
 
     public void draw(MyGdxGame game) {
         for (Chip chip : chips) {
-            chip.draw(game, game.mText);
+            chip.draw(game, game.text);
         }
 
         for (Mine mine : mines) {
@@ -151,4 +154,9 @@ public class Generator {
         mines.clear();
     }
 
+    @Override
+    public void dispose() {
+        Chip.disposeTexture();
+        Mine.disposeTexture();
+    }
 }
