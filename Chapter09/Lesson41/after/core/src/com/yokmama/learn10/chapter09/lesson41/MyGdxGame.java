@@ -48,24 +48,12 @@ public class MyGdxGame extends ApplicationAdapter {
     Texture finish;
     float finishX;
 
-    // スコアアイテム毎の添字
-    static final int SCORE_ITEM_ONE = 0;
-    static final int SCORE_ITEM_TWO = 1;
-    static final int SCORE_ITEM_THREE = 2;
-    static final int SCORE_ITEM_FOUR = 3;
+    // Generator
+    private Generator generator;
 
     // スコアアイテム
-    TextureRegion[] chipRegions;
-    Array<Chip> chips = new Array<Chip>();
-    Array<Chip> chipsToRemove = new Array<Chip>();
-    int[] chipScores;
-    float chipSize = 50.0f;
 
     // 障害物
-    TextureRegion mineTexture;
-    Array<Mine> mines = new Array<Mine>();
-    Array<Mine> minesToRemove = new Array<Mine>();
-    float mineSize = 50.0f;
 
     // サウンド
     private SoundManager mSound;
@@ -99,23 +87,7 @@ public class MyGdxGame extends ApplicationAdapter {
         finish = new Texture("flag.png");
         finishX = (bgWidth - viewportWidth) / bgSpeed + Hero.HERO_LEFT_X;
 
-        // スコアアイテム
-        chipRegions = new TextureRegion[4];
-        Texture coins = new Texture("coins.png");
-        final int COINS_SIZE = 16;
-        chipRegions[SCORE_ITEM_ONE] = new TextureRegion(coins, 0, 0, COINS_SIZE, COINS_SIZE);
-        chipRegions[SCORE_ITEM_TWO] = new TextureRegion(coins, COINS_SIZE, 0, COINS_SIZE, COINS_SIZE);
-        chipRegions[SCORE_ITEM_THREE] = new TextureRegion(coins, COINS_SIZE * 2, 0, COINS_SIZE, COINS_SIZE);
-        chipRegions[SCORE_ITEM_FOUR] = new TextureRegion(coins, COINS_SIZE * 3, 0, COINS_SIZE, COINS_SIZE);
-
-        chipScores = new int[4];
-        chipScores[SCORE_ITEM_ONE] = 10;
-        chipScores[SCORE_ITEM_TWO] = 20;
-        chipScores[SCORE_ITEM_THREE] = 50;
-        chipScores[SCORE_ITEM_FOUR] = 100;
-
-        // 障害物
-        mineTexture = new TextureRegion(new Texture("fire.png"));
+        generator = new Generator();
 
         mSound = new SoundManager();
         mSound.music.play();
@@ -136,9 +108,8 @@ public class MyGdxGame extends ApplicationAdapter {
         camera.position.x = viewportWidth / 2 - Hero.HERO_LEFT_X;
         cameraLeftEdge = camera.position.x - viewportWidth / 2;
 
-        Generator.init(viewportWidth);
-        chips.clear();
-        mines.clear();
+        generator.init(viewportWidth);
+        generator.clear();
     }
 
     @Override
@@ -180,39 +151,14 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // オブジェクトの新規生成
 
-        if (Generator.chipGenerationLine < cameraLeftEdge + viewportWidth &&
-                Generator.chipGenerationLine + 5 * 50.0f < finishX) {
-            Generator.generate(this);
+        if (generator.chipGenerationLine < cameraLeftEdge + viewportWidth &&
+                generator.chipGenerationLine + 5 * 50.0f < finishX) {
+            generator.generate(this);
         }
 
         // オブジェクトの更新
 
-        chipsToRemove.clear();
-        for (Chip chip : chips) {
-            chip.update(deltaTime);
-
-            if (chip.isDead) {
-                chipsToRemove.add(chip);
-            }
-            else if (chip.position.x + chip.size.x < cameraLeftEdge) {
-                chipsToRemove.add(chip);
-            }
-        }
-        for (Chip chip : chipsToRemove) {
-            chips.removeValue(chip, false);
-        }
-
-        minesToRemove.clear();
-        for (Mine mine : mines) {
-            mine.update(deltaTime);
-
-            if (mine.position.x + mine.size.x < cameraLeftEdge) {
-                minesToRemove.add(mine);
-            }
-        }
-        for (Mine mine : minesToRemove) {
-            mines.removeValue(mine, false);
-        }
+        generator.update(this, deltaTime);
 
         // キャラクターの状態を更新
 
@@ -246,16 +192,16 @@ public class MyGdxGame extends ApplicationAdapter {
 
         Rectangle heroCollision = mHero.getCollisionRect();
 
-        for (Chip chip : chips) {
+        for (Chip chip : generator.chips) {
             if (!chip.isCollected && Intersector.overlaps(chip.collisionCircle, heroCollision)) {
                 chip.collect();
                 mSound.coin.play();
 
-                score += chipScores[chip.type];
+                score += Chip.chipScores[chip.type];
             }
         }
 
-        for (Mine mine : mines) {
+        for (Mine mine : generator.mines) {
             if (!mine.hasCollided && Intersector.overlaps(mine.collisionCircle, heroCollision)) {
                 mine.collide();
                 mSound.collision.play();
@@ -276,13 +222,7 @@ public class MyGdxGame extends ApplicationAdapter {
         float drawOffset = cameraLeftEdge - cameraLeftEdge * bgSpeed;
         batch.draw(backgroundClear, drawOffset, 0, bgWidth, viewportHeight);
 
-        for (Chip chip : chips) {
-            chip.draw(this, mText);
-        }
-
-        for (Mine mine : mines) {
-            mine.draw(this);
-        }
+        generator.draw(this);
 
         mHero.draw(this);
 

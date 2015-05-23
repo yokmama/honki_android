@@ -1,26 +1,37 @@
 package com.yokmama.learn10.chapter09.lesson41;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by maciek on 1/29/15.
  */
 public class Generator {
-    static final int GENERATE_SPACE = 0;
-    static final int GENERATE_CHIPS = 1;
-    static final int GENERATE_MINES = 2;
+    private static final int GENERATE_SPACE = 0;
+    private static final int GENERATE_CHIPS = 1;
+    private static final int GENERATE_MINES = 2;
 
-    static float chipGenerationLine;
-    static int successiveMinesGenerated;
+    float chipGenerationLine;
+    int successiveMinesGenerated;
+
+    final Array<Chip> chips = new Array<Chip>();
+    final Array<Chip> chipsToRemove = new Array<Chip>();
+    final Array<Mine> mines = new Array<Mine>();
+    final Array<Mine> minesToRemove = new Array<Mine>();
+
+    public Generator() {
+        Chip.load();
+        Mine.load();
+    }
 
     // 初期化
-    public static void init(float line) {
+    public void init(float line) {
         chipGenerationLine = line;
         successiveMinesGenerated = 0;
     }
 
     // 生成
-    public static void generate(MyGdxGame game) {
+    public void generate(MyGdxGame game) {
         int generate = MathUtils.random(0, 2);
         if (generate == GENERATE_SPACE) {
             // 何もない空間を生成する
@@ -43,52 +54,101 @@ public class Generator {
     }
 
     // 空白の生成
-    private static void generateSpace(MyGdxGame game) {
+    private void generateSpace(MyGdxGame game) {
         successiveMinesGenerated = 0;
 
         int spaceLength = MathUtils.random(3, 6);
-        chipGenerationLine += game.chipSize * spaceLength;
+        chipGenerationLine += Chip.chipSize * spaceLength;
     }
 
     // スコアアイテムの生成
-    private static void generateChips(MyGdxGame game) {
+    private void generateChips(MyGdxGame game) {
         successiveMinesGenerated = 0;
 
         int chipType = MathUtils.random(0, 3);
-        if (chipType == MyGdxGame.SCORE_ITEM_ONE) {
+        if (chipType == Chip.SCORE_ITEM_ONE) {
             boolean up = MathUtils.randomBoolean();
             for (int i = 0; i < 5; ++i) {
                 float offsetY = up ? 2 - Math.abs(i - 2) : Math.abs(i - 2);
-                Chip chip = new Chip(chipType, game.chipRegions[chipType], chipGenerationLine, 200 + offsetY * game.chipSize, game.chipSize, game.chipSize);
-                game.chips.add(chip);
-                chipGenerationLine += game.chipSize;
+                Chip chip = new Chip(chipType, chipGenerationLine, 200 + offsetY * Chip.chipSize, Chip.chipSize, Chip.chipSize);
+                chips.add(chip);
+
+                // 空白追加
+                chipGenerationLine += Chip.chipSize;
             }
 
             // 空白追加
-            chipGenerationLine += game.chipSize;
+            chipGenerationLine += Chip.chipSize;
         }
         else {
             float phaseShift = MathUtils.random();
-            Chip chip = new Chip(chipType, game.chipRegions[chipType], chipGenerationLine, 200, game.chipSize, game.chipSize, phaseShift);
-            game.chips.add(chip);
-            chipGenerationLine += game.chipSize;
+            Chip chip = new Chip(chipType,
+                    chipGenerationLine, 200,
+                    Chip.chipSize, Chip.chipSize,
+                    phaseShift);
+            chips.add(chip);
+            chipGenerationLine += Chip.chipSize;
 
             // 空白追加
-            chipGenerationLine += game.chipSize;
+            chipGenerationLine += Chip.chipSize;
         }
     }
 
     // 障害物の生成
-    private static void generateMines(MyGdxGame game) {
+    private void generateMines(MyGdxGame game) {
         ++successiveMinesGenerated;
 
         float phaseShift = MathUtils.random();
-        Mine mine = new Mine(game.mineTexture, chipGenerationLine, Hero.HERO_FLOOR_Y, game.mineSize, 50.0f, phaseShift);
-        game.mines.add(mine);
-        chipGenerationLine += game.mineSize;
+        Mine mine = new Mine(chipGenerationLine, Hero.HERO_FLOOR_Y, Mine.mineSize, 50.0f, phaseShift);
+        mines.add(mine);
+        chipGenerationLine += Mine.mineSize;
 
         // 空白追加
-        chipGenerationLine += 3 * game.chipSize;
+        chipGenerationLine += 3 * Chip.chipSize;
+    }
+
+    public void update(MyGdxGame game, float deltaTime) {
+        chipsToRemove.clear();
+        for (Chip chip : chips) {
+            chip.update(deltaTime);
+
+            if (chip.isDead) {
+                chipsToRemove.add(chip);
+            }
+            else if (chip.position.x + chip.size.x < game.cameraLeftEdge) {
+                chipsToRemove.add(chip);
+            }
+        }
+        for (Chip chip : chipsToRemove) {
+            chips.removeValue(chip, false);
+        }
+
+        minesToRemove.clear();
+        for (Mine mine : mines) {
+            mine.update(deltaTime);
+
+            if (mine.position.x + mine.size.x < game.cameraLeftEdge) {
+                minesToRemove.add(mine);
+            }
+        }
+        for (Mine mine : minesToRemove) {
+            mines.removeValue(mine, false);
+        }
+    }
+
+    public void draw(MyGdxGame game) {
+        for (Chip chip : chips) {
+            chip.draw(game, game.mText);
+        }
+
+        for (Mine mine : mines) {
+            mine.draw(game);
+        }
+    }
+
+    public void clear() {
+        chips.clear();
+        mines.clear();
     }
 
 }
