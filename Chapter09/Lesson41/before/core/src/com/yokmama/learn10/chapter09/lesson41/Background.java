@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 /**
  * 背景を描画するためのクラス
  */
-public class Background {
+class Background {
     // 背景の動く速さ
     public static final float SPEED = 0.05f;
 

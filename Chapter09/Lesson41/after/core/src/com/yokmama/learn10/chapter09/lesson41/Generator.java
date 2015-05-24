@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
  *
  * Created by maciek on 1/29/15.
  */
-public class Generator {
+class Generator {
     // 生成パターン
     private static final int GENERATE_SPACE = 0;
     private static final int GENERATE_CHIPS = 1;

@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Align;
 /**
  * テキスト
  */
-public class Text {
+class Text {
 
     private final GlyphLayout glyphLayout;
     private float vpWidth = MyGdxGame.VIEWPORT_WIDTH;

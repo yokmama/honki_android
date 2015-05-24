@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by maciek on 1/28/15.
  */
-public class Chip {
+class Chip {
 
     // スコアアイテム毎の種別
     public static final int TYPE_ONE = 0;
