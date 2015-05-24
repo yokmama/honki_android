@@ -60,9 +60,8 @@ class Generator {
                 generateMines(game);
             }
             else {
-                // Try once again
+                // 生成をやり直す
                 generate(game);
-                return;
             }
         }
     }
@@ -87,7 +86,7 @@ class Generator {
                 float offsetY = up ? 2 - Math.abs(i - 2) : Math.abs(i - 2);
                 Chip chip = new Chip(chipRegions, chipType,
                         chipGenerationLine, 200 + offsetY * Chip.CHIP_SIZE,
-                        Chip.CHIP_SIZE, Chip.CHIP_SIZE);
+                        Chip.CHIP_SIZE, Chip.CHIP_SIZE, 0);
                 chips.add(chip);
 
                 // 空白追加

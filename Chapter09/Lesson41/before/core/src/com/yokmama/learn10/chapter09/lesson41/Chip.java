@@ -21,10 +21,6 @@ class Chip {
     // テクスチャの大きさ
     public static final int TEXTURE_COIN_SIZE = 16;
 
-    // 取得時にアニメーションする時間
-    private static final float COLLECT_ANIM_TIME = 1.0f;
-    private static final float COLLECT_ANIM_HEIGHT = 100.0f;
-
     // 大きさ
     public static final float CHIP_SIZE = 50.0f;
 
@@ -43,107 +39,38 @@ class Chip {
     final Vector2 positionPhase = new Vector2();
     final Rectangle bounds = new Rectangle();
     final Circle collisionCircle;
+    private final float phaseShiftFraction;
     // アイテム取得済フラグ
     public boolean isCollected = false;
     // アイテム収集後アニメーションも終わり、完全に消失した時trueとなるフラグ
     public boolean isDead = false;
 
-    // アニメーション変数
-    private float timeSinceCreation;
-    private float timeSinceCollected;
-    private float collectAnimTimeFraction;
-    private final float phaseShiftFraction;
-    private float scorePhase;
-
-    // スコア取得時のテキストの色
-    private final Color chipScoreColor;
-
-    public Chip(TextureRegion[] chipRegions, int type, float x, float y, float width, float height) {
-        this(chipRegions, type, x, y, width, height, 0);
-    }
-
-    public Chip(TextureRegion[] chipRegions, int type, float x, float y, float width, float height, float phaseShiftFraction) {
+    public Chip(TextureRegion[] chipRegions, int type, float x, float y,
+                float width, float height, float phaseShiftFraction) {
         this.chipRegions = chipRegions;
         this.type = type;
         this.origin.set(x, y, width, height);
         this.bounds.set(x, y, width, height);
-        this.timeSinceCreation = 0;
-        this.phaseShiftFraction = phaseShiftFraction;
         this.collisionCircle = new Circle(x + width / 2, y + height / 2, Math.min(width, height) / 2);
-        this.chipScoreColor = new Color();
-    }
-
-    // 状態の更新
-    public void update(float deltaTime) {
-        timeSinceCreation += deltaTime;
-        if (isCollected) {
-            // アイテム収集後アニメーション
-            timeSinceCollected += deltaTime;
-            collectAnimTimeFraction = timeSinceCollected / COLLECT_ANIM_TIME;
-            positionPhase.y = collectFunc(collectAnimTimeFraction) * COLLECT_ANIM_HEIGHT;
-            scorePhase = scoreFunc(collectAnimTimeFraction) * COLLECT_ANIM_HEIGHT;
-            if (timeSinceCollected > COLLECT_ANIM_TIME) {
-                // アニメーション終了後、フラグを立てる
-                isDead = true;
-            }
-        }
-        else {
-            // アイテム収集前アニメーション
-            double af = 2 * Math.PI / 1.4f; // 角周波数
-            double phaseShift = 2 * Math.PI * phaseShiftFraction;
-            positionPhase.y = (float) Math.sin(timeSinceCreation * af - phaseShift) * origin.height / 2.0f;
-            collisionCircle.y = origin.y + positionPhase.y + origin.height / 2;
-        }
-        bounds.set(origin.x, origin.y + positionPhase.y, origin.width, origin.height);
-    }
-
-    // スコア表示アニメーション関数
-    private float scoreFunc(float t) {
-        t = 0.5f * Math.min(Math.max(t, 0.0f), 1.0f);
-        return 2.0f * t * (-4.0f * t + 4.0f);
-    }
-
-    // アイテム収集後アニメーション関数
-    private float collectFunc(float t) {
-        t = Math.min(Math.max(t, 0.0f), 1.0f);
-        return t * (-4.0f * t + 4.0f);
-    }
-
-    // 描画
-    public void draw(SpriteBatch batch, Text text) {
-        // 既にアニメーション終了している場合は描画しない
-        if (isDead) {
-            return;
-        }
-        Color oldColor = batch.getColor();
-        if (isCollected) {
-            // スコアテキストの描画
-            if (collectAnimTimeFraction < 0.5f) {
-                chipScoreColor.set(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
-                text.drawChipScore(batch, "+" + chipScores[type], chipScoreColor,
-                        scoreTextScales[type],
-                        origin.x + CHIP_SIZE * 0.5f - bounds.width * 0.5f,
-                        origin.y + CHIP_SIZE + bounds.height + scorePhase);
-            }
-
-            batch.setColor(Color.alpha(1.0f - collectAnimTimeFraction));
-        }
-        // 取得後の描画
-        batch.draw(chipRegions[type], origin.x + positionPhase.x, origin.y + positionPhase.y, origin.width, origin.height);
-        if (isCollected) {
-            batch.setColor(oldColor);
-        }
+        this.phaseShiftFraction = phaseShiftFraction;
     }
 
     // アイテムを収集
     public void collect() {
         isCollected = true;
-        timeSinceCollected = 0.0f;
-        scorePhase = 0.0f;
     }
 
     // スコアを取得
     public int getScore() {
         return chipScores[this.type];
     }
+
+    // 状態の更新
+    public void update(float deltaTime) {
+    }
+
+    // 描画
+    public void draw(SpriteBatch batch, Text text) {
+    }
+
 }

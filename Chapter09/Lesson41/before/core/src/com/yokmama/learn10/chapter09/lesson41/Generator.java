@@ -44,38 +44,6 @@ class Generator {
         successiveMinesGenerated = 0;
     }
 
-    // 生成
-    public void generate(MyGdxGame game) {
-        int generate = MathUtils.random(0, 2);
-        if (generate == GENERATE_SPACE) {
-            // 何もない空間を生成する
-            generateSpace(game);
-        }
-        else if (generate == GENERATE_CHIPS) {
-            // スコアアイテムを生成する
-            generateChips(game);
-        }
-        else if (generate == GENERATE_MINES) {
-            if (successiveMinesGenerated < 2) {
-                generateMines(game);
-            }
-            else {
-                // Try once again
-                generate(game);
-                return;
-            }
-        }
-    }
-
-    // 空白の生成
-    private void generateSpace(MyGdxGame game) {
-        successiveMinesGenerated = 0;
-
-        // ランダムに何もない空間の長さを決定する
-        int spaceLength = MathUtils.random(3, 6);
-        chipGenerationLine += Chip.CHIP_SIZE * spaceLength;
-    }
-
     // スコアアイテムの生成
     private void generateChips(MyGdxGame game) {
         successiveMinesGenerated = 0;
@@ -87,7 +55,7 @@ class Generator {
                 float offsetY = up ? 2 - Math.abs(i - 2) : Math.abs(i - 2);
                 Chip chip = new Chip(chipRegions, chipType,
                         chipGenerationLine, 200 + offsetY * Chip.CHIP_SIZE,
-                        Chip.CHIP_SIZE, Chip.CHIP_SIZE);
+                        Chip.CHIP_SIZE, Chip.CHIP_SIZE, 0);
                 chips.add(chip);
 
                 // 空白追加

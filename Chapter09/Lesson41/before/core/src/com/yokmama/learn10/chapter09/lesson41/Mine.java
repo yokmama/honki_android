@@ -17,48 +17,29 @@ class Mine {
     final Rectangle origin = new Rectangle();
     // 衝突範囲
     final Circle collisionCircle;
-    // 障害物したかどうか
-    boolean hasCollided;
-    // 作成してからの時間
-    private float timeSinceCreation;
-
     // アニメーション開始点
     private final float phaseShift;
-    // 表示範囲
-    private float visiblePart;
+    // 障害物したかどうか
+    boolean hasCollided = false;
 
     public Mine(TextureRegion region, float x, float y, float width, float height, float phaseShift) {
         this.region = region;
         this.origin.set(x, y, width, height);
-        this.timeSinceCreation = 0;
-        this.phaseShift = phaseShift;
         this.collisionCircle = new Circle(x + width / 2, 0, Math.min(width, height) / 2);
-        this.hasCollided = false;
-    }
-
-    // 更新
-    public void update(float deltaTime) {
-        timeSinceCreation += deltaTime;
-        if (!hasCollided) {
-            // 障害物のアニメーション
-            visiblePart = 0.2f + showFunc(timeSinceCreation * 0.2f + phaseShift) * 0.4f;
-            collisionCircle.y = origin.y - origin.height / 2 + visiblePart * origin.height;
-        }
-    }
-
-    private float showFunc(float t) {
-        t = t % 1.0f;
-        return Math.min(Math.max(t * (-12.5f * t + 12.5f) - 2.0f, 0.0f), 1.0f);
-    }
-
-    // 描画
-    public void draw(SpriteBatch batch) {
-        region.setRegion(0, 0, region.getTexture().getWidth(), (int) (region.getTexture().getHeight() * visiblePart));
-        batch.draw(region, origin.x, origin.y, origin.width, origin.height * visiblePart);
+        this.phaseShift = phaseShift;
     }
 
     // 衝突通知
     public void collide() {
         hasCollided = true;
     }
+
+    // 更新
+    public void update(float deltaTime) {
+    }
+
+    // 描画
+    public void draw(SpriteBatch batch) {
+    }
+
 }

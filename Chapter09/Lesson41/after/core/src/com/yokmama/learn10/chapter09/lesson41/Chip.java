@@ -21,10 +21,6 @@ class Chip {
     // テクスチャの大きさ
     public static final int TEXTURE_COIN_SIZE = 16;
 
-    // 取得時にアニメーションする時間
-    private static final float COLLECT_ANIM_TIME = 1.0f;
-    private static final float COLLECT_ANIM_HEIGHT = 100.0f;
-
     // 大きさ
     public static final float CHIP_SIZE = 50.0f;
 
@@ -43,34 +39,43 @@ class Chip {
     final Vector2 positionPhase = new Vector2();
     final Rectangle bounds = new Rectangle();
     final Circle collisionCircle;
+    private final float phaseShiftFraction;
     // アイテム取得済フラグ
     public boolean isCollected = false;
     // アイテム収集後アニメーションも終わり、完全に消失した時trueとなるフラグ
     public boolean isDead = false;
 
-    // アニメーション変数
-    private float timeSinceCreation;
-    private float timeSinceCollected;
-    private float collectAnimTimeFraction;
-    private final float phaseShiftFraction;
-    private float scorePhase;
-
     // スコア取得時のテキストの色
-    private final Color chipScoreColor;
+    private final Color chipScoreColor = new Color();
 
-    public Chip(TextureRegion[] chipRegions, int type, float x, float y, float width, float height) {
-        this(chipRegions, type, x, y, width, height, 0);
-    }
+    // 取得時にアニメーションする時間
+    private static final float COLLECT_ANIM_TIME = 1.0f;
+    private static final float COLLECT_ANIM_HEIGHT = 100.0f;
 
-    public Chip(TextureRegion[] chipRegions, int type, float x, float y, float width, float height, float phaseShiftFraction) {
+    // アニメーション変数
+    private float timeSinceCollected = 0;
+    private float timeSinceCreation = 0;
+    private float collectAnimTimeFraction;
+    private float scorePhase = 0;
+
+    public Chip(TextureRegion[] chipRegions, int type, float x, float y,
+                float width, float height, float phaseShiftFraction) {
         this.chipRegions = chipRegions;
         this.type = type;
         this.origin.set(x, y, width, height);
         this.bounds.set(x, y, width, height);
-        this.timeSinceCreation = 0;
-        this.phaseShiftFraction = phaseShiftFraction;
         this.collisionCircle = new Circle(x + width / 2, y + height / 2, Math.min(width, height) / 2);
-        this.chipScoreColor = new Color();
+        this.phaseShiftFraction = phaseShiftFraction;
+    }
+
+    // アイテムを収集
+    public void collect() {
+        isCollected = true;
+    }
+
+    // スコアを取得
+    public int getScore() {
+        return chipScores[this.type];
     }
 
     // 状態の更新
@@ -135,15 +140,4 @@ class Chip {
         }
     }
 
-    // アイテムを収集
-    public void collect() {
-        isCollected = true;
-        timeSinceCollected = 0.0f;
-        scorePhase = 0.0f;
-    }
-
-    // スコアを取得
-    public int getScore() {
-        return chipScores[this.type];
-    }
 }

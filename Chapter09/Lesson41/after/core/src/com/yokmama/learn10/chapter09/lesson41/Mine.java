@@ -17,23 +17,26 @@ class Mine {
     final Rectangle origin = new Rectangle();
     // 衝突範囲
     final Circle collisionCircle;
-    // 障害物したかどうか
-    boolean hasCollided;
-    // 作成してからの時間
-    private float timeSinceCreation;
-
     // アニメーション開始点
     private final float phaseShift;
+    // 障害物したかどうか
+    boolean hasCollided = false;
+
+    // 作成してからの時間
+    private float timeSinceCreation = 0;
     // 表示範囲
     private float visiblePart;
 
     public Mine(TextureRegion region, float x, float y, float width, float height, float phaseShift) {
         this.region = region;
         this.origin.set(x, y, width, height);
-        this.timeSinceCreation = 0;
-        this.phaseShift = phaseShift;
         this.collisionCircle = new Circle(x + width / 2, 0, Math.min(width, height) / 2);
-        this.hasCollided = false;
+        this.phaseShift = phaseShift;
+    }
+
+    // 衝突通知
+    public void collide() {
+        hasCollided = true;
     }
 
     // 更新
@@ -57,8 +60,4 @@ class Mine {
         batch.draw(region, origin.x, origin.y, origin.width, origin.height * visiblePart);
     }
 
-    // 衝突通知
-    public void collide() {
-        hasCollided = true;
-    }
 }
