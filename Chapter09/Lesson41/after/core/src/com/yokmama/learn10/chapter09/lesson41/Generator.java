@@ -14,6 +14,7 @@ import javax.swing.DebugGraphics;
  * Created by maciek on 1/29/15.
  */
 public class Generator {
+    // 生成パターン
     private static final int GENERATE_SPACE = 0;
     private static final int GENERATE_CHIPS = 1;
     private static final int GENERATE_MINES = 2;
@@ -73,6 +74,7 @@ public class Generator {
     private void generateSpace(MyGdxGame game) {
         successiveMinesGenerated = 0;
 
+        // ランダムに何もない空間の長さを決定する
         int spaceLength = MathUtils.random(3, 6);
         chipGenerationLine += Chip.CHIP_SIZE * spaceLength;
     }
@@ -86,7 +88,9 @@ public class Generator {
             boolean up = MathUtils.randomBoolean();
             for (int i = 0; i < 5; ++i) {
                 float offsetY = up ? 2 - Math.abs(i - 2) : Math.abs(i - 2);
-                Chip chip = new Chip(chipRegions, chipType, chipGenerationLine, 200 + offsetY * Chip.CHIP_SIZE, Chip.CHIP_SIZE, Chip.CHIP_SIZE);
+                Chip chip = new Chip(chipRegions, chipType,
+                        chipGenerationLine, 200 + offsetY * Chip.CHIP_SIZE,
+                        Chip.CHIP_SIZE, Chip.CHIP_SIZE);
                 chips.add(chip);
 
                 // 空白追加
@@ -123,19 +127,23 @@ public class Generator {
         chipGenerationLine += 3 * Chip.CHIP_SIZE;
     }
 
+    // 状態更新
     public void update(MyGdxGame game, float deltaTime) {
         chipsToRemove.clear();
         for (Chip chip : chips) {
+            // 状態を更新する
             chip.update(deltaTime);
 
+            // 描画の必要がなくなったオブジェクトを削除対象へ登録する
             if (chip.isDead) {
                 chipsToRemove.add(chip);
             }
-            else if (chip.position.x + chip.size.x < game.cameraLeftEdge) {
+            else if (chip.origin.x + chip.origin.width < game.cameraLeftEdge) {
                 chipsToRemove.add(chip);
             }
         }
         for (Chip chip : chipsToRemove) {
+            // 描画の必要がなくなったオブジェクトを削除する
             chips.removeValue(chip, false);
         }
 
@@ -143,7 +151,7 @@ public class Generator {
         for (Mine mine : mines) {
             mine.update(deltaTime);
 
-            if (mine.position.x + mine.size.x < game.cameraLeftEdge) {
+            if (mine.origin.x + mine.origin.width < game.cameraLeftEdge) {
                 minesToRemove.add(mine);
             }
         }
@@ -152,13 +160,14 @@ public class Generator {
         }
     }
 
+    // 描画
     public void draw(MyGdxGame game) {
         for (Chip chip : chips) {
-            chip.draw(game, game.text);
+            chip.draw(game.batch, game.text);
         }
 
         for (Mine mine : mines) {
-            mine.draw(game);
+            mine.draw(game.batch);
         }
     }
 

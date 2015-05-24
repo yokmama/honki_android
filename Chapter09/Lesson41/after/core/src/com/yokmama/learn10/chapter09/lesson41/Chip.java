@@ -3,6 +3,7 @@ package com.yokmama.learn10.chapter09.lesson41;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -38,12 +39,13 @@ public class Chip {
     public static final int[] chipScores;
     private static final float[] scoreTextScales;
 
-    final Vector2 position = new Vector2();
+    final Rectangle origin = new Rectangle();
     final Vector2 positionPhase = new Vector2();
-    final Vector2 size = new Vector2();
     final Rectangle bounds = new Rectangle();
     final Circle collisionCircle;
+    // アイテム取得済フラグ
     public boolean isCollected = false;
+    // アイテム収集後アニメーションも終わり、完全に消失した時trueとなるフラグ
     public boolean isDead = false;
 
     // アニメーション変数
@@ -52,6 +54,8 @@ public class Chip {
     private float collectAnimTimeFraction;
     private final float phaseShiftFraction;
     private float scorePhase;
+
+    private final Color mChipScoreColor;
 
     static {
         chipScores = new int[] { 10, 20, 50, 100 };
@@ -65,14 +69,12 @@ public class Chip {
     public Chip(TextureRegion[] chipRegions, int type, float x, float y, float width, float height, float phaseShiftFraction) {
         this.chipRegions = chipRegions;
         this.type = type;
-        this.position.x = x;
-        this.position.y = y;
-        this.size.x = width;
-        this.size.y = height;
+        this.origin.set(x, y, width, height);
         this.bounds.set(x, y, width, height);
         this.timeSinceCreation = 0;
         this.phaseShiftFraction = phaseShiftFraction;
         this.collisionCircle = new Circle(x + width / 2, y + height / 2, Math.min(width, height) / 2);
+        this.mChipScoreColor = new Color();
     }
 
     // 状態の更新
@@ -85,6 +87,7 @@ public class Chip {
             positionPhase.y = collectFunc(collectAnimTimeFraction) * COLLECT_ANIM_HEIGHT;
             scorePhase = scoreFunc(collectAnimTimeFraction) * COLLECT_ANIM_HEIGHT;
             if (timeSinceCollected > COLLECT_ANIM_TIME) {
+                // アニメーション終了後、フラグを立てる
                 isDead = true;
             }
         }
@@ -92,10 +95,10 @@ public class Chip {
             // アイテム収集前アニメーション
             double af = 2 * Math.PI / 1.4f; // 角周波数
             double phaseShift = 2 * Math.PI * phaseShiftFraction;
-            positionPhase.y = (float) Math.sin(timeSinceCreation * af - phaseShift) * size.y / 2.0f;
-            collisionCircle.y = position.y + positionPhase.y + size.y / 2;
+            positionPhase.y = (float) Math.sin(timeSinceCreation * af - phaseShift) * origin.height / 2.0f;
+            collisionCircle.y = origin.y + positionPhase.y + origin.height / 2;
         }
-        bounds.set(position.x, position.y + positionPhase.y, size.x, size.y);
+        bounds.set(origin.x, origin.y + positionPhase.y, origin.width, origin.height);
     }
 
     // スコア表示アニメーション関数
@@ -111,26 +114,28 @@ public class Chip {
     }
 
     // 描画
-    public void draw(MyGdxGame game, Text text) {
-        if (!isDead) {
-            Color oldColor = game.batch.getColor();
-            if (isCollected) {
-                if (collectAnimTimeFraction < 0.5f) {
-                    Color color = new Color(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
-                    GlyphLayout glyphLayout = new GlyphLayout(text.getFont(), "+" + chipScores[type], color, 0, Align.left, false);
-                    text.getFont().getData().setScale(scoreTextScales[type]);
-                    text.getFont().draw(game.batch, glyphLayout,
-                            position.x + CHIP_SIZE * 0.5f - bounds.width * 0.5f,
-                            position.y + CHIP_SIZE + bounds.height + scorePhase);
-                    text.getFont().getData().setScale(1.0f);
-                }
+    public void draw(SpriteBatch batch, Text text) {
+        // 既にアニメーション終了している場合は描画しない
+        if (isDead) {
+            return;
+        }
+        Color oldColor = batch.getColor();
+        if (isCollected) {
+            // スコアテキストの描画
+            if (collectAnimTimeFraction < 0.5f) {
+                mChipScoreColor.set(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
+                text.drawChipScore(batch, "+" + chipScores[type], mChipScoreColor,
+                        scoreTextScales[type],
+                        origin.x + CHIP_SIZE * 0.5f - bounds.width * 0.5f,
+                        origin.y + CHIP_SIZE + bounds.height + scorePhase);
+            }
 
-                game.batch.setColor(Color.alpha(1.0f - collectAnimTimeFraction));
-            }
-            game.batch.draw(chipRegions[type], position.x + positionPhase.x, position.y + positionPhase.y, size.x, size.y);
-            if (isCollected) {
-                game.batch.setColor(oldColor);
-            }
+            batch.setColor(Color.alpha(1.0f - collectAnimTimeFraction));
+        }
+        // 取得後の描画
+        batch.draw(chipRegions[type], origin.x + positionPhase.x, origin.y + positionPhase.y, origin.width, origin.height);
+        if (isCollected) {
+            batch.setColor(oldColor);
         }
     }
 

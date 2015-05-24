@@ -72,7 +72,7 @@ public class MyGdxGame extends ApplicationAdapter {
         mUiCamera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
         // ゴール地点の決定
-        finishX = (mBackground.getStageWidth() - VIEWPORT_WIDTH) / Background.SPEED + Hero.HERO_LEFT_X;
+        finishX = (mBackground.stageWidth - VIEWPORT_WIDTH) / Background.SPEED + Hero.HERO_LEFT_X;
 
         // 音楽の再生
         mMusic.setLooping(true);
@@ -109,6 +109,7 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void resize(int width, int height) {
         mUiCamera.update();
+        text.setViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     }
 
     @Override
@@ -154,7 +155,7 @@ public class MyGdxGame extends ApplicationAdapter {
         drawWorld();
     }
 
-    // 各種状態を変更するメソッド
+    // 各種状態を変更する
     private void updateWorld() {
         float deltaTime = Gdx.graphics.getDeltaTime();
 
@@ -232,7 +233,7 @@ public class MyGdxGame extends ApplicationAdapter {
         }
     }
 
-    // 描画メソッド
+    // 描画
     private void drawWorld() {
         mCamera.update();
         batch.setProjectionMatrix(mCamera.combined);

@@ -16,23 +16,24 @@ import com.badlogic.gdx.utils.Disposable;
 public class Text implements Disposable {
 
     private final GlyphLayout glyphLayout;
-    private final float centerX;
-    private final float centerY;
+    private float centerX = MyGdxGame.VIEWPORT_WIDTH;
+    private float centerY = MyGdxGame.VIEWPORT_HEIGHT;
     private final BitmapFont font;
 
     public Text(BitmapFont font) {
         this.font = font;
         glyphLayout = new GlyphLayout();
-        centerX = Gdx.graphics.getWidth() * 0.5f;
-        centerY = Gdx.graphics.getHeight() * 0.5f;
+    }
+
+    public void setViewport(float width, float height) {
+        centerX = width * 0.5f;
+        centerY = height * 0.5f;
     }
 
     // 上部にテキストを描画
     public void drawTextTop(Batch batch, String text, OrthographicCamera camera) {
         glyphLayout.setText(font, text, Color.WHITE, 0, Align.center, false);
-        float textY = font.getLineHeight();
-        Vector3 v = camera.unproject(new Vector3(centerX, textY, 0));
-        font.draw(batch, glyphLayout, Math.round(v.x), v.y);
+        font.draw(batch, glyphLayout, centerX, centerY);
     }
 
     // 中央にテキストを描画
@@ -43,8 +44,12 @@ public class Text implements Disposable {
         font.draw(batch, glyphLayout, v.x, v.y);
     }
 
-    public BitmapFont getFont() {
-        return font;
+    // スコアアイテム取得時のテキスト描画
+    public void drawChipScore(Batch batch, String text, Color color, float scaleXY, float x, float y) {
+        glyphLayout.setText(font, text, color, 0, Align.left, false);
+        font.getData().setScale(scaleXY);
+        font.draw(batch, glyphLayout, x, y);
+        font.getData().setScale(1.0f);
     }
 
     @Override
