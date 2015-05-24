@@ -2,11 +2,12 @@ package com.yokmama.learn10.chapter09.lesson41;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.utils.Disposable;
 
 /**
  * 背景を描画するためのクラス
  */
-public class Background {
+public class Background implements Disposable {
     public static float SPEED = 0.05f;
 
     private int bgWidth;
@@ -14,15 +15,15 @@ public class Background {
     private int viewportHeight;
 
     private Texture mBackground;
-    private Texture mBackgroundNear;
     private Texture mBackgroundFar;
+    private Texture mBackgroundNear;
     private Texture mRoad;
 
     public Background(int viewportWidth, int viewportHeight) {
-        mBackgroundNear = new Texture("bg_near.png");
-        mBackgroundFar = new Texture("bg_far.png");
-        mRoad = new Texture("road.png");
         mBackground = new Texture("bg.png");
+        mBackgroundFar = new Texture("bg_far.png");
+        mBackgroundNear = new Texture("bg_near.png");
+        mRoad = new Texture("road.png");
 
         this.viewportWidth = viewportWidth;
         this.viewportHeight = viewportHeight;
@@ -31,9 +32,6 @@ public class Background {
 
     public int getStageWidth() {
         return this.bgWidth;
-    }
-
-    public void update() {
     }
 
     public void draw(Batch batch, float cameraLeftEdge) {
@@ -55,5 +53,13 @@ public class Background {
         drawOffset = cameraLeftEdge - cameraLeftEdge % viewportWidth;
         batch.draw(mRoad, drawOffset, 0, viewportWidth, 58 * 1.2f);
         batch.draw(mRoad, drawOffset + viewportWidth, 0, viewportWidth, 58 * 1.2f);
+    }
+
+    @Override
+    public void dispose() {
+        mBackground.dispose();
+        mBackgroundFar.dispose();
+        mBackgroundNear.dispose();
+        mRoad.dispose();
     }
 }

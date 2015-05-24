@@ -6,11 +6,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Disposable;
 
 /**
  * キャラクターの制御
  */
-class Hero {
+class Hero implements Disposable {
 
     // テクスチャタイルの横幅
     private static final int TEXTURE_TILE_WIDTH = 64;
@@ -67,9 +68,8 @@ class Hero {
     // ゲームクリア
     final static int WIN_ANIM_STATE_WAIT_FOR_LANDING = 0;
     final static int WIN_ANIM_STATE_RUN = 1;
-    final static int WIN_ANIM_STATE_JUMP = 2;
-    final static int WIN_ANIM_STATE_SPIRAL = 3;
-    final static int WIN_ANIM_STATE_STATIC = 4;
+    final static int WIN_ANIM_STATE_SPIRAL = 2;
+    final static int WIN_ANIM_STATE_STATIC = 3;
     boolean mHasWon;
     int mWinAnimState;
     float mWinAnimStateTime;
@@ -199,10 +199,10 @@ class Hero {
                     }
                 }
                 else if (mWinAnimState == WIN_ANIM_STATE_SPIRAL) {
-                    if (mCurrentStateDisplayTime > 1.f) {
+                    if (mCurrentStateDisplayTime > 1.4f) {
                         mWinAnimState = WIN_ANIM_STATE_STATIC;
                         mAnimState = ANIM_STATE_STILL;
-                        mAnimStillFrame = sAnimations[ANIM_STATE_WIN].getKeyFrame(2);
+                        mAnimStillFrame = sAnimations[ANIM_STATE_WIN].getKeyFrame(0);
                         mCurrentStateDisplayTime = 0;
                     }
                 }
@@ -264,4 +264,8 @@ class Hero {
         mDeadPosY = mPosition.y;
     }
 
+    @Override
+    public void dispose() {
+        disposeTexture();
+    }
 }

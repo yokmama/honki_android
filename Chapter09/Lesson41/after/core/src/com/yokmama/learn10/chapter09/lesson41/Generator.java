@@ -1,8 +1,12 @@
 package com.yokmama.learn10.chapter09.lesson41;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+
+import javax.swing.DebugGraphics;
 
 /**
  * スコアアイテムと障害物を生成する
@@ -15,16 +19,29 @@ public class Generator implements Disposable {
     private static final int GENERATE_MINES = 2;
 
     float chipGenerationLine;
-    int successiveMinesGenerated;
+    private int successiveMinesGenerated;
 
+    private final Texture chipsTexture;
+    private final TextureRegion[] chipRegions;
     final Array<Chip> chips = new Array<Chip>();
     final Array<Chip> chipsToRemove = new Array<Chip>();
+
+    private final Texture mineTexture;
+    private final TextureRegion mineTextureRegion;
     final Array<Mine> mines = new Array<Mine>();
     final Array<Mine> minesToRemove = new Array<Mine>();
 
     public Generator() {
-        Chip.loadTexture();
-        Mine.loadTexture();
+        chipsTexture = new Texture("coins.png");
+        TextureRegion[] split = TextureRegion.split(chipsTexture, Chip.TEXTURE_COIN_SIZE, Chip.TEXTURE_COIN_SIZE)[0];
+        chipRegions = new TextureRegion[4];
+        chipRegions[Chip.TYPE_ONE] = split[0];
+        chipRegions[Chip.TYPE_TWO] = split[1];
+        chipRegions[Chip.TYPE_THREE] = split[2];
+        chipRegions[Chip.TYPE_FOUR] = split[3];
+
+        mineTexture = new Texture("fire.png");
+        mineTextureRegion = new TextureRegion(mineTexture);
     }
 
     // 初期化
@@ -73,7 +90,7 @@ public class Generator implements Disposable {
             boolean up = MathUtils.randomBoolean();
             for (int i = 0; i < 5; ++i) {
                 float offsetY = up ? 2 - Math.abs(i - 2) : Math.abs(i - 2);
-                Chip chip = new Chip(chipType, chipGenerationLine, 200 + offsetY * Chip.CHIP_SIZE, Chip.CHIP_SIZE, Chip.CHIP_SIZE);
+                Chip chip = new Chip(chipRegions, chipType, chipGenerationLine, 200 + offsetY * Chip.CHIP_SIZE, Chip.CHIP_SIZE, Chip.CHIP_SIZE);
                 chips.add(chip);
 
                 // 空白追加
@@ -85,7 +102,7 @@ public class Generator implements Disposable {
         }
         else {
             float phaseShift = MathUtils.random();
-            Chip chip = new Chip(chipType,
+            Chip chip = new Chip(chipRegions, chipType,
                     chipGenerationLine, 200,
                     Chip.CHIP_SIZE, Chip.CHIP_SIZE,
                     phaseShift);
@@ -102,7 +119,7 @@ public class Generator implements Disposable {
         ++successiveMinesGenerated;
 
         float phaseShift = MathUtils.random();
-        Mine mine = new Mine(chipGenerationLine, Hero.HERO_FLOOR_Y, Mine.TEXTURE_SIZE, 50.0f, phaseShift);
+        Mine mine = new Mine(mineTextureRegion, chipGenerationLine, Hero.HERO_FLOOR_Y, Mine.TEXTURE_SIZE, 50.0f, phaseShift);
         mines.add(mine);
         chipGenerationLine += Mine.TEXTURE_SIZE;
 
@@ -156,7 +173,8 @@ public class Generator implements Disposable {
 
     @Override
     public void dispose() {
-        Chip.disposeTexture();
-        Mine.disposeTexture();
+        chipsTexture.dispose();
+
+        mineTexture.dispose();
     }
 }

@@ -15,40 +15,34 @@ public class MyGdxGame extends ApplicationAdapter {
     public static final int VIEWPORT_WIDTH = 800;
     public static final int VIEWPORT_HEIGHT = 480;
 
+    public SpriteBatch batch;
+
     // 現在のゲームの状態
     public GameState gameState = GameState.Ready;
 
     // スコア
     private int score;
 
-    public SpriteBatch batch;
-
     // カメラ
-    OrthographicCamera uiCamera;
-    OrthographicCamera camera;
+    private OrthographicCamera uiCamera;
+    private OrthographicCamera camera;
     float cameraLeftEdge;
 
-    // テキスト
+    // 各種制御用クラス
     Text text;
-
-    // キャラクターの制御オブジェクト
-    Hero mHero;
-
-    // 背景
+    private Hero mHero;
     private Background background;
+    private Generator mGenerator;
+    private SoundManager mSound;
 
     // ゴール
     Texture finish;
+    // ゴール位置
     float finishX;
-
-    // Generator
-    private Generator mGenerator;
-
-    // サウンド
-    private SoundManager mSound;
 
     @Override
     public void create() {
+        Gdx.app.log("MyGdxGame", "create()");
         batch = new SpriteBatch();
 
         // ゲーム用カメラ
@@ -60,22 +54,17 @@ public class MyGdxGame extends ApplicationAdapter {
         uiCamera = new OrthographicCamera();
         uiCamera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
-        // テキスト
+        // 各種制御用クラス初期化
         text = new Text();
-
-        // キャラクター
         mHero = new Hero();
-
-        // 背景
         background = new Background(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        mGenerator = new Generator();
+        mSound = new SoundManager();
 
         // ゴール
         finish = new Texture("flag.png");
         finishX = (background.getStageWidth() - VIEWPORT_WIDTH) / Background.SPEED + Hero.HERO_LEFT_X;
 
-        mGenerator = new Generator();
-
-        mSound = new SoundManager();
         mSound.music.play();
 
         resetWorld();
@@ -88,8 +77,13 @@ public class MyGdxGame extends ApplicationAdapter {
 
     @Override
     public void dispose() {
+        Gdx.app.log("MyGdxGame", "dispose()");
+        text.dispose();
         Hero.disposeTexture();
+        background.dispose();
+        mGenerator.dispose();
         mSound.dispose();
+        finish.dispose();
     }
 
     // ゲームを最初の状態に戻す

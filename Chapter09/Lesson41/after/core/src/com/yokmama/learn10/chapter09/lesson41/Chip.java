@@ -21,7 +21,7 @@ public class Chip {
     public static final int TYPE_FOUR = 3;
 
     // テクスチャの大きさ
-    private static final int TEXTURE_COIN_SIZE = 16;
+    public static final int TEXTURE_COIN_SIZE = 16;
 
     // 取得時にアニメーションする時間
     private static final float COLLECT_ANIM_TIME = 1.0f;
@@ -33,9 +33,8 @@ public class Chip {
     // スコアアイテム毎の種別
     public int type;
 
-    //
-    static Texture chipsTexture;
-    static TextureRegion[] chipRegions;
+    // テクスチャ
+    private final TextureRegion[] chipRegions;
     public static final int[] chipScores;
     private static final float[] scoreTextScales;
 
@@ -59,39 +58,21 @@ public class Chip {
         scoreTextScales = new float[] { 0.6f, 0.65f, 0.7f, 0.8f };
     }
 
-    public Chip(int type, float x, float y, float width, float height) {
-        this(type, x, y, width, height, 0);
+    public Chip(TextureRegion[] chipRegions, int type, float x, float y, float width, float height) {
+        this(chipRegions, type, x, y, width, height, 0);
     }
 
-    public Chip(int type, float x, float y, float width, float height, float phaseShiftFraction) {
+    public Chip(TextureRegion[] chipRegions, int type, float x, float y, float width, float height, float phaseShiftFraction) {
+        this.chipRegions = chipRegions;
+        this.type = type;
         this.position.x = x;
         this.position.y = y;
         this.size.x = width;
         this.size.y = height;
         this.bounds.set(x, y, width, height);
-        this.type = type;
         this.timeSinceCreation = 0;
         this.phaseShiftFraction = phaseShiftFraction;
         this.collisionCircle = new Circle(x + width / 2, y + height / 2, Math.min(width, height) / 2);
-    }
-
-    public static void loadTexture() {
-        if (chipsTexture == null) {
-            chipsTexture = new Texture("coins.png");
-            TextureRegion[] split = TextureRegion.split(chipsTexture, TEXTURE_COIN_SIZE, TEXTURE_COIN_SIZE)[0];
-            chipRegions = new TextureRegion[4];
-            chipRegions[TYPE_ONE] = split[0];
-            chipRegions[TYPE_TWO] = split[1];
-            chipRegions[TYPE_THREE] = split[2];
-            chipRegions[TYPE_FOUR] = split[3];
-        }
-    }
-
-    public static void disposeTexture() {
-        if (chipsTexture != null) {
-            chipsTexture.dispose();
-            chipRegions = null;
-        }
     }
 
     // 状態の更新
@@ -146,7 +127,7 @@ public class Chip {
 
                 game.batch.setColor(Color.alpha(1.0f - collectAnimTimeFraction));
             }
-            game.batch.draw(Chip.chipRegions[type], position.x + positionPhase.x, position.y + positionPhase.y, size.x, size.y);
+            game.batch.draw(chipRegions[type], position.x + positionPhase.x, position.y + positionPhase.y, size.x, size.y);
             if (isCollected) {
                 game.batch.setColor(oldColor);
             }
