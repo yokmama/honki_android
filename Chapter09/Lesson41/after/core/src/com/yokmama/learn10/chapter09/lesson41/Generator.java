@@ -13,7 +13,7 @@ import javax.swing.DebugGraphics;
  *
  * Created by maciek on 1/29/15.
  */
-public class Generator implements Disposable {
+public class Generator {
     private static final int GENERATE_SPACE = 0;
     private static final int GENERATE_CHIPS = 1;
     private static final int GENERATE_MINES = 2;
@@ -21,18 +21,15 @@ public class Generator implements Disposable {
     float chipGenerationLine;
     private int successiveMinesGenerated;
 
-    private final Texture chipsTexture;
     private final TextureRegion[] chipRegions;
     final Array<Chip> chips = new Array<Chip>();
     final Array<Chip> chipsToRemove = new Array<Chip>();
 
-    private final Texture mineTexture;
     private final TextureRegion mineTextureRegion;
     final Array<Mine> mines = new Array<Mine>();
     final Array<Mine> minesToRemove = new Array<Mine>();
 
-    public Generator() {
-        chipsTexture = new Texture("coins.png");
+    public Generator(Texture chipsTexture, Texture mineTexture) {
         TextureRegion[] split = TextureRegion.split(chipsTexture, Chip.TEXTURE_COIN_SIZE, Chip.TEXTURE_COIN_SIZE)[0];
         chipRegions = new TextureRegion[4];
         chipRegions[Chip.TYPE_ONE] = split[0];
@@ -40,7 +37,6 @@ public class Generator implements Disposable {
         chipRegions[Chip.TYPE_THREE] = split[2];
         chipRegions[Chip.TYPE_FOUR] = split[3];
 
-        mineTexture = new Texture("fire.png");
         mineTextureRegion = new TextureRegion(mineTexture);
     }
 
@@ -171,10 +167,4 @@ public class Generator implements Disposable {
         mines.clear();
     }
 
-    @Override
-    public void dispose() {
-        chipsTexture.dispose();
-
-        mineTexture.dispose();
-    }
 }

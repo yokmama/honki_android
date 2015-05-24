@@ -16,13 +16,12 @@ import com.badlogic.gdx.utils.Disposable;
 public class Text implements Disposable {
 
     private final GlyphLayout glyphLayout;
-    private final BitmapFont font;
     private final float centerX;
     private final float centerY;
+    private final BitmapFont font;
 
-    public Text() {
-        font = new BitmapFont(Gdx.files.internal("verdana39.fnt"));
-
+    public Text(BitmapFont font) {
+        this.font = font;
         glyphLayout = new GlyphLayout();
         centerX = Gdx.graphics.getWidth() * 0.5f;
         centerY = Gdx.graphics.getHeight() * 0.5f;

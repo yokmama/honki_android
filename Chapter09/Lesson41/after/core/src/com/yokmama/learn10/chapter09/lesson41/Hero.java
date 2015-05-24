@@ -6,12 +6,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Disposable;
 
 /**
  * キャラクターの制御
  */
-class Hero implements Disposable {
+class Hero {
 
     // テクスチャタイルの横幅
     private static final int TEXTURE_TILE_WIDTH = 64;
@@ -29,15 +28,14 @@ class Hero implements Disposable {
     private final static int ANIM_STATE_WIN = 2;
 
     // 地面からの距離
-    static final float HERO_FLOOR_Y = 40;
+    public static final float HERO_FLOOR_Y = 40;
     // 画面左からの距離
-    static final float HERO_LEFT_X = 150;
+    public static final float HERO_LEFT_X = 150;
 
     // テクスチャ
-    private static Texture sHeroTexture;
-    private static TextureRegion mAnimStillFrame;
-    private static TextureRegion sDeadFrame;
-    private static Animation[] sAnimations;
+    private final TextureRegion mDeadFrame;
+    private final Animation[] mAnimations = new Animation[3];
+    private TextureRegion mAnimStillFrame;
 
     // アニメーションの状態
     int mAnimState;
@@ -77,8 +75,31 @@ class Hero implements Disposable {
     // キャラクターの速度
     float heroVelocityX = 400;
 
-    public Hero() {
-        loadTexture();
+    public Hero(Texture heroTexture) {
+        // テクスチャから、状態毎に TextureRegion を取得する
+        Array<TextureRegion> regions;
+        TextureRegion[][] split = TextureRegion.split(heroTexture,
+                TEXTURE_TILE_WIDTH, TEXTURE_TILE_HEIGHT);
+
+        regions = new Array<TextureRegion>();
+        regions.addAll(split[1], 0, 4);
+        regions.addAll(split[2], 0, 4);
+        mAnimations[ANIM_STATE_RUNNING] = new Animation(TIME_DURATION_RUNNING,
+                regions, Animation.PlayMode.LOOP);
+
+        regions = new Array<TextureRegion>();
+        regions.addAll(split[3], 0, 7);
+        mAnimations[ANIM_STATE_JUMPING] = new Animation(TIME_DURATION_JUMPING,
+                regions, Animation.PlayMode.NORMAL);
+
+        regions = new Array<TextureRegion>();
+        regions.addAll(split[0], 3, 2);
+        mAnimations[ANIM_STATE_WIN] = new Animation(TIME_DURATION_WIN,
+                regions, Animation.PlayMode.LOOP);
+
+        // ゲームオーバー時の表示
+        mDeadFrame = split[0][3];
+
         init();
     }
 
@@ -88,48 +109,10 @@ class Hero implements Disposable {
         mIsJumping = false;
         mIsDoubleJumping = false;
         mAnimState = ANIM_STATE_STILL;
-        mAnimStillFrame = sAnimations[ANIM_STATE_RUNNING].getKeyFrame(0);
+        mAnimStillFrame = mAnimations[ANIM_STATE_RUNNING].getKeyFrame(0);
         mPosition.set(Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y);
         mVelocity.set(0, 0);
         mHasDeathAnimEnded = false;
-    }
-
-    public static void loadTexture() {
-        sHeroTexture = new Texture("UnityChan.png");
-
-        sAnimations = new Animation[3];
-
-        // テクスチャから、状態毎に TextureRegion を取得する
-        Array<TextureRegion> regions;
-        TextureRegion[][] split = TextureRegion.split(sHeroTexture,
-                TEXTURE_TILE_WIDTH, TEXTURE_TILE_HEIGHT);
-
-        regions = new Array<TextureRegion>();
-        regions.addAll(split[1], 0, 4);
-        regions.addAll(split[2], 0, 4);
-        sAnimations[ANIM_STATE_RUNNING] = new Animation(TIME_DURATION_RUNNING,
-                regions, Animation.PlayMode.LOOP);
-
-        regions = new Array<TextureRegion>();
-        regions.addAll(split[3], 0, 7);
-        sAnimations[ANIM_STATE_JUMPING] = new Animation(TIME_DURATION_JUMPING,
-                regions, Animation.PlayMode.NORMAL);
-
-        regions = new Array<TextureRegion>();
-        regions.addAll(split[0], 3, 2);
-        sAnimations[ANIM_STATE_WIN] = new Animation(TIME_DURATION_WIN,
-                regions, Animation.PlayMode.LOOP);
-
-        sDeadFrame = split[0][3];
-    }
-
-    public static void disposeTexture() {
-        if (sHeroTexture != null) {
-            sHeroTexture.dispose();
-            sHeroTexture = null;
-            sAnimations = null;
-            sDeadFrame = null;
-        }
     }
 
     public void startRunning() {
@@ -202,7 +185,7 @@ class Hero implements Disposable {
                     if (mCurrentStateDisplayTime > 1.4f) {
                         mWinAnimState = WIN_ANIM_STATE_STATIC;
                         mAnimState = ANIM_STATE_STILL;
-                        mAnimStillFrame = sAnimations[ANIM_STATE_WIN].getKeyFrame(0);
+                        mAnimStillFrame = mAnimations[ANIM_STATE_WIN].getKeyFrame(0);
                         mCurrentStateDisplayTime = 0;
                     }
                 }
@@ -233,7 +216,7 @@ class Hero implements Disposable {
                     mPosition.x, mPosition.y, 100, 98);
         }
         else {
-            game.batch.draw(sAnimations[mAnimState]
+            game.batch.draw(mAnimations[mAnimState]
                     .getKeyFrame(mCurrentStateDisplayTime),
                     mPosition.x, mPosition.y, 100, 98);
         }
@@ -258,14 +241,10 @@ class Hero implements Disposable {
     // ゲームオーバー通知
     public void die() {
         mIsDead = true;
-        mAnimStillFrame = sDeadFrame;
+        mAnimStillFrame = mDeadFrame;
         mAnimState = ANIM_STATE_STILL;
         mDeadTime = 0.0f;
         mDeadPosY = mPosition.y;
     }
 
-    @Override
-    public void dispose() {
-        disposeTexture();
-    }
 }
