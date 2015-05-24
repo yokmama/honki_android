@@ -109,11 +109,6 @@ public class MyGdxGame extends ApplicationAdapter {
     }
 
     @Override
-    public void resize(int width, int height) {
-        uiCamera.update();
-    }
-
-    @Override
     public void dispose() {
         Gdx.app.log("MyGdxGame", "dispose()");
 
@@ -130,6 +125,11 @@ public class MyGdxGame extends ApplicationAdapter {
         collisionSound.dispose();
         coinSound.dispose();
         finaleClapsSound.dispose();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        uiCamera.update();
     }
 
     // ゲームを最初の状態に戻す

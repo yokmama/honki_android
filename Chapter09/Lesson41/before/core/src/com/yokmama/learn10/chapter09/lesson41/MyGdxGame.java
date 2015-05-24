@@ -59,18 +59,6 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.app.log("MyGdxGame", "create()");
         batch = new SpriteBatch();
 
-        // ゲーム用カメラ
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
-
-        // UI用カメラ
-        uiCamera = new OrthographicCamera();
-        uiCamera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-
-        initResources();
-
-        resetWorld();
     }
 
     private void initResources() {
@@ -98,11 +86,6 @@ public class MyGdxGame extends ApplicationAdapter {
     }
 
     @Override
-    public void resize(int width, int height) {
-        uiCamera.update();
-    }
-
-    @Override
     public void dispose() {
         Gdx.app.log("MyGdxGame", "dispose()");
 
@@ -121,42 +104,11 @@ public class MyGdxGame extends ApplicationAdapter {
         finaleClapsSound.dispose();
     }
 
-    // ゲームを最初の状態に戻す
-    private void resetWorld() {
-        score = 0;
-    }
-
     @Override
     public void render() {
         Gdx.gl.glClearColor(0, 153.0f / 255.0f, 204.0f / 255.0f, 1); // #0099CC
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        updateWorld();
-        drawWorld();
     }
 
-    // 各種状態を変更する
-    private void updateWorld() {
-        float deltaTime = Gdx.graphics.getDeltaTime();
-
-    }
-
-    // 描画
-    private void drawWorld() {
-        camera.update();
-        batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-
-        // ゲーム描画
-
-
-        batch.end();
-        batch.setProjectionMatrix(uiCamera.combined);
-        batch.begin();
-
-        // UI描画
-
-
-        batch.end();
-    }
 }
