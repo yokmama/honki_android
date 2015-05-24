@@ -44,25 +44,17 @@ class Hero {
     // キャラクターの移動速度
     float heroVelocityX = 400;
 
-    // ジャンプ
-    private boolean isJumping;
-    private boolean isDoubleJumping;
-    private float jumpingTime;
-    private static final float jumpTime = 1.0f;
-    private static final float jumpHeight = 300.0f;
-
     // キャラクタの位置
-    private Vector2 position = new Vector2();
+    final Vector2 position = new Vector2();
     // キャラクタの速度
-    private Vector2 velocity = new Vector2();
+    final Vector2 velocity = new Vector2();
     // キャラクタの衝突判定用範囲オブジェクト
-    private Rectangle collisionRect = new Rectangle();
+    final Rectangle collisionRect = new Rectangle();
 
     // ゲームオーバー
+    private static final float DEAD_JUMP_HEIGHT = 100.0f;
     private boolean isDead;
-    private float deadTime;
     private float deadPosY;
-    private float deadJumpHeight = 100.0f;
     private boolean hasDeathAnimEnded;
 
     // ゲームクリア
@@ -102,14 +94,12 @@ class Hero {
     }
 
     public void init() {
-        hasWon = false;
-        isDead = false;
-        isJumping = false;
-        isDoubleJumping = false;
         animState = ANIM_STATE_STILL;
         animStillFrame = animations[ANIM_STATE_RUNNING].getKeyFrame(0);
         position.set(Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y);
         velocity.set(0, 0);
+        hasWon = false;
+        isDead = false;
         hasDeathAnimEnded = false;
     }
 
@@ -118,76 +108,17 @@ class Hero {
         velocity.set(heroVelocityX, 0);
     }
 
-    public void jump() {
-        if (!isJumping) {
-            isJumping = true;
-            jumpingTime = 0;
-            animState = ANIM_STATE_JUMPING;
-            currentStateDisplayTime = 0;
-        }
-        else if (!isDoubleJumping) {
-            if (jumpingTime > jumpTime / 2.0f) {
-                isDoubleJumping = true;
-                jumpingTime = jumpTime - jumpingTime;
-                currentStateDisplayTime = 0;
-            }
-        }
-    }
-
     public void update(float deltaTime) {
+        currentStateDisplayTime += deltaTime;
+
         if (isDead) {
-            deadTime += deltaTime;
-            float deadTimeFrac = deadTime / 0.75f;
-            position.y = deadPosY + deadFunc(deadTimeFrac) * deadJumpHeight;
-            if (deadTimeFrac >= 0.75f) {
-                hasDeathAnimEnded = true;
-            }
+            updateDeadAnimation(deltaTime);
             return;
         }
 
-
-        currentStateDisplayTime += deltaTime;
-
-        if (isJumping) {
-            // ジャンプ中
-            jumpingTime += deltaTime;
-            float jumpTime = jumpingTime / Hero.jumpTime;
-            position.y = HERO_FLOOR_Y + jumpFunc(jumpTime) * jumpHeight;
-            if (jumpingTime >= Hero.jumpTime) {
-                // ジャンプ終了時
-                isJumping = false;
-                isDoubleJumping = false;
-                animState = ANIM_STATE_RUNNING;
-                currentStateDisplayTime = 0;
-                position.y = HERO_FLOOR_Y;
-            }
-        }
-
-        // Win animation
+        // ゲームクリア時のアニメーション
         if (hasWon) {
-            if (!isJumping) {
-                if (winAnimState == WIN_ANIM_STATE_WAIT_FOR_LANDING) {
-                    winAnimState = WIN_ANIM_STATE_RUN;
-                    animState = ANIM_STATE_RUNNING;
-                    currentStateDisplayTime = 0;
-                }
-                else if (winAnimState == WIN_ANIM_STATE_RUN) {
-                    if (currentStateDisplayTime > 0.4f) {
-                        winAnimState = WIN_ANIM_STATE_SPIRAL;
-                        animState = ANIM_STATE_WIN;
-                        currentStateDisplayTime = 0;
-                        velocity.set(0, 0);
-                    }
-                }
-                else if (winAnimState == WIN_ANIM_STATE_SPIRAL) {
-                    if (currentStateDisplayTime > 1.4f) {
-                        winAnimState = WIN_ANIM_STATE_STATIC;
-                        animState = ANIM_STATE_STILL;
-                        animStillFrame = animations[ANIM_STATE_WIN].getKeyFrame(0);
-                        currentStateDisplayTime = 0;
-                    }
-                }
-            }
+            updateWinAnimation(deltaTime);
         }
 
         position.mulAdd(velocity, deltaTime);
@@ -195,14 +126,41 @@ class Hero {
         collisionRect.set(position.x + 30, position.y, 40, 68);
     }
 
+    private void updateDeadAnimation(float deltaTime) {
+        float deadTimeFraction = currentStateDisplayTime / 0.75f;
+        position.y = deadPosY + deadFunc(deadTimeFraction) * DEAD_JUMP_HEIGHT;
+        if (deadTimeFraction >= 0.75f) {
+            hasDeathAnimEnded = true;
+        }
+    }
+
+    private void updateWinAnimation(float deltaTime) {
+        if (winAnimState == WIN_ANIM_STATE_WAIT_FOR_LANDING) {
+            winAnimState = WIN_ANIM_STATE_RUN;
+            animState = ANIM_STATE_RUNNING;
+            currentStateDisplayTime = 0;
+        }
+        else if (winAnimState == WIN_ANIM_STATE_RUN) {
+            if (currentStateDisplayTime > 0.4f) {
+                winAnimState = WIN_ANIM_STATE_SPIRAL;
+                animState = ANIM_STATE_WIN;
+                currentStateDisplayTime = 0;
+                velocity.set(0, 0);
+            }
+        }
+        else if (winAnimState == WIN_ANIM_STATE_SPIRAL) {
+            if (currentStateDisplayTime > 1.4f) {
+                winAnimState = WIN_ANIM_STATE_STATIC;
+                animState = ANIM_STATE_STILL;
+                animStillFrame = animations[ANIM_STATE_WIN].getKeyFrame(0);
+                currentStateDisplayTime = 0;
+            }
+        }
+    }
+
     private float deadFunc(float t) {
         t = Math.min(Math.max(t, 0.0f), 1.0f);
         return -7.6f * t * t + 5.62f * t;
-    }
-
-    private float jumpFunc(float t) {
-        t = Math.min(Math.max(t, 0.0f), 1.0f);
-        return t * (-4.0f * t + 4.0f);
     }
 
     public void draw(MyGdxGame game) {
@@ -215,17 +173,9 @@ class Hero {
         }
         else {
             game.batch.draw(animations[animState]
-                    .getKeyFrame(currentStateDisplayTime),
+                            .getKeyFrame(currentStateDisplayTime),
                     position.x, position.y, 100, 98);
         }
-    }
-
-    public Vector2 getPosition() {
-        return position;
-    }
-
-    public Rectangle getCollisionRect() {
-        return collisionRect;
     }
 
     // ゲームクリア通知
@@ -240,7 +190,7 @@ class Hero {
         isDead = true;
         animStillFrame = deadFrame;
         animState = ANIM_STATE_STILL;
-        deadTime = 0.0f;
+        currentStateDisplayTime = 0.0f;
         deadPosY = position.y;
     }
 
