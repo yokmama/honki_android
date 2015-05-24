@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 public class Background {
     // 背景の動く速さ
-    public static float SPEED = 0.05f;
+    public static final float SPEED = 0.05f;
 
     // テクスチャ
     private TextureRegion mBackground;

@@ -5,12 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Disposable;
 
 /**
  * テキスト
  */
-public class Text implements Disposable {
+public class Text {
 
     private final GlyphLayout glyphLayout;
     private float vpWidth = MyGdxGame.VIEWPORT_WIDTH;
@@ -44,8 +43,4 @@ public class Text implements Disposable {
         font.getData().setScale(1.0f);
     }
 
-    @Override
-    public void dispose() {
-        font.dispose();
-    }
 }
