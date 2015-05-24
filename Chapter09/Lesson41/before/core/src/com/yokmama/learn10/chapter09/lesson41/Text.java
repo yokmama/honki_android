@@ -21,20 +21,6 @@ class Text {
         glyphLayout = new GlyphLayout();
     }
 
-    // 上部にテキストを描画
-    public void drawTextTop(Batch batch, String text) {
-        glyphLayout.setText(font, text, Color.WHITE, 0, Align.center, false);
-        font.draw(batch, glyphLayout,
-                vpWidth * 0.5f, vpHeight - glyphLayout.height * 1.5f);
-    }
-
-    // 中央にテキストを描画
-    public void drawTextCenter(Batch batch, String text) {
-        glyphLayout.setText(font, text, Color.WHITE, 0, Align.center, false);
-        font.draw(batch, glyphLayout,
-                vpWidth * 0.5f, vpHeight * 0.5f + glyphLayout.height * 0.5f);
-    }
-
     // スコアアイテム取得時のテキスト描画
     public void drawChipScore(Batch batch, String text, Color color, float scaleXY, float x, float y) {
         glyphLayout.setText(font, text, color, 0, Align.left, false);
