@@ -29,7 +29,6 @@ public class MyGdxGame extends ApplicationAdapter {
     // カメラ
     private OrthographicCamera uiCamera;
     private OrthographicCamera camera;
-    float cameraLeftEdge;
 
     // テクスチャ
     private BitmapFont textFont;
@@ -51,6 +50,9 @@ public class MyGdxGame extends ApplicationAdapter {
     private Hero hero;
     private Background background;
     private Generator generator;
+
+    // カメラ左端の位置
+    float cameraLeftEdge;
 
     // ゴール位置
     float finishX;

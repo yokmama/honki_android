@@ -20,8 +20,15 @@ public class MyGdxGame extends ApplicationAdapter {
 
     SpriteBatch batch;
 
+    // 現在のゲームの状態
+    public GameState gameState = GameState.Ready;
+
     // スコア
     private int score;
+
+    // カメラ
+    private OrthographicCamera uiCamera;
+    private OrthographicCamera camera;
 
     // テクスチャ
     private BitmapFont textFont;
@@ -44,9 +51,7 @@ public class MyGdxGame extends ApplicationAdapter {
     private Background background;
     private Generator generator;
 
-    // カメラ
-    private OrthographicCamera uiCamera;
-    private OrthographicCamera camera;
+    // カメラ左端の位置
     float cameraLeftEdge;
 
     @Override
@@ -119,7 +124,6 @@ public class MyGdxGame extends ApplicationAdapter {
     // ゲームを最初の状態に戻す
     private void resetWorld() {
         score = 0;
-
     }
 
     @Override
@@ -145,11 +149,13 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // ゲーム描画
 
+
         batch.end();
         batch.setProjectionMatrix(uiCamera.combined);
         batch.begin();
 
         // UI描画
+
 
         batch.end();
     }
