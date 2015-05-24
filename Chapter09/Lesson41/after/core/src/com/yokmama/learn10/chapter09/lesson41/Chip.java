@@ -33,9 +33,12 @@ public class Chip {
 
     // テクスチャ
     private final TextureRegion[] chipRegions;
-    public static final int[] chipScores;
-    private static final float[] scoreTextScales;
+    // スコアアイテム種別毎の得点
+    public static final int[] chipScores = new int[] { 10, 20, 50, 100 };
+    // スコアアイテムの拡大率
+    private static final float[] scoreTextScales = new float[] { 0.6f, 0.65f, 0.7f, 0.8f };
 
+    // 初期位置
     final Rectangle origin = new Rectangle();
     final Vector2 positionPhase = new Vector2();
     final Rectangle bounds = new Rectangle();
@@ -52,12 +55,8 @@ public class Chip {
     private final float phaseShiftFraction;
     private float scorePhase;
 
-    private final Color mChipScoreColor;
-
-    static {
-        chipScores = new int[] { 10, 20, 50, 100 };
-        scoreTextScales = new float[] { 0.6f, 0.65f, 0.7f, 0.8f };
-    }
+    // スコア取得時のテキストの色
+    private final Color chipScoreColor;
 
     public Chip(TextureRegion[] chipRegions, int type, float x, float y, float width, float height) {
         this(chipRegions, type, x, y, width, height, 0);
@@ -71,7 +70,7 @@ public class Chip {
         this.timeSinceCreation = 0;
         this.phaseShiftFraction = phaseShiftFraction;
         this.collisionCircle = new Circle(x + width / 2, y + height / 2, Math.min(width, height) / 2);
-        this.mChipScoreColor = new Color();
+        this.chipScoreColor = new Color();
     }
 
     // 状態の更新
@@ -120,8 +119,8 @@ public class Chip {
         if (isCollected) {
             // スコアテキストの描画
             if (collectAnimTimeFraction < 0.5f) {
-                mChipScoreColor.set(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
-                text.drawChipScore(batch, "+" + chipScores[type], mChipScoreColor,
+                chipScoreColor.set(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
+                text.drawChipScore(batch, "+" + chipScores[type], chipScoreColor,
                         scoreTextScales[type],
                         origin.x + CHIP_SIZE * 0.5f - bounds.width * 0.5f,
                         origin.y + CHIP_SIZE + bounds.height + scorePhase);
