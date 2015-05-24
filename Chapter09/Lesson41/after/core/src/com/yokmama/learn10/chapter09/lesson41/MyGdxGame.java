@@ -76,7 +76,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // 音楽の再生
         mMusic.setLooping(true);
-        mMusic.setVolume(0.5f);
+        mMusic.setVolume(0.6f);
         mMusic.play();
 
         resetWorld();
@@ -109,7 +109,6 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void resize(int width, int height) {
         mUiCamera.update();
-        text.setViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     }
 
     @Override
@@ -257,18 +256,18 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // 文字列描画
         if (gameState == GameState.Ready) {
-            text.drawTextTop(batch, "START", mUiCamera);
+            text.drawTextTop(batch, "START");
         }
         else if (gameState == GameState.GameCleared) {
-            text.drawTextTop(batch, "SCORE: " + mScore, mUiCamera);
-            text.drawTextCenter(batch, "LEVEL CLEAR", mUiCamera);
+            text.drawTextTop(batch, "SCORE: " + mScore);
+            text.drawTextCenter(batch, "LEVEL CLEAR");
         }
         else if (gameState == GameState.GameOver) {
-            text.drawTextTop(batch, "SCORE: " + mScore, mUiCamera);
-            text.drawTextCenter(batch, "GAME OVER", mUiCamera);
+            text.drawTextTop(batch, "SCORE: " + mScore);
+            text.drawTextCenter(batch, "GAME OVER");
         }
         else if (gameState == GameState.Running) {
-            text.drawTextTop(batch, "SCORE: " + mScore, mUiCamera);
+            text.drawTextTop(batch, "SCORE: " + mScore);
         }
 
         batch.end();
