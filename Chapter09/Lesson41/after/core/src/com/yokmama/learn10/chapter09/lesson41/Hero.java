@@ -52,11 +52,11 @@ class Hero {
     private static final float jumpHeight = 300.0f;
 
     // キャラクタの位置
-    private Vector2 mPosition = new Vector2();
+    Vector2 position = new Vector2();
     // キャラクタの速度
-    private Vector2 mVelocity = new Vector2();
+    Vector2 velocity = new Vector2();
     // キャラクタの衝突判定用範囲オブジェクト
-    private Rectangle mCollisionRect = new Rectangle();
+    Rectangle collisionRect = new Rectangle();
 
     // ゲームオーバー
     private boolean isDead;
@@ -72,7 +72,6 @@ class Hero {
     private final static int WIN_ANIM_STATE_STATIC = 3;
     private boolean hasWon;
     private int winAnimState;
-    private float winAnimStateTime;
 
     public Hero(Texture heroTexture) {
         // テクスチャから、状態毎に TextureRegion を取得する
@@ -109,14 +108,14 @@ class Hero {
         isDoubleJumping = false;
         animState = ANIM_STATE_STILL;
         animStillFrame = animations[ANIM_STATE_RUNNING].getKeyFrame(0);
-        mPosition.set(Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y);
-        mVelocity.set(0, 0);
+        position.set(Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y);
+        velocity.set(0, 0);
         hasDeathAnimEnded = false;
     }
 
     public void startRunning() {
         animState = ANIM_STATE_RUNNING;
-        mVelocity.set(heroVelocityX, 0);
+        velocity.set(heroVelocityX, 0);
     }
 
     public void jump() {
@@ -139,7 +138,7 @@ class Hero {
         if (isDead) {
             deadTime += deltaTime;
             float deadTimeFrac = deadTime / 0.75f;
-            mPosition.y = deadPosY + deadFunc(deadTimeFrac) * deadJumpHeight;
+            position.y = deadPosY + deadFunc(deadTimeFrac) * deadJumpHeight;
             if (deadTimeFrac >= 0.75f) {
                 hasDeathAnimEnded = true;
             }
@@ -153,14 +152,14 @@ class Hero {
             // ジャンプ中
             jumpingTime += deltaTime;
             float jumpTime = jumpingTime / Hero.jumpTime;
-            mPosition.y = HERO_FLOOR_Y + jumpFunc(jumpTime) * jumpHeight;
+            position.y = HERO_FLOOR_Y + jumpFunc(jumpTime) * jumpHeight;
             if (jumpingTime >= Hero.jumpTime) {
                 // ジャンプ終了時
                 isJumping = false;
                 isDoubleJumping = false;
                 animState = ANIM_STATE_RUNNING;
                 currentStateDisplayTime = 0;
-                mPosition.y = HERO_FLOOR_Y;
+                position.y = HERO_FLOOR_Y;
             }
         }
 
@@ -177,7 +176,7 @@ class Hero {
                         winAnimState = WIN_ANIM_STATE_SPIRAL;
                         animState = ANIM_STATE_WIN;
                         currentStateDisplayTime = 0;
-                        mVelocity.set(0, 0);
+                        velocity.set(0, 0);
                     }
                 }
                 else if (winAnimState == WIN_ANIM_STATE_SPIRAL) {
@@ -191,9 +190,9 @@ class Hero {
             }
         }
 
-        mPosition.mulAdd(mVelocity, deltaTime);
+        position.mulAdd(velocity, deltaTime);
 
-        mCollisionRect.set(mPosition.x + 30, mPosition.y, 40, 68);
+        collisionRect.set(position.x + 30, position.y, 40, 68);
     }
 
     private float deadFunc(float t) {
@@ -212,29 +211,20 @@ class Hero {
 
         if (animState == ANIM_STATE_STILL) {
             game.batch.draw(animStillFrame,
-                    mPosition.x, mPosition.y, 100, 98);
+                    position.x, position.y, 100, 98);
         }
         else {
             game.batch.draw(animations[animState]
                     .getKeyFrame(currentStateDisplayTime),
-                    mPosition.x, mPosition.y, 100, 98);
+                    position.x, position.y, 100, 98);
         }
-    }
-
-    public Vector2 getPosition() {
-        return mPosition;
-    }
-
-    public Rectangle getCollisionRect() {
-        return mCollisionRect;
     }
 
     // ゲームクリア通知
     public void win() {
         hasWon = true;
         winAnimState = WIN_ANIM_STATE_WAIT_FOR_LANDING;
-        winAnimStateTime = 0;
-        mVelocity.set(300, 0);
+        velocity.set(300, 0);
     }
 
     // ゲームオーバー通知
@@ -243,7 +233,7 @@ class Hero {
         animStillFrame = deadFrame;
         animState = ANIM_STATE_STILL;
         deadTime = 0.0f;
-        deadPosY = mPosition.y;
+        deadPosY = position.y;
     }
 
 }

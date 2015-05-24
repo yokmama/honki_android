@@ -60,8 +60,6 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.app.log("MyGdxGame", "create()");
         batch = new SpriteBatch();
 
-        initResources();
-
         // ゲーム用カメラ
         camera = new OrthographicCamera();
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
@@ -70,6 +68,8 @@ public class MyGdxGame extends ApplicationAdapter {
         // UI用カメラ
         uiCamera = new OrthographicCamera();
         uiCamera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+
+        initResources();
 
         // ゴール地点の決定
         finishX = (background.stageWidth - VIEWPORT_WIDTH) / Background.SPEED + Hero.HERO_LEFT_X;
@@ -193,13 +193,13 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // カメラの位置をキャラクターに合わせて移動させる
         if (gameState != GameState.GameCleared) {
-            camera.position.x = VIEWPORT_WIDTH / 2 + hero.getPosition().x - Hero.HERO_LEFT_X;
+            camera.position.x = VIEWPORT_WIDTH / 2 + hero.position.x - Hero.HERO_LEFT_X;
             cameraLeftEdge = camera.position.x - VIEWPORT_WIDTH / 2;
         }
 
         // ゲームクリアチェック
         if (gameState != GameState.GameCleared) {
-            float heroX = hero.getPosition().x;
+            float heroX = hero.position.x;
             if (finishX < heroX) {
                 finaleClapsSound.play();
                 gameState = GameState.GameCleared;
@@ -213,7 +213,7 @@ public class MyGdxGame extends ApplicationAdapter {
         }
 
         // 衝突判定
-        Rectangle heroCollision = hero.getCollisionRect();
+        Rectangle heroCollision = hero.collisionRect;
         for (Chip chip : generator.chips) {
             if (!chip.isCollected && Intersector.overlaps(chip.collisionCircle, heroCollision)) {
                 chip.collect();
