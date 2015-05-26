@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         //一旦全てのアイテムを削除
         contents.removeAllViews();
 
-        //17個の画像をScrollViewのItemとして追加
+        //21個の画像をScrollViewのItemとして追加
         for (int i = 1; i <= 21; i++) {
             String resName = "dog" + i;
             if (TextUtils.isEmpty(searchName) || resName.contains(searchName)) {
