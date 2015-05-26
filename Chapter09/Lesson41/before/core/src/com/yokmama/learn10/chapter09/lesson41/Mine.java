@@ -40,6 +40,7 @@ class Mine {
 
     // 描画
     public void draw(SpriteBatch batch) {
+        batch.draw(region, origin.x, origin.y, origin.width, origin.height);
     }
 
 }
