@@ -16,7 +16,7 @@ public class TranslateAnimationDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder bld = new AlertDialog.Builder(
-                getActivity(), R.style.Lesson34_Animation_Dialog);
+                getActivity());
         bld.setTitle("タイトル");
         bld.setMessage("メッセージ");
         bld.setPositiveButton("OK", new DialogInterface.OnClickListener() {
