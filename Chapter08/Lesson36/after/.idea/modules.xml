@@ -3,9 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/after.iml" filepath="$PROJECT_DIR$/after.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lesson35/lesson35.iml" filepath="$PROJECT_DIR$/lesson35/lesson35.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mydaogenerator/mydaogenerator.iml" filepath="$PROJECT_DIR$/mydaogenerator/mydaogenerator.iml" />
     </modules>
   </component>
 </project>
