@@ -45,6 +45,7 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
+        //音声入力のプロバイダクラスを生成
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         mSpeechRecognizer.setRecognitionListener(myRecognitionListener);
 

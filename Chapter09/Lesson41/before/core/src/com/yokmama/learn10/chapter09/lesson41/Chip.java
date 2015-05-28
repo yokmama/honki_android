@@ -71,6 +71,7 @@ class Chip {
 
     // 描画
     public void draw(SpriteBatch batch, Text text) {
+        batch.draw(chipRegions[type], origin.x + positionPhase.x, origin.y + positionPhase.y, origin.width, origin.height);
     }
 
 }

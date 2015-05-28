@@ -76,6 +76,10 @@ public class PropertyAnimationActivity extends Activity implements View.OnClickL
 
     /** XMLで定義したプロパティアニメーションを実行 */
     private void doAnimationToBtnXXml() {
+        Animator anim = AnimatorInflater.loadAnimator(
+                this,R.animator.activity_property_animation_move_x);
+        anim.setTarget(mBtnXXml);
+        anim.start();
     }
 
     /** コードで定義したプロパティアニメーションを実行 */
