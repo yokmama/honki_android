@@ -1,10 +1,10 @@
-package com.yokmama.learn10.chapter09.lesson40.android;
+package com.yokmama.learn10.chapter09.android;
 
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.yokmama.learn10.chapter09.lesson40.MyGdxGame;
+import com.yokmama.learn10.chapter09.MyGdxGame;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override

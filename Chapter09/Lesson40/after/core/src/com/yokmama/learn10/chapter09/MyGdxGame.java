@@ -1,4 +1,4 @@
-package com.yokmama.learn10.chapter09.lesson40;
+package com.yokmama.learn10.chapter09;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
@@ -69,7 +68,7 @@ public class MyGdxGame extends ApplicationAdapter {
         // 音
         music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
         music.setLooping(true);
-        music.setVolume(0.3f);
+        music.setVolume(0.6f);
         music.play();
 
         coin = Gdx.audio.newSound(Gdx.files.internal("coin05.mp3"));
