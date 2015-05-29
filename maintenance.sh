@@ -153,6 +153,9 @@ for gradlewFile in `find . -type f -name gradlew`; do
   if [ -f ./app/build/outputs/apk/app-debug.apk ]; then
     mkdir -p $resultDir/$parentDir
     cp ./app/build/outputs/apk/app-debug.apk $resultDir/$parentDir/
+  elif [ -f ./android/build/outputs/apk/android-debug.apk ]; then
+    mkdir -p $resultDir/$parentDir
+    cp ./android/build/outputs/apk/android-debug.apk $resultDir/$parentDir/
   else
     echo "Not found apk: $parentDir"
   fi

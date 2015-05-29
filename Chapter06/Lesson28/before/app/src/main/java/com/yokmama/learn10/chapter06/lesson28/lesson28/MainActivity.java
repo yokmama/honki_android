@@ -45,7 +45,7 @@ public class MainActivity extends FragmentActivity {
     public void showTodoList() {
         String tag = TodoListFragment.TAG;
         getSupportFragmentManager().beginTransaction().replace(R.id.container,
-                TodoListFragment.newInstance(), tag).addToBackStack(tag).commit();
+                TodoListFragment.newInstance(), tag).commit();
     }
 
     /**
