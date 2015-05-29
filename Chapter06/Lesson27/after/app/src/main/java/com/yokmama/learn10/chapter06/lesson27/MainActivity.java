@@ -15,6 +15,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private Calculator mCalculator = new Calculator();
 
+    private int[] mBtnResIds = {R.id.button0, R.id.button1, R.id.button2, R.id.button3,
+            R.id.button4, R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9,
+            R.id.dot, R.id.equal, R.id.sum, R.id.difference, R.id.product, R.id.quotient,
+            R.id.clear};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,23 +27,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         //インスタンスを取得
         mTvPreview = (TextView) findViewById(R.id.preview);
-        findViewById(R.id.button0).setOnClickListener(this);
-        findViewById(R.id.button1).setOnClickListener(this);
-        findViewById(R.id.button2).setOnClickListener(this);
-        findViewById(R.id.button3).setOnClickListener(this);
-        findViewById(R.id.button4).setOnClickListener(this);
-        findViewById(R.id.button5).setOnClickListener(this);
-        findViewById(R.id.button6).setOnClickListener(this);
-        findViewById(R.id.button7).setOnClickListener(this);
-        findViewById(R.id.button8).setOnClickListener(this);
-        findViewById(R.id.button9).setOnClickListener(this);
-        findViewById(R.id.dot).setOnClickListener(this);
-        findViewById(R.id.equal).setOnClickListener(this);
-        findViewById(R.id.sum).setOnClickListener(this);
-        findViewById(R.id.difference).setOnClickListener(this);
-        findViewById(R.id.product).setOnClickListener(this);
-        findViewById(R.id.quotient).setOnClickListener(this);
-        findViewById(R.id.clear).setOnClickListener(this);
+        for (int i = 0; i < mBtnResIds.length; i++) {
+            findViewById(mBtnResIds[i]).setOnClickListener(this);
+        }
     }
 
     @Override

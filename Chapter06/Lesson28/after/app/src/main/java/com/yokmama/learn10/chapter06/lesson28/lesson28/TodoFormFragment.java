@@ -151,7 +151,7 @@ public class TodoFormFragment extends Fragment implements View.OnClickListener {
 
                 boolean isTablet = ((MainActivity) getActivity()).isTablet();
                 if (!isTablet) {
-                    //通常レイアウトの時はリスト画面に戻る
+                    //スマートフォンレイアウトの場合はリスト画面に戻る
                     getFragmentManager().popBackStack();
                 } else {
                     //タブレットレイアウトで新規TODOを作成した場合はテキストをクリア
