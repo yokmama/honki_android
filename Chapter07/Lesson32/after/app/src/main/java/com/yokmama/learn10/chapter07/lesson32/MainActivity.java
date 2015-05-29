@@ -5,15 +5,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements GridItemAdapter.OnItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,22 +23,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         setContentView(R.layout.activity_main);
 
+        //ToolbarをActionBarとしてセット
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         //GridViewにセットする画像リストを生成
-        List<Integer> itemList = getImageList();
+        List<Integer> itemList = createImageList();
 
         //GirdViewに画像をセット
-        GridView gridView = (GridView) findViewById(R.id.gridView);
-        GridItemAdapter adapter = new GridItemAdapter(MainActivity.this, itemList);
-        gridView.setAdapter(adapter);
-
-        //GridViewにクリックリスナーをセット
-        gridView.setOnItemClickListener(this);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setHasFixedSize(true);
+        GridItemAdapter adapter = new GridItemAdapter(this, itemList);
+        adapter.setOnItemClickListener(this);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public void onItemClick(GridItemAdapter adapter, View view, int position) {
         //クリックされた画像のリソースIDを取得
-        int resId = (int) adapterView.getAdapter().getItem(i);
+        int resId = (int) adapter.getItem(position);
 
         //パレット解析を行うアクティビティに移動
         //画像のトランジッション処理のためキー名を設定（Lollipop以降のみ動作）
@@ -47,7 +53,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ActivityCompat.startActivity(this, intent, options.toBundle());
     }
 
-    private List<Integer> getImageList(){
+    /**
+     * イメージリストを作成
+     */
+    private List<Integer> createImageList() {
         List<Integer> imageList = new ArrayList<>();
         //21個の画像をScrollViewのItemとして追加
         for (int i = 1; i <= 21; i++) {
