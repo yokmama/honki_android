@@ -1,4 +1,4 @@
-package com.yokmama.learn10.chapter09.lesson40;
+package com.yokmama.learn10.chapter09;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
