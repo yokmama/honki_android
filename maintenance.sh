@@ -54,9 +54,9 @@ for data in `grep -r "targetSdkVersion\s" .`; do
 done
 
 echo
-echo "Check minSdkVersion(10 or 15) :"
+echo "Check minSdkVersion(10) :"
 for data in `grep -r "minSdkVersion\s" .`; do
-  if [ -z `echo $data |grep "minSdkVersion 10\|minSdkVersion 15"` ]; then
+  if [ -z `echo $data |grep "minSdkVersion 10"` ]; then
     # 10じゃなかった時
     outInvalid $data
   fi
@@ -79,10 +79,10 @@ for data in `grep -r "\sActionBarActivity" .`; do
 done
 
 echo
-echo "Check appcompat-v7 version(22.1.1) :"
+echo "Check appcompat-v7 version(22.2.0) :"
 for data in `grep -r "compile\s'com.android.support:appcompat-v7" .|grep -v "/build/outputs/"`; do
-  if [ -z `echo $data |grep "com.android.support:appcompat-v7:22.1.1"` ]; then
-    # 22.1.1じゃない場合
+  if [ -z `echo $data |grep "com.android.support:appcompat-v7:22.2.0"` ]; then
+    # 該当のバージョンじゃない場合
     outInvalid $data
   fi
 done
