@@ -1,8 +1,7 @@
 package com.yokmama.learn10.chapter07.lesson34.ui;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import com.yokmama.learn10.chapter07.lesson34.R;
@@ -10,21 +9,21 @@ import com.yokmama.learn10.chapter07.lesson34.R;
 /**
  * Created by kayo on 15/04/15.
  */
-public class TranslateAnimationActivity extends Activity
+public class TranslateAnimationDialogActivity extends FragmentActivity
         implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_translate_animation);
-        findViewById(R.id.btn_start).setOnClickListener(this);
+        setContentView(R.layout.activity_translate_animation_dialog);
+        findViewById(R.id.btn_fragment).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this,
-                TranslateAnimationActivity.class);
-        startActivity(intent);
+        TranslateAnimationDialogFragment f
+                = new TranslateAnimationDialogFragment();
+        f.show(getSupportFragmentManager(), "Fragment");
     }
 
 }
