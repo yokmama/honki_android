@@ -53,8 +53,7 @@
 
         <activity
             android:name=".ui.TranslateAnimationDialogActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Lesson34.FragmentTransitions" />
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

@@ -1,5 +1,11 @@
 <resources>
 
+    <!-- Dialog Translate Animation -->
+
+    <style name="Lesson34.Animation.Dialog" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
+    </style>
+
     <!-- Transitions -->
 
     <style name="Lesson34.Transition" parent="AppTheme">
@@ -34,12 +40,6 @@
 
     <style name="Lesson34.FragmentTransitions" parent="AppTheme">
         <item name="android:windowContentTransitions">true</item>
-    </style>
-
-    <!-- Dialog Translate Animation -->
-
-    <style name="Lesson34.Animation.Dialog" parent="android:Theme.Material.Light.Dialog.Alert">
-        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
     </style>
 
 </resources>
