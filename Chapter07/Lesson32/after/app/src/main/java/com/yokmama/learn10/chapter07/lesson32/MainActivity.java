@@ -9,7 +9,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements GridItemAdapter.O
     @Override
     public void onItemClick(GridItemAdapter adapter, View view, int position) {
         //クリックされた画像のリソースIDを取得
-        int resId = (int) adapter.getItem(position);
+        int resId = adapter.getItem(position);
 
         //パレット解析を行うアクティビティに移動
         //画像のトランジッション処理のためキー名を設定（Lollipop以降のみ動作）
