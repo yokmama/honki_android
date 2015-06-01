@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Chapter06 Lesson26</string>
+    <string name="hint_input_memo">メモを入力します</string>
+    <string name="lb_please_input_keyword">キーワードを入力してください。</string>
+    <string name="lb_activity_not_found">開くことのできるアプリが見つかりませんでした。</string>
+    <string name="lb_menu_web">ウェブで検索</string>
+    <string name="lb_menu_send">共有</string>
+    <string name="lb_menu_play_store">Playストア検索</string>
+</resources>
