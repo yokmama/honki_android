@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson16/lesson16.iml" filepath="$PROJECT_DIR$/lesson16/lesson16.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson17/lesson17.iml" filepath="$PROJECT_DIR$/lesson17/lesson17.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson26/lesson26.iml" filepath="$PROJECT_DIR$/lesson26/lesson26.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson27/lesson27.iml" filepath="$PROJECT_DIR$/lesson27/lesson27.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson28/lesson28.iml" filepath="$PROJECT_DIR$/lesson28/lesson28.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson29/lesson29.iml" filepath="$PROJECT_DIR$/lesson29/lesson29.iml" />
+    </modules>
+  </component>
+</project>
