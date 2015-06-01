@@ -1,24 +1,5 @@
 <resources>
 
-    <style name="Lesson34.fab" parent="android:Widget.Button">
-        <item name="android:elevation">16dp</item>
-    </style>
-
-    <style name="fab" parent="Lesson34.fab">
-        <item name="android:layout_width">56dp</item>
-        <item name="android:layout_height">56dp</item>
-        <item name="android:background">@drawable/fab_pink</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <!-- Translate Animation -->
-
-    <style name="Lesson34.Animation.Dialog" parent="android:Theme.Material.Light.Dialog.Alert">
-        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
-    </style>
-
     <!-- Transitions -->
 
     <style name="Lesson34.Transition" parent="AppTheme">
@@ -53,6 +34,12 @@
 
     <style name="Lesson34.FragmentTransitions" parent="AppTheme">
         <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <!-- Dialog Translate Animation -->
+
+    <style name="Lesson34.Animation.Dialog" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
     </style>
 
 </resources>
