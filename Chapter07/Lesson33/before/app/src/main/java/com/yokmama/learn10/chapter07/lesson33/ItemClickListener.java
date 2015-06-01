@@ -39,6 +39,12 @@ public abstract class ItemClickListener implements RecyclerView.OnItemTouchListe
 
     }
 
+    // TODO
+    @Override
+    public void onRequestDisallowInterceptTouchEvent(boolean b) {
+
+    }
+
     /***
      * クリック時に呼ばれる
      *

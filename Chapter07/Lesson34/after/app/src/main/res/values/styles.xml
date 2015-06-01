@@ -18,18 +18,6 @@
         <item name="colorPrimaryDark">@color/md_pink_700</item>
     </style>
 
-    <style name="Lesson34.fab" parent="android:Widget.Button">
-    </style>
-
-    <style name="fab" parent="Lesson34.fab">
-        <item name="android:layout_width">@dimen/fab</item>
-        <item name="android:layout_height">@dimen/fab</item>
-        <item name="android:background">@drawable/fab_pink</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <!-- Translate Animation -->
 
     <style name="Lesson34.Animation.Translate" parent="android:Animation.Activity">

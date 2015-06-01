@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <!--共有-->
+    <!--TODO:レッスンではここにプログラムを追加-->
+
+    <!--ウェブで検索-->
+    <!--TODO:レッスンではここにプログラムを追加-->
+
+    <!--Playストアで検索-->
+    <!--TODO:レッスンではここにプログラムを追加-->
+
+</menu>

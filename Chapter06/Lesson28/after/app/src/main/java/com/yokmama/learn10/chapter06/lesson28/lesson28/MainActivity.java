@@ -49,7 +49,7 @@ public class MainActivity extends FragmentActivity {
     public void showTodoList() {
         String tag = TodoListFragment.TAG;
         getSupportFragmentManager().beginTransaction().replace(R.id.container,
-                TodoListFragment.newInstance(), tag).addToBackStack(tag).commit();
+                TodoListFragment.newInstance(), tag).commit();
     }
 
     /**
@@ -66,13 +66,15 @@ public class MainActivity extends FragmentActivity {
             fragment = TodoFormFragment.newInstance(item.getColorLabel(),
                     item.getValue(), item.getCreatedTime());
         }
-        int layoutId = R.id.container;
-        //タブレットの場合はcontainer2に表示
-        if (mIsTablet) {
-            layoutId = R.id.container2;
+        if (!mIsTablet) {
+            //スマートフォンレイアウトの場合はcontainerに表示
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,
+                    fragment, tag).addToBackStack(tag).commit();
+        }else{
+            //タブレットレイアウトの場合はcontainer2に表示
+            getSupportFragmentManager().beginTransaction().replace(R.id.container2,
+                    fragment, tag).addToBackStack(tag).commit();
         }
-        getSupportFragmentManager().beginTransaction().replace(layoutId,
-                fragment, tag).addToBackStack(tag).commit();
     }
 
     public List<Todo> getTodoList() {

@@ -8,156 +8,37 @@
     <!--計算画面-->
     <TextView
         android:id="@+id/preview"
-        android:textSize="60sp"
-        android:textColor="#424242"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/preview_text_height"
         android:gravity="center_vertical|right"
         android:padding="@dimen/preview_text_padding"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/preview_text_height" />
+        android:textColor="#424242"
+        android:textSize="60sp" />
 
     <View
         android:id="@+id/fabFrame"
-        android:layout_below="@+id/preview"
         android:layout_width="match_parent"
         android:layout_height="@dimen/fab_halfsize"
+        android:layout_below="@+id/preview"
         android:background="@color/material_grey_600" />
 
     <!--DELETE Button-->
     <Button
         android:id="@+id/clear"
         style="@style/fab"
-        android:text="DEL"
+        android:layout_alignBottom="@+id/fabFrame"
+        android:layout_alignEnd="@+id/preview"
+        android:layout_alignRight="@+id/preview"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/selector_fab"
-        android:layout_alignBottom="@+id/fabFrame"
-        android:layout_alignRight="@+id/preview"
-        android:layout_alignEnd="@+id/preview" />
+        android:text="DEL" />
 
-    <!--計算Buttonを格子状に配置するGridLayout-->
-    <GridLayout
-        android:layout_below="@+id/fabFrame"
-        android:id="@+id/calcFrame"
-        android:useDefaultMargins="false"
-        android:rowOrderPreserved="false"
-        android:alignmentMode="alignBounds"
-        android:background="@color/material_grey_600"
+    <!--計算Buttonをインクルード-->
+    <include
+        layout="@layout/include_calc_buttons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="4"
-        android:rowCount="4">
-
-        <Button
-            android:id="@+id/button7"
-            style="@style/calcButton"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:text="7" />
-
-        <Button
-            android:id="@+id/button8"
-            style="@style/calcButton"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:text="8" />
-
-        <Button
-            android:id="@+id/button9"
-            style="@style/calcButton"
-            android:layout_column="2"
-            android:layout_row="0"
-            android:text="9" />
-
-        <Button
-            android:id="@+id/button4"
-            style="@style/calcButton"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:text="4" />
-
-        <Button
-            android:id="@+id/button5"
-            style="@style/calcButton"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:text="5" />
-
-        <Button
-            android:id="@+id/button6"
-            style="@style/calcButton"
-            android:layout_row="1"
-            android:text="6" />
-
-        <Button
-            android:id="@+id/button1"
-            style="@style/calcButton"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:text="1" />
-
-        <Button
-            android:id="@+id/button2"
-            style="@style/calcButton"
-            android:layout_column="1"
-            android:layout_row="2"
-            android:text="2" />
-
-        <Button
-            android:id="@+id/button3"
-            style="@style/calcButton"
-            android:layout_column="2"
-            android:layout_row="2"
-            android:text="3" />
-
-        <Button
-            android:id="@+id/dot"
-            style="@style/calcButton"
-            android:layout_column="0"
-            android:layout_row="3"
-            android:text="." />
-
-        <Button
-            android:id="@+id/button0"
-            style="@style/calcButton"
-            android:layout_column="1"
-            android:layout_row="3"
-            android:text="0" />
-
-        <Button
-            android:id="@+id/equal"
-            style="@style/calcButton"
-            android:layout_column="2"
-            android:layout_row="3"
-            android:text="=" />
-
-
-        <Button
-            android:id="@+id/quotient"
-            style="@style/calcButton"
-            android:layout_column="3"
-            android:layout_row="0"
-            android:text="÷" />
-
-        <Button
-            android:id="@+id/product"
-            style="@style/calcButton"
-            android:layout_column="3"
-            android:layout_row="1"
-            android:text="×" />
-
-        <Button
-            android:id="@+id/difference"
-            style="@style/calcButton"
-            android:layout_column="3"
-            android:layout_row="2"
-            android:text="-" />
-
-        <Button
-            android:id="@+id/sum"
-            style="@style/calcButton"
-            android:layout_column="3"
-            android:layout_row="3"
-            android:text="+" />
-    </GridLayout>
+        android:layout_below="@+id/fabFrame" />
 
 </RelativeLayout>

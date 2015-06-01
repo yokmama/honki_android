@@ -2,7 +2,6 @@ package com.yokmama.learn10.chapter06.lesson29;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +12,7 @@ import android.util.Log;
 import com.yokmama.learn10.chapter06.lesson29.net.RequestDownloadImage;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * 定期的に壁紙を変更するクラス

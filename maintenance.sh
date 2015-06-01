@@ -7,6 +7,7 @@ commands=(
 cleanall
 check
 buildall
+replacevers
 collectapk
 lintallNoError
 )
@@ -54,9 +55,9 @@ for data in `grep -r "targetSdkVersion\s" .`; do
 done
 
 echo
-echo "Check minSdkVersion(10 or 15) :"
+echo "Check minSdkVersion(10) :"
 for data in `grep -r "minSdkVersion\s" .`; do
-  if [ -z `echo $data |grep "minSdkVersion 10\|minSdkVersion 15"` ]; then
+  if [ -z `echo $data |grep "minSdkVersion 10"` ]; then
     # 10じゃなかった時
     outInvalid $data
   fi
@@ -79,10 +80,10 @@ for data in `grep -r "\sActionBarActivity" .`; do
 done
 
 echo
-echo "Check appcompat-v7 version(22.1.1) :"
+echo "Check appcompat-v7 version(22.2.0) :"
 for data in `grep -r "compile\s'com.android.support:appcompat-v7" .|grep -v "/build/outputs/"`; do
-  if [ -z `echo $data |grep "com.android.support:appcompat-v7:22.1.1"` ]; then
-    # 22.1.1じゃない場合
+  if [ -z `echo $data |grep "com.android.support:appcompat-v7:22.2.0"` ]; then
+    # 該当のバージョンじゃない場合
     outInvalid $data
   fi
 done
@@ -124,6 +125,18 @@ IFS=$tmpIFS
 
 #############################
 
+function replacevers() {
+# Mac only executable!!
+find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:appcompat-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:appcompat-v7:22.2.0/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:recyclerview-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:recyclerview-v7:22.2.0/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:cardview-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:cardview-v7:22.2.0/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/targetSdkVersion\s[0-9]+/targetSdkVersion 22/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/buildToolsVersion\s"[0-9][0-9].[0-9].[0-9]"/buildToolsVersion "22.0.1"/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.tools.build:gradle:[0-9].[0-9].[0-9]/com.android.tools.build:gradle:1.2.3/g' {} \;
+}
+
+#############################
+
 function cleanall() {
 tmpIFS=$IFS
 IFS=$'\n'
@@ -153,6 +166,9 @@ for gradlewFile in `find . -type f -name gradlew`; do
   if [ -f ./app/build/outputs/apk/app-debug.apk ]; then
     mkdir -p $resultDir/$parentDir
     cp ./app/build/outputs/apk/app-debug.apk $resultDir/$parentDir/
+  elif [ -f ./android/build/outputs/apk/android-debug.apk ]; then
+    mkdir -p $resultDir/$parentDir
+    cp ./android/build/outputs/apk/android-debug.apk $resultDir/$parentDir/
   else
     echo "Not found apk: $parentDir"
   fi

@@ -1,5 +1,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
@@ -9,7 +8,7 @@
         android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="100"
         android:title="@string/lb_menu_send"
-        app:showAsAction="never" />
+        android:showAsAction="never" />
 
     <!--ウェブで検索-->
     <item
@@ -17,7 +16,7 @@
         android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="100"
         android:title="@string/lb_menu_web"
-        app:showAsAction="never" />
+        android:showAsAction="never" />
 
     <!--Playストアで検索-->
     <item
@@ -25,5 +24,5 @@
         android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="100"
         android:title="@string/lb_menu_play_store"
-        app:showAsAction="never" />
+        android:showAsAction="never" />
 </menu>
