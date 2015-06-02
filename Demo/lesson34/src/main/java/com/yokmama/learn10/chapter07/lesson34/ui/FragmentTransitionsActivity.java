@@ -5,15 +5,15 @@ import com.yokmama.learn10.chapter07.lesson34.R;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 /**
  * Created by kayo on 15/04/15.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class FragmentTransitionsActivity extends FragmentActivity implements View.OnClickListener {
+public class FragmentTransitionsActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

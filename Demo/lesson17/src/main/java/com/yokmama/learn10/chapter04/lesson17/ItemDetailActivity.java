@@ -2,8 +2,8 @@ package com.yokmama.learn10.chapter04.lesson17;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.yokmama.learn10.chapter04.lesson17.demo.DemoContent;
@@ -19,7 +19,7 @@ import com.yokmama.learn10.chapter04.lesson17.demo.DemoCreator;
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link com.yokmama.learn10.chapter04.lesson17.demo.DemoCreator}.
  */
-public class ItemDetailActivity extends FragmentActivity {
+public class ItemDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
