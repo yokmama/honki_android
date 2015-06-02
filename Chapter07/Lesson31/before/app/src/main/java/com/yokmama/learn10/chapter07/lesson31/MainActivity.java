@@ -3,41 +3,28 @@ package com.yokmama.learn10.chapter07.lesson31;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private ScrollView mScrollView;
-    private float mToolbarBarHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mScrollView = (ScrollView) findViewById(R.id.scrollView);
-
-        final TypedArray mTypedArray = getTheme().obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
-        mToolbarBarHeight = mTypedArray.getDimension(0, 0);
-        mTypedArray.recycle();
 
         //検索による画面呼び出しかどうか判定
         if (getIntent() != null) {
@@ -124,9 +111,9 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 1; i <= 21; i++) {
             String resName = "dog" + i;
             if (TextUtils.isEmpty(searchName) || resName.contains(searchName)) {
-                View view = getLayoutInflater().inflate(R.layout.scroll_item, contents, false);
-                ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-                TextView textView = (TextView) view.findViewById(R.id.textView);
+                View itemView = getLayoutInflater().inflate(R.layout.scroll_item, contents, false);
+                ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
+                TextView textView = (TextView) itemView.findViewById(R.id.textView);
 
                 //名前をTextViewに設定
                 textView.setText(resName);
@@ -135,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 int imageId = getResources().getIdentifier(resName, "drawable", getPackageName());
                 //画像をImageViewに設定
                 imageView.setImageResource(imageId);
-                contents.addView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                contents.addView(itemView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT));
             }
         }

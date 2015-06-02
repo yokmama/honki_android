@@ -10,15 +10,9 @@
     tools:context=".TranslateAnimationActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_to_next_activity" />
-
-    <Button
-        android:id="@+id/btn_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_change_dialog_animation" />
 
 </LinearLayout>

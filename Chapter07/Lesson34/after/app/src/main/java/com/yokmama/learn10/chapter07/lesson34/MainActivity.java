@@ -51,9 +51,9 @@ public class MainActivity extends Activity {
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                         return;
                     }
-                } else if (item == Activities.PropertyAnimation) {
+                } else if (item != Activities.ViewAnimation_Activity) {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                        String msg = "Android HONEYCOMB以降でのみ実行可能です。";
+                        String msg = "Android Honeycomb以降でのみ実行可能です。";
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                         return;
                     }
