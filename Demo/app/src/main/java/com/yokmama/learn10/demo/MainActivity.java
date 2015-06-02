@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         list.add(new LessonItem(R.string.titleLesson29, R.string.descLesson29, R.drawable.bird1));
         list.add(new LessonItem(R.string.titleLesson31, R.string.descLesson31, R.drawable.bird1));
         list.add(new LessonItem(R.string.titleLesson33, R.string.descLesson33, R.drawable.bird1));
+        list.add(new LessonItem(R.string.titleLesson34, R.string.descLesson34, R.drawable.bird1));
         list.add(new LessonItem(R.string.titleLesson41, R.string.descLesson41, R.drawable.bird1));
 
         return list;
@@ -73,6 +74,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             startActivity(intent);
         } else if (i == 7) {
             Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter07.lesson33.MainActivity.class);
+            startActivity(intent);
+        } else if (i == 8) {
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter07.lesson34.MainActivity.class);
             startActivity(intent);
         } else {
             Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter09.lesson41.android.AndroidLauncher.class);

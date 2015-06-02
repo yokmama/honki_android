@@ -9,6 +9,7 @@
     <string name="titleLesson29">壁紙チェンジャーアプリ</string>
     <string name="titleLesson31">Toolbar サンプル</string>
     <string name="titleLesson33">RecyclerView サンプル</string>
+    <string name="titleLesson34">Animation サンプル</string>
     <string name="titleLesson41">ゲームアプリ</string>
 
     <string name="descLesson16">Lesson16で学習する色々なWidgetの動きを確認できます</string>
@@ -19,6 +20,7 @@
     <string name="descLesson29">Lesson29で学習する壁紙チェンジャーアプリの動きを確認できます</string>
     <string name="descLesson31">Lesson31で学習するToolbarの動きを確認できます</string>
     <string name="descLesson33">Lesson33で学習するRecyclerViewの動きを確認できます</string>
+    <string name="descLesson34">Lesson34で学習するAnimationの動きを確認できます</string>
     <string name="descLesson41">Lesson41で学習するゲームアプリの動きを確認できます</string>
 
 </resources>

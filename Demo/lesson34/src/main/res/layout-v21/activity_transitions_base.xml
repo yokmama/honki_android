@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".TransitionActivity">
+
+    <View
+        android:id="@+id/fake_view"
+        android:layout_width="168dp"
+        android:layout_height="168dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/action_pink"
+        android:layout_width="@dimen/fab"
+        android:layout_height="@dimen/fab"
+        android:layout_alignTop="@id/fake_view"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/action_light_green"
+        android:layout_width="@dimen/fab"
+        android:layout_height="@dimen/fab"
+        android:layout_alignBottom="@id/fake_view"
+        android:layout_alignStart="@id/fake_view"/>
+
+    <Button
+        android:id="@+id/action_blue"
+        android:layout_width="@dimen/fab"
+        android:layout_height="@dimen/fab"
+        android:layout_alignBottom="@id/fake_view"
+        android:layout_alignEnd="@id/fake_view"/>
+
+</RelativeLayout>
