@@ -29,5 +29,7 @@ dependencies {
     compile project(':lesson27')
     compile project(':lesson28')
     compile project(':lesson29')
+    compile project(':lesson31')
+    compile project(':lesson33')
     compile project(':lesson41')
 }

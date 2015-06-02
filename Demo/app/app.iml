@@ -98,7 +98,9 @@
     <orderEntry type="library" exported="" name="cardview-v7-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
     <orderEntry type="module" module-name="lesson16" exported="" />
+    <orderEntry type="module" module-name="lesson33" exported="" />
     <orderEntry type="module" module-name="lesson27" exported="" />
+    <orderEntry type="module" module-name="lesson31" exported="" />
     <orderEntry type="module" module-name="lesson26" exported="" />
     <orderEntry type="module" module-name="lesson29" exported="" />
     <orderEntry type="module" module-name="lesson28" exported="" />
