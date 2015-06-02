@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!--ScrollViewはViewGroupで囲む必要がある-->
+        <!--ScrollViewは一つのViewGroupである必要がある-->
         <LinearLayout
             android:id="@+id/contents"
             android:layout_width="match_parent"
