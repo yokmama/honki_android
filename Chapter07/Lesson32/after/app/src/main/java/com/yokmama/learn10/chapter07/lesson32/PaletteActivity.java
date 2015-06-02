@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,12 +36,6 @@ public class PaletteActivity extends AppCompatActivity {
 
         //Toolbar上に戻る矢印を追加
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         //画像リソースを遷移元のActivityから取得(-1は空を意味する)
         int resId = -1;
@@ -88,6 +83,16 @@ public class PaletteActivity extends AppCompatActivity {
                 setPalletBlock(palette.getDarkMutedColor(Color.TRANSPARENT), R.id.viewPalette6);
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
