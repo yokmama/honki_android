@@ -1,4 +1,4 @@
-package com.yokmama.learn10.chapter06.lesson28.lesson28;
+package com.yokmama.learn10.chapter06.lesson28;
 
 import android.content.Context;
 import android.text.TextUtils;

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.yokmama.learn10.chapter06.lesson28.lesson28"
+        applicationId "com.yokmama.learn10.chapter06.lesson28"
         minSdkVersion 10
         targetSdkVersion 22
         versionCode 1

@@ -1,4 +1,4 @@
-package com.yokmama.learn10.chapter06.lesson28.lesson28;
+package com.yokmama.learn10.chapter06.lesson28;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -25,11 +25,7 @@ public class MainActivity extends FragmentActivity {
         showTodoList();
 
         //タブレットレイアウトなら右側にフォーム画面を表示
-        FrameLayout container2 = (FrameLayout) findViewById(R.id.container2);
-        if (container2 != null) {
-            mIsTablet = true;
-            showTodoForm(mTodoList.get(0));
-        }
+        //TODO:レッスンではここにプログラムを追加
     }
 
     @Override
@@ -68,12 +64,10 @@ public class MainActivity extends FragmentActivity {
         }
         if (!mIsTablet) {
             //スマートフォンレイアウトの場合はcontainerに表示
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,
-                    fragment, tag).addToBackStack(tag).commit();
+            //TODO:レッスンではここにプログラムを追加
         }else{
             //タブレットレイアウトの場合はcontainer2に表示
-            getSupportFragmentManager().beginTransaction().replace(R.id.container2,
-                    fragment, tag).addToBackStack(tag).commit();
+            //TODO:レッスンではここにプログラムを追加
         }
     }
 

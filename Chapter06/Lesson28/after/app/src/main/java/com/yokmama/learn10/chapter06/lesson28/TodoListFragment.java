@@ -1,4 +1,4 @@
-package com.yokmama.learn10.chapter06.lesson28.lesson28;
+package com.yokmama.learn10.chapter06.lesson28;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -90,7 +90,10 @@ public class TodoListFragment extends Fragment implements AdapterView.OnItemClic
         super.onCreateContextMenu(menu, view, menuInfo);
 
         //ListViewのコンテキストメニューを作成
-        //TODO:レッスンではここにプログラムを追加
+        if (view.getId() == R.id.todo_list) {
+            menu.setHeaderTitle("選択アイテム");
+            menu.add(0, MENU_ID_DELETE, 0, "削除");
+        }
     }
 
     //コンテキストメニュークリック時のリスナー
@@ -101,7 +104,6 @@ public class TodoListFragment extends Fragment implements AdapterView.OnItemClic
         int itemId = item.getItemId();
         if (itemId == MENU_ID_DELETE) {
             //アイテムを削除
-            //TODO:レッスンではここにプログラムを追加
             return true;
         }
         return super.onContextItemSelected(item);
