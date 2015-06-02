@@ -27,6 +27,12 @@ public class ViewUtils {
         v.getViewTreeObserver().addOnGlobalLayoutListener(l);
     }
 
+    /**
+     * 登録したリスナーを削除する
+     *
+     * @param observer
+     * @param listener
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressWarnings("deprecation")
     private static void removeOnGlobalLayoutListener(ViewTreeObserver observer, ViewTreeObserver.OnGlobalLayoutListener listener) {
@@ -41,6 +47,10 @@ public class ViewUtils {
         }
     }
 
+    /**
+     * コールバックのためのインターフェース
+     * @param <T>
+     */
     public interface OnLayoutCallback<T> {
         void onLayout(T v);
     }

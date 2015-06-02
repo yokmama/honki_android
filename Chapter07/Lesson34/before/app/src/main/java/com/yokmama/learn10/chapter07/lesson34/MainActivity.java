@@ -6,6 +6,7 @@ import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsExplodeActivity;
 import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsFadeActivity;
 import com.yokmama.learn10.chapter07.lesson34.ui.TransitionsSlideActivity;
 import com.yokmama.learn10.chapter07.lesson34.ui.TranslateAnimationActivity;
+import com.yokmama.learn10.chapter07.lesson34.ui.TranslateAnimationDialogActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -48,6 +49,12 @@ public class MainActivity extends Activity {
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                         return;
                     }
+                } else if (item != Activities.ViewAnimation_Activity) {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                        String msg = "Android Honeycomb以降でのみ実行可能です。";
+                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
 
                 // Intent発行
@@ -61,12 +68,13 @@ public class MainActivity extends Activity {
      * 項目一覧
      */
     public enum Activities {
-        ViewAnimation("View Animation", TranslateAnimationActivity.class),
         PropertyAnimation("Property Animation", PropertyAnimationActivity.class),
         Transitions_Fade("Activity Transitions (fade)", TransitionsFadeActivity.class),
         Transitions_Explode("Activity Transitions (explode)", TransitionsExplodeActivity.class),
         Transitions_Slide("Activity Transitions (slide)", TransitionsSlideActivity.class),
         Transitions_Fragment("Fragment Transitions", FragmentTransitionsActivity.class),
+        ViewAnimation_Activity("View Animation (Activity)", TranslateAnimationActivity.class),
+        ViewAnimation_Dialog("View Animation (Dialog)", TranslateAnimationDialogActivity.class),
         ;
         private final String title;
         private final Class<? extends Activity> activityClass;

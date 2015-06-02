@@ -1,9 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TransitionAfterActivity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".TransitionAfterActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -18,10 +18,10 @@
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:gravity="center_vertical"
             android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="start|top" />
+            android:layout_gravity="start|top"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
 
     </android.support.v7.widget.Toolbar>
 
@@ -33,8 +33,9 @@
 
         <Button
             android:id="@+id/action"
-            style="@style/fab"
-            android:layout_gravity="center" />
+            android:layout_width="@dimen/fab"
+            android:layout_height="@dimen/fab"
+            android:layout_gravity="center"/>
     </FrameLayout>
 
 </RelativeLayout>
