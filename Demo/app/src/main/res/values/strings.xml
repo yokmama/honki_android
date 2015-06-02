@@ -7,6 +7,7 @@
     <string name="titleLesson27">電卓アプリ</string>
     <string name="titleLesson28">TODOアプリ</string>
     <string name="titleLesson29">壁紙チェンジャーアプリ</string>
+    <string name="titleLesson41">ゲームアプリ</string>
 
     <string name="descLesson16">Lesson16で学習する色々なWidgetの動きを確認できます</string>
     <string name="descLesson17">Lesson17で学習する色々なLayoutの動きを確認できます</string>
@@ -14,5 +15,6 @@
     <string name="descLesson27">Lesson27で学習する電卓アプリの動きを確認できます</string>
     <string name="descLesson28">Lesson28で学習するTODOアプリの動きを確認できます</string>
     <string name="descLesson29">Lesson29で学習する壁紙チェンジャーアプリの動きを確認できます</string>
+    <string name="descLesson41">Lesson41で学習するゲームアプリの動きを確認できます</string>
 
 </resources>
