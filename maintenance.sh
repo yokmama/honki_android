@@ -129,13 +129,18 @@ IFS=$tmpIFS
 
 function replacevers() {
 # Mac only executable!!
-find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:appcompat-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:appcompat-v7:22.2.0/g' {} \;
-find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:recyclerview-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:recyclerview-v7:22.2.0/g' {} \;
-find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:cardview-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:cardview-v7:22.2.0/g' {} \;
-find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:gridlayout-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:gridlayout-v7:22.2.0/g' {} \;
+tmpIFS=$IFS
+IFS=$'\n'
+
+find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:appcompat-v7:[0-9][0-9]\.[0-9]\.[0-9]/com.android.support:appcompat-v7:22.2.0/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:recyclerview-v7:[0-9][0-9]\.[0-9]\.[0-9]/com.android.support:recyclerview-v7:22.2.0/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:cardview-v7:[0-9][0-9]\.[0-9]\.[0-9]/com.android.support:cardview-v7:22.2.0/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:gridlayout-v7:[0-9][0-9]\.[0-9]\.[0-9]/com.android.support:gridlayout-v7:22.2.0/g' {} \;
 find . -name build.gradle -type f -exec sed -i '' -e 's/targetSdkVersion\s[0-9]+/targetSdkVersion 22/g' {} \;
-find . -name build.gradle -type f -exec sed -i '' -e 's/buildToolsVersion\s"[0-9][0-9].[0-9].[0-9]"/buildToolsVersion "22.0.1"/g' {} \;
-find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.tools.build:gradle:[0-9].[0-9].[0-9]/com.android.tools.build:gradle:1.2.3/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/buildToolsVersion\s"[0-9][0-9]\.[0-9]\.[0-9]"/buildToolsVersion "22.0.1"/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.tools.build:gradle:[0-9]\.[0-9]\.[0-9]/com.android.tools.build:gradle:1.2.3/g' {} \;
+
+IFS=$tmpIFS
 }
 
 #############################
