@@ -252,6 +252,10 @@ IFS=$'\n'
 
 for gradlewFile in `find . -type f -name gradlew`; do
   parentDir=${gradlewFile%/*}
+  if [ `echo $parentDir|grep Addition/` ]; then
+    # Addition以下はlint対象から外す
+    continue;
+  fi
   pushd $parentDir
   ./gradlew --info lint || true
   popd
