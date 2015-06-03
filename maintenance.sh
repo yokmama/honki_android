@@ -5,11 +5,12 @@
 #############################
 commands=(
 cleanall
-check
 buildall
-replacevers
 collectapk
+check
 lintallNoError
+replacevers
+uninstallall
 )
 scriptDir="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 cd $scriptDir
@@ -130,6 +131,7 @@ function replacevers() {
 find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:appcompat-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:appcompat-v7:22.2.0/g' {} \;
 find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:recyclerview-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:recyclerview-v7:22.2.0/g' {} \;
 find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:cardview-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:cardview-v7:22.2.0/g' {} \;
+find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.support:gridlayout-v7:[0-9][0-9].[0-9].[0-9]/com.android.support:gridlayout-v7:22.2.0/g' {} \;
 find . -name build.gradle -type f -exec sed -i '' -e 's/targetSdkVersion\s[0-9]+/targetSdkVersion 22/g' {} \;
 find . -name build.gradle -type f -exec sed -i '' -e 's/buildToolsVersion\s"[0-9][0-9].[0-9].[0-9]"/buildToolsVersion "22.0.1"/g' {} \;
 find . -name build.gradle -type f -exec sed -i '' -e 's/com.android.tools.build:gradle:[0-9].[0-9].[0-9]/com.android.tools.build:gradle:1.2.3/g' {} \;
@@ -149,6 +151,48 @@ for gradlewFile in `find . -type f -name gradlew`; do
 done
 
 IFS=$tmpIFS
+}
+
+#############################
+
+function uninstallall() {
+packages=(
+com.yokmama.learn10.chapter04.lesson16
+com.yokmama.learn10.chapter04.lesson17
+com.yokmama.learn10.chapter04.lesson18
+com.yokmama.learn10.chapter04.lesson19
+com.yokmama.learn10.chapter05.lesson20
+com.yokmama.learn10.chapter05.lesson21
+com.yokmama.learn10.chapter05.lesson22
+com.yokmama.learn10.chapter05.lesson23
+com.yokmama.learn10.chapter05.lesson24
+com.yokmama.learn10.chapter05.lesson25
+com.yokmama.learn10.chapter06.lesson26
+com.yokmama.learn10.chapter06.lesson27
+com.yokmama.learn10.chapter06.lesson28
+com.yokmama.learn10.chapter06.lesson28.lesson28
+com.yokmama.learn10.chapter06.lesson29
+com.yokmama.learn10.chapter07.lesson30
+com.yokmama.learn10.chapter07.lesson31
+com.yokmama.learn10.chapter07.lesson32
+com.yokmama.learn10.chapter07.lesson33
+com.yokmama.learn10.chapter07.lesson34
+com.yokmama.learn10.chapter08.lesson35
+com.yokmama.learn10.chapter08.lesson36
+com.yokmama.learn10.chapter08.lesson37
+com.yokmama.learn10.chapter08.lesson38
+com.yokmama.learn10.chapter08.lesson39
+com.yokmama.learn10.chapter09.android
+com.yokmama.learn10.chapter09.lesson41.android
+com.yokmama.learn10.chapter10.lesson42
+com.yokmama.learn10.chapter10.lesson43
+com.yokmama.learn10.chapter10.lesson44
+com.yokmama.learn10.chapter10.lesson45
+com.yokmama.learn10.demo
+)
+for pkg in ${packages[@]}; do
+  adb uninstall ${pkg}
+done
 }
 
 #############################
