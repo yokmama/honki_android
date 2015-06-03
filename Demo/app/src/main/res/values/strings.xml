@@ -7,6 +7,12 @@
     <string name="titleLesson27">電卓アプリ</string>
     <string name="titleLesson28">TODOアプリ</string>
     <string name="titleLesson29">壁紙チェンジャーアプリ</string>
+    <string name="titleLesson31">Toolbar サンプル</string>
+    <string name="titleLesson32">Color サンプル</string>
+    <string name="titleLesson33">RecyclerView サンプル</string>
+    <string name="titleLesson34">色々なAnimation サンプル</string>
+    <string name="titleLesson35">音声メモアプリ</string>
+    <string name="titleLesson37">色サンプルアプリ</string>
     <string name="titleLesson41">ゲームアプリ</string>
 
     <string name="descLesson16">Lesson16で学習する色々なWidgetの動きを確認できます</string>
@@ -15,6 +21,12 @@
     <string name="descLesson27">Lesson27で学習する電卓アプリの動きを確認できます</string>
     <string name="descLesson28">Lesson28で学習するTODOアプリの動きを確認できます</string>
     <string name="descLesson29">Lesson29で学習する壁紙チェンジャーアプリの動きを確認できます</string>
+    <string name="descLesson31">Lesson31で学習するToolbarの動きを確認できます</string>
+    <string name="descLesson32">Lesson32で学習するColorの動きを確認できます</string>
+    <string name="descLesson33">Lesson33で学習するRecyclerViewの動きを確認できます</string>
+    <string name="descLesson34">Lesson34で学習するAnimationの動きを確認できます</string>
+    <string name="descLesson35">Lesson35で学習するDatabaseの動きを確認できます</string>
+    <string name="descLesson37">Lesson37で学習するInternet処理の動きを確認できます</string>
     <string name="descLesson41">Lesson41で学習するゲームアプリの動きを確認できます</string>
 
 </resources>

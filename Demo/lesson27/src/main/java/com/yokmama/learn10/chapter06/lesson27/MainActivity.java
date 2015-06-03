@@ -1,7 +1,6 @@
 package com.yokmama.learn10.chapter06.lesson27;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
 import android.text.TextUtils;
