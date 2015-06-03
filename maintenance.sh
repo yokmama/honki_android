@@ -11,6 +11,7 @@ check
 lintallNoError
 replacevers
 uninstallall
+installall
 )
 scriptDir="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 cd $scriptDir
@@ -151,6 +152,24 @@ for gradlewFile in `find . -type f -name gradlew`; do
 done
 
 IFS=$tmpIFS
+}
+
+#############################
+
+function installall() {
+if [ ! -f archive.zip ]; then
+  echo -n "Not found: archive.zip in "
+  pwd
+  echo "Please download archive.zip from Jenkins."
+  exit 1
+fi
+unzip archive.zip
+pushd archive
+for apk in `find . -name "*.apk"`; do
+  adb install $apk
+done
+popd
+rm -rf archive/
 }
 
 #############################
