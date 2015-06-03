@@ -3,7 +3,6 @@ package com.yokmama.learn10.chapter09.lesson41;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -11,146 +10,173 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
-* Created by maciek on 1/28/15.
-*/
+ * キャラクターの制御
+ *
+ * Created by maciek on 1/28/15.
+ * edited by kayo on 6/3/15.
+ */
 class Hero {
-    final static int ANIM_STATE_STILL = -1;
-    final static int ANIM_STATE_RUNNING = 0;
-    final static int ANIM_STATE_JUMPING = 1;
-    final static int ANIM_STATE_WIN = 2;
-    Animation[] mAnimations;
-    TextureRegion mAnimStillFrame;
-    int mAnimState;
-    float mCurrentStateDisplayTime;
 
-    boolean mIsJumping;
-    boolean mIsDoubleJumping;
-    float mJumpingTime;
+    // テクスチャタイルの横幅
+    private static final int TEXTURE_TILE_WIDTH = 64;
+    private static final int TEXTURE_TILE_HEIGHT = 64;
 
-    float mJumpTime = 1.0f;
-    float mJumpHeight = 300.0f;
+    // ジャンプ時間
+    private static final float TIME_DURATION_RUNNING = 0.05f;
+    private static final float TIME_DURATION_JUMPING = 0.05f;
+    private static final float TIME_DURATION_WIN = 0.2f;
 
-    Vector2 mPosition = new Vector2();
-    Vector2 mVelocity = new Vector2();
-    Rectangle mCollisionRect = new Rectangle();
+    // アニメーションの状態(または添字)
+    private final static int ANIM_STATE_STILL = -1;
+    private final static int ANIM_STATE_RUNNING = 0;
+    private final static int ANIM_STATE_JUMPING = 1;
+    private final static int ANIM_STATE_WIN = 2;
 
-    boolean mIsDead;
-    boolean mHasDeathAnimEnded;
-    float mDeadTime;
-    float mDeadPosY;
-    float mDeadJumpHeight = 100.0f;
+    // 地面からの距離
+    public static final float HERO_FLOOR_Y = 40;
+    // 画面左からの距離
+    public static final float HERO_LEFT_X = 150;
 
-    final static int WIN_ANIM_STATE_WAIT_FOR_LANDING = 0;
-    final static int WIN_ANIM_STATE_RUN = 1;
-    final static int WIN_ANIM_STATE_JUMP = 2;
-    final static int WIN_ANIM_STATE_SPIRAL = 3;
-    final static int WIN_ANIM_STATE_STATIC = 4;
-    boolean mHasWon;
-    int mWinAnimState;
-    float mWinAnimStateTime;
+    // テクスチャ
+    private final TextureRegion deadFrame;
+    private final Animation[] animations = new Animation[3];
+    private TextureRegion animStillFrame;
 
-    public Hero(Texture texture, int spriteWidth, int spriteHeight, float[] msPerFrame, int[] stateFrames) {
-        mAnimations = new Animation[3];
+    // アニメーションの状態
+    private int animState;
+    // 現在のアニメーションの状態を続けた時間
+    private float currentStateDisplayTime;
+    // キャラクターの移動速度
+    float heroVelocityX = 400;
 
+    // キャラクタの位置
+    final Vector2 position = new Vector2();
+    // キャラクタの速度
+    final Vector2 velocity = new Vector2();
+    // キャラクタの衝突判定用範囲オブジェクト
+    final Rectangle collisionRect = new Rectangle();
+
+    // ゲームオーバー
+    private static final float DEAD_JUMP_HEIGHT = 100.0f;
+    private boolean isDead;
+    private float deadPosY;
+    private boolean hasDeathAnimEnded;
+
+    // ゲームクリア
+    private final static int WIN_ANIM_STATE_WAIT_FOR_LANDING = 0;
+    private final static int WIN_ANIM_STATE_RUN = 1;
+    private final static int WIN_ANIM_STATE_SPIRAL = 2;
+    private final static int WIN_ANIM_STATE_STATIC = 3;
+    private boolean hasWon;
+    private int winAnimState;
+
+    // ジャンプ
+    private static final float JUMP_TIME = 1.0f;
+    private static final float JUMP_HEIGHT = 300.0f;
+    private boolean isJumping;
+    private boolean isDoubleJumping;
+    private float jumpingTime;
+
+    public Hero(Texture heroTexture) {
+        // テクスチャから、状態毎に TextureRegion を取得する
         Array<TextureRegion> regions;
-        regions = Utils.getFrames(texture, spriteHeight, stateFrames[ANIM_STATE_RUNNING], spriteWidth, spriteHeight);
-        regions.addAll(Utils.getFrames(texture, 2 * spriteHeight, stateFrames[ANIM_STATE_RUNNING], spriteWidth, spriteHeight));
-        mAnimations[ANIM_STATE_RUNNING] = new Animation(msPerFrame[ANIM_STATE_RUNNING], regions, Animation.PlayMode.LOOP);
+        TextureRegion[][] split = TextureRegion.split(heroTexture,
+                TEXTURE_TILE_WIDTH, TEXTURE_TILE_HEIGHT);
 
-        regions = Utils.getFrames(texture, 3 * spriteHeight, stateFrames[ANIM_STATE_JUMPING], spriteWidth, spriteHeight);
-        mAnimations[ANIM_STATE_JUMPING] = new Animation(msPerFrame[ANIM_STATE_JUMPING], regions, Animation.PlayMode.NORMAL);
+        regions = new Array<TextureRegion>();
+        regions.addAll(split[1], 0, 4);
+        regions.addAll(split[2], 0, 4);
+        animations[ANIM_STATE_RUNNING] = new Animation(TIME_DURATION_RUNNING,
+                regions, Animation.PlayMode.LOOP);
 
-        regions = Utils.getFrames(texture, 0, stateFrames[ANIM_STATE_WIN], spriteWidth, spriteHeight);
-        mAnimations[ANIM_STATE_WIN] = new Animation(msPerFrame[ANIM_STATE_WIN], regions, Animation.PlayMode.LOOP);
+        regions = new Array<TextureRegion>();
+        regions.addAll(split[3], 0, 7);
+        animations[ANIM_STATE_JUMPING] = new Animation(TIME_DURATION_JUMPING,
+                regions, Animation.PlayMode.NORMAL);
+
+        regions = new Array<TextureRegion>();
+        regions.addAll(split[0], 3, 2);
+        animations[ANIM_STATE_WIN] = new Animation(TIME_DURATION_WIN,
+                regions, Animation.PlayMode.LOOP);
+
+        // ゲームオーバー時の表示
+        deadFrame = split[0][3];
 
         init();
     }
 
-    public int getFrameWidth() {
-        return mAnimations[mAnimState].getKeyFrames()[0].getRegionWidth();
+    public void init() {
+        animState = ANIM_STATE_STILL;
+        animStillFrame = animations[ANIM_STATE_RUNNING].getKeyFrame(0);
+        position.set(Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y);
+        velocity.set(0, 0);
+        hasWon = false;
+        isDead = false;
+        hasDeathAnimEnded = false;
+        isJumping = false;
+        isDoubleJumping = false;
     }
 
-    public int getFrameHeight() {
-        return mAnimations[mAnimState].getKeyFrames()[0].getRegionHeight();
-    }
-
-    public void jump() {
-        if (!mIsJumping) {
-            mIsJumping = true;
-            mJumpingTime = 0;
-            mAnimState = ANIM_STATE_JUMPING;
-            mCurrentStateDisplayTime = 0;
-        }
-        else if (!mIsDoubleJumping) {
-            if (mJumpingTime > mJumpTime / 2.0f) {
-                mIsDoubleJumping = true;
-                mJumpingTime = mJumpTime - mJumpingTime;
-                mCurrentStateDisplayTime = 0;
-            }
-        }
+    public void startRunning() {
+        animState = ANIM_STATE_RUNNING;
+        velocity.set(heroVelocityX, 0);
     }
 
     public void update(float deltaTime) {
-        if (mIsDead) {
-            mDeadTime += deltaTime;
-            float deadTimeFrac = mDeadTime / 0.75f;
-            mPosition.y = mDeadPosY + deadFunc(deadTimeFrac) * mDeadJumpHeight;
-            if (deadTimeFrac >= 0.75f) {
-                mHasDeathAnimEnded = true;
-            }
+        currentStateDisplayTime += deltaTime;
+
+        if (isDead) {
+            updateDeadAnimation(deltaTime);
             return;
         }
 
-        mCurrentStateDisplayTime += deltaTime;
-
-        if (mIsJumping) {
-            mJumpingTime += deltaTime;
-            float jumpTime = mJumpingTime / mJumpTime;
-            mPosition.y = MyGdxGame.HERO_FLOOR_Y + jumpFunc(jumpTime) * mJumpHeight;
-            if (mJumpingTime >= mJumpTime) {
-                mIsJumping = false;
-                mIsDoubleJumping = false;
-                mAnimState = ANIM_STATE_RUNNING;
-                mCurrentStateDisplayTime = 0;
-                mPosition.y = MyGdxGame.HERO_FLOOR_Y;
+        if (isJumping) {
+            // ジャンプ中
+            jumpingTime += deltaTime;
+            float jumpTime = jumpingTime / Hero.JUMP_TIME;
+            position.y = HERO_FLOOR_Y + jumpFunc(jumpTime) * JUMP_HEIGHT;
+            if (jumpingTime >= Hero.JUMP_TIME) {
+                // ジャンプ終了時
+                isJumping = false;
+                isDoubleJumping = false;
+                animState = ANIM_STATE_RUNNING;
+                currentStateDisplayTime = 0;
+                position.y = HERO_FLOOR_Y;
             }
         }
 
-        // Win animation
-        if (mHasWon) {
-            if (!mIsJumping) {
-                if (mWinAnimState == WIN_ANIM_STATE_WAIT_FOR_LANDING) {
-                    mWinAnimState = WIN_ANIM_STATE_RUN;
-                    mAnimState = ANIM_STATE_RUNNING;
-                    mCurrentStateDisplayTime = 0;
-                }
-                else if (mWinAnimState == WIN_ANIM_STATE_RUN) {
-                    if (mCurrentStateDisplayTime > 0.4f) {
-                        mWinAnimState = WIN_ANIM_STATE_SPIRAL;
-                        mAnimState = ANIM_STATE_WIN;
-                        mCurrentStateDisplayTime = 0;
-                        mVelocity.set(0, 0);
-                    }
-                }
-                else if (mWinAnimState == WIN_ANIM_STATE_SPIRAL) {
-                    if (mCurrentStateDisplayTime > 0.6f) {
-                        mWinAnimState = WIN_ANIM_STATE_STATIC;
-                        mAnimState = ANIM_STATE_STILL;
-                        mAnimStillFrame = mAnimations[ANIM_STATE_WIN].getKeyFrame(2);
-                        mCurrentStateDisplayTime = 0;
-                    }
-                }
-            }
+        // ゲームクリア時のアニメーション
+        if (hasWon && !isJumping) {
+            updateWinAnimation(deltaTime);
         }
 
-        mPosition.mulAdd(mVelocity, deltaTime);
+        position.mulAdd(velocity, deltaTime);
 
-        mCollisionRect.set(mPosition.x + 30, mPosition.y, 40, 68);
+        collisionRect.set(position.x + 30, position.y, 40, 68);
     }
 
-    private float deadFunc(float t) {
-        t = Math.min(Math.max(t, 0.0f), 1.0f);
-        return -7.6f * t * t + 5.62f * t;
+    private void updateDeadAnimation(float deltaTime) {
+        float deadTimeFraction = currentStateDisplayTime / 0.75f;
+        position.y = deadPosY + deadFunc(deadTimeFraction) * DEAD_JUMP_HEIGHT;
+        if (deadTimeFraction >= 0.75f) {
+            hasDeathAnimEnded = true;
+        }
+    }
+
+    public void jump() {
+        if (!isJumping) {
+            isJumping = true;
+            jumpingTime = 0;
+            animState = ANIM_STATE_JUMPING;
+            currentStateDisplayTime = 0;
+        }
+        else if (!isDoubleJumping) {
+            if (jumpingTime > JUMP_TIME / 2.0f) {
+                isDoubleJumping = true;
+                jumpingTime = JUMP_TIME - jumpingTime;
+                currentStateDisplayTime = 0;
+            }
+        }
     }
 
     private float jumpFunc(float t) {
@@ -158,68 +184,71 @@ class Hero {
         return t * (-4.0f * t + 4.0f);
     }
 
+    private void updateWinAnimation(float deltaTime) {
+        if (winAnimState == WIN_ANIM_STATE_WAIT_FOR_LANDING) {
+            winAnimState = WIN_ANIM_STATE_RUN;
+            animState = ANIM_STATE_RUNNING;
+            currentStateDisplayTime = 0;
+        }
+        else if (winAnimState == WIN_ANIM_STATE_RUN) {
+            if (currentStateDisplayTime > 0.4f) {
+                winAnimState = WIN_ANIM_STATE_SPIRAL;
+                animState = ANIM_STATE_WIN;
+                currentStateDisplayTime = 0;
+                velocity.set(0, 0);
+            }
+        }
+        else if (winAnimState == WIN_ANIM_STATE_SPIRAL) {
+            if (currentStateDisplayTime > 1.4f) {
+                winAnimState = WIN_ANIM_STATE_STATIC;
+                animState = ANIM_STATE_STILL;
+                animStillFrame = animations[ANIM_STATE_WIN].getKeyFrame(0);
+                currentStateDisplayTime = 0;
+            }
+        }
+    }
+
+    private float deadFunc(float t) {
+        t = Math.min(Math.max(t, 0.0f), 1.0f);
+        return -7.6f * t * t + 5.62f * t;
+    }
+
     public void draw(MyGdxGame game) {
-        if (mHasDeathAnimEnded)
+        if (hasDeathAnimEnded)
             return;
 
-        if (mAnimState == ANIM_STATE_STILL) {
-            game.batch.draw(mAnimStillFrame, mPosition.x, mPosition.y, 100, 98);
-        }
-        else if (mAnimState == ANIM_STATE_WIN) {
-            // ぐらぐら
-            if ((int)(mCurrentStateDisplayTime * 10.f / 2) % 2 == 0) {
-                mAnimStillFrame = mAnimations[ANIM_STATE_WIN].getKeyFrames()[3];
-            } else {
-                mAnimStillFrame = mAnimations[ANIM_STATE_WIN].getKeyFrames()[4];
-            }
-            game.batch.draw(mAnimStillFrame, mPosition.x, mPosition.y, 100, 98);
+        if (animState == ANIM_STATE_STILL) {
+            game.batch.draw(animStillFrame,
+                    position.x, position.y, 100, 98);
         }
         else {
-            game.batch.draw(mAnimations[mAnimState].getKeyFrame(mCurrentStateDisplayTime), mPosition.x, mPosition.y, 100, 98);
+            game.batch.draw(animations[animState]
+                    .getKeyFrame(currentStateDisplayTime),
+                    position.x, position.y, 100, 98);
         }
     }
 
-    public void drawDebug(MyGdxGame game) {
-        game.shapeRenderer.setColor(Color.WHITE);
-        game.shapeRenderer.rect(mPosition.x, mPosition.y, 100, 98);
-        game.shapeRenderer.setColor(Color.YELLOW);
-        game.shapeRenderer.rect(mCollisionRect.x, mCollisionRect.y, mCollisionRect.width, mCollisionRect.height);
-    }
-
-    public Vector2 getPosition() {
-        return mPosition;
-    }
-
-    public Vector2 getVelocity() {
-        return mVelocity;
-    }
-
-    public void startRunning() {
-        mAnimState = ANIM_STATE_RUNNING;
-    }
-
-    public void init() {
-        mHasWon = false;
-        mIsDead = false;
-        mIsJumping = false;
-        mIsDoubleJumping = false;
-        mHasDeathAnimEnded = false;
-        mAnimState = ANIM_STATE_STILL;
-        mAnimStillFrame = mAnimations[ANIM_STATE_RUNNING].getKeyFrame(0);
-    }
-
+    // ゲームクリア通知
     public void win() {
-        mHasWon = true;
-        mWinAnimState = WIN_ANIM_STATE_WAIT_FOR_LANDING;
-        mWinAnimStateTime = 0;
-        mVelocity.set(300, 0);
+        hasWon = true;
+        winAnimState = WIN_ANIM_STATE_WAIT_FOR_LANDING;
+        velocity.set(300, 0);
     }
 
+    // ゲームオーバー通知
     public void die() {
-        mIsDead = true;
-        mDeadTime = 0.0f;
-        mDeadPosY = mPosition.y;
-        mAnimStillFrame = mAnimations[ANIM_STATE_JUMPING].getKeyFrames()[3];
-        mAnimState = ANIM_STATE_STILL;
+        isDead = true;
+        animStillFrame = deadFrame;
+        animState = ANIM_STATE_STILL;
+        currentStateDisplayTime = 0.0f;
+        deadPosY = position.y;
     }
+
+    public void drawDebug(ShapeRenderer shapeRenderer) {
+        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.rect(position.x, position.y, 100, 98);
+        shapeRenderer.setColor(Color.YELLOW);
+        shapeRenderer.rect(collisionRect.x, collisionRect.y, collisionRect.width, collisionRect.height);
+    }
+
 }
