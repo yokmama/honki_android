@@ -16,10 +16,8 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.yokmama.learn10.chapter04.lesson16.fragment.ButtonFragment;
 import com.yokmama.learn10.chapter04.lesson16.fragment.CheckBoxFragment;
@@ -30,11 +28,15 @@ import com.yokmama.learn10.chapter04.lesson16.fragment.ProgressBarFragment;
 import com.yokmama.learn10.chapter04.lesson16.fragment.RadioButtonFragment;
 import com.yokmama.learn10.chapter04.lesson16.fragment.RatingBarFragment;
 import com.yokmama.learn10.chapter04.lesson16.fragment.SeekBarFragment;
+import com.yokmama.learn10.chapter04.lesson16.fragment.SnackbarFragment;
 import com.yokmama.learn10.chapter04.lesson16.fragment.SpinnerFragment;
 import com.yokmama.learn10.chapter04.lesson16.fragment.SwitchFragment;
 import com.yokmama.learn10.chapter04.lesson16.fragment.TextViewFragment;
 import com.yokmama.learn10.chapter04.lesson16.fragment.ToggleButtonFragment;
 import com.yokmama.learn10.chapter04.lesson16.fragment.WebViewFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -56,11 +58,11 @@ public class DemoContent {
                 TextViewFragment.class.getCanonicalName()));
         addItem(new DemoItem(
                 EditText.class.getSimpleName(),
-                "EditTextを使った文字入力のサンプルを表示",
+                "EditTextやTextInputLayoutを使った文字入力のサンプルを表示",
                 EditTextFragment.class.getCanonicalName()));
         addItem(new DemoItem(
                 Button.class.getSimpleName(),
-                "装飾したButtonのサンプルを表示",
+                "装飾したButtonやFloatingActionButtonのサンプルを表示",
                 ButtonFragment.class.getCanonicalName()));
         addItem(new DemoItem(
                 RadioButton.class.getSimpleName(),
@@ -70,7 +72,7 @@ public class DemoContent {
                 CheckBox.class.getSimpleName(),
                 "CheckBoxを使ったサンプルを表示",
                 CheckBoxFragment.class.getCanonicalName()));
-        if(Build.VERSION.SDK_INT>=14) {
+        if (Build.VERSION.SDK_INT >= 14) {
             addItem(new DemoItem(
                     Switch.class.getSimpleName(),
                     "Switchを使ったサンプルを表示",
@@ -108,6 +110,10 @@ public class DemoContent {
                 WebView.class.getSimpleName(),
                 "WebViewによるWebサイトの表示をするサンプル",
                 WebViewFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                Toast.class.getSimpleName(),
+                "ToastとSnackbarのサンプルを表示",
+                SnackbarFragment.class.getCanonicalName()));
     }
 
     private static void addItem(DemoItem item) {
@@ -166,11 +172,11 @@ public class DemoContent {
             return fragmentName;
         }
 
-        public String getContent(){
+        public String getContent() {
             return content;
         }
 
-        public String getDescription(){
+        public String getDescription() {
             return description;
         }
     }

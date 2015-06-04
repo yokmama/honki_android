@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         //Toolbarのアイコンを設定
-        mToolbar.setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         //Toolbarのタイトルを設定
-        mToolbar.setTitle("タイトル名");
+        getSupportActionBar().setTitle("タイトル名");
         //Toolbarのサブタイトルを設定
-        mToolbar.setSubtitle("サブタイトル名");
+        getSupportActionBar().setSubtitle("サブタイトル名");
 
         //検索による画面呼び出しかどうか判定
         if (getIntent() != null) {

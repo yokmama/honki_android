@@ -2,7 +2,7 @@ package com.yokmama.learn10.chapter04.lesson18;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.yokmama.learn10.chapter04.lesson18.demo.DemoContent;
 import com.yokmama.learn10.chapter04.lesson18.demo.DemoCreator;
@@ -24,7 +24,7 @@ import com.yokmama.learn10.chapter04.lesson18.demo.DemoCreator;
  * {@link ItemListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class ItemListActivity extends FragmentActivity
+public class ItemListActivity extends AppCompatActivity
         implements ItemListFragment.Callbacks {
 
     public static final String ARG_CLASS_NAME = "demoItem";
@@ -63,17 +63,25 @@ public class ItemListActivity extends FragmentActivity
      */
     @Override
     public void onItemSelected(DemoContent.DemoItem demoItem) {
-        if (mTwoPane) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.item_detail_container, DemoCreator.create(demoItem))
-                    .commit();
+        if(demoItem.getFragmentName().contains("Activity")){
+            Intent intent = new Intent();
+            intent.setClassName(
+                    BuildConfig.APPLICATION_ID,
+                    demoItem.getFragmentName());
+            startActivity(intent);
+        }else {
+            if (mTwoPane) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.item_detail_container, DemoCreator.create(demoItem))
+                        .commit();
 
-        } else {
-            // In single-pane mode, simply start the detail activity
-            // for the selected item ID.
-            Intent detailIntent = new Intent(this, ItemDetailActivity.class);
-            detailIntent.putExtra(ARG_CLASS_NAME, demoItem);
-            startActivity(detailIntent);
+            } else {
+                // In single-pane mode, simply start the detail activity
+                // for the selected item ID.
+                Intent detailIntent = new Intent(this, ItemDetailActivity.class);
+                detailIntent.putExtra(ARG_CLASS_NAME, demoItem);
+                startActivity(detailIntent);
+            }
         }
     }
 }

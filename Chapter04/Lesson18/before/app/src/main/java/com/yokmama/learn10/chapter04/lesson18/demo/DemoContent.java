@@ -2,12 +2,16 @@ package com.yokmama.learn10.chapter04.lesson18.demo;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TabHost;
 
+import com.yokmama.learn10.chapter04.lesson18.activity.CollapsingToolbarLayoutActivity;
+import com.yokmama.learn10.chapter04.lesson18.activity.NavigationDrawerActivity;
 import com.yokmama.learn10.chapter04.lesson18.fragment.GridViewFragment;
 import com.yokmama.learn10.chapter04.lesson18.fragment.ListViewFragment;
 import com.yokmama.learn10.chapter04.lesson18.fragment.ScrollViewFragment;
@@ -51,6 +55,14 @@ public class DemoContent {
                 ViewPager.class.getSimpleName(),
                 "ViewPagerを使ったサンプルを表示",
                 ViewPagerFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                CollapsingToolbarLayout.class.getSimpleName(),
+                "CollapsingToolbarLayoutを使ったサンプルを表示",
+                CollapsingToolbarLayoutActivity.class.getCanonicalName()));
+        addItem(new DemoItem(
+                NavigationView.class.getSimpleName(),
+                "NavigationViewを使ったサンプルを表示",
+                NavigationDrawerActivity.class.getCanonicalName()));
     }
 
     private static void addItem(DemoItem item) {

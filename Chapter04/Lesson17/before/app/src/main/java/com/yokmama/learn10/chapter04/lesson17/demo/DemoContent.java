@@ -3,17 +3,24 @@ package com.yokmama.learn10.chapter04.lesson17.demo;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 
+import com.yokmama.learn10.chapter04.lesson17.fragment.CoordinatorLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.FrameLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.GridLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.LinearLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment2;
 import com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment;
+import com.yokmama.learn10.chapter04.lesson17.fragment.SwipeRefreshLayoutFragment;
+import com.yokmama.learn10.chapter04.lesson17.fragment.TabLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.TableLayoutFragment;
 
 import java.util.ArrayList;
@@ -35,30 +42,42 @@ public class DemoContent {
     static {
         addItem(new DemoItem(
                 FrameLayout.class.getSimpleName(),
-                "FrameLayoutの使用したサンプルを表示",
+                "FrameLayoutを使ったサンプルを表示",
                 FrameLayoutFragment.class.getCanonicalName()));
         addItem(new DemoItem(
                 LinearLayout.class.getSimpleName(),
-                "LinearLayoutの使用したサンプルを表示",
+                "LinearLayoutを使ったサンプルを表示",
                 LinearLayoutFragment.class.getCanonicalName()));
         addItem(new DemoItem(
                 TableLayout.class.getSimpleName(),
-                "TableLayoutの使用したサンプルを表示",
+                "TableLayoutを使ったサンプルを表示",
                 TableLayoutFragment.class.getCanonicalName()));
         if(Build.VERSION.SDK_INT>=14) {
             addItem(new DemoItem(
                     GridLayout.class.getSimpleName(),
-                    "GridLayoutの使用したサンプルを表示",
+                    "GridLayoutを使ったサンプルを表示",
                     GridLayoutFragment.class.getCanonicalName()));
         }
         addItem(new DemoItem(
                 RelativeLayout.class.getSimpleName()+"1",
-                "RelativeLayoutの使用したサンプルを表示１",
+                "RelativeLayoutを使ったサンプル１を表示",
                 RelativeLayoutFragment.class.getCanonicalName()));
         addItem(new DemoItem(
                 RelativeLayout.class.getSimpleName()+"2",
-                "RelativeLayoutの使用したサンプルを表示２",
+                "RelativeLayoutを使ったサンプル２を表示",
                 RelativeLayoutFragment2.class.getCanonicalName()));
+        addItem(new DemoItem(
+                SwipeRefreshLayout.class.getSimpleName(),
+                "SwipeRefreshLayoutを使ったサンプルを表示",
+                SwipeRefreshLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                TabLayout.class.getSimpleName(),
+                "TabLayoutを使ったサンプルを表示",
+                TabLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                CoordinatorLayout.class.getSimpleName(),
+                "CoordinatorLayoutを使ったサンプルを表示",
+                CoordinatorLayoutFragment.class.getCanonicalName()));
     }
 
     private static void addItem(DemoItem item) {

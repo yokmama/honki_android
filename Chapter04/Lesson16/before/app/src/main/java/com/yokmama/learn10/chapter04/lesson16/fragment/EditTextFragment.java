@@ -49,6 +49,7 @@ public class EditTextFragment extends Fragment {
         etValidate.setFilters(new InputFilter[]{inputFilter});
 
         //入力チェックを設定
+        final TextInputLayout textInputLayout = (TextInputLayout)rootView.findViewById(R.id.textInputLayout);
         EditText userid = (EditText) rootView.findViewById(R.id.userid);
         //リスナーをセット
         userid.addTextChangedListener(new TextWatcher() {
@@ -61,8 +62,12 @@ public class EditTextFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //テキストが変更されたら呼ばれる
                 if (count > 10) {
-                    //１０文字以上入力したらエラーを設定する
-                    Toast.makeText(getActivity(), "文字数は１０以下にしてください", Toast.LENGTH_SHORT).show();
+                    //10文字以上入力したらエラーを設定
+                    textInputLayout.setErrorEnabled(true);
+                    textInputLayout.setError("文字数は１０以下にしてください");
+                }else{
+                    //エラーでない場合はエラー表示をFalseに設定
+                    textInputLayout.setErrorEnabled(false);
                 }
             }
 
