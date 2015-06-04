@@ -46,11 +46,10 @@
         android:layout_marginTop="8dp"
         android:hint="入力制限" />
 
-    <!-- 入力処理（プログラムで設定）-->
+    <!-- 入力チェック（プログラムで設定）-->
     <EditText
-        android:id="@+id/editChange"
+        android:id="@+id/userid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="入力処理" />
+        android:hint="入力チェック"/>
 </LinearLayout>

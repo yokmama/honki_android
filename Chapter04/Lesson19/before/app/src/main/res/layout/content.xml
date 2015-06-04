@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:src="@drawable/cat1"
+        android:src="@drawable/dog1"
         android:scaleType="centerCrop"
         android:id="@+id/imageView" />
 

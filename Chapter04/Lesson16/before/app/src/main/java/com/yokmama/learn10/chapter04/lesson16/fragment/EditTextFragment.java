@@ -2,6 +2,7 @@ package com.yokmama.learn10.chapter04.lesson16.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.yokmama.learn10.chapter04.lesson16.R;
 
@@ -46,11 +48,10 @@ public class EditTextFragment extends Fragment {
         //InputFilterをセット
         etValidate.setFilters(new InputFilter[]{inputFilter});
 
-        //EditTextのインスタンスを取得
-        EditText etChange = (EditText) rootView.findViewById(R.id.editChange);
-
+        //入力チェックを設定
+        EditText userid = (EditText) rootView.findViewById(R.id.userid);
         //リスナーをセット
-        etChange.addTextChangedListener(new TextWatcher() {
+        userid.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //テキストが変更される直前に呼ばれる
@@ -59,6 +60,10 @@ public class EditTextFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //テキストが変更されたら呼ばれる
+                if (count > 10) {
+                    //１０文字以上入力したらエラーを設定する
+                    Toast.makeText(getActivity(), "文字数は１０以下にしてください", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

@@ -33,14 +33,32 @@ public class DemoContent {
     public static List<DemoItem> ITEMS = new ArrayList<DemoItem>();
 
     static {
-        addItem(new DemoItem(FrameLayout.class.getSimpleName(), FrameLayoutFragment.class.getCanonicalName()));
-        addItem(new DemoItem(LinearLayout.class.getSimpleName(), LinearLayoutFragment.class.getCanonicalName()));
-        addItem(new DemoItem(TableLayout.class.getSimpleName(), TableLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                FrameLayout.class.getSimpleName(),
+                "FrameLayoutの使用したサンプルを表示",
+                FrameLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                LinearLayout.class.getSimpleName(),
+                "LinearLayoutの使用したサンプルを表示",
+                LinearLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                TableLayout.class.getSimpleName(),
+                "TableLayoutの使用したサンプルを表示",
+                TableLayoutFragment.class.getCanonicalName()));
         if(Build.VERSION.SDK_INT>=14) {
-            addItem(new DemoItem(GridLayout.class.getSimpleName(), GridLayoutFragment.class.getCanonicalName()));
+            addItem(new DemoItem(
+                    GridLayout.class.getSimpleName(),
+                    "GridLayoutの使用したサンプルを表示",
+                    GridLayoutFragment.class.getCanonicalName()));
         }
-        addItem(new DemoItem(RelativeLayout.class.getSimpleName(), RelativeLayoutFragment.class.getCanonicalName()));
-        addItem(new DemoItem(RelativeLayout.class.getSimpleName()+"2", RelativeLayoutFragment2.class.getCanonicalName()));
+        addItem(new DemoItem(
+                RelativeLayout.class.getSimpleName()+"1",
+                "RelativeLayoutの使用したサンプルを表示１",
+                RelativeLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                RelativeLayout.class.getSimpleName()+"2",
+                "RelativeLayoutの使用したサンプルを表示２",
+                RelativeLayoutFragment2.class.getCanonicalName()));
     }
 
     private static void addItem(DemoItem item) {
@@ -52,10 +70,12 @@ public class DemoContent {
      */
     public static class DemoItem implements Parcelable {
         private String content;
+        private String description;
         private String fragmentName;
 
-        public DemoItem(String content, String fragmentName) {
+        public DemoItem(String content, String description, String fragmentName) {
             this.content = content;
+            this.description = description;
             this.fragmentName = fragmentName;
         }
 
@@ -72,11 +92,12 @@ public class DemoContent {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(content);
+            dest.writeString(description);
             dest.writeString(fragmentName);
         }
 
-        public static final Creator<DemoItem> CREATOR
-                = new Creator<DemoItem>() {
+        public static final Parcelable.Creator<DemoItem> CREATOR
+                = new Parcelable.Creator<DemoItem>() {
             public DemoItem createFromParcel(Parcel in) {
                 return new DemoItem(in);
             }
@@ -88,11 +109,20 @@ public class DemoContent {
 
         private DemoItem(Parcel in) {
             content = in.readString();
+            description = in.readString();
             fragmentName = in.readString();
         }
 
         public String getFragmentName() {
             return fragmentName;
+        }
+
+        public String getContent(){
+            return content;
+        }
+
+        public String getDescription(){
+            return description;
         }
     }
 }
