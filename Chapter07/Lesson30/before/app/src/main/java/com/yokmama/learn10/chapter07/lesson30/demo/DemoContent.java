@@ -51,22 +51,64 @@ public class DemoContent {
     public static List<DemoItem> ITEMS = new ArrayList<DemoItem>();
 
     static {
-        addItem(new DemoItem(TextView.class.getSimpleName(), TextViewFragment.class.getCanonicalName()));
-        addItem(new DemoItem(EditText.class.getSimpleName(), EditTextFragment.class.getCanonicalName()));
-        addItem(new DemoItem(Button.class.getSimpleName(), ButtonFragment.class.getCanonicalName()));
-        addItem(new DemoItem(RadioButton.class.getSimpleName(), RadioButtonFragment.class.getCanonicalName()));
-        addItem(new DemoItem(CheckBox.class.getSimpleName(), CheckBoxFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                TextView.class.getSimpleName(),
+                "TextViewを使った色々な装飾文字のサンプルを表示",
+                TextViewFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                EditText.class.getSimpleName(),
+                "EditTextを使った文字入力のサンプルを表示",
+                EditTextFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                Button.class.getSimpleName(),
+                "装飾したButtonのサンプルを表示",
+                ButtonFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                RadioButton.class.getSimpleName(),
+                "RadioButtonを使ったサンプルを表示",
+                RadioButtonFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                CheckBox.class.getSimpleName(),
+                "CheckBoxを使ったサンプルを表示",
+                CheckBoxFragment.class.getCanonicalName()));
         if(Build.VERSION.SDK_INT>=14) {
-            addItem(new DemoItem(Switch.class.getSimpleName(), SwitchFragment.class.getCanonicalName()));
+            addItem(new DemoItem(
+                    Switch.class.getSimpleName(),
+                    "Switchを使ったサンプルを表示",
+                    SwitchFragment.class.getCanonicalName()));
         }
-        addItem(new DemoItem(ToggleButton.class.getSimpleName(), ToggleButtonFragment.class.getCanonicalName()));
-        addItem(new DemoItem(ImageButton.class.getSimpleName(), ImageButtonFragment.class.getCanonicalName()));
-        addItem(new DemoItem(ImageView.class.getSimpleName(), ImageViewFragment.class.getCanonicalName()));
-        addItem(new DemoItem(ProgressBar.class.getSimpleName(), ProgressBarFragment.class.getCanonicalName()));
-        addItem(new DemoItem(SeekBar.class.getSimpleName(), SeekBarFragment.class.getCanonicalName()));
-        addItem(new DemoItem(RatingBar.class.getSimpleName(), RatingBarFragment.class.getCanonicalName()));
-        addItem(new DemoItem(Spinner.class.getSimpleName(), SpinnerFragment.class.getCanonicalName()));
-        addItem(new DemoItem(WebView.class.getSimpleName(), WebViewFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                ToggleButton.class.getSimpleName(),
+                "ToggleButtonを使ったサンプルを表示",
+                ToggleButtonFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                ImageButton.class.getSimpleName(),
+                "ImageButtonを使った画像付きボタンのサンプルを表示",
+                ImageButtonFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                ImageView.class.getSimpleName(),
+                "ImageViewを使った画像のサンプルを表示",
+                ImageViewFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                ProgressBar.class.getSimpleName(),
+                "ProgressBarを使った進捗のサンプルを表示",
+                ProgressBarFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                SeekBar.class.getSimpleName(),
+                "SeekBarを使ったサンプルを表示",
+                SeekBarFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                RatingBar.class.getSimpleName(),
+                "RatingBarを使ったサンプルを表示",
+                RatingBarFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                Spinner.class.getSimpleName(),
+                "Spinnerを使ったサンプルを表示",
+                SpinnerFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                WebView.class.getSimpleName(),
+                "WebViewによるWebサイトの表示をするサンプル",
+                WebViewFragment.class.getCanonicalName()));
     }
 
     private static void addItem(DemoItem item) {
@@ -78,10 +120,12 @@ public class DemoContent {
      */
     public static class DemoItem implements Parcelable {
         private String content;
+        private String description;
         private String fragmentName;
 
-        public DemoItem(String content, String fragmentName) {
+        public DemoItem(String content, String description, String fragmentName) {
             this.content = content;
+            this.description = description;
             this.fragmentName = fragmentName;
         }
 
@@ -98,6 +142,7 @@ public class DemoContent {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(content);
+            dest.writeString(description);
             dest.writeString(fragmentName);
         }
 
@@ -114,11 +159,20 @@ public class DemoContent {
 
         private DemoItem(Parcel in) {
             content = in.readString();
+            description = in.readString();
             fragmentName = in.readString();
         }
 
         public String getFragmentName() {
             return fragmentName;
+        }
+
+        public String getContent(){
+            return content;
+        }
+
+        public String getDescription(){
+            return description;
         }
     }
 }
