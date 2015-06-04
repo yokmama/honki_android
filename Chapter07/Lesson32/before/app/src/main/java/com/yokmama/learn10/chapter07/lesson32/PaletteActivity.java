@@ -48,5 +48,7 @@ public class PaletteActivity extends AppCompatActivity {
         //画像をセット
         ImageView imageView = (ImageView) findViewById(R.id.imagePicture);
         imageView.setImageResource(resId);
+
+        //TODO:レッスンではここにプログラムを追加
     }
 }
