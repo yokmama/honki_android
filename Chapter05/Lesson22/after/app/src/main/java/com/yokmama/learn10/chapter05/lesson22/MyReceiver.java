@@ -28,7 +28,7 @@ public class MyReceiver extends BroadcastReceiver {
             //カウントを保存
             SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("count", count);
-            editor.commit();
+            editor.apply();
 
             Log.d(TAG, "count=" + count);
         }
