@@ -46,11 +46,15 @@
         android:layout_marginTop="8dp"
         android:hint="入力制限" />
 
-    <!-- 入力処理（プログラムで設定）-->
-    <EditText
-        android:id="@+id/editChange"
+    <!-- 入力チェック（プログラムで設定）-->
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="入力処理" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/userid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ユーザIDを入力"/>
+    </android.support.design.widget.TextInputLayout>
 </LinearLayout>

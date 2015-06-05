@@ -1,5 +1,5 @@
 //apply plugin: 'com.android.application'
-apply plugin: "android-library"
+apply plugin: "com.android.library"
 
 android {
     compileSdkVersion 22

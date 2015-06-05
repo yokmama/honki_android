@@ -5,7 +5,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.ButtonFragment">
+    tools:context="com.yokmama.learn10.chapter07.lesson30.fragment.ButtonFragment">
 
     <!-- ノーマルボタン-->
     <Button

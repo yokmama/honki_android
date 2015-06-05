@@ -1,11 +1,15 @@
 package com.yokmama.learn10.chapter04.lesson18;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.yokmama.learn10.chapter04.lesson18.demo.DemoContent;
 
@@ -71,11 +75,7 @@ public class ItemListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DemoContent.DemoItem>(
-                getActivity(),
-                R.layout.menu_list_item,
-                R.id.text1,
-                DemoContent.ITEMS));
+        setListAdapter(new MyArrayAdapter(getActivity()));
     }
 
     @Override
@@ -147,5 +147,30 @@ public class ItemListFragment extends ListFragment {
         }
 
         mActivatedPosition = position;
+    }
+
+    private class MyArrayAdapter extends ArrayAdapter<DemoContent.DemoItem>{
+        LayoutInflater mLayoutInflater;
+
+        public MyArrayAdapter(Context context) {
+            super(context, R.layout.menu_list_item,
+                    R.id.text1,
+                    DemoContent.ITEMS);
+            mLayoutInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if(convertView == null){
+                convertView = mLayoutInflater.inflate(R.layout.menu_list_item, parent, false);
+            }
+            TextView text1 = (TextView)convertView.findViewById(R.id.text1);
+            TextView text2 = (TextView)convertView.findViewById(R.id.text2);
+            DemoContent.DemoItem item = getItem(position);
+            text1.setText(item.getContent());
+            text2.setText(item.getDescription());
+
+            return convertView;
+        }
     }
 }
