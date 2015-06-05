@@ -7,10 +7,10 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:label="@string/app_name">
         <activity
             android:name=".ItemListActivity"
+            android:theme="@style/MyAppTheme"
             android:label="@string/app_name" >
             <!--intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,7 @@
         <activity
             android:name=".ItemDetailActivity"
             android:label="@string/title_item_detail"
+            android:theme="@style/MyAppTheme"
             android:parentActivityName=".ItemListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

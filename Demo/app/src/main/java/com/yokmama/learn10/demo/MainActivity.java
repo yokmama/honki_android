@@ -35,19 +35,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private List<LessonItem> createList(){
         List<LessonItem> list = new ArrayList<>();
 
-        list.add(new LessonItem(R.string.titleLesson16, R.string.descLesson16, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson17, R.string.descLesson17, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson26, R.string.descLesson26, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson27, R.string.descLesson27, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson28, R.string.descLesson28, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson29, R.string.descLesson29, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson31, R.string.descLesson31, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson32, R.string.descLesson32, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson33, R.string.descLesson33, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson34, R.string.descLesson34, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson35, R.string.descLesson35, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson37, R.string.descLesson37, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson41, R.string.descLesson41, R.drawable.bird1));
+        list.add(new LessonItem(R.string.titleLesson16, R.string.descLesson16, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson17, R.string.descLesson17, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson26, R.string.descLesson26, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson27, R.string.descLesson27, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson28, R.string.descLesson28, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson29, R.string.descLesson29, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson31, R.string.descLesson31, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson32, R.string.descLesson32, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson33, R.string.descLesson33, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson34, R.string.descLesson34, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson35, R.string.descLesson35, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson37, R.string.descLesson37, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson41, R.string.descLesson41, R.drawable.dog1));
 
         return list;
     }

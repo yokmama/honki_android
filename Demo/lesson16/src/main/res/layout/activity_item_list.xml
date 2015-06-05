@@ -8,4 +8,4 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     tools:context=".ItemListActivity"
-    tools:layout="@android:layout/list_content"/>
+    tools:layout="@android:layout/list_content" />
