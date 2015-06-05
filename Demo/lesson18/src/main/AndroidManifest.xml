@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yokmama.learn10.chapter04.lesson18" >
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name">
+        <activity
+            android:name=".ItemListActivity"
+            android:theme="@style/MyAppTheme"
+            android:label="@string/app_name" >
+            <!--intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter-->
+        </activity>
+        <activity
+            android:name=".ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:theme="@style/MyAppTheme"
+            android:parentActivityName=".ItemListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.yokmama.learn10.chapter04.lesson18.ItemListActivity" />
+        </activity>
+        <activity
+            android:name=".activity.CollapsingToolbarLayoutActivity"
+            android:label="@string/title_activity_collapsing_toolbar_layout"
+            android:parentActivityName=".ItemListActivity"
+            android:theme="@style/MyAppNoActionBarTheme" >
+        </activity>
+        <activity
+            android:name=".activity.NavigationDrawerActivity"
+            android:theme="@style/MyAppTheme"
+            android:label="@string/title_activity_navigation_drawer" >
+        </activity>
+    </application>
+
+</manifest>

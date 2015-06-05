@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Android サンプル集</string>
-    <string name="title_activity_main">本気覚えるAndroid サンプル集</string>
+    <string name="title_activity_main">ほんきでおぼえるAndroid サンプル集</string>
     <string name="titleLesson16">Widget サンプル</string>
     <string name="titleLesson17">Layout サンプル</string>
+    <string name="titleLesson18">Container サンプル</string>
     <string name="titleLesson26">メモアプリ</string>
     <string name="titleLesson27">電卓アプリ</string>
     <string name="titleLesson28">TODOアプリ</string>
@@ -17,6 +18,7 @@
 
     <string name="descLesson16">Lesson16で学習する色々なWidgetの動きを確認できます</string>
     <string name="descLesson17">Lesson17で学習する色々なLayoutの動きを確認できます</string>
+    <string name="descLesson18">Lesson18で学習する色々な複合Viewの動きを確認できます</string>
     <string name="descLesson26">Lesson26で学習するメモアプリの動きを確認できます</string>
     <string name="descLesson27">Lesson27で学習する電卓アプリの動きを確認できます</string>
     <string name="descLesson28">Lesson28で学習するTODOアプリの動きを確認できます</string>
