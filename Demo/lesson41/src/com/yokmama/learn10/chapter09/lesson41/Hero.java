@@ -1,14 +1,19 @@
 package com.yokmama.learn10.chapter09.lesson41;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
  * キャラクターの制御
+ *
+ * Created by maciek on 1/28/15.
+ * edited by kayo on 6/3/15.
  */
 class Hero {
 
@@ -237,6 +242,13 @@ class Hero {
         animState = ANIM_STATE_STILL;
         currentStateDisplayTime = 0.0f;
         deadPosY = position.y;
+    }
+
+    public void drawDebug(ShapeRenderer shapeRenderer) {
+        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.rect(position.x, position.y, 100, 98);
+        shapeRenderer.setColor(Color.YELLOW);
+        shapeRenderer.rect(collisionRect.x, collisionRect.y, collisionRect.width, collisionRect.height);
     }
 
 }

@@ -2,6 +2,7 @@ package com.yokmama.learn10.chapter09.lesson41;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
@@ -9,6 +10,7 @@ import com.badlogic.gdx.utils.Array;
  * スコアアイテムと障害物を生成する
  *
  * Created by maciek on 1/29/15.
+ * edited by kayo on 6/3/15.
  */
 class Generator {
     // 生成パターン
@@ -172,4 +174,13 @@ class Generator {
         mines.clear();
     }
 
+    public void drawDebug(ShapeRenderer shapeRenderer) {
+        for (Chip chip : chips) {
+            chip.drawDebug(shapeRenderer);
+        }
+
+        for (Mine mine : mines) {
+            mine.drawDebug(shapeRenderer);
+        }
+    }
 }

@@ -1,12 +1,15 @@
 package com.yokmama.learn10.chapter09.lesson41;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Created by maciek on 1/28/15.
+ * edited by kayo on 6/3/15.
  */
 class Mine {
     // テクスチャの大きさを決定
@@ -58,6 +61,13 @@ class Mine {
     public void draw(SpriteBatch batch) {
         region.setRegion(0, 0, region.getTexture().getWidth(), (int) (region.getTexture().getHeight() * visiblePart));
         batch.draw(region, origin.x, origin.y, origin.width, origin.height * visiblePart);
+    }
+
+    public void drawDebug(ShapeRenderer shapeRenderer) {
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.circle(collisionCircle.x, collisionCircle.y, collisionCircle.radius);
+        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.rect(origin.x, origin.y, origin.width, origin.height);
     }
 
 }

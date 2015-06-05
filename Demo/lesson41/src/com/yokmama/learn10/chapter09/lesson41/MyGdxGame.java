@@ -4,14 +4,20 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * Created by maciek on 1/28/15.
+ * edited by kayo on 6/3/15.
+ */
 public class MyGdxGame extends ApplicationAdapter {
 
     // 描画範囲
@@ -56,6 +62,26 @@ public class MyGdxGame extends ApplicationAdapter {
 
     // ゴール位置
     float finishX;
+
+    // 難易度
+    public static final int DIFFICULTY_EASY = 0;
+    public static final int DIFFICULTY_HARD = 1;
+
+    // 難易度
+    private final int defaultDifficulty;
+    private int currentDifficulty;
+    private int previousScore;
+
+    // 衝突判定デバッグ用フラグ。trueにするとデバッグ描画が有効となる
+    static final boolean DEBUG_DRAW = false;
+    private ShapeRenderer shapeRenderer;
+
+    // ポーズ中フラグ
+    private boolean pause = false;
+
+    public MyGdxGame(int difficulty) {
+        defaultDifficulty = difficulty;
+    }
 
     @Override
     public void create() {
@@ -132,12 +158,26 @@ public class MyGdxGame extends ApplicationAdapter {
         uiCamera.update();
     }
 
+    @Override
+    public void pause() {
+        pauseGame();
+    }
+
     // ゲームを最初の状態に戻す
     private void resetWorld() {
         score = 0;
 
         // キャラクターの位置と状態の初期化
         hero.init();
+
+        currentDifficulty = defaultDifficulty;
+
+        if (defaultDifficulty == DIFFICULTY_EASY) {
+            hero.heroVelocityX = 400;
+        }
+        else if (defaultDifficulty == DIFFICULTY_HARD) {
+            hero.heroVelocityX = 600;
+        }
 
         // カメラの位置を開始点へ設定
         camera.position.x = VIEWPORT_WIDTH / 2 - Hero.HERO_LEFT_X;
@@ -158,6 +198,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
     // 各種状態を変更する
     private void updateWorld() {
+        if (pause) return;
+
         float deltaTime = Gdx.graphics.getDeltaTime();
 
         // 入力制御
@@ -221,7 +263,13 @@ public class MyGdxGame extends ApplicationAdapter {
                 chip.collect();
                 coinSound.play();
 
+                previousScore = score;
                 score += chip.getScore();
+
+                // Speedup
+                if (previousScore / 500 != score / 500) {
+                    hero.heroVelocityX += 100;
+                }
             }
         }
         for (Mine mine : generator.mines) {
@@ -251,6 +299,23 @@ public class MyGdxGame extends ApplicationAdapter {
                 finishTexture.getHeight() * 0.35f);
 
         batch.end();
+
+        // デバッグ描画
+
+        if (DEBUG_DRAW) {
+            shapeRenderer.setProjectionMatrix(camera.combined);
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+
+            shapeRenderer.setColor(Color.GREEN);
+            shapeRenderer.circle((background.stageWidth - VIEWPORT_WIDTH) / Background.SPEED + Hero.HERO_LEFT_X, Hero.HERO_FLOOR_Y, 5);
+
+            generator.drawDebug(shapeRenderer);
+
+            hero.drawDebug(shapeRenderer);
+
+            shapeRenderer.end();
+        }
+
         batch.setProjectionMatrix(uiCamera.combined);
         batch.begin();
 
@@ -273,5 +338,13 @@ public class MyGdxGame extends ApplicationAdapter {
         }
 
         batch.end();
+    }
+
+    public void resumeGame() {
+        pause = false;
+    }
+
+    public void pauseGame() {
+        pause = true;
     }
 }
