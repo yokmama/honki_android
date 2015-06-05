@@ -4,6 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="preview_text_padding">16dp</dimen>
-    <dimen name="preview_text_height">140dp</dimen>
-    <dimen name="fab_halfsize">28dp</dimen>
+    <dimen name="preview_text_height">180dp</dimen>
+    <dimen name="fab_size">48dp</dimen>
 </resources>
