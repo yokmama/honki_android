@@ -2,11 +2,10 @@ package com.yokmama.learn10.chapter06.lesson27;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.GridLayout;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -48,14 +47,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Button btn = (Button) v;
-        if (btn.getId() == R.id.clear) {
+        if (v.getId() == R.id.clear) {
             //計算をリセット
             mCalculator.reset();
             mTvPreview.setText("0");
         } else {
             //入力した値を元に計算
-            String input = btn.getText().toString();
+            String input = ((Button) v).getText().toString();
             String dispText = mCalculator.input(input);
 
             //計算結果をTextViewに表示

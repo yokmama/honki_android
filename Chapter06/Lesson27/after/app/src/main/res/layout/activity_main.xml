@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/preview_text_height"
         android:gravity="center_vertical|right"
+        android:maxLines="2"
         android:padding="@dimen/preview_text_padding"
         android:textColor="#424242"
         android:textSize="60sp" />
@@ -18,21 +20,20 @@
     <View
         android:id="@+id/fabFrame"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/fab_halfsize"
+        android:layout_height="@dimen/fab_size"
         android:layout_below="@+id/preview"
         android:background="@color/material_grey_600" />
 
     <!--DELETE Button-->
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/clear"
-        style="@style/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/fabFrame"
         android:layout_alignEnd="@+id/preview"
         android:layout_alignRight="@+id/preview"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/selector_fab"
-        android:text="DEL" />
+        android:src="@drawable/ic_delete"
+        app:borderWidth="0dp" />
 
     <!--計算Buttonをインクルード-->
     <include
