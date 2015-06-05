@@ -5,4 +5,5 @@
     <dimen name="colorlabel_size">32dp</dimen>
     <dimen name="colorlabel_padding">8dp</dimen>
     <dimen name="inputform_margin">16dp</dimen>
+    <dimen name="fab_margin">8dp</dimen>
 </resources>

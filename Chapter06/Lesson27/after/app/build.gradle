@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.yokmama.learn10.chapter06.lesson27"
-        minSdkVersion 14
+        minSdkVersion 10
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -22,5 +22,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
-
+    compile 'com.android.support:design:22.2.0'
+    compile 'com.android.support:gridlayout-v7:22.2.0'
 }
