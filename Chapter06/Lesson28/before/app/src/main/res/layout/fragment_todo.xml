@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:clickable="true"
+    android:background="?android:attr/windowBackground"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/color_label"
+        android:text="@string/colorlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginRight="8dp"
+        android:layout_alignBottom="@+id/color_label_frame"
+        android:layout_alignTop="@+id/color_label_frame" />
+
+    <!--各カラーラベルを設置-->
+    <LinearLayout
+        android:layout_toRightOf="@+id/color_label"
+        android:id="@+id/color_label_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:background="@drawable/bg_colorlabel_grey"
+            android:id="@+id/color_none"
+            android:checked="true"
+            android:layout_margin="@dimen/colorlabel_padding"
+            android:layout_width="@dimen/colorlabel_size"
+            android:layout_height="@dimen/colorlabel_size" />
+
+        <Button
+            android:background="@drawable/bg_colorlabel_amber"
+            android:layout_margin="@dimen/colorlabel_padding"
+            android:id="@+id/color_amber"
+            android:layout_width="@dimen/colorlabel_size"
+            android:layout_height="@dimen/colorlabel_size" />
+
+        <Button
+            android:background="@drawable/bg_colorlabel_pink"
+            android:id="@+id/color_pink"
+            android:layout_margin="@dimen/colorlabel_padding"
+            android:layout_width="@dimen/colorlabel_size"
+            android:layout_height="@dimen/colorlabel_size" />
+
+
+        <Button
+            android:layout_margin="@dimen/colorlabel_padding"
+            android:background="@drawable/bg_colorlabel_indigo"
+            android:id="@+id/color_indigo"
+            android:layout_width="@dimen/colorlabel_size"
+            android:layout_height="@dimen/colorlabel_size" />
+
+
+        <Button
+            android:layout_margin="@dimen/colorlabel_padding"
+            android:background="@drawable/bg_colorlabel_green"
+            android:id="@+id/color_green"
+            android:layout_width="@dimen/colorlabel_size"
+            android:layout_height="@dimen/colorlabel_size" />
+    </LinearLayout>
+
+    <!--テキスト入力フォーム-->
+    <EditText
+        android:layout_marginTop="@dimen/inputform_margin"
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/color_label_frame" />
+</RelativeLayout>

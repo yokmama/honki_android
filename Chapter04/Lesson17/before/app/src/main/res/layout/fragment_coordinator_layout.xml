@@ -1,0 +1,51 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.CoordinatorLayoutFragment">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="500dip"/>
+
+                <TextView
+                    android:id="@+id/textHello"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="@android:color/black"
+                    android:text="こんにちはみなさん！"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"/>
+            </LinearLayout>
+
+        </ScrollView>
+
+        <!--layout_anchorで任意のViewのlayout_anchorGravityの位置で固定できる -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ハロー！"
+            app:layout_anchor="@+id/textHello"
+            app:layout_anchorGravity="right|center_vertical"/>
+    </android.support.design.widget.CoordinatorLayout>
+
+</FrameLayout>

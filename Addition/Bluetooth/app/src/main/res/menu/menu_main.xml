@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
+    <item
+        android:id="@+id/secure_connect_scan"
+        android:icon="@drawable/ic_action_device_access_bluetooth_searching"
+        android:title="@string/secure_connect"/>
+
+    <item
+        android:id="@+id/insecure_connect_scan"
+        android:title="@string/insecure_connect"/>
+
+    <item
+        android:id="@+id/discoverable"
+        android:showAsAction="never"
+        android:title="@string/discoverable"/>
+</menu>

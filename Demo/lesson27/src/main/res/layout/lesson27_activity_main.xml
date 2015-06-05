@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".MainActivity">
+
+    <!--計算画面-->
+    <TextView
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/preview_text_height"
+        android:gravity="center_vertical|right"
+        android:maxLines="2"
+        android:padding="@dimen/preview_text_padding"
+        android:textColor="#424242"
+        android:textSize="60sp" />
+
+    <View
+        android:id="@+id/fabFrame"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fab_size"
+        android:layout_below="@+id/preview"
+        android:background="@color/material_grey_600" />
+
+    <!--DELETE Button-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/fabFrame"
+        android:layout_alignEnd="@+id/preview"
+        android:layout_alignRight="@+id/preview"
+        android:src="@drawable/ic_delete"
+        app:borderWidth="0dp" />
+
+    <!--計算Buttonをインクルード-->
+    <include
+        layout="@layout/lesson27_include_calc_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fabFrame" />
+
+</RelativeLayout>

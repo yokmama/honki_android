@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- pressed -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- 余白を確保するためのアイテム-->
+            <item>
+                <shape>
+                    <solid android:color="@android:color/transparent" />
+                    <padding android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp" />
+                </shape>
+            </item>
+            <!-- 影を描画-->
+            <item android:left="1dp" android:top="1dp">
+                <shape>
+                    <solid android:color="#9e9e9e" />
+                    <corners android:radius="4dp" />
+                </shape>
+            </item>
+            <!-- ボタンの描画-->
+            <item android:bottom="1dp" android:right="1dp">
+                <shape>
+                    <solid android:color="#00796b" />
+                    <corners android:radius="4dp" />
+                    <padding android:top="16dp" android:bottom="16dp" android:left="32dp" android:right="32dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- default -->
+    <item>
+        <layer-list>
+            <!-- 余白を確保するためのアイテム-->
+            <item>
+                <shape>
+                    <solid android:color="@android:color/transparent" />
+                    <padding android:top="2dp" android:bottom="2dp" android:left="2dp" android:right="2dp" />
+                </shape>
+            </item>
+            <!-- 影を描画-->
+            <item android:left="1dp" android:top="1dp">
+                <shape>
+                    <solid android:color="#9e9e9e" />
+                    <corners android:radius="4dp" />
+                </shape>
+            </item>
+            <!-- ボタンの描画-->
+            <item android:bottom="1dp" android:right="1dp">
+                <shape>
+                    <solid android:color="#009688" />
+                    <corners android:radius="4dp" />
+                    <padding android:top="16dp" android:bottom="16dp" android:left="32dp" android:right="32dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

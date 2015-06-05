@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Dialog Translate Animation -->
+
+    <style name="Lesson34.Animation.Dialog" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
+    </style>
+
+    <!-- Transitions -->
+
+    <style name="Lesson34.Transition" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+    </style>
+
+    <style name="Lesson34.TransitionAfter" parent="Lesson34.Transition">
+    </style>
+
+    <!-- Fragment Transitions -->
+
+</resources>

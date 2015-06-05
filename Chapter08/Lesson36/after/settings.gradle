@@ -1,0 +1,1 @@
+include ':app', ':lesson35', ':mydaogenerator'

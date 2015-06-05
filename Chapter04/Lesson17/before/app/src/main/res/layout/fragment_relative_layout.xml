@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment">
+
+    <!--上段/左に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:text="top | left"
+        android:textSize="9sp" />
+
+    <!--上段/中央に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="top | center"
+        android:textSize="9sp" />
+
+    <!--上段/右に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:text="top | right"
+        android:textSize="9sp" />
+
+    <!--中段/左に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:text="center | left"
+        android:textSize="9sp" />
+
+    <!--中央に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:text="center"
+        android:textSize="9sp" />
+
+    <!--中段/右に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:text="center | right"
+        android:textSize="9sp" />
+
+    <!--下段/左に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center"
+        android:text="bottom | left"
+        android:textSize="9sp" />
+
+    <!--下段/中央に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="bottom | center"
+        android:textSize="9sp" />
+
+    <!--下段/右に配置-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:text="bottom | right"
+        android:textSize="9sp" />
+</RelativeLayout>

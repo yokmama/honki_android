@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/lesson16" />
+            <option value="$PROJECT_DIR$/lesson17" />
+            <option value="$PROJECT_DIR$/lesson18" />
+            <option value="$PROJECT_DIR$/lesson26" />
+            <option value="$PROJECT_DIR$/lesson27" />
+            <option value="$PROJECT_DIR$/lesson28" />
+            <option value="$PROJECT_DIR$/lesson29" />
+            <option value="$PROJECT_DIR$/lesson31" />
+            <option value="$PROJECT_DIR$/lesson32" />
+            <option value="$PROJECT_DIR$/lesson33" />
+            <option value="$PROJECT_DIR$/lesson34" />
+            <option value="$PROJECT_DIR$/lesson35" />
+            <option value="$PROJECT_DIR$/lesson37" />
+            <option value="$PROJECT_DIR$/lesson41" />
+            <option value="$PROJECT_DIR$/mydaogenerator" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

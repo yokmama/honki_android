@@ -1,0 +1,39 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!--ScrollViewは一つのViewGroupである必要がある-->
+        <LinearLayout
+            android:id="@+id/contents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <!-- Toolbarを常にScrollViewの上に表示するためScrollViewの後に定義する-->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:elevation="5dp"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+        
+    </android.support.design.widget.AppBarLayout>
+</android.support.design.widget.CoordinatorLayout>

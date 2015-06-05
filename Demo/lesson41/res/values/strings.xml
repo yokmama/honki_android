@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lesson41</string>
+
+    <string name="button_start">Start Game</string>
+    <string name="button_start_hard">Hard Mode</string>
+    <string name="button_exit">Exit</string>
+    <string name="button_pause_game">Pause</string>
+    <string name="button_exit_game">Exit</string>
+    <string name="button_resume_game">Resume</string>
+
+</resources>

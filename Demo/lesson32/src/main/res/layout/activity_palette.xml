@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/app_name"
+            android:layout_height="wrap_content" />
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <!--画像のトランジッション処理のためandroid:transitionNameを設定（Lollipop以降のみ動作）-->
+    <ImageView
+        android:id="@+id/imagePicture"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pallet_image_size"
+        android:transitionName="@string/se_image"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_below="@+id/imagePicture"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pallet_block_size"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/viewPalette1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/viewPalette2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/viewPalette3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/viewPalette4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/viewPalette5"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/viewPalette6"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</LinearLayout>

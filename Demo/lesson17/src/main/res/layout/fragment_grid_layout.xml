@@ -1,0 +1,51 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="4"
+    tools:context="com.yokmama.learn10.chapter04.lesson17.fragment.GridLayoutFragment">
+
+
+    <!--0行：0列にButtonを配置-->
+    <Button
+        android:layout_column="0"
+        android:layout_row="0"
+        android:text="りんご" />
+
+    <!--0行：1列に2列分Buttonを配置-->
+    <Button
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal"
+        android:text="パイナップル" />
+
+    <!--0行：3列にButtonを配置-->
+    <Button android:text="ぶどう" />
+
+    <!--1行/0列にButtonを配置-->
+    <Button
+        android:layout_column="0"
+        android:layout_row="1"
+        android:text="ねこ" />
+
+    <!--1行/1列にButtonを配置-->
+    <Button android:text="ライオン" />
+
+    <!--1行/2列にButtonを配置-->
+    <Button android:text="ワニ" />
+
+    <!--1行/0列にButtonを配置-->
+    <Button android:text="トラ" />
+
+    <!--2行/1列にButtonを配置-->
+    <Button
+        android:layout_column="1"
+        android:layout_row="2"
+        android:text="車" />
+
+    <!--2行/2列にButtonを配置-->
+    <Button android:text="自転車" />
+
+    <!--2行/3列にButtonを配置-->
+    <Button android:text="バイク" />
+
+</GridLayout>

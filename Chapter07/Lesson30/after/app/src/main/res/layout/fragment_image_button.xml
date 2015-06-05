@@ -1,0 +1,148 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.yokmama.learn10.chapter07.lesson30.fragment.ImageButtonFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <!--スケールタイプをcenterで表示-->
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
+            android:scaleType="center"
+            android:src="@drawable/dog1" />
+
+        <!--スケールタイプをcenterInsideで表示-->
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
+            android:layout_below="@id/imageButton1"
+            android:scaleType="centerInside"
+            android:src="@drawable/dog1" />
+
+        <!--スケールタイプをcenterCropで表示-->
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
+            android:layout_below="@id/imageButton2"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dog1" />
+
+        <!--スケールタイプをfitCenterで表示-->
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
+            android:layout_below="@id/imageButton3"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dog1" />
+
+        <!--スケールタイプをfitXYで表示-->
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
+            android:layout_below="@id/imageButton4"
+            android:scaleType="fitXY"
+            android:src="@drawable/dog1" />
+
+        <!--スケールタイプをfitStartで表示-->
+        <ImageButton
+            android:id="@+id/imageButton6"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
+            android:layout_below="@id/imageButton5"
+            android:scaleType="fitStart"
+            android:src="@drawable/dog1" />
+
+        <!--スケールタイプをfitEndで表示-->
+        <ImageButton
+            android:id="@+id/imageButton7"
+            android:layout_width="72dip"
+            android:layout_height="72dip"
+            android:layout_below="@id/imageButton6"
+            android:scaleType="fitEnd"
+            android:src="@drawable/dog1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageButton1"
+            android:layout_alignTop="@+id/imageButton1"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/imageButton1"
+            android:gravity="center"
+            android:text="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageButton2"
+            android:layout_alignTop="@+id/imageButton2"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/imageButton2"
+            android:gravity="center"
+            android:text="centerInside" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageButton3"
+            android:layout_alignTop="@+id/imageButton3"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/imageButton3"
+            android:gravity="center"
+            android:text="centerCrop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageButton4"
+            android:layout_alignTop="@+id/imageButton4"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/imageButton4"
+            android:gravity="center"
+            android:text="fitCenter" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageButton5"
+            android:layout_alignTop="@+id/imageButton5"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/imageButton5"
+            android:gravity="center"
+            android:text="fitXY" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageButton6"
+            android:layout_alignTop="@+id/imageButton6"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/imageButton6"
+            android:gravity="center"
+            android:text="fitStart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageButton7"
+            android:layout_alignTop="@+id/imageButton7"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/imageButton7"
+            android:gravity="center"
+            android:text="fitEnd" />
+
+    </RelativeLayout>
+</ScrollView>

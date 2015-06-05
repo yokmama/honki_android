@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.ButtonFragment">
+
+    <!-- ノーマルButton-->
+    <Button
+        android:id="@+id/buttonNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ボタン" />
+
+    <!-- イメージ背景ボタン-->
+    <Button
+        android:id="@+id/buttonImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/image_button" />
+
+    <!-- ９パッチイメージ背景ボタン-->
+    <Button
+        android:id="@+id/patchImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/patch_button"
+        android:text="９パッチ"
+        android:textColor="@android:color/white" />
+
+    <!-- シェイプイメージ背景ボタン-->
+    <Button
+        android:id="@+id/buttonShape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_button"
+        android:text="シェイプボタン"
+        android:textColor="@android:color/white" />
+
+    <!-- FloatingActionButton-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_play"
+        app:fabSize="normal"/>
+
+</LinearLayout>

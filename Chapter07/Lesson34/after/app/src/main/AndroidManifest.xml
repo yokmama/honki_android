@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yokmama.learn10.chapter07.lesson34">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.PropertyAnimationActivity"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".ui.TransitionsFadeActivity"
+            android:theme="@style/Lesson34.Transition.Fade"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".ui.TransitionsExplodeActivity"
+            android:theme="@style/Lesson34.Transition.Explode"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".ui.TransitionsSlideActivity"
+            android:theme="@style/Lesson34.Transition.Slide"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".ui.TransitionsAfterActivity"
+            android:theme="@style/Lesson34.TransitionAfter"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".ui.FragmentTransitionsActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Lesson34.FragmentTransitions" />
+
+        <activity
+            android:name=".ui.TranslateAnimationActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Lesson34.TranslateAnimation" />
+
+        <activity
+            android:name=".ui.TranslateAnimationDialogActivity"
+            android:label="@string/app_name" />
+    </application>
+
+</manifest>

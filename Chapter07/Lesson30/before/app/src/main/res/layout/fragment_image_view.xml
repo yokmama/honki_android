@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.yokmama.learn10.chapter07.lesson30.fragment.ImageViewFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_widget"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <RadioGroup
+            android:id="@+id/radioFilterType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--画像をカラーに変更するRadioButton-->
+            <RadioButton
+                android:id="@+id/radioColor"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Color" />
+
+            <!--画像をグレースケールに変更するRadioButton-->
+            <RadioButton
+                android:id="@+id/radioGray"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Gray" />
+        </RadioGroup>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <!--赤色のカラースケールを操作-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:text="Red" />
+
+                <SeekBar
+                    android:id="@+id/seekBarRed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="255"
+                    android:progress="0" />
+            </TableRow>
+
+            <!--緑色のカラースケールを操作-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:text="Green" />
+
+                <SeekBar
+                    android:id="@+id/seekBarGreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="255"
+                    android:progress="0" />
+            </TableRow>
+
+            <!--青色のカラースケールを操作-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:text="Blue" />
+
+                <SeekBar
+                    android:id="@+id/seekBarBlue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="255"
+                    android:progress="0" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <!--画像を表示するImageView-->
+    <ImageView
+        android:id="@+id/imageColorFilter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:src="@drawable/dog1" />
+</LinearLayout>

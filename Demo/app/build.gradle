@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.yokmama.learn10.demo"
+        minSdkVersion 10
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
+    compile project(':lesson16')
+    compile project(':lesson17')
+    compile project(':lesson18')
+    compile project(':lesson26')
+    compile project(':lesson27')
+    compile project(':lesson28')
+    compile project(':lesson29')
+    compile project(':lesson31')
+    compile project(':lesson32')
+    compile project(':lesson33')
+    compile project(':lesson34')
+    compile project(':lesson35')
+    compile project(':lesson37')
+    compile project(':lesson41')
+}

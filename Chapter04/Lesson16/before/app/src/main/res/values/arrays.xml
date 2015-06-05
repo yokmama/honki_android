@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="main_list">
+        <item>果物</item>
+        <item>動物</item>
+        <item>乗り物</item>
+    </string-array>
+
+    <string-array name="sub_fruit">
+        <item>りんご</item>
+        <item>なし</item>
+        <item>みかん</item>
+        <item>すいか</item>
+    </string-array>
+
+    <string-array name="sub_animal">
+        <item>トラ</item>
+        <item>ライオン</item>
+        <item>ネコ</item>
+        <item>ウサギ</item>
+    </string-array>
+
+    <string-array name="sub_vehicle">
+        <item>車</item>
+        <item>自転車</item>
+        <item>飛行機</item>
+        <item>バイク</item>
+    </string-array>
+
+</resources>

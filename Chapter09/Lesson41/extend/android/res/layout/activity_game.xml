@@ -1,0 +1,36 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#0099cc"
+    tools:context="com.yokmama.learn10.chapter09.lesson41.android.GameActivity">
+
+    <FrameLayout
+        android:id="@+id/fullscreen_content"
+        android:keepScreenOn="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_pause_game"
+        android:id="@+id/pauseButton"
+        android:background="@android:color/transparent"
+        android:textColor="@drawable/main_menu_button"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_gravity="right|top"
+        android:layout_marginRight="@dimen/game_item_margin" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_exit_game"
+        android:id="@+id/exitButton"
+        android:background="@android:color/transparent"
+        android:textColor="@drawable/main_menu_button"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_gravity="left|top"
+        android:layout_marginLeft="@dimen/game_item_margin" />
+
+</FrameLayout>

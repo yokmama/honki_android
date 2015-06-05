@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <!-- Customize your theme here. -->
+    </style>
+
+    <!--アクセントカラー-->
+    <color name="material_grey_600">#757575</color>
+    <color name="colorAccent">#cddc39</color>
+
+    <!--計算Buttonのスタイル-->
+    <style name="calcButton" parent="android:Widget.Button">
+        <item name="android:background">@drawable/selector_button</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+</resources>

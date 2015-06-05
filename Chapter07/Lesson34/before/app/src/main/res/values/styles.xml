@@ -1,0 +1,44 @@
+<resources>
+    <color name="md_blue_500">#5677fc</color>
+    <color name="md_blue_700">#455ede</color>
+    <color name="md_light_green_500">#8bc34a</color>
+    <color name="md_light_green_700">#689f38</color>
+    <color name="md_pink_500">#e91e63</color>
+    <color name="md_pink_700">#c2185b</color>
+    <color name="md_purple_500">#9c27b0</color>
+    <color name="md_purple_800">#6a1b9a</color>
+
+    <!-- 共通のスタイル -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="colorPrimary">@color/md_pink_500</item>
+        <item name="colorPrimaryDark">@color/md_pink_700</item>
+    </style>
+
+    <!-- Translate Animation -->
+
+    <style name="Lesson34.Animation.Translate" parent="android:Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
+    </style>
+
+    <style name="Lesson34.TranslateAnimation" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Translate</item>
+    </style>
+
+    <style name="Lesson34.Animation.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Window</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Lesson34.Animation.Window" parent="android:Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/fragment_open_enter</item>
+        <item name="android:windowExitAnimation">@anim/fragment_open_exit</item>
+    </style>
+
+</resources>

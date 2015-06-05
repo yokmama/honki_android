@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Chapter04 Lesson17</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="text_message">下にひっぱるとインジケータが表示されます</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

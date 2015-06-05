@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.yokmama.learn10.chapter04.lesson16.fragment.TextViewFragment">
+
+    <!-- シンプルな使い方-->
+    <TextView
+        android:id="@+id/textNormal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_widget"
+        android:text="Normal Text" />
+
+    <!-- 文字の色を変更-->
+    <TextView
+        android:id="@+id/textColor"
+        android:layout_width="200dp"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_widget"
+        android:text="Color Text"
+        android:textColor="#FF0000" />
+
+    <!-- 文字のサイズを変更-->
+    <TextView
+        android:id="@+id/textSize"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_widget"
+        android:text="Size Text"
+        android:textSize="30sp" />
+
+    <!-- 文字のスタイルを変更-->
+    <TextView
+        android:id="@+id/textStyle"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_widget"
+        android:text="Style Text"
+        android:textStyle="bold|italic" />
+
+    <!-- 文字を複数行で表示-->
+    <TextView
+        android:id="@+id/textMulti"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_widget"
+        android:maxLines="3"
+        android:text="@string/text_irohani" />
+
+    <!-- 文字が長い場合に省略-->
+    <TextView
+        android:id="@+id/textEllipsize"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_widget"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/text_irohani" />
+
+    <!-- 文字が長い場合にマーキー表示-->
+    <TextView
+        android:id="@+id/textMarquee"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_widget"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:singleLine="true"
+        android:text="@string/text_irohani" />
+
+    <!-- 文字の表示位置を変更-->
+    <TextView
+        android:id="@+id/textGravity"
+        android:layout_width="200dp"
+        android:layout_height="64dip"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_widget"
+        android:gravity="bottom|right"
+        android:text="gravity Text" />
+
+    <!-- 文字に取り消し線を設定（プログラムで設定）-->
+    <TextView
+        android:id="@+id/textRevoke"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_widget"
+        android:text="取り消し線" />
+</LinearLayout>

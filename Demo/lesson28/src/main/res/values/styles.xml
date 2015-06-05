@@ -1,0 +1,21 @@
+<resources>
+    <color name="deep_teal_200">#80cbc4</color>
+    <color name="deep_teal_500">#009688</color>
+    <color name="deep_teal_700">#00796b</color>
+
+    <!-- Base application theme. -->
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/deep_teal_500</item>
+        <item name="colorPrimaryDark">@color/deep_teal_700</item>
+    </style>
+
+    <!--アクセントカラー-->
+    <color name="color_fab">#cddc39</color>
+
+    <!--カラーラベルー-->
+    <color name="material_amber_500">#ffc107</color>
+    <color name="material_green_500">#259b24</color>
+    <color name="material_grey_500">#9e9e9e</color>
+    <color name="material_indigo_500">#3f51b5</color>
+    <color name="material_pink_500">#e91e63</color>
+</resources>
