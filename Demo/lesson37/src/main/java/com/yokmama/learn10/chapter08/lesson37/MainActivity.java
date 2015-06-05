@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         mColorsLayout.removeAllViews();
 
         //接続先
-        String url = "https://raw.githubusercontent.com/yokmama/learn10_2015/develop/samples/colors.json";
+        String url = "https://raw.githubusercontent.com/yokmama/honki_android/master/samples/colors.json";
 
         //キューにリクエストを追加
         mQueue.add(new JsonObjectRequest(
