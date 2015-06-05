@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.lesson33_activity_main);
 
         mListType = (RadioGroup) findViewById(R.id.listType);
         mListType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
