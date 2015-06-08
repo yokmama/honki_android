@@ -51,7 +51,7 @@
                 android:layout_height="120dp"
                 android:layout_gravity="right|center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/bird1"
+                android:src="@drawable/dog1"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"/>

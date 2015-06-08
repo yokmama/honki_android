@@ -8,7 +8,7 @@
     <color name="md_purple_500">#9c27b0</color>
     <color name="md_purple_800">#6a1b9a</color>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/md_pink_500</item>
         <item name="colorPrimaryDark">@color/md_pink_700</item>
     </style>
@@ -22,7 +22,7 @@
         <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
     </style>
 
-    <style name="Lesson34.TranslateAnimation" parent="AppTheme">
+    <style name="Lesson34.TranslateAnimation" parent="MyAppTheme">
         <item name="android:windowAnimationStyle">@style/Lesson34.Animation.Translate</item>
     </style>
 

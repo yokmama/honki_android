@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lesson31_activity_main);
+        setContentView(R.layout.activity_main);
 
         //Toolbarのインスタンスを取得
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -35,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         //Toolbarのアイコンを設定
-        mToolbar.setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         //Toolbarのタイトルを設定
-        mToolbar.setTitle("タイトル名");
+        getSupportActionBar().setTitle("タイトル名");
         //Toolbarのサブタイトルを設定
-        mToolbar.setSubtitle("サブタイトル名");
+        getSupportActionBar().setSubtitle("サブタイトル名");
 
         //検索による画面呼び出しかどうか判定
         if (getIntent() != null) {

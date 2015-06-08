@@ -3,17 +3,24 @@ package com.yokmama.learn10.chapter04.lesson17.demo;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 
+import com.yokmama.learn10.chapter04.lesson17.fragment.CoordinatorLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.FrameLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.GridLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.LinearLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment2;
 import com.yokmama.learn10.chapter04.lesson17.fragment.RelativeLayoutFragment;
+import com.yokmama.learn10.chapter04.lesson17.fragment.SwipeRefreshLayoutFragment;
+import com.yokmama.learn10.chapter04.lesson17.fragment.TabLayoutFragment;
 import com.yokmama.learn10.chapter04.lesson17.fragment.TableLayoutFragment;
 
 import java.util.ArrayList;
@@ -33,14 +40,44 @@ public class DemoContent {
     public static List<DemoItem> ITEMS = new ArrayList<DemoItem>();
 
     static {
-        addItem(new DemoItem(FrameLayout.class.getSimpleName(), FrameLayoutFragment.class.getCanonicalName()));
-        addItem(new DemoItem(LinearLayout.class.getSimpleName(), LinearLayoutFragment.class.getCanonicalName()));
-        addItem(new DemoItem(TableLayout.class.getSimpleName(), TableLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                FrameLayout.class.getSimpleName(),
+                "FrameLayoutを使ったサンプルを表示",
+                FrameLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                LinearLayout.class.getSimpleName(),
+                "LinearLayoutを使ったサンプルを表示",
+                LinearLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                TableLayout.class.getSimpleName(),
+                "TableLayoutを使ったサンプルを表示",
+                TableLayoutFragment.class.getCanonicalName()));
         if(Build.VERSION.SDK_INT>=14) {
-            addItem(new DemoItem(GridLayout.class.getSimpleName(), GridLayoutFragment.class.getCanonicalName()));
+            addItem(new DemoItem(
+                    GridLayout.class.getSimpleName(),
+                    "GridLayoutを使ったサンプルを表示",
+                    GridLayoutFragment.class.getCanonicalName()));
         }
-        addItem(new DemoItem(RelativeLayout.class.getSimpleName(), RelativeLayoutFragment.class.getCanonicalName()));
-        addItem(new DemoItem(RelativeLayout.class.getSimpleName()+"2", RelativeLayoutFragment2.class.getCanonicalName()));
+        addItem(new DemoItem(
+                RelativeLayout.class.getSimpleName()+"1",
+                "RelativeLayoutを使ったサンプル１を表示",
+                RelativeLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                RelativeLayout.class.getSimpleName()+"2",
+                "RelativeLayoutを使ったサンプル２を表示",
+                RelativeLayoutFragment2.class.getCanonicalName()));
+        addItem(new DemoItem(
+                SwipeRefreshLayout.class.getSimpleName(),
+                "SwipeRefreshLayoutを使ったサンプルを表示",
+                SwipeRefreshLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                TabLayout.class.getSimpleName(),
+                "TabLayoutを使ったサンプルを表示",
+                TabLayoutFragment.class.getCanonicalName()));
+        addItem(new DemoItem(
+                CoordinatorLayout.class.getSimpleName(),
+                "CoordinatorLayoutを使ったサンプルを表示",
+                CoordinatorLayoutFragment.class.getCanonicalName()));
     }
 
     private static void addItem(DemoItem item) {
@@ -52,10 +89,12 @@ public class DemoContent {
      */
     public static class DemoItem implements Parcelable {
         private String content;
+        private String description;
         private String fragmentName;
 
-        public DemoItem(String content, String fragmentName) {
+        public DemoItem(String content, String description, String fragmentName) {
             this.content = content;
+            this.description = description;
             this.fragmentName = fragmentName;
         }
 
@@ -72,11 +111,12 @@ public class DemoContent {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(content);
+            dest.writeString(description);
             dest.writeString(fragmentName);
         }
 
-        public static final Creator<DemoItem> CREATOR
-                = new Creator<DemoItem>() {
+        public static final Parcelable.Creator<DemoItem> CREATOR
+                = new Parcelable.Creator<DemoItem>() {
             public DemoItem createFromParcel(Parcel in) {
                 return new DemoItem(in);
             }
@@ -88,11 +128,20 @@ public class DemoContent {
 
         private DemoItem(Parcel in) {
             content = in.readString();
+            description = in.readString();
             fragmentName = in.readString();
         }
 
         public String getFragmentName() {
             return fragmentName;
+        }
+
+        public String getContent(){
+            return content;
+        }
+
+        public String getDescription(){
+            return description;
         }
     }
 }

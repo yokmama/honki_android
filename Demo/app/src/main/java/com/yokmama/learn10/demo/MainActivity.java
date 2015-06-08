@@ -35,19 +35,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private List<LessonItem> createList(){
         List<LessonItem> list = new ArrayList<>();
 
-        list.add(new LessonItem(R.string.titleLesson16, R.string.descLesson16, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson17, R.string.descLesson17, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson26, R.string.descLesson26, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson27, R.string.descLesson27, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson28, R.string.descLesson28, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson29, R.string.descLesson29, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson31, R.string.descLesson31, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson32, R.string.descLesson32, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson33, R.string.descLesson33, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson34, R.string.descLesson34, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson35, R.string.descLesson35, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson37, R.string.descLesson37, R.drawable.bird1));
-        list.add(new LessonItem(R.string.titleLesson41, R.string.descLesson41, R.drawable.bird1));
+        list.add(new LessonItem(R.string.titleLesson16, R.string.descLesson16, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson17, R.string.descLesson17, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson18, R.string.descLesson18, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson26, R.string.descLesson26, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson27, R.string.descLesson27, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson28, R.string.descLesson28, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson29, R.string.descLesson29, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson31, R.string.descLesson31, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson32, R.string.descLesson32, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson33, R.string.descLesson33, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson34, R.string.descLesson34, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson35, R.string.descLesson35, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson37, R.string.descLesson37, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson41, R.string.descLesson41, R.drawable.dog1));
 
         return list;
     }
@@ -61,33 +62,36 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter04.lesson17.ItemListActivity.class);
             startActivity(intent);
         } else if (i == 2) {
-            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter06.lesson26.MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter04.lesson18.ItemListActivity.class);
             startActivity(intent);
         } else if (i == 3) {
-            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter06.lesson27.MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter06.lesson26.MainActivity.class);
             startActivity(intent);
         } else if (i == 4) {
-            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter06.lesson28.MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter06.lesson27.MainActivity.class);
             startActivity(intent);
         } else if (i == 5) {
-            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter06.lesson29.MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter06.lesson28.MainActivity.class);
             startActivity(intent);
         } else if (i == 6) {
-            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter07.lesson31.MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter06.lesson29.MainActivity.class);
             startActivity(intent);
         } else if (i == 7) {
-            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter07.lesson32.MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter07.lesson31.MainActivity.class);
             startActivity(intent);
         } else if (i == 8) {
-            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter07.lesson33.MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter07.lesson32.MainActivity.class);
             startActivity(intent);
         } else if (i == 9) {
-            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter07.lesson34.MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter07.lesson33.MainActivity.class);
             startActivity(intent);
         } else if (i == 10) {
-            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter08.lesson35.MainActivity.class);
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter07.lesson34.MainActivity.class);
             startActivity(intent);
         } else if (i == 11) {
+            Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter08.lesson35.MainActivity.class);
+            startActivity(intent);
+        } else if (i == 12) {
             Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter08.lesson37.MainActivity.class);
             startActivity(intent);
         } else {

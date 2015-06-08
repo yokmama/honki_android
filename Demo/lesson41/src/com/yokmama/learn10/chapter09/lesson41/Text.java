@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * テキスト
+ *
+ * Created by kayo on 6/3/15.
  */
 class Text {
 

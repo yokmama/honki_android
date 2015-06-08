@@ -8,7 +8,7 @@
 
     <!-- Transitions -->
 
-    <style name="Lesson34.Transition" parent="AppTheme">
+    <style name="Lesson34.Transition" parent="MyAppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="android:windowContentTransitions">true</item>
@@ -36,7 +36,7 @@
 
     <!-- Fragment Transitions -->
 
-    <style name="Lesson34.FragmentTransitions" parent="AppTheme">
+    <style name="Lesson34.FragmentTransitions" parent="MyAppTheme">
         <item name="android:windowContentTransitions">true</item>
     </style>
 

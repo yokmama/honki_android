@@ -3,12 +3,14 @@ package com.yokmama.learn10.chapter09.lesson41;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
  * Created by maciek on 1/28/15.
+ * edited by kayo on 6/3/15.
  */
 class Chip {
 
@@ -137,6 +139,13 @@ class Chip {
         batch.draw(chipRegions[type], origin.x + positionPhase.x, origin.y + positionPhase.y, origin.width, origin.height);
         if (isCollected) {
             batch.setColor(oldColor);
+        }
+    }
+
+    public void drawDebug(ShapeRenderer shapeRenderer) {
+        if (!isCollected) {
+            shapeRenderer.setColor(Color.YELLOW);
+            shapeRenderer.circle(collisionCircle.x, collisionCircle.y, collisionCircle.radius);
         }
     }
 

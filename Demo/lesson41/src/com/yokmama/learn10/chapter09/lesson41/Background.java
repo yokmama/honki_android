@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
  * 背景を描画するためのクラス
+ * Created by kayo on 6/3/15.
  */
 class Background {
     // 背景の動く速さ
