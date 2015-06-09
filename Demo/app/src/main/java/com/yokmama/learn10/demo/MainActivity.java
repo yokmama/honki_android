@@ -35,20 +35,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private List<LessonItem> createList(){
         List<LessonItem> list = new ArrayList<>();
 
-        list.add(new LessonItem(R.string.titleLesson16, R.string.descLesson16, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson17, R.string.descLesson17, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson18, R.string.descLesson18, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson26, R.string.descLesson26, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson27, R.string.descLesson27, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson28, R.string.descLesson28, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson29, R.string.descLesson29, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson31, R.string.descLesson31, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson32, R.string.descLesson32, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson33, R.string.descLesson33, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson34, R.string.descLesson34, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson35, R.string.descLesson35, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson37, R.string.descLesson37, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson41, R.string.descLesson41, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson16, R.string.descLesson16, R.drawable.widget_sample_320));
+        list.add(new LessonItem(R.string.titleLesson17, R.string.descLesson17, R.drawable.layout_sample_320));
+        list.add(new LessonItem(R.string.titleLesson18, R.string.descLesson18, R.drawable.container_sample_320));
+        list.add(new LessonItem(R.string.titleLesson26, R.string.descLesson26, R.drawable.memo_sample_320));
+        list.add(new LessonItem(R.string.titleLesson27, R.string.descLesson27, R.drawable.dentaku_sample_320));
+        list.add(new LessonItem(R.string.titleLesson28, R.string.descLesson28, R.drawable.todo_sample_320));
+        list.add(new LessonItem(R.string.titleLesson29, R.string.descLesson29, R.drawable.screen_sample_320));
+        list.add(new LessonItem(R.string.titleLesson31, R.string.descLesson31, R.drawable.toolbar_sample_320));
+        list.add(new LessonItem(R.string.titleLesson32, R.string.descLesson32, R.drawable.color_sample_320));
+        list.add(new LessonItem(R.string.titleLesson33, R.string.descLesson33, R.drawable.recycler_sample_320));
+        list.add(new LessonItem(R.string.titleLesson34, R.string.descLesson34, R.drawable.animation_sample_320));
+        list.add(new LessonItem(R.string.titleLesson35, R.string.descLesson35, R.drawable.database_sample_320));
+        list.add(new LessonItem(R.string.titleLesson37, R.string.descLesson37, R.drawable.iromihon_sample_320));
+        list.add(new LessonItem(R.string.titleLesson41, R.string.descLesson41, R.drawable.game_sample_320));
 
         return list;
     }
