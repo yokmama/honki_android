@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="@string/intent_action_change_wallpaper" />
+                <action android:name="action.CHANGE_WALLPAPER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
