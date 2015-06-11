@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">ほんきで学ぶ サンプル集</string>
+    <string name="title_activity_main">ほんきで学ぶAndroid サンプル集</string>
+    <string name="titleLesson16">Widget サンプル</string>
+    <string name="titleLesson17">Layout サンプル</string>
+    <string name="titleLesson18">Container サンプル</string>
+    <string name="titleLesson26">メモアプリ</string>
+    <string name="titleLesson27">電卓アプリ</string>
+    <string name="titleLesson28">TODOアプリ</string>
+    <string name="titleLesson29">壁紙チェンジャーアプリ</string>
+    <string name="titleLesson31">Toolbar サンプル</string>
+    <string name="titleLesson32">Color サンプル</string>
+    <string name="titleLesson33">RecyclerView サンプル</string>
+    <string name="titleLesson34">色々なAnimation サンプル</string>
+    <string name="titleLesson35">音声メモアプリ</string>
+    <string name="titleLesson37">色見本アプリ</string>
+    <string name="titleLesson41">ゲームアプリ</string>
+
+    <string name="descLesson16">Lesson16で学習する色々なWidgetの動きを確認できます</string>
+    <string name="descLesson17">Lesson17で学習する色々なLayoutの動きを確認できます</string>
+    <string name="descLesson18">Lesson18で学習する色々なContainerの動きを確認できます</string>
+    <string name="descLesson26">Lesson26で学習するメモアプリの動きを確認できます</string>
+    <string name="descLesson27">Lesson27で学習する電卓アプリの動きを確認できます</string>
+    <string name="descLesson28">Lesson28で学習するTODOアプリの動きを確認できます</string>
+    <string name="descLesson29">Lesson29で学習する壁紙チェンジャーアプリの動きを確認できます</string>
+    <string name="descLesson31">Lesson31で学習するToolbarアプリの動きを確認できます</string>
+    <string name="descLesson32">Lesson32で学習するColorアプリの動きを確認できます</string>
+    <string name="descLesson33">Lesson33で学習するRecyclerViewアプリの動きを確認できます</string>
+    <string name="descLesson34">Lesson34で学習するAnimationアプリの動きを確認できます</string>
+    <string name="descLesson35">Lesson35で学習するDatabaseアプリの動きを確認できます</string>
+    <string name="descLesson37">Lesson37で学習するInternetアプリの動きを確認できます</string>
+    <string name="descLesson41">Lesson41で学習するゲームアプリの動きを確認できます</string>
+
+</resources>
