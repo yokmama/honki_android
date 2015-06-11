@@ -2,6 +2,7 @@ package com.yokmama.learn10.demo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private ListView mListView;
+    private View mFooter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         mListView = (ListView)findViewById(android.R.id.list);
         mListView.setOnItemClickListener(this);
+
+        mFooter = getLayoutInflater().inflate(R.layout.lesson_footer, mListView, false);
+        mListView.addFooterView(mFooter);
 
 
         MyBaseAdapter adapter = new MyBaseAdapter(this, createList());
@@ -94,8 +99,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } else if (i == 12) {
             Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter08.lesson37.MainActivity.class);
             startActivity(intent);
-        } else {
+        } else if (i == 13) {
             Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter09.lesson41.android.AndroidLauncher.class);
+            startActivity(intent);
+        } else {
+            Uri uri = Uri.parse("http://www.shoeisha.co.jp/book/detail/9784798141343");
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
             startActivity(intent);
         }
 
