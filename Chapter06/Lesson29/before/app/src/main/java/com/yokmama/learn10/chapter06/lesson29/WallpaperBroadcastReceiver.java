@@ -19,7 +19,7 @@ import java.io.IOException;
  * Created by kayo on 15/04/08.
  */
 public class WallpaperBroadcastReceiver extends BroadcastReceiver {
-
+    public static final String ACTION_CHANGE_WALLPAPER = "action.CHANGE_WALLPAPER";
     private static final String TAG = WallpaperBroadcastReceiver.class.getSimpleName();
 
     private PreferenceDao mPrefs;
@@ -35,7 +35,7 @@ public class WallpaperBroadcastReceiver extends BroadcastReceiver {
             if (mPrefs.isAutoWallpaperEnabled()) {
                 startPolling(context);
             }
-        } else if (context.getString(R.string.intent_action_change_wallpaper).equals(action)) {
+        } else if (ACTION_CHANGE_WALLPAPER.equals(action)) {
             try {
                 File imageDir = new RequestDownloadImage(context).getImageDir();
 
@@ -107,7 +107,7 @@ public class WallpaperBroadcastReceiver extends BroadcastReceiver {
 
     public static Intent createChangeWallpaperIntent(Context context) {
         Intent intentSelf = new Intent(context, WallpaperBroadcastReceiver.class);
-        intentSelf.setAction(context.getString(R.string.intent_action_change_wallpaper));
+        intentSelf.setAction(ACTION_CHANGE_WALLPAPER);
 
         return intentSelf;
     }
