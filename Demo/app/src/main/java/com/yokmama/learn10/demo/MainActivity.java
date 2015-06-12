@@ -2,6 +2,7 @@ package com.yokmama.learn10.demo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private ListView mListView;
+    private View mFooter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mListView = (ListView)findViewById(android.R.id.list);
         mListView.setOnItemClickListener(this);
 
+        mFooter = getLayoutInflater().inflate(R.layout.lesson_footer, mListView, false);
+        mListView.addFooterView(mFooter);
+
 
         MyBaseAdapter adapter = new MyBaseAdapter(this, createList());
         mListView.setAdapter(adapter);
@@ -35,20 +40,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private List<LessonItem> createList(){
         List<LessonItem> list = new ArrayList<>();
 
-        list.add(new LessonItem(R.string.titleLesson16, R.string.descLesson16, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson17, R.string.descLesson17, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson18, R.string.descLesson18, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson26, R.string.descLesson26, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson27, R.string.descLesson27, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson28, R.string.descLesson28, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson29, R.string.descLesson29, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson31, R.string.descLesson31, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson32, R.string.descLesson32, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson33, R.string.descLesson33, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson34, R.string.descLesson34, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson35, R.string.descLesson35, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson37, R.string.descLesson37, R.drawable.dog1));
-        list.add(new LessonItem(R.string.titleLesson41, R.string.descLesson41, R.drawable.dog1));
+        list.add(new LessonItem(R.string.titleLesson16, R.string.descLesson16, R.drawable.widget_sample_320));
+        list.add(new LessonItem(R.string.titleLesson17, R.string.descLesson17, R.drawable.layout_sample_320));
+        list.add(new LessonItem(R.string.titleLesson18, R.string.descLesson18, R.drawable.container_sample_320));
+        list.add(new LessonItem(R.string.titleLesson26, R.string.descLesson26, R.drawable.memo_sample_320));
+        list.add(new LessonItem(R.string.titleLesson27, R.string.descLesson27, R.drawable.dentaku_sample_320));
+        list.add(new LessonItem(R.string.titleLesson28, R.string.descLesson28, R.drawable.todo_sample_320));
+        list.add(new LessonItem(R.string.titleLesson29, R.string.descLesson29, R.drawable.screen_sample_320));
+        list.add(new LessonItem(R.string.titleLesson31, R.string.descLesson31, R.drawable.toolbar_sample_320));
+        list.add(new LessonItem(R.string.titleLesson32, R.string.descLesson32, R.drawable.color_sample_320));
+        list.add(new LessonItem(R.string.titleLesson33, R.string.descLesson33, R.drawable.recycler_sample_320));
+        list.add(new LessonItem(R.string.titleLesson34, R.string.descLesson34, R.drawable.animation_sample_320));
+        list.add(new LessonItem(R.string.titleLesson35, R.string.descLesson35, R.drawable.database_sample_320));
+        list.add(new LessonItem(R.string.titleLesson37, R.string.descLesson37, R.drawable.iromihon_sample_320));
+        list.add(new LessonItem(R.string.titleLesson41, R.string.descLesson41, R.drawable.game_sample_320));
 
         return list;
     }
@@ -94,8 +99,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } else if (i == 12) {
             Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter08.lesson37.MainActivity.class);
             startActivity(intent);
-        } else {
+        } else if (i == 13) {
             Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter09.lesson41.android.AndroidLauncher.class);
+            startActivity(intent);
+        } else {
+            Uri uri = Uri.parse("http://www.shoeisha.co.jp/book/detail/9784798141343");
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
             startActivity(intent);
         }
 
