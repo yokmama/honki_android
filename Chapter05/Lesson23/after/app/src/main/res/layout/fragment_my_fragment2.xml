@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="#FDD835"
-    tools:context="com.yokmama.learn10.chapter05.lesson23.MyFragment1">
+    tools:context="com.yokmama.learn10.chapter05.lesson23.MyFragment2">
 
     <Button
         android:id="@+id/button"
