@@ -12,17 +12,16 @@ import android.support.v4.app.NotificationCompat;
 
 public class MyService extends Service {
     public MyService() {
-
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(intent!=null){
-            if("show".equals(intent.getAction())){
-                //通知を表示
+        if (intent!=null){
+            if ("show".equals(intent.getAction())){
+                // 通知を表示
                 showNotification();
-            }else if("hide".equals(intent.getAction())){
-                //通知を非表示
+            }else if ("hide".equals(intent.getAction())){
+                // 通知を非表示
                 hideNotification();
             }
         }
@@ -32,6 +31,7 @@ public class MyService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
@@ -39,17 +39,15 @@ public class MyService extends Service {
      * Notificationを作成.
      */
     private void showNotification(){
-        // Intent の作成
+        // Intentの作成
         Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(
-                this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // LargeIcon の Bitmap を生成
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.cat);
+        // LargeIconのBitmapを作成
+        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.dog);
 
         // NotificationBuilderを作成
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                getApplicationContext());
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
         builder.setContentIntent(contentIntent);
         // ステータスバーに表示されるテキスト
         builder.setTicker("Ticker");
@@ -64,9 +62,7 @@ public class MyService extends Service {
         // 通知するタイミング
         builder.setWhen(System.currentTimeMillis());
         // 通知時の音・バイブ・ライト
-        builder.setDefaults(Notification.DEFAULT_SOUND
-                | Notification.DEFAULT_VIBRATE
-                | Notification.DEFAULT_LIGHTS);
+        builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
         // タップするとキャンセル(消える)
         builder.setAutoCancel(true);
 
@@ -77,7 +73,7 @@ public class MyService extends Service {
     }
 
     /**
-     * Notificationを消去.
+     * Notificationを消去
      */
     private void hideNotification(){
         // NotificationManagerを取得
