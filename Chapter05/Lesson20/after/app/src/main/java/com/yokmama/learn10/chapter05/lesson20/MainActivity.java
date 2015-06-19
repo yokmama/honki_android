@@ -18,7 +18,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         //TextViewのインスタンスを取得
         mTextView = (TextView) findViewById(R.id.textView);
-        mTextView = (TextView) findViewById(R.id.textView);
 
         //リスナーをセット
         findViewById(R.id.button1).setOnClickListener(this);
