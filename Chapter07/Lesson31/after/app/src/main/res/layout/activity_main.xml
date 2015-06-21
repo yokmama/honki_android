@@ -18,8 +18,7 @@
             android:id="@+id/contents"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical" />
     </android.support.v4.widget.NestedScrollView>
 
     <!-- Toolbarを常にScrollViewの上に表示するためScrollViewの後に定義する-->
