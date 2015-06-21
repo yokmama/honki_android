@@ -159,27 +159,6 @@ class Hero {
         }
     }
 
-    public void jump() {
-        if (!isJumping) {
-            isJumping = true;
-            jumpingTime = 0;
-            animState = ANIM_STATE_JUMPING;
-            currentStateDisplayTime = 0;
-        }
-        else if (!isDoubleJumping) {
-            if (jumpingTime > JUMP_TIME / 2.0f) {
-                isDoubleJumping = true;
-                jumpingTime = JUMP_TIME - jumpingTime;
-                currentStateDisplayTime = 0;
-            }
-        }
-    }
-
-    private float jumpFunc(float t) {
-        t = Math.min(Math.max(t, 0.0f), 1.0f);
-        return t * (-4.0f * t + 4.0f);
-    }
-
     private void updateWinAnimation(float deltaTime) {
         if (winAnimState == WIN_ANIM_STATE_WAIT_FOR_LANDING) {
             winAnimState = WIN_ANIM_STATE_RUN;
@@ -238,6 +217,27 @@ class Hero {
         animState = ANIM_STATE_STILL;
         currentStateDisplayTime = 0.0f;
         deadPosY = position.y;
+    }
+
+    public void jump() {
+        if (!isJumping) {
+            isJumping = true;
+            jumpingTime = 0;
+            animState = ANIM_STATE_JUMPING;
+            currentStateDisplayTime = 0;
+        }
+        else if (!isDoubleJumping) {
+            if (jumpingTime > JUMP_TIME / 2.0f) {
+                isDoubleJumping = true;
+                jumpingTime = JUMP_TIME - jumpingTime;
+                currentStateDisplayTime = 0;
+            }
+        }
+    }
+
+    private float jumpFunc(float t) {
+        t = Math.min(Math.max(t, 0.0f), 1.0f);
+        return t * (-4.0f * t + 4.0f);
     }
 
 }
