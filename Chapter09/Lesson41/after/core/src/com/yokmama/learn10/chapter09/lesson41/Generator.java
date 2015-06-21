@@ -57,6 +57,7 @@ class Generator {
         }
         else if (generate == GENERATE_MINES) {
             if (successiveMinesGenerated < 2) {
+                // 障害物を生成する
                 generateMines(game);
             }
             else {
