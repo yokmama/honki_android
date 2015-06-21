@@ -116,7 +116,7 @@ class Chip {
 
     // 描画
     public void draw(SpriteBatch batch, Text text) {
-        // 既にアニメーション終了している場合は描画しない
+        // すでにアニメーション終了している場合は描画しない
         if (isDead) {
             return;
         }

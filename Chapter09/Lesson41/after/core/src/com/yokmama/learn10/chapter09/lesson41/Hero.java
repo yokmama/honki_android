@@ -120,6 +120,7 @@ class Hero {
     public void update(float deltaTime) {
         currentStateDisplayTime += deltaTime;
 
+        // ゲームオーバー時のアニメーション
         if (isDead) {
             updateDeadAnimation(deltaTime);
             return;
@@ -156,27 +157,6 @@ class Hero {
         if (deadTimeFraction >= 0.75f) {
             hasDeathAnimEnded = true;
         }
-    }
-
-    public void jump() {
-        if (!isJumping) {
-            isJumping = true;
-            jumpingTime = 0;
-            animState = ANIM_STATE_JUMPING;
-            currentStateDisplayTime = 0;
-        }
-        else if (!isDoubleJumping) {
-            if (jumpingTime > JUMP_TIME / 2.0f) {
-                isDoubleJumping = true;
-                jumpingTime = JUMP_TIME - jumpingTime;
-                currentStateDisplayTime = 0;
-            }
-        }
-    }
-
-    private float jumpFunc(float t) {
-        t = Math.min(Math.max(t, 0.0f), 1.0f);
-        return t * (-4.0f * t + 4.0f);
     }
 
     private void updateWinAnimation(float deltaTime) {
@@ -237,6 +217,27 @@ class Hero {
         animState = ANIM_STATE_STILL;
         currentStateDisplayTime = 0.0f;
         deadPosY = position.y;
+    }
+
+    public void jump() {
+        if (!isJumping) {
+            isJumping = true;
+            jumpingTime = 0;
+            animState = ANIM_STATE_JUMPING;
+            currentStateDisplayTime = 0;
+        }
+        else if (!isDoubleJumping) {
+            if (jumpingTime > JUMP_TIME / 2.0f) {
+                isDoubleJumping = true;
+                jumpingTime = JUMP_TIME - jumpingTime;
+                currentStateDisplayTime = 0;
+            }
+        }
+    }
+
+    private float jumpFunc(float t) {
+        t = Math.min(Math.max(t, 0.0f), 1.0f);
+        return t * (-4.0f * t + 4.0f);
     }
 
 }
