@@ -45,6 +45,19 @@ class Chip {
     // アイテム収集後アニメーションも終わり、完全に消失した時trueとなるフラグ
     public boolean isDead = false;
 
+    // スコア取得時のテキストの色
+    private final Color chipScoreColor = new Color();
+
+    // 取得時にアニメーションする時間
+    private static final float COLLECT_ANIM_TIME = 1.0f;
+    private static final float COLLECT_ANIM_HEIGHT = 100.0f;
+
+    // アニメーション変数
+    private float timeSinceCollected = 0;
+    private float timeSinceCreation = 0;
+    private float collectAnimTimeFraction;
+    private float scorePhase = 0;
+
     public Chip(TextureRegion[] chipRegions, int type, float x, float y,
                 float width, float height, float phaseShiftFraction) {
         this.chipRegions = chipRegions;
@@ -67,11 +80,64 @@ class Chip {
 
     // 状態の更新
     public void update(float deltaTime) {
+        timeSinceCreation += deltaTime;
+        if (isCollected) {
+            // アイテム収集後アニメーション
+            timeSinceCollected += deltaTime;
+            collectAnimTimeFraction = timeSinceCollected / COLLECT_ANIM_TIME;
+            positionPhase.y = collectFunc(collectAnimTimeFraction) * COLLECT_ANIM_HEIGHT;
+            scorePhase = scoreFunc(collectAnimTimeFraction) * COLLECT_ANIM_HEIGHT;
+            if (timeSinceCollected > COLLECT_ANIM_TIME) {
+                // アニメーション終了後、フラグを立てる
+                isDead = true;
+            }
+        }
+        else {
+            // アイテム収集前アニメーション
+            double af = 2 * Math.PI / 1.4f; // 角周波数
+            double phaseShift = 2 * Math.PI * phaseShiftFraction;
+            positionPhase.y = (float) Math.sin(timeSinceCreation * af - phaseShift) * origin.height / 2.0f;
+            collisionCircle.y = origin.y + positionPhase.y + origin.height / 2;
+        }
+        bounds.set(origin.x, origin.y + positionPhase.y, origin.width, origin.height);
+    }
+
+    // スコア表示アニメーション関数
+    private float scoreFunc(float t) {
+        t = 0.5f * Math.min(Math.max(t, 0.0f), 1.0f);
+        return 2.0f * t * (-4.0f * t + 4.0f);
+    }
+
+    // アイテム収集後アニメーション関数
+    private float collectFunc(float t) {
+        t = Math.min(Math.max(t, 0.0f), 1.0f);
+        return t * (-4.0f * t + 4.0f);
     }
 
     // 描画
     public void draw(SpriteBatch batch, Text text) {
+        // すでにアニメーション終了している場合は描画しない
+        if (isDead) {
+            return;
+        }
+        Color oldColor = batch.getColor();
+        if (isCollected) {
+            // スコアテキストの描画
+            if (collectAnimTimeFraction < 0.5f) {
+                chipScoreColor.set(1.0f, 1.0f, 0.0f, 1.0f - 2.0f * collectAnimTimeFraction);
+                text.drawChipScore(batch, "+" + chipScores[type], chipScoreColor,
+                        scoreTextScales[type],
+                        origin.x + CHIP_SIZE * 0.5f - bounds.width * 0.5f,
+                        origin.y + CHIP_SIZE + bounds.height + scorePhase);
+            }
+
+            batch.setColor(Color.alpha(1.0f - collectAnimTimeFraction));
+        }
+        // 取得後の描画
         batch.draw(chipRegions[type], origin.x + positionPhase.x, origin.y + positionPhase.y, origin.width, origin.height);
+        if (isCollected) {
+            batch.setColor(oldColor);
+        }
     }
 
 }
