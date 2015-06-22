@@ -29,4 +29,18 @@ class Text {
         font.getData().setScale(1.0f);
     }
 
+    // 上部にテキストを描画
+    public void drawTextTop(Batch batch, String text) {
+        glyphLayout.setText(font, text, Color.WHITE, 0, Align.center, false);
+        font.draw(batch, glyphLayout,
+                vpWidth * 0.5f, vpHeight - glyphLayout.height * 1.5f);
+    }
+
+    // 中央にテキストを描画
+    public void drawTextCenter(Batch batch, String text) {
+        glyphLayout.setText(font, text, Color.WHITE, 0, Align.center, false);
+        font.draw(batch, glyphLayout,
+                vpWidth * 0.5f, vpHeight * 0.5f + glyphLayout.height * 0.5f);
+    }
+
 }

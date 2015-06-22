@@ -59,6 +59,23 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.app.log("MyGdxGame", "create()");
         batch = new SpriteBatch();
 
+        // ゲーム用カメラ
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+
+        // UI用カメラ
+        uiCamera = new OrthographicCamera();
+        uiCamera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+
+        initResources();
+
+        // 音楽の再生
+        music.setLooping(true);
+        music.setVolume(0.6f);
+        music.play();
+
+        resetWorld();
     }
 
     private void initResources() {
@@ -105,10 +122,77 @@ public class MyGdxGame extends ApplicationAdapter {
     }
 
     @Override
+    public void resize(int width, int height) {
+        uiCamera.update();
+    }
+
+    // ゲームを最初の状態に戻す
+    private void resetWorld() {
+        score = 0;
+    }
+
+    @Override
     public void render() {
         Gdx.gl.glClearColor(0, 153.0f / 255.0f, 204.0f / 255.0f, 1); // #0099CC
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        updateWorld();
+        drawWorld();
     }
 
+    // 各種状態を変更する
+    private void updateWorld() {
+        float deltaTime = Gdx.graphics.getDeltaTime();
+
+        // 入力制御
+        if (Gdx.input.justTouched()) {
+            if (gameState == GameState.Ready) {
+                gameState = GameState.Running;
+            }
+            else if (gameState == GameState.GameOver) {
+                gameState = GameState.Ready;
+                resetWorld();
+            }
+            else if (gameState == GameState.GameCleared) {
+                gameState = GameState.Ready;
+                resetWorld();
+            }
+            else if (gameState == GameState.Running) {
+            }
+            Gdx.app.log("MyGdxGame", "gameState=" + gameState);
+        }
+    }
+
+    // 描画
+    private void drawWorld() {
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+
+        // ゲーム描画
+
+        batch.end();
+        batch.setProjectionMatrix(uiCamera.combined);
+        batch.begin();
+
+        // UI描画
+
+        // 文字列描画
+        if (gameState == GameState.Ready) {
+            text.drawTextTop(batch, "START");
+        }
+        else if (gameState == GameState.GameCleared) {
+            text.drawTextTop(batch, "SCORE: " + score);
+            text.drawTextCenter(batch, "LEVEL CLEAR");
+        }
+        else if (gameState == GameState.GameOver) {
+            text.drawTextTop(batch, "SCORE: " + score);
+            text.drawTextCenter(batch, "GAME OVER");
+        }
+        else if (gameState == GameState.Running) {
+            text.drawTextTop(batch, "SCORE: " + score);
+        }
+
+        batch.end();
+    }
 }
