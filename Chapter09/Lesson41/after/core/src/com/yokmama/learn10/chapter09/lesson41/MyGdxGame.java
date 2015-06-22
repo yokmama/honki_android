@@ -245,7 +245,6 @@ public class MyGdxGame extends ApplicationAdapter {
         background.draw(batch, cameraLeftEdge);
         generator.draw(this);
         hero.draw(this);
-
         batch.draw(finishTexture, finishX, 0,
                 finishTexture.getWidth() * 0.35f,
                 finishTexture.getHeight() * 0.35f);
