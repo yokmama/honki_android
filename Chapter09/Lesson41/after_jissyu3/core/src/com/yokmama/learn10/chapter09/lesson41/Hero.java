@@ -65,6 +65,13 @@ class Hero {
     private boolean hasWon;
     private int winAnimState;
 
+    // ジャンプ
+    private static final float JUMP_TIME = 1.0f;
+    private static final float JUMP_HEIGHT = 300.0f;
+    private boolean isJumping;
+    private boolean isDoubleJumping;
+    private float jumpingTime;
+
     public Hero(Texture heroTexture) {
         // テクスチャから、状態毎に TextureRegion を取得する
         Array<TextureRegion> regions;
@@ -101,6 +108,8 @@ class Hero {
         hasWon = false;
         isDead = false;
         hasDeathAnimEnded = false;
+        isJumping = false;
+        isDoubleJumping = false;
     }
 
     public void startRunning() {
@@ -116,8 +125,23 @@ class Hero {
             return;
         }
 
+        if (isJumping) {
+            // ジャンプ中
+            jumpingTime += deltaTime;
+            float jumpTime = jumpingTime / Hero.JUMP_TIME;
+            position.y = HERO_FLOOR_Y + jumpFunc(jumpTime) * JUMP_HEIGHT;
+            if (jumpingTime >= Hero.JUMP_TIME) {
+                // ジャンプ終了時
+                isJumping = false;
+                isDoubleJumping = false;
+                animState = ANIM_STATE_RUNNING;
+                currentStateDisplayTime = 0;
+                position.y = HERO_FLOOR_Y;
+            }
+        }
+
         // ゲームクリア時のアニメーション
-        if (hasWon) {
+        if (hasWon && !isJumping) {
             updateWinAnimation(deltaTime);
         }
 
@@ -192,6 +216,27 @@ class Hero {
         animState = ANIM_STATE_STILL;
         currentStateDisplayTime = 0.0f;
         deadPosY = position.y;
+    }
+
+    public void jump() {
+        if (!isJumping) {
+            isJumping = true;
+            jumpingTime = 0;
+            animState = ANIM_STATE_JUMPING;
+            currentStateDisplayTime = 0;
+        }
+        else if (!isDoubleJumping) {
+            if (jumpingTime > JUMP_TIME / 2.0f) {
+                isDoubleJumping = true;
+                jumpingTime = JUMP_TIME - jumpingTime;
+                currentStateDisplayTime = 0;
+            }
+        }
+    }
+
+    private float jumpFunc(float t) {
+        t = Math.min(Math.max(t, 0.0f), 1.0f);
+        return t * (-4.0f * t + 4.0f);
     }
 
 }
