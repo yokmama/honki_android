@@ -54,9 +54,6 @@ public class MyGdxGame extends ApplicationAdapter {
     // カメラ左端の位置
     float cameraLeftEdge;
 
-    // ゴール位置
-    float finishX;
-
     @Override
     public void create() {
         Gdx.app.log("MyGdxGame", "create()");
@@ -72,9 +69,6 @@ public class MyGdxGame extends ApplicationAdapter {
         uiCamera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
         initResources();
-
-        // ゴール地点の決定
-        finishX = (background.stageWidth - VIEWPORT_WIDTH) / Background.SPEED + Hero.HERO_LEFT_X;
 
         // 音楽の再生
         music.setLooping(true);
@@ -138,13 +132,6 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // キャラクターの位置と状態の初期化
         hero.init();
-
-        // カメラの位置を開始点へ設定
-        camera.position.x = VIEWPORT_WIDTH / 2 - Hero.HERO_LEFT_X;
-        cameraLeftEdge = camera.position.x - VIEWPORT_WIDTH / 2;
-
-        generator.init(VIEWPORT_WIDTH);
-        generator.clear();
     }
 
     @Override
@@ -176,62 +163,12 @@ public class MyGdxGame extends ApplicationAdapter {
                 resetWorld();
             }
             else if (gameState == GameState.Running) {
-                hero.jump();
             }
             Gdx.app.log("MyGdxGame", "gameState=" + gameState);
         }
 
-        // オブジェクトの新規生成
-        if (generator.chipGenerationLine < cameraLeftEdge + VIEWPORT_WIDTH &&
-                generator.chipGenerationLine + 5 * 50.0f < finishX) {
-            generator.generate(this);
-        }
-
-        // オブジェクトの更新
-        generator.update(this, deltaTime);
-
         // キャラクターの状態を更新
         hero.update(deltaTime);
-
-        // カメラの位置をキャラクターに合わせて移動させる
-        if (gameState != GameState.GameCleared) {
-            camera.position.x = VIEWPORT_WIDTH / 2 + hero.position.x - Hero.HERO_LEFT_X;
-            cameraLeftEdge = camera.position.x - VIEWPORT_WIDTH / 2;
-        }
-
-        // ゲームクリアチェック
-        if (gameState != GameState.GameCleared) {
-            float heroX = hero.position.x;
-            if (finishX < heroX) {
-                finaleClapsSound.play();
-                gameState = GameState.GameCleared;
-                hero.win(); // クリアしたことを通知
-            }
-        }
-
-        // ゲームオーバーまたはゲームクリア後は衝突判定を行わない
-        if (gameState == GameState.GameOver || gameState == GameState.GameCleared) {
-            return;
-        }
-
-        // 衝突判定
-        Rectangle heroCollision = hero.collisionRect;
-        for (Chip chip : generator.chips) {
-            if (!chip.isCollected && Intersector.overlaps(chip.collisionCircle, heroCollision)) {
-                chip.collect();
-                coinSound.play();
-
-                score += chip.getScore();
-            }
-        }
-        for (Mine mine : generator.mines) {
-            if (!mine.hasCollided && Intersector.overlaps(mine.collisionCircle, heroCollision)) {
-                mine.collide();
-                collisionSound.play();
-                hero.die();
-                gameState = GameState.GameOver;
-            }
-        }
     }
 
     // 描画
@@ -242,12 +179,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // ゲーム描画
 
-        background.draw(batch, cameraLeftEdge);
-        generator.draw(this);
         hero.draw(this);
-        batch.draw(finishTexture, finishX, 0,
-                finishTexture.getWidth() * 0.35f,
-                finishTexture.getHeight() * 0.35f);
 
         batch.end();
         batch.setProjectionMatrix(uiCamera.combined);

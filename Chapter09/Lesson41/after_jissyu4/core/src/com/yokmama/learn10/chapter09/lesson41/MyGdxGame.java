@@ -208,30 +208,6 @@ public class MyGdxGame extends ApplicationAdapter {
                 hero.win(); // クリアしたことを通知
             }
         }
-
-        // ゲームオーバーまたはゲームクリア後は衝突判定を行わない
-        if (gameState == GameState.GameOver || gameState == GameState.GameCleared) {
-            return;
-        }
-
-        // 衝突判定
-        Rectangle heroCollision = hero.collisionRect;
-        for (Chip chip : generator.chips) {
-            if (!chip.isCollected && Intersector.overlaps(chip.collisionCircle, heroCollision)) {
-                chip.collect();
-                coinSound.play();
-
-                score += chip.getScore();
-            }
-        }
-        for (Mine mine : generator.mines) {
-            if (!mine.hasCollided && Intersector.overlaps(mine.collisionCircle, heroCollision)) {
-                mine.collide();
-                collisionSound.play();
-                hero.die();
-                gameState = GameState.GameOver;
-            }
-        }
     }
 
     // 描画
