@@ -129,6 +129,9 @@ public class MyGdxGame extends ApplicationAdapter {
     // ゲームを最初の状態に戻す
     private void resetWorld() {
         score = 0;
+
+        // キャラクターの位置と状態の初期化
+        hero.init();
     }
 
     @Override
@@ -148,6 +151,8 @@ public class MyGdxGame extends ApplicationAdapter {
         if (Gdx.input.justTouched()) {
             if (gameState == GameState.Ready) {
                 gameState = GameState.Running;
+
+                hero.startRunning();
             }
             else if (gameState == GameState.GameOver) {
                 gameState = GameState.Ready;
@@ -161,6 +166,9 @@ public class MyGdxGame extends ApplicationAdapter {
             }
             Gdx.app.log("MyGdxGame", "gameState=" + gameState);
         }
+
+        // キャラクターの状態を更新
+        hero.update(deltaTime);
     }
 
     // 描画
@@ -170,6 +178,8 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
 
         // ゲーム描画
+
+        hero.draw(this);
 
         batch.end();
         batch.setProjectionMatrix(uiCamera.combined);
