@@ -111,6 +111,7 @@ class Hero {
     public void update(float deltaTime) {
         currentStateDisplayTime += deltaTime;
 
+        // ゲームオーバー時のアニメーション
         if (isDead) {
             updateDeadAnimation(deltaTime);
             return;
