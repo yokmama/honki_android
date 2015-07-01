@@ -31,4 +31,27 @@
     <string name="descLesson37">Lesson37で学習するInternetアプリの動きを確認できます</string>
     <string name="descLesson41">Lesson41で学習するゲームアプリの動きを確認できます</string>
 
+    <string name="promotion_title">ほんきで学ぶAndroidアプリ開発入門</string>
+    <string name="promotion_catch">サンプルアプリの作成や講義を通して、自分のペースで学べるAndroidアプリ開発入門本</string>
+    <string name="promotion_label1">目次</string>
+    <string name="promotion_label2">内容</string>
+    <string name="promotion_index1">CHAPTER 01：Androidアプリ開発をはじめる前に</string>
+    <string name="promotion_index2">CHAPTER 02：Androidアプリ開発の準備をしよう</string>
+    <string name="promotion_index3">CHAPTER 03：Androidアプリ開発の基本を学ぼう</string>
+    <string name="promotion_index4">CHAPTER 04：Androidアプリのウィジェットに慣れよう</string>
+    <string name="promotion_index5">CHAPTER 05：Androidのシステムを学ぼう</string>
+    <string name="promotion_index6">CHAPTER 06：Androidアプリを作ってみよう</string>
+    <string name="promotion_index7">CHAPTER 07：Material Designを使ってみよう</string>
+    <string name="promotion_index8">CHAPTER 08：データを使いこなそう</string>
+    <string name="promotion_index9">CHAPTER 09：ゲームを作ってみよう</string>
+    <string name="promotion_index10">CHAPTER 10：アプリを公開しよう</string>
+    <string name="promotion_contents">
+　本書は、Androidアプリを開発するために必要な環境の準備から始まり、Android Studioの基本的な使い方やAndroidアプリ開発の基本、Material Designやデータ処理、ゲーム開発、そしてGoogle Play Storeにアプリを公開する手順までを網羅。
+「ほんき」でAndroidアプリの開発を学びたい方を、強くバックアップします。\n
+「実習」で作成手順を学び、「講義」で作成手順の内容を理解してもらう構成になっています。\n
+具体的には「CHAPTER 05」〜「CHAPTER 09」で、章ごとのテーマにもとづいたアプリを作っていただきます。\n
+また、サンプルとは別にデモアプリがあり、本書で解説・作成しているアプリの実際の動きが確認できます。そして、各章ごとに復習を兼ねた簡単な練習問題もあります。\n
+        </string>
+    <string name="action_settings">設定</string>
+    <string name="title_activity_promotion">プロモーション</string>
 </resources>

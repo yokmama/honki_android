@@ -103,8 +103,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Intent intent = new Intent(MainActivity.this, com.yokmama.learn10.chapter09.lesson41.android.AndroidLauncher.class);
             startActivity(intent);
         } else {
-            Uri uri = Uri.parse("http://www.shoeisha.co.jp/book/detail/9784798141343");
-            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+            Intent intent = new Intent(this, PromotionActivity.class);
             startActivity(intent);
         }
 

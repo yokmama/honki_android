@@ -1,14 +1,14 @@
 package com.yokmama.learn10.chapter06.lesson27;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.support.v7.widget.GridLayout;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mTvPreview;
 

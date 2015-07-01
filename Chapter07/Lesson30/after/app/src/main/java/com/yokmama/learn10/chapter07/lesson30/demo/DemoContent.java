@@ -146,8 +146,8 @@ public class DemoContent {
             dest.writeString(fragmentName);
         }
 
-        public static final Creator<DemoItem> CREATOR
-                = new Creator<DemoItem>() {
+        public static final Parcelable.Creator<DemoItem> CREATOR
+                = new Parcelable.Creator<DemoItem>() {
             public DemoItem createFromParcel(Parcel in) {
                 return new DemoItem(in);
             }

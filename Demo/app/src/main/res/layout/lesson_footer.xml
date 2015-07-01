@@ -10,6 +10,6 @@
         android:layout_height="?android:attr/listPreferredItemHeight"
         android:background="@android:color/white"
         android:id="@+id/imageBunner"
-        android:src="@drawable/cz"
+        android:src="@drawable/czlogo4web"
         android:scaleType="centerInside"/>
 </LinearLayout>

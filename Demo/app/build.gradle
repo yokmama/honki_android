@@ -8,8 +8,8 @@ android {
         applicationId "com.yokmama.learn10.demo"
         minSdkVersion 10
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
     buildTypes {
         release {
@@ -25,6 +25,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:design:22.2.0'
     compile 'com.android.support:cardview-v7:22.2.0'
     compile project(':lesson16')
     compile project(':lesson17')

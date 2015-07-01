@@ -90,7 +90,7 @@ public class PropertyAnimationActivity extends Activity implements View.OnClickL
         anim.start();
     }
 
-    /** コードで定義したプロパティアニメーションを実行 */
+    /** プログラムで定義したプロパティアニメーションを実行 */
     private void doAnimationToBtnXCode() {
         Interpolator interpolator = AnimationUtils.loadInterpolator(
                 this, android.R.interpolator.decelerate_quint);
