@@ -29,8 +29,6 @@ public class MyApplication extends Application{
         mHandlerThread = new HandlerThread("myLooper");
         mHandlerThread.start();
         mHandler = new Handler(mHandlerThread.getLooper());
-
-        handlerMessage();
     }
 
 
@@ -59,19 +57,4 @@ public class MyApplication extends Application{
             Log.d(TAG, "My Index is " + mIndex);
         }
     }
-
-    private void handlerMessage(){
-Handler myHandler = new Handler(new Handler.Callback() {
-    @Override
-    public boolean handleMessage(Message msg) {
-        if(msg.what == 100){
-            Log.d(TAG, String.format("%d %d %s", msg.arg1, msg.arg2, (String)msg.obj));
-        }
-        return false;
-    }
-});
-
-myHandler.sendMessage(myHandler.obtainMessage(100, 1, 2, "test"));
-    }
-
 }
