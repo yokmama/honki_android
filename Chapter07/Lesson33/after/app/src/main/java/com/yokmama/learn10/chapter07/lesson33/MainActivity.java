@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private RecyclerView mRecyclerView;
     private RadioGroup mListType;
     private List<BaseItem> mItems;
-    private RecyclerView.ItemDecoration mItemDecoration;
+    private RecyclerView.ItemDecoration mItemDecoration=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +89,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (mListType.getCheckedRadioButtonId() == R.id.radioList) {
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             //RecyclerViewに罫線を設定
-            mItemDecoration = new DividerItemDecoration(getResources());
+            //書籍ではこのコメントされている１行が余計にはいっていますが、これは誤りですので不要です。
+            //mItemDecoration = new DividerItemDecoration(getResources());
             //Dividerが設定されていなければ設定
             if (mItemDecoration == null) {
                 mItemDecoration = new DividerItemDecoration(getResources());
